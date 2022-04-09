@@ -30,3 +30,6 @@ In the directory with the docker-compose.yaml file, run docker-compose build to 
 and then once the image is built it can be run with docker-compose up -d. To kill the process after running it, simply do docker-compose kill
 
 Currently Hot Reload is not enabled, so you will need to rebuild every time you change the code, so currently use the Build Instructions, however Hot Reload is currently in development
+
+# Testing 
+[Enter Instructions Here]
