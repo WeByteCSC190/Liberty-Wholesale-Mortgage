@@ -37,4 +37,5 @@ and then once the image is built it can be run with docker-compose up -d. To kil
 Currently Hot Reload is not enabled, so you will need to rebuild every time you change the code, so currently use the Build Instructions, however Hot Reload is currently in development
 
 # Testing 
-[Enter Instructions Here]
+For Frontend: 
+In the directory with the manage.py file, run python3 ./manage.py runserver In the frontend directory, run the command npm run dev
