@@ -6,8 +6,11 @@ Visual Studio Code
 
 Visual Studio Code Extensions
 Babel==2.9.1
+
 Django==4.0.3
+
 django-bootstrap-v5==1.0.11
+
 djangorestframework==3.13.1
 
 # Build Instructions
