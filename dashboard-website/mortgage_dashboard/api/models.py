@@ -3,11 +3,18 @@ import random
 
 # Create your models here.
 
+## Models.py gets converted into our database and
+## is an easy way to define our database tables
+## in python as this abstracts the database 
+## language
+
+## I need someone to finish this according to 
+## negins DB mapping in draw.io, located in 
+## the db channel in our Discord
+
 # This is a sample function, must be improved if intended to be used for cid
 def generate_random_number():
-    cid = random.randrange(10000)
-    while Client.objects.filter (cid=cid).count() != 0:
-        cid = random.randrange(10000)
+    cid = random.randrange(1000000)
     return cid
 
 class Client(models.Model):
