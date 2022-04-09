@@ -4,8 +4,6 @@ Create a website for Liberty Wholesale Mortgage to have their clients view their
 # Tools
 Visual Studio Code
 
-Visual Studio Code Extensions
-
 Babel==2.9.1
 
 Django==4.0.3
