@@ -4,6 +4,7 @@ Create a website for Liberty Wholesale Mortgage to have their clients view their
 # Tools
 
 IDE: Visual Studio Code
+
 For VSC terminal: python3 -m pip install -r requirements.txt
 
 Other programs to install:
