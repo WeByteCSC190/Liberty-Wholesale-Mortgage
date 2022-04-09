@@ -2,9 +2,11 @@
 Create a website for Liberty Wholesale Mortgage to have their clients view their application progress
 
 # Tools
-Visual Studio Code
 
-Copy or type in command in VSC terminal: python3 -m pip install -r requirements.txt
+IDE: Visual Studio Code
+For VSC terminal: python3 -m pip install -r requirements.txt
+
+Other programs to install:
 
 Babel==2.9.1
 
