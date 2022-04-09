@@ -2,7 +2,11 @@
 Create a website for Liberty Wholesale Mortgage to have their clients view their application progress
 
 # Build Instructions
-You will need to run two commands running at the same time, so either use tmux to run them in the same terminal window, run it in two terminals, or run them in the background by adding '&' to the end of the commands.
+Before anything, ensure that you install all of the python dependencies with the command
+python3 -m pip install -r requirements.txt
+Node.js side, you will need to install quite a few packages, navigate into the Docker file and you will see the installed Node dependencies.
+
+You will need to run two processes at the same time, so either use tmux to run them in the same terminal window, run it in two terminals, or run them in the background by adding '&' to the end of the commands.
 
 
 In the directory with the manage.py file, run python3 ./manage.py runserver
