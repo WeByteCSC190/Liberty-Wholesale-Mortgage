@@ -3,6 +3,7 @@ Create a website for Liberty Wholesale Mortgage to have their clients view their
 
 # Tools
 Visual Studio Code
+
 Copy or type in command in VSC terminal: python3 -m pip install -r requirements.txt
 
 Babel==2.9.1
