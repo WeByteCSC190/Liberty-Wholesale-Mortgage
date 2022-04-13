@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'rest_framework',
     'frontend.apps.FrontendConfig',
-    'mortgage_dashboard'
+    'mortgage_dashboard',
+    'api.apps.ApiConfig'
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,6 @@ DATABASES = {
         'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '3306'
-
     }
 }
 

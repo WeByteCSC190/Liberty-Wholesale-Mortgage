@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import SignIn from "./sign-in/sign-in.component.js";
 
 export default class App extends Component {
   constructor(props) {
@@ -7,7 +8,9 @@ export default class App extends Component {
   }
 
   render() {
-    return <h1>Testing React Code</h1>;
+    return <div className="container">
+            <SignIn />
+    </div>
   }
 }
 
