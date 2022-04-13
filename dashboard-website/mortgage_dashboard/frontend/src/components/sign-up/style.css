@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: center;
 }
-.signUpLink {
+.signInLink {
   float: right;
   margin-top: 10px;
 }
