@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import SignIn from "./sign-in/sign-in.component.js";
-
+// import {
+//   BrowserRouter as Router,
+//   Switch,
+//   Route,
+//   Redirect,
+// } from "react-router-dom";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +14,7 @@ export default class App extends Component {
 
   render() {
     return <div className="container">
-            <SignIn />
+     <SignIn/>
     </div>
   }
 }
