@@ -1,10 +1,14 @@
+import re
 from django.shortcuts import render
 from rest_framework import generics, status
-from .serializers import ClientSerializer, AddClient
-from .models import Client
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
+from rest_framework.decorators import api_view
+
+from .serializers import ClientSerializer, AddClient, UserSerializer
+from .models import Client, User
 
 # Create your views here.
 
@@ -23,6 +27,58 @@ from django.http import JsonResponse
 ## can be made and add them or list them
 ## as tasks on the Github
 
+# @api_view(['GET'])
+# def apiView(request):
+#     apiUrls = {
+#         'List': '/userList',
+#         'Detail View':'/userDetails/<int: id>',
+#         'Create': '/userCreate',
+#         'Update': '/userUpdate/<int: id>',
+#         'Delete': '/userDelete/<int: id>',
+#     }
+#     return Response(apiUrls)
+
+@api_view(['GET'])
+def listAll(request):
+    users = User.objects.all()
+    serializer = UserSerializer(users, many = True)
+    
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def userDetail(request,pk):
+    user = User.objects.get(id = pk)
+    serializer = UserSerializer(user, many = False)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def createUser(request):
+    serializer = UserSerializer(data = request.data)
+    
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def updateUser(request,pk):
+    user = User.objects.get(id = pk)
+    serializer = UserSerializer(instance=user, data=request.data)
+    
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def deleteUser(request,pk):
+    user = User.objects.get(id = pk)
+    user.delete()
+    return Response('Item deleted')
+
+
+    
+########
 
 class ClientView(generics.ListCreateAPIView):
     queryset = Client.objects.all()
@@ -36,12 +92,12 @@ class AddClientView(APIView):
 
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
-            fname = serializer.data.get('fname')
-            lname = serializer.data.get('lname')
+            fName = serializer.data.get('fName')
+            lName = serializer.data.get('lName')
             email = serializer.data.get('email')
             phone_num = serializer.data.get('phone_num')
 
-            client = Client(fname=fname,lname=lname, email=email, phone_num=phone_num)
+            client = Client(fName=fName,lName=lName, email=email, phone_num=phone_num)
             client.save()
             
             return Response(ClientSerializer(client).data, status=status.HTTP_200_OK)
