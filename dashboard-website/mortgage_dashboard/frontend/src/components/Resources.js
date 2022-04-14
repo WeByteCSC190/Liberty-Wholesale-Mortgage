@@ -1,12 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 
-export default class Resources extends Component {
-  constructor(props) {
-    super(props);
+const Resources = () => {
+  const [count, setCount] = useState(0);
 
-  }
+  React.useEffect(() => {
+    document.title = 'Count' + count;
+    return () => {
 
-  render() {
-    return <h1>Resources</h1>
-  }
-}
+    };
+  }, [count]);
+
+  return (
+    <div>
+      <button onClick={() => setCount(count + 1)}>
+        Click Me + {count}
+      </button>
+    </div>
+  );
+};
+
+export default Resources;
+

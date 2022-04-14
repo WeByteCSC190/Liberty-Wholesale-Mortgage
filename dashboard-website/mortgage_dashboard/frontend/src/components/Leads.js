@@ -1,26 +1,5 @@
 import React, { useMemo, useEffect, useState } from 'react';
-import { Link } from "react-router-dom"
 import MOCK_DATA from "./MOCK_DATA.json"
-import {
-  makeStyles
-} from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-    overflowX: 'auto',
-  },
-  table: {
-    minWidth: 650,
-  },
-}));
 
 const DisplayData = MOCK_DATA.map(
   (info) => {
@@ -38,22 +17,18 @@ const DisplayData = MOCK_DATA.map(
   }
 )
 
+const divStyle = {
+  overflowY: 'scroll',
+  overflowX: 'scroll',
+  border: '1 px solid black',
+  height: '100%',
+  float: 'left',
+  width: '100%',
+  position: 'relative',
+};
+
 const Leads = () => {
   const [leadsData, setLeadsData] = useState([]);
-  //   this.state = {
-  //     leadsData: [],
-  //     // firstName: [],
-  //     // lastName: [],
-  //     // status: [],
-  //     // creditScore: [],
-  //     // phoneNum: [],
-  //     // date: [],
-
-
-  //   }
-  //   this.fetchLeads = this.fetchLeads.bind(this)
-  // }
-
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/leads-list/')
       .then(response => response.json())
@@ -61,62 +36,13 @@ const Leads = () => {
         setLeadsData(data);
       })
       .catch(err => {
-        console.log(123123);
+        console.log(err);
       });
   }, []);
 
-
-
-  // render() {
-  // const columns = [
-  //   {
-  //     Header: 'First Name',
-  //     accesor: 'first_name',
-  //     sortable: false
-  //   },
-  //   {
-  //     Header: 'Last Name',
-  //     accesor: 'last_name',
-  //     sortable: false
-  //   },
-  //   {
-  //     Header: 'Status',
-  //     accesor: 'status',
-  //     sortable: false
-  //   },
-  //   {
-  //     Header: 'Credit Score',
-  //     accesor: 'credit_score',
-  //     sortable: false
-  //   },
-  //   {
-  //     Header: 'Phone Number',
-  //     accesor: 'phone_num',
-  //     sortable: false
-  //   },
-  //   {
-  //     Header: 'Date Added',
-  //     accesor: 'date',
-  //     sortable: true
-  //   },
-  // ];
-
-  // const {
-  //   first_name,
-  //   last_name,
-  //   status,
-  //   email,
-  //   credit_score,
-  //   phone_num,
-  //   date
-  // } = useTable({
-  //   columns,
-  //   MOCK_DATA,
-  // });
-  const classes = useStyles();
   return (
-    <div>
-      <table class="table table-stripped">
+    <div style={divStyle}>
+      <table className="table table-stripped">
         <thead>
           <tr>
             <th>First Name</th>
@@ -132,7 +58,7 @@ const Leads = () => {
           {DisplayData}
         </tbody>
       </table>
-    </div>
+    </div >
   );
 
 };
