@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dashboard.apps.DashboardConfig',
+    'api.apps.ApiConfig',
     'rest_framework',
     'frontend.apps.FrontendConfig',
     'mortgage_dashboard',
