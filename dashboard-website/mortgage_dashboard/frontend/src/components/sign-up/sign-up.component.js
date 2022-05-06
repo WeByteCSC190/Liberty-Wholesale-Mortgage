@@ -15,7 +15,11 @@ export default class SignUp extends React.Component {
           <a href=""className="signInLink">Already have an account? Sign In</a>
           <div className="social row">
               <div className="col google"><i className="fab fa-google"></i>  Google</div>
-              <div className="col fb"><i className="fab fa-facebook"></i>Facebook</div>
+              <div className="col fb">
+                <i className="fab fa-facebook">
+                  <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+                </i>Facebook
+              </div>
         </div>
       </form>
     </div>
