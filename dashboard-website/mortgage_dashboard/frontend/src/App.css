@@ -1,0 +1,54 @@
+bdefault ody{
+  font-size: 1vh;
+}
+.App {
+  display: grid;
+  background: white;
+  grid-template: 10% 1fr 10%/20% 1fr;
+  height: 100vh;
+  width: 100vw;
+}
+
+.Header{
+  grid-column: 2/none;
+  grid-row: 1/1;
+/**  background: #2f5496; **/
+}
+
+.Content{
+  grid-column: 2/2;
+  grid-row: 2/2;
+}
+.Footer{
+  grid-column: 1/ none;
+  grid-row: 3/3;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+Navbar{
+  grid-column: 1/1;
+  grid-row: 1/3;
+}
+.Dashboard{
+  grid-column: 2/2;
+  grid-row: 2/2;
+}
+.Account{
+  grid-column: 2/2;
+  grid-row: 2/2;
+}
+.Leads{
+  grid-column: 2/2;
+  grid-row: 2/2;
+}
+.Borrowers{
+  grid-column: 2/2;
+  grid-row: 2/2;
+}
+.Resources{
+  grid-column: 2/2;
+  grid-row: 2/2;
+}
+

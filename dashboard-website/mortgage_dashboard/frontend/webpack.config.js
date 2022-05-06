@@ -3,27 +3,36 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: "./src/index.js",
-  output: {
-    path: path.resolve(__dirname, "./static/frontend"),
-    filename: "[name].js",
-  },
+  mode: "development",
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "babel-loader",
+        options: { presets: ["@babel/env"] }
       },
-    ],
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
+      },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"]
+      }
+    ]
   },
-  optimization: {
-    minimize: true,
+  resolve: { extensions: ["*", ".js", ".jsx"] },
+  output: {
+    path: path.resolve(__dirname, "dist/"),
+    publicPath: "/dist/",
+    filename: "bundle.js"
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify('development')
-    }),
-  ],
+  devServer: {
+    contentBase: path.join(__dirname, "public/"),
+    port: 3000,
+    publicPath: "http://localhost:3000/dist/",
+    hotOnly: true
+  },
+  plugins: [new webpack.HotModuleReplacementPlugin()]
 };
