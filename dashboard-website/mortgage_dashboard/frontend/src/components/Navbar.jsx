@@ -4,7 +4,7 @@ import logo from '../logo.jpg';
 
 export default function Navbar() {
   return (
-    <div class="wrapper">
+    <div class="wrapper Navbar">
       <div class="sidebar">
         <div class="profile">
           <img src={logo} alt="logo" />

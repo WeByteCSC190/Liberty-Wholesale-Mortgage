@@ -1,4 +1,4 @@
-bdefault ody{
+body{
   font-size: 1vh;
 }
 .App {
@@ -8,13 +8,11 @@ bdefault ody{
   height: 100vh;
   width: 100vw;
 }
-
 .Header{
   grid-column: 2/none;
   grid-row: 1/1;
 /**  background: #2f5496; **/
 }
-
 .Content{
   grid-column: 2/2;
   grid-row: 2/2;
@@ -27,7 +25,7 @@ bdefault ody{
   justify-content: center;
   align-items: center;
 }
-Navbar{
+.Navbar{
   grid-column: 1/1;
   grid-row: 1/3;
 }
@@ -50,5 +48,13 @@ Navbar{
 .Resources{
   grid-column: 2/2;
   grid-row: 2/2;
+}
+.SignIn{
+  position: absolute;
+  height: 100%;
+}
+.SignUp{
+  position: absolute;
+  height: 100%
 }
 

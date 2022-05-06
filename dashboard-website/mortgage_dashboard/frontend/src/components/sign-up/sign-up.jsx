@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import "./style.css";
 export default class SignUp extends React.Component {
     render() {
-      return<div className="container">
+      return<div className="container SignUp">
         <form>
           <h1>LOGO</h1>
           <h3>Sign Up</h3>

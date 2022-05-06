@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { Fragment } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import './App.css';
 import Navbar from "./components/Navbar";
@@ -7,6 +7,8 @@ import Account from "./components/Account";
 import Leads from "./components/Leads";
 import Borrowers from "./components/Borrowers";
 import Resources from "./components/Resources";
+import SignIn from "./components/sign-in/sign-in.jsx";
+import SignUp from "./components/sign-up/sign-up.jsx";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="Leads" element={<Leads />} />
         <Route path="Borrowers" element={<Borrowers />} />
         <Route path="Resources" element={<Resources />} />
+        <Route path="Sign-In" element={<SignIn />} />
+        <Route path="Sign-Up" element={<SignUp />} />
       </Routes>
       <div className="Content">
         <div className="milestone"></div>
