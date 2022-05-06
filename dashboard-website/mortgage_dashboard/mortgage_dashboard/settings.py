@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'api.apps.ApiConfig',
     'rest_framework',
-    'frontend.apps.FrontendConfig'
+    # 'frontend.apps.FrontendConfig'
 ]
 
 MIDDLEWARE = [
