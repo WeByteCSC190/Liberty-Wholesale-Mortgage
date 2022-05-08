@@ -10,7 +10,7 @@ import Resources from "./components/Resources";
 import SignIn from "./components/sign-in/sign-in.jsx";
 import SignUp from "./components/sign-up/sign-up.jsx";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <div className="Header"></div>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
-export default function Borrowers() {
+const Borrowers = () => {
   function createData(fname, lname, email, phone_num, date) {
     return { fname, lname, email, phone_num, date };
   }
@@ -48,3 +48,5 @@ export default function Borrowers() {
       </TableContainer>    </div>
   );
 }
+
+export default Borrowers;
