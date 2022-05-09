@@ -2,13 +2,14 @@ import re
 from django.shortcuts import render
 from rest_framework import generics, status
 
+from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
-from .serializers import ClientSerializer, AddClient, UserSerializer
-from .models import Client, User
+from .serializers import ClientSerializer, AddClient, UserSerializer,LeadSerializer, BorrowerSerializer
+from .models import Client, User,Lead,Borrower
 
 # Create your views here.
 
@@ -102,3 +103,10 @@ class AddClientView(APIView):
             
             return Response(ClientSerializer(client).data, status=status.HTTP_200_OK)
 
+class LeadViewSet(viewsets.ModelViewSet):
+    queryset=Lead.objects.all().order_by('fname')
+    serializer_class=LeadSerializer
+
+class BorrowerViewSet(viewsets.ModelViewSet):
+    queryset=Borrower.objects.all().order_by('fname')
+    serializer_class=BorrowerSerializer
