@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.urls import path
-from .views import ClientView, AddClient
+from .views import ClientView, AddClient, AddLead
 from . import views
 
 ##  These URL patterns define the API endpoints
@@ -12,7 +12,7 @@ from . import views
 
 
 urlpatterns = [
-    path('get-leads', ClientView.as_view() ),
+    path('get-leads', AddLead),
     path('get-borrowers',ClientView.as_view() ),
     path('add_client', AddClient),
 

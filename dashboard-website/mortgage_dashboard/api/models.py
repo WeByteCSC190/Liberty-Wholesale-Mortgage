@@ -66,19 +66,20 @@ class Status(models.Model):
 
     def __str__(self):
         return self.id
+  
+#class Lead(models.Model):
+#    creditScore = models.IntegerField('Credit Score', null=False, default=generate_random_number(), unique=True )
+#    status = models.ForeignKey(Status, blank=True, null = True, on_delete=models.CASCADE)
     
-class Lead(models.Model):
-    creditScore = models.IntegerField('Credit Score', null=False, default=generate_random_number(), unique=True )
-    status = models.ForeignKey(Status, blank=True, null = True, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.creditScore
+#    def __str__(self):
+#        return self.creditScore
+        
 
-class Borrower(models.Model):
-    status = models.ForeignKey(Status, blank=True, null = True, on_delete=models.CASCADE)
+#class Borrower(models.Model):
+#    status = models.ForeignKey(Status, blank=True, null = True, on_delete=models.CASCADE)
    
-    def __str__(self):
-        return self.status
+#    def __str__(self):
+#        return self.status
 
 class MileStone(models.Model):
     id= models.IntegerField('ID',primary_key = True, null=False, default=generate_random_number(), unique=True )
@@ -130,3 +131,26 @@ class Client(models.Model):
 
     def __str__(self):
         return self.cID
+
+
+class Lead(models.Model):
+    id= models.IntegerField('ID',primary_key = True, null=False, default=generate_random_number(), unique=True )
+    date = models.CharField( max_length=20, null=True)
+    fname = models.CharField('First Name', max_length=40, null=True, blank =True)
+    lname = models.CharField('Last Name', max_length=40, null=True, blank =True)
+    fico = models.IntegerField('Fico Score', null=False, default=generate_random_number(), unique=True )
+    email = models.CharField('Email', max_length=40, null=True, blank =True)
+    phone_num = models.CharField(max_length=12, default="-1")
+    lead_status = models.CharField(max_length=2, default="-1")    
+    def __str__(self):
+        return self.fname
+
+class Borrower(models.Model):
+    id= models.IntegerField('ID',primary_key = True, null=False, default=generate_random_number(), unique=True )
+    fname = models.CharField('First Name', max_length=40, null=True, blank =True)
+    lname = models.CharField('Last Name', max_length=40, null=True, blank =True)
+    email = models.CharField('Email', max_length=40, null=True, blank =True)
+    phone_num = models.CharField(max_length=12, default="-1")
+    date = models.CharField( max_length=20, null=True)
+    def __str__(self):
+        return self.fname
