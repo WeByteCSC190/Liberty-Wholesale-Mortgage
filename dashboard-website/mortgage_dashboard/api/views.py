@@ -8,8 +8,8 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
-from .serializers import ClientSerializer, AddClient, UserSerializer,LeadSerializer, BorrowerSerializer
-from .models import Client, User,Lead,Borrower
+from .serializers import ClientSerializer, AddClient, UserSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer
+from .models import Client, User,Lead,Borrower,RecentBorrowers
 
 # Create your views here.
 
@@ -110,3 +110,7 @@ class LeadViewSet(viewsets.ModelViewSet):
 class BorrowerViewSet(viewsets.ModelViewSet):
     queryset=Borrower.objects.all().order_by('fname')
     serializer_class=BorrowerSerializer
+
+class RecentBorrowerViewSet(viewsets.ModelViewSet):
+    queryset=RecentBorrowers.objects.all().order_by('date')
+    serializer_class=RecentBorrowerSerializer

@@ -42,3 +42,8 @@ class AddClient(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Client
         fields = ('fname', 'lname', 'email', 'phone_num')
+
+class RecentBorrowerSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = RecentBorrowers
+        fields = ('date', 'fname', 'lname')
