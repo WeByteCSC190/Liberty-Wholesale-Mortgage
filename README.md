@@ -9,26 +9,26 @@ Liberty Wholesale Mortgage is an LLC business that provides mortgage rates and o
 An all in one platform for mortgage officers and loan processors to track their progress, keeping up to date with the status of their leads and borrowers, perform fillings, find lenders, and so forth.The technology lets the mortgage officers and processors to increase productivity, manage bigger pipelines and grow their business to higher levels.
 
 # Prototypes
-<p align="left">
-<img src = "prototypes/log_in.png" width=300>
+<p align="center">
+<img src = "prototypes/log_in.png" width=400>
  
 Sign In
  </p>
  
-<p align="right">
-<img src = "prototypes/dashboard.png" width=300>
+<p align="center">
+<img src = "prototypes/dashboard.png" width=400>
  
 Dashboard
  </p>
                                  
-<p align="left">
-<img src = "prototypes/leads.png" width=300>
+<p align="center">
+<img src = "prototypes/leads.png" width=400>
  
 Leads
  </p>
 
-<p align="right">
-<img src = "prototypes/log_out.png" width=300>
+<p align="center">
+<img src = "prototypes/log_out.png" width=400>
  
 Sign Out
  </p>
