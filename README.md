@@ -2,7 +2,9 @@
 <p align="center">
 <img src = "prototypes/logo.png" width=300>
  </p>
-# MLO Support Powered by Liberty Wholesale Mortgage
+ 
+# MLO Support (Powered by Liberty Wholesale Mortgage )
+  
 ## Table of Content
  - [Introduction](##Introduction) <br>
  - [Solution](##Solution) <br>
