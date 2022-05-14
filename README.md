@@ -11,28 +11,27 @@ An all in one platform for mortgage officers and loan processors to track their 
 # Prototypes
 <p align="center">
 <img src = "prototypes/log_in.png" width=400>
- 
-Sign In
- </p>
+</p>
+
+<p align="center"> Sign In </p>
  
 <p align="center">
 <img src = "prototypes/dashboard.png" width=400>
- 
-Dashboard
- </p>
+</p>
+
+<p align="center"> Dashboard </p>
                                  
 <p align="center">
 <img src = "prototypes/leads.png" width=400>
- 
-Leads
- </p>
+</p>
+
+<p align="center"> Leads </p>
 
 <p align="center">
 <img src = "prototypes/log_out.png" width=400>
- 
-Sign Out
- </p>
+</p>
 
+<p align="center"> Sign Out </p>
 
 
 # Tools
