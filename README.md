@@ -2,7 +2,6 @@
 Liberty Wholesale Mortgage is an LLC business that provides mortgage rates and other solutions to clients. As a mortgage company, Liberty Wholesale Mortgage needs to reduce the time it takes to convert an applicant from a lead to a borrower, which includes optimizing processes and increasing staff size. An area which Liberty Wholesale Mortgage identified as an optimizable process is the communications between loan officers and loan processors. The current system is point to point telephone communication which is time-consuming and inefficient, introducing higher lead times due to a need for call backs in order to exchange information. This has directly impacted the performance of loan officers who are bottlenecked by the response times and availability of loan processors. Therefore, there is a vital need to implement a solution to increase efficiency and reduce lead times. A dashboard application will streamline the communication process between loan officers and processors, and improve process management at Liberty Wholesale Mortgage which should allow for a better and faster customer experience.
 
 # MLO Support Powered by Liberty Wholesale Mortgage
-![](prototypes/logo.png)
 An all in one platform for mortgage officers and loan processors to track their progress, keeping up to date with the status of their leads and borrowers, perform fillings, find lenders, and so forth.The technology lets the mortgage officers and processors to increase productivity, manage bigger pipelines and grow their business to higher levels.
 
 # Tools
@@ -50,4 +49,12 @@ In the frontend directory, run the following command: npm run dev
 # Timeline
 
 ![liberty_wholesale_mortage_web_app_2022-05-13_10 00pm](https://user-images.githubusercontent.com/57340692/168411422-1146fa6e-b30e-41b8-ba9b-00ecef2ec85e.png)
+
+Milestones:
+Sprint5: A fully functional Dashboard page is created
+Sprint6: Finish the leads and borrowers database & a complete leads and borrowers page with filter function
+Sprint7: Dependencies installed to allow the application run on servers
+Sprint8: Make the application free from vulnerabilities
+Sprint9: Any additional features specified by the client is added
+
 
