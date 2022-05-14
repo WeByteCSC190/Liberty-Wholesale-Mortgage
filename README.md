@@ -10,7 +10,7 @@ An all in one platform for mortgage officers and loan processors to track their 
 
 # Prototypes
 <p align="center>
-<img src = "prototypes/log_in.png" width = 300>
+<img src = "prototypes/log_in.png" width=300>
           
 Sign In 
 </p>
