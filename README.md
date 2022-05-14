@@ -9,7 +9,7 @@
  - [Introduction](#Introduction) <br>
  - [Solution](#Solution) <br>
  - [Prototypes](#Introduction) <br>
- - [Database Models]() <br>
+ - [Database Models](#Database_Models) <br>
  - [Tools](#Tools) <br>
  - [Installations](#Installations) <br>
  - [Testing](#Testing) <br>
