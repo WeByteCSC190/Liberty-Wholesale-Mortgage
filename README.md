@@ -1,6 +1,7 @@
 <p align="center">
 <img src = "prototypes/logo.png" width=300>
  </p>
+# Table of Content
 
 # Introduction
 Liberty Wholesale Mortgage is an LLC business that provides mortgage rates and other solutions to clients. As a mortgage company, Liberty Wholesale Mortgage needs to reduce the time it takes to convert an applicant from a lead to a borrower, which includes optimizing processes and increasing staff size. An area which Liberty Wholesale Mortgage identified as an optimizable process is the communications between loan officers and loan processors. The current system is point to point telephone communication which is time-consuming and inefficient, introducing higher lead times due to a need for call backs in order to exchange information. This has directly impacted the performance of loan officers who are bottlenecked by the response times and availability of loan processors. Therefore, there is a vital need to implement a solution to increase efficiency and reduce lead times. A dashboard application will streamline the communication process between loan officers and processors, and improve process management at Liberty Wholesale Mortgage which should allow for a better and faster customer experience.
