@@ -51,8 +51,9 @@ An all in one platform for mortgage officers and loan processors to track their 
 <br>
 
 ## Database Models
+Enhanced entity-relationship (EER) modeling for conceptual data modeling.
 <p align="center">
-<img src = "prototypes/EER.png" width=400>
+<img src = "prototypes/EER.png" width=700>
 </p>
 ## Tools
 
