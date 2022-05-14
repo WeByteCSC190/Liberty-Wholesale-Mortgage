@@ -42,3 +42,8 @@ In the directory with the manage.py file, run the command in macOS: python3 ./ma
 In the frontend directory, run the command: npm run dev
 
 In the frontend directory, run the following command: npm run dev
+
+# Timeline
+
+![liberty_wholesale_mortage_web_app_2022-05-13_10 00pm](https://user-images.githubusercontent.com/57340692/168411422-1146fa6e-b30e-41b8-ba9b-00ecef2ec85e.png)
+
