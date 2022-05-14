@@ -9,6 +9,7 @@
  - [Introduction](#Introduction) <br>
  - [Solution](#Solution) <br>
  - [Prototypes](#Introduction) <br>
+ - [Database Models](#Database Models)<br>
  - [Tools](#Tools) <br>
  - [Installations](#Installations) <br>
  - [Testing](#Testing) <br>
@@ -49,6 +50,7 @@ An all in one platform for mortgage officers and loan processors to track their 
 <p align="center"> Sign Out </p>
 <br>
 
+## Database Models
 
 ## Tools
 
