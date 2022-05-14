@@ -93,3 +93,16 @@ and then once the image is built it can be run with docker-compose up -d. To kil
 ## Timeline
 ![liberty_wholesale_mortage_web_app_2022-05-13_10 00pm](https://user-images.githubusercontent.com/57340692/168411422-1146fa6e-b30e-41b8-ba9b-00ecef2ec85e.png)
 
+JIRA Milestones:
+
+Sprint5: A fully functional Dashboard page is created
+
+Sprint6: Finish the leads and borrowers database & a complete leads and borrowers page with filter function
+
+Sprint7: Dependencies installed to allow the application run on servers
+
+Sprint8: Make the application free from vulnerabilities
+
+Sprint9: Any additional features specified by the client is added
+
+
