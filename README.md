@@ -62,46 +62,33 @@ Enhanced entity-relationship (EER) modeling for conceptual data modeling.
 
 
 ## Tools
-Visual Studio Code (IDE)
-
-For VSC terminal in Windows: python -m pip install -r requirements.txt
-
-For VSC terminal in macOS: python3 -m pip install -r requirements.txt
-
-which would install the following programs:
-
-Babel==2.9.1, Django==4.0.3, django-bootstrap-v5==1.0.11, djangorestframework==3.13.1
-
-Also install seperately: Docker, Docker Compose 
+- Visual Studio Code (IDE)
+- For VSC terminal in Windows: python -m pip install -r requirements.txt
+- For VSC terminal in macOS: python3 -m pip install -r requirements.txt
+- which would install the following programs:
+- Babel==2.9.1, Django==4.0.3, django-bootstrap-v5==1.0.11, djangorestframework==3.13.1
+- Also install seperately: Docker, Docker Compose 
 
 
 ## Installation
 ### Build Instructions
-Before anything, ensure that you install all of the python dependencies using the following command:
-
-python -m pip install -r requirements.txt or python3 -m pip install -r requirements.txt
-
-On the Node.js side, you will need to install quite a few packages, navigate into the Docker file and you will see the installed Node dependencies.
-
-You will need to run two processes at the same time, so either use "tmux" to run them in the same terminal window, run it in two terminals, or run them in the background by adding '&' to the end of the commands.
+- Before anything, ensure that you install all of the python dependencies using the following command:
+- python -m pip install -r requirements.txt or python3 -m pip install -r requirements.txt
+- On the Node.js side, you will need to install quite a few packages, navigate into the Docker file and you will see the installed Node dependencies.
+- You will need to run two processes at the same time, so either use "tmux" to run them in the same terminal window, run it in two terminals, or run them in the background by adding '&' to the end of the commands.
 
 
 ### Docker Instructions
-Install Docker and Docker Compose
-
-In the directory with the docker-compose.yaml file, run docker-compose build to build the image,
+- Install Docker and Docker Compose
+- In the directory with the docker-compose.yaml file, run docker-compose build to build the image,
 and then once the image is built it can be run with docker-compose up -d. To kill the process after running it, simply do docker-compose kill
-
-Currently Hot Reload is not enabled, so you will need to rebuild every time you change the code, so currently use the Build Instructions, however Hot Reload is currently in development
+- Currently Hot Reload is not enabled, so you will need to rebuild every time you change the code, so currently use the Build Instructions, however Hot Reload is currently in development
 
 ## Testing 
-In the directory with the manage.py file, run the command in Windows: python ./manage.py runserver
-
-In the directory with the manage.py file, run the command in macOS: python3 ./manage.py runserver
-
-In the frontend directory, run the command: npm run dev
-
-In the frontend directory, run the following command: npm run dev
+- In the directory with the manage.py file, run the command in Windows: python ./manage.py runserver
+- In the directory with the manage.py file, run the command in macOS: python3 ./manage.py runserver
+- In the frontend directory, run the command: npm run dev
+- In the frontend directory, run the following command: npm run devv
 
 ## Timeline
 ![liberty_wholesale_mortage_web_app_2022-05-13_10 00pm](https://user-images.githubusercontent.com/57340692/168411422-1146fa6e-b30e-41b8-ba9b-00ecef2ec85e.png)
