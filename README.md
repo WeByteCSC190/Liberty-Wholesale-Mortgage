@@ -6,14 +6,14 @@
 # MLO Support (Powered by Liberty Wholesale Mortgage )
   
 ## Table of Content
- - [Introduction](#Introduction) <br>
- - [Solution](#Solution) <br>
- - [Prototypes](#Introduction) <br>
- - [Database Models](#Database_Models) <br>
- - [Tools](#Tools) <br>
- - [Installations](#Installations) <br>
- - [Testing](#Testing) <br>
- - [Timeline](#Timeline) <br>
+ - [Introduction](#introduction) <br>
+ - [Solution](#solution) <br>
+ - [Prototypes](#prototypes) <br>
+ - [Database Models](#database-models) <br>
+ - [Tools](#tools) <br>
+ - [Installations](#installations) <br>
+ - [Testing](#testing) <br>
+ - [Timeline](#timeline) <br>
 
 
 ## Introduction
@@ -54,7 +54,7 @@ An all in one platform for mortgage officers and loan processors to track their 
 <br>
 
 
-## Database_Models
+## Database Models
 Enhanced entity-relationship (EER) modeling for conceptual data modeling.
 <p align="center">
 <img src = "prototypes/EER.png" width=700>
