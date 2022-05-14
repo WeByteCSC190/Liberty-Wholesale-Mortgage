@@ -51,7 +51,9 @@ An all in one platform for mortgage officers and loan processors to track their 
 <br>
 
 ## Database Models
-
+<p align="center">
+<img src = "prototypes/EER" width=400>
+</p>
 ## Tools
 
 Visual Studio Code (IDE)
