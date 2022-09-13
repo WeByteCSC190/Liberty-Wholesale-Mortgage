@@ -8,8 +8,14 @@ from .models import *
 
 class LeadSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = '__all__'
+        model = Lead
+        fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
+        
+class AddLead(serializers.ModelSerializer):
+    class Meta:
+        model = Lead
+        fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
+
 
 class BorrowerSerializer(serializers.ModelSerializer):
     class Meta:

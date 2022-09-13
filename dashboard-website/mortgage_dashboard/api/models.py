@@ -1,4 +1,7 @@
+from datetime import datetime
+from sqlite3 import Date
 from tarfile import LENGTH_NAME
+from xmlrpc.client import DateTime
 from django.db import models
 import random
 
@@ -57,7 +60,7 @@ class Resources(models.Model):
 
 
 class Status(models.Model):
-    # lead = models.ForeignKey(Lead, blank=True, null = True)
+    # 2lead = models.ForeignKey(Lead, blank=True, null = True)
     # borrower = models.ForeignKey(Lead, blank=True, null= True)
     status = models.CharField('Status', primary_key = True, max_length=12, null=False, blank =True)
     id= models.IntegerField('ID', null=False, default=generate_random_number(), unique=True )
@@ -68,11 +71,19 @@ class Status(models.Model):
         return self.id
     
 class Lead(models.Model):
-    creditScore = models.IntegerField('Credit Score', null=False, default=generate_random_number(), unique=True )
+    resources = models.ForeignKey(Resources, blank=True, null = True, on_delete=models.CASCADE)
+
+    caseId = models.IntegerField('Case ID', primary_key = True, null=False, default=generate_random_number(), unique=True)
+    date = models.DateTimeField('Date')
+    fName = models.CharField(max_length=40, null=True, blank =True)
+    lName = models.CharField(max_length=40, null=True, blank =True)
+    creditScore = models.IntegerField('Credit Score', null=False, default=generate_random_number(), unique=True)
+    email = models.EmailField('Email Address')
+    phone_num = models.CharField('Phone Number', max_length=16, null=True)
     status = models.ForeignKey(Status, blank=True, null = True, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.creditScore
+        return f'caseId: {self.caseId}'
 
 class Borrower(models.Model):
     status = models.ForeignKey(Status, blank=True, null = True, on_delete=models.CASCADE)

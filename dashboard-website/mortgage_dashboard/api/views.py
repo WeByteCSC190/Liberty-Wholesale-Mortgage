@@ -1,4 +1,6 @@
+from datetime import date
 import re
+from urllib import response
 from django.shortcuts import render
 from rest_framework import generics, status
 
@@ -7,8 +9,8 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
-from .serializers import ClientSerializer, AddClient, UserSerializer
-from .models import Client, User
+from .serializers import AddLead, ClientSerializer, AddClient, LeadSerializer, UserSerializer
+from .models import Client, Lead, User
 
 # Create your views here.
 
@@ -102,3 +104,29 @@ class AddClientView(APIView):
             
             return Response(ClientSerializer(client).data, status=status.HTTP_200_OK)
 
+
+class LeadView(generics.ListCreateAPIView):
+    queryset = Lead.objects.all()
+    serializer_class= ClientSerializer
+
+class addLeadView(APIView):
+    serializer_class = AddLead
+    def post(self, request, format=None):
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
+
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            caseId = serializer.data.get('caseId')
+            date = serializer.data.get('Date')
+            fName = serializer.data.get('fName')
+            lName = serializer.data.get('lName')
+            creditScore = serializer.data.get('creditScore')
+            email = serializer.data.get('email')
+            phone_num = serializer.data.get('phone_num')
+            status = serializer.data.get('status')
+
+            lead = Lead(caseId=caseId,date=date,fName=fName,lName=lName,creditScore=creditScore,email=email,phone_num=phone_num,status=status)
+            lead.save()
+
+            return Response(LeadSerializer(lead).data, status=status.HTTP_200_OK)
