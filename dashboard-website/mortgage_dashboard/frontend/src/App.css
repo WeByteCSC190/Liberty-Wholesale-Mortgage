@@ -50,6 +50,8 @@ body{
   grid-row: 2/2;
 }
 .SignIn{
+  grid-column: 1/none;
+  grid-row: 1/none;
   position: absolute;
   height: 100%;
 }

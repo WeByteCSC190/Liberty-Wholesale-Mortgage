@@ -2,7 +2,7 @@ import * as React from 'react';
 import './Navbar.css'
 import logo from '../logo.jpg';
 
-export default function Navbar() {
+const Navbar = () => {
   return (
     <div class="wrapper Navbar">
       <div class="sidebar">
@@ -57,3 +57,5 @@ export default function Navbar() {
     </div>
   );
 }
+
+export default Navbar;

@@ -1,0 +1,40 @@
+.Milestone{
+  border: 10px solid silver;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: .1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
+#milestones-title{
+  grid-row: 1/1;
+  color: white;
+}
+#goal-1, #goal-2, #goal-3, #goal-4, #goal-5{
+  background: green;
+  border: 1px solid white;
+  height: 30%;
+}
+
+#goal-1{
+  grid-column: 1/1;
+  grid-row: 2/2;
+}
+#goal-2{
+  grid-column: 2/2;
+  grid-row: 2/2;
+}
+#goal-3{
+  grid-column: 3/3;
+  grid-row: 2/2;
+}
+#goal-4{
+  grid-column: 4/4;
+  grid-row: 2/2;
+}
+#goal-5{
+  grid-column: 5/5;
+  grid-row: 2/2;
+}
