@@ -1,7 +1,6 @@
 from unicodedata import name
-from django import urls
-from django.urls import path,include
-from .views import ClientView, AddClient,LeadViewSet,BorrowerViewSet, RecentBorrowerViewSet
+from django.urls import path
+from .views import ClientView, AddClient, LeadView, AddLead
 from . import views
 
 
@@ -20,7 +19,8 @@ router.register(r'recentBorrowers',views.RecentBorrowerViewSet)
 
 
 urlpatterns = [
-    path('get-leads', ClientView.as_view() ),
+    path('get-leads', LeadView.as_view() ),
+    path('add_lead', AddLead),
     path('get-borrowers',ClientView.as_view() ),
     path('add_client', AddClient),
     path('recent_borrowers', ClientView.as_view()),
