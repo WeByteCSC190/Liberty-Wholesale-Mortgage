@@ -14,7 +14,7 @@ import Users from "./pages/Admin/Users.jsx";
 import AddUser from "./pages/Admin/Add-Users.jsx";
 import EditResources from "./pages/Admin/EditResources";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <div className="Header"></div>

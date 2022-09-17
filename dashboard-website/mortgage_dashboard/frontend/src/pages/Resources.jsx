@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Navbar from "../components/Navbar";
 
-export default function Resources() {
+const Resources = () => {
   return (
     <div className="Resources">
       <Navbar />
@@ -9,4 +9,6 @@ export default function Resources() {
     </div>
   )
 }
+
+export default Resources;
 

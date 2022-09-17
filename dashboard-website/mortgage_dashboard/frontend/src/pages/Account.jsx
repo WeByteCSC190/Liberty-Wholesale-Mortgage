@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Navbar from "../components/Navbar";
 
-export default function Account() {
+const Account = () => {
   return (
     <div className="Account">
       <Navbar />
@@ -9,3 +9,5 @@ export default function Account() {
     </div>
   )
 }
+
+export default Account;
