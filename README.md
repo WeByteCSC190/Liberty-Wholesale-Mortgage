@@ -14,6 +14,7 @@ Also install seperately: Node.js, Docker, Docker Compose,
 Before anything, ensure that you install all of the python dependencies using the following command:
 
 For Windows: python -m pip install -r requirements.txt 
+
 For macOS: python3 -m pip install -r requirements.txt
 
 This would install the programs needed for this software.
@@ -33,7 +34,9 @@ However, Hot Reload is currently in development.
 # Testing 
 
 In the directory with the manage.py file, run the command:
+
 For Windows: python manage.py runserver 
+
 For macOS: python3 manage.py runserver 
 
 In the frontend directory, run the command: npm run dev
