@@ -16,6 +16,12 @@
  - [Timeline](#timeline) <br>
 
 
+<<<<<<< HEAD
+The "requirements.txt" file includes the following: 
+Babel==2.9.1, Django==4.0.3, django-bootstrap-v5==1.0.11, djangorestframework==3.13.1 
+
+Also install seperately: Node.js, Docker, Docker Compose, 
+=======
 ## Introduction
 Liberty Wholesale Mortgage is a mortgage brokrage which provides finance and mortgage solutions to different types of clients. As a mortgage company, Liberty Wholesale Mortgage needs to reduce the time it takes to convert an applicant from a lead to a borrower, which includes optimizing processes and increasing staff size. An area which Liberty Wholesale Mortgage identified as an optimizable process is the communications between loan officers and loan processors. The current system is point to point telephone communication which is time-consuming and inefficient, introducing higher lead times due to a need for call backs in order to exchange information. This has directly impacted the performance of loan officers who are bottlenecked by the response times and availability of loan processors. Therefore, there is a vital need to implement a solution to increase efficiency and reduce lead times. A dashboard application will streamline the communication process between loan officers and processors, and improve process management at Liberty Wholesale Mortgage which should allow for a better and faster customer experience.
 
@@ -28,6 +34,7 @@ An all in one platform for mortgage officers and loan processors to track their 
 <p align="center">
 <img src = "prototypes/log_in.png" width=400>
 </p>
+>>>>>>> 73b734a5d33d55c34a829080a5508822fa717861
 
 <p align="center"> Sign In </p>
 <br>
@@ -43,12 +50,19 @@ An all in one platform for mortgage officers and loan processors to track their 
 <img src = "prototypes/leads.png" width=400>
 </p>
 
+<<<<<<< HEAD
+This would install the programs needed for this software.
+
+On the Node.js side, you will need to install quite a few packages, navigate into the Docker file and you will see the installed Node dependencies.
+
+=======
 <p align="center"> Leads </p>
 <br>
 
 <p align="center">
 <img src = "prototypes/log_out.png" width=400>
 </p>
+>>>>>>> 73b734a5d33d55c34a829080a5508822fa717861
 
 <p align="center"> Sign Out </p>
 <br>
@@ -95,14 +109,28 @@ and then once the image is built it can be run with docker-compose up -d. To kil
 
 JIRA Milestones:
 
+<<<<<<< HEAD
+Currently, Hot Reload is not enabled, so you will need to rebuild every time you change the code, so currently use the Build Instructions. 
+However, Hot Reload is currently in development. 
+=======
 Sprint5: A fully functional Dashboard page is created
+>>>>>>> 73b734a5d33d55c34a829080a5508822fa717861
 
 Sprint6: Finish the leads and borrowers database & a complete leads and borrowers page with filter function
 
+<<<<<<< HEAD
+In the directory with the manage.py file, run the command: python ./manage.py runserver (for Windows) or  python3 ./manage.py runserver (for macOS)
+
+In the frontend directory, run the command: npm run dev
+
+
+Note that you will need to run two processes at the same time, so either use "tmux" to run them in the same terminal window, run it in two terminals, or run them in the background by adding '&' to the end of the commands.
+=======
 Sprint7: Dependencies installed to allow the application run on servers
 
 Sprint8: Make the application free from vulnerabilities
 
 Sprint9: Any additional features specified by the client is added
 
+>>>>>>> 73b734a5d33d55c34a829080a5508822fa717861
 
