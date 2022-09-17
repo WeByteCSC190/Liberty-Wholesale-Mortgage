@@ -1,24 +1,22 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
-import "./style.css";
-// import { Link } from "react-router-dom";
+import '../sign-in/sign-in.css';
+import logo from '../../logo.jpg'; 
 
 export default class SignIn extends Component {
   render() {
-    return (<div className="container SignIn">
+    return (<div className="SignIn">
       <form>
-        <h1>LOGO</h1>
-        <h3>Sign In</h3>
-        <label for="username">Username</label>
-        <input type="text" placeholder="Email or Phone" id="username" />
-        <label for="password">Password</label>
+        <img src={logo} alt="logo" />
+        <input type="text" placeholder="Username" id="username" />
         <input type="password" placeholder="Password" id="password" />
         <button className="btn btn-primary">Sign In</button>
-        <a href="" className="signUpLink">You don't have an account? Sign Up </a>
-        {/* <Link to="/signIn">Sign Up</Link> */}
-        <div className="social row">
-          <div className="col google"><i className="fab fa-google"></i>  Google</div>
-          <div className="col fb"><i className="fab fa-facebook"></i>Facebook</div>
+        <div className="row" style={{ marginTop: 40 }}>
+          <div className="col">
+            <a href="sign-up" style={{float:"left"}} className="signInLink">Create Account</a>
+          </div>
+          <div className="col">
+            <a href="sign-up" style={{float:"right"}} className="signInLink">Need Help</a>
+          </div>
         </div>
       </form>
     </div>);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
-export default function Leads() {
+const Leads = () => {
   function createData(date, fname, lname, fico, email, phone_num, lead_status) {
     return { date, fname, lname, fico, email, phone_num, lead_status };
   }
@@ -55,3 +55,5 @@ export default function Leads() {
     </div>
   );
 }
+
+export default Leads;

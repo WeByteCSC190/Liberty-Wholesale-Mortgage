@@ -1,10 +1,19 @@
 import * as React from 'react';
-import './Dashboard.css'
+import './Dashboard.css';
+import Milestone from "./Milestone";
+import RecentLeads from "./RecentLeads"
+import RecentBorrowers from "./RecentBorrowers"
+import AnnouncementsWidget from "./AnnouncementsWidget"
 
-export default function Dashboard() {
+const Dashboard = () => {
   return (
     <div className="Dashboard">
-      <p> Hello World</p>
+      <Milestone />
+      <RecentLeads />
+      <RecentBorrowers />
+      <AnnouncementsWidget />
     </div>
   )
 }
+
+export default Dashboard;
