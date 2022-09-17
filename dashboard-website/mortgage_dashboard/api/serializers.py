@@ -9,7 +9,13 @@ from .models import *
 class LeadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lead
-        fields = '__all__'
+        fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
+        
+class AddLead(serializers.ModelSerializer):
+    class Meta:
+        model = Lead
+        fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
+
 
 class BorrowerSerializer(serializers.ModelSerializer):
     class Meta:
