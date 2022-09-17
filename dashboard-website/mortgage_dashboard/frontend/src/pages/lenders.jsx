@@ -1,10 +1,11 @@
 import * as React from 'react';
-import './Dashboard.css'
+import Navbar from "../components/Navbar";
 
 export default function Dashboard() {
   return (
     <div className="Dashboard">
-      <p> Hello World</p>
+      <Navbar />
+      <p> lenders</p>
     </div>
   )
 }

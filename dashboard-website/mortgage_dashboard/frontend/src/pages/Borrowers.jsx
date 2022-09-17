@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import Navbar from "../components/Navbar";
 
 export default function Borrowers() {
   function createData(fname, lname, email, phone_num, date) {
@@ -16,6 +17,7 @@ export default function Borrowers() {
   ];
   return (
     <div className="Borrowers">
+       <Navbar />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

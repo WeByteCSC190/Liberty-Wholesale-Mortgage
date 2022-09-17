@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Navbar from "../components/Navbar";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 export default function Leads() {
@@ -16,6 +17,7 @@ export default function Leads() {
   ];
   return (
     <div className="Leads">
+      <Navbar />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

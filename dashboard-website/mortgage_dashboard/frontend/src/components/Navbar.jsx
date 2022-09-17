@@ -1,59 +1,37 @@
-import * as React from 'react';
-import './Navbar.css'
-import logo from '../logo.jpg';
-
-export default function Navbar() {
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import * as Icons from "@fortawesome/free-solid-svg-icons"
+function NavbarCustom() {
   return (
-    <div class="wrapper Navbar">
-      <div class="sidebar">
-        <div class="profile">
-          <img src={logo} alt="logo" />
-        </div>
-        <ul>
-          <li>
-            <a href="/" class="active">
-              <span class="icon"><i class="fas fa-home"></i></span>
-              <span class="item">Home</span>
-            </a>
-          </li>
-          <li>
-            <a href="/">
-              <span class="icon"><i class="fas fa-desktop"></i></span>
-              <span class="item" a="Account">Dashboard</span>
-            </a>
-          </li>
-          <li>
-            <a href="Account">
-              <span class="icon"><i class="fas fa-user-friends"></i></span>
-              <span class="item">Account</span>
-            </a>
-          </li>
-          <li>
-            <a href="Leads">
-              <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
-              <span class="item">Leads</span>
-            </a>
-          </li>
-          <li>
-            <a href="Borrowers">
-              <span class="icon"><i class="fas fa-database"></i></span>
-              <span class="item">Borrower</span>
-            </a>
-          </li>
-          <li>
-            <a href="Resources">
-              <span class="icon"><i class="fas fa-chart-line"></i></span>
-              <span class="item">Resources</span>
-            </a>
-          </li>
-          <li>
-            <a href="Log-Out">
-              <span class="icon"><i class="fas fa-user-shield"></i></span>
-              <span class="item">Log Out</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <Navbar className="Navbar" expand="lg">
+      <Container fluid>
+        <Navbar.Brand href="/">MLO Support</Navbar.Brand>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2"
+            style={{ maxHeight: '100px' }}
+            navbarScroll>
+            <Nav.Link href="/">Dashboard</Nav.Link>
+            <Nav.Link href="/leads">Leads</Nav.Link>
+            <Nav.Link href="/borrowers">Borrowers</Nav.Link>
+            <Nav.Link href="/lenders" >Lenders</Nav.Link>
+            <Nav.Link href="/resources" >Resources</Nav.Link>
+          </Nav> 
+        <Nav>
+        <Nav.Link href="#" >
+           <FontAwesomeIcon icon={Icons.faUser} size="2x" />
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }
+
+export default NavbarCustom;
