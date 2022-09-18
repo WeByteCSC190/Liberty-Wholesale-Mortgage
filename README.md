@@ -34,6 +34,10 @@ An all in one platform for mortgage officers and loan processors to track their 
 <p align="center">
 <img src = "prototypes/log_in.png" width=400>
 </p>
+<<<<<<< HEAD
+>>>>>>> origin/alpha
+=======
+>>>>>>> 73b734a5d33d55c34a829080a5508822fa717861
 >>>>>>> origin/alpha
 
 <p align="center"> Sign In </p>
@@ -62,6 +66,10 @@ On the Node.js side, you will need to install quite a few packages, navigate int
 <p align="center">
 <img src = "prototypes/log_out.png" width=400>
 </p>
+<<<<<<< HEAD
+>>>>>>> origin/alpha
+=======
+>>>>>>> 73b734a5d33d55c34a829080a5508822fa717861
 >>>>>>> origin/alpha
 
 <p align="center"> Sign Out </p>
@@ -114,6 +122,10 @@ Currently, Hot Reload is not enabled, so you will need to rebuild every time you
 However, Hot Reload is currently in development. 
 =======
 Sprint5: A fully functional Dashboard page is created
+<<<<<<< HEAD
+>>>>>>> origin/alpha
+=======
+>>>>>>> 73b734a5d33d55c34a829080a5508822fa717861
 >>>>>>> origin/alpha
 
 Sprint6: Finish the leads and borrowers database & a complete leads and borrowers page with filter function
@@ -132,5 +144,9 @@ Sprint8: Make the application free from vulnerabilities
 
 Sprint9: Any additional features specified by the client is added
 
+<<<<<<< HEAD
+>>>>>>> origin/alpha
+=======
+>>>>>>> 73b734a5d33d55c34a829080a5508822fa717861
 >>>>>>> origin/alpha
 

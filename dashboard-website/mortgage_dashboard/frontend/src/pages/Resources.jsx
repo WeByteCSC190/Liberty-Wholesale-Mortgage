@@ -1,9 +1,10 @@
 import * as React from 'react';
-import './Resources.css';
+import Navbar from "../components/Navbar";
 
 const Resources = () => {
   return (
     <div className="Resources">
+      <Navbar />
       <p> Resources </p>
     </div>
   )
