@@ -33,6 +33,7 @@ const App = () => {
         <Route path="Edit-Resources" element={<EditResources />} />
         <Route path="Lenders" element={<Lenders />} />
       </Routes>
+      
       <div className="Content">
         <div className="milestone"></div>
         <div className="recent-leads"></div>
