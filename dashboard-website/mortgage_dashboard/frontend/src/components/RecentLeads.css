@@ -28,8 +28,7 @@ ol{
 }
 
 .RecentLeadsTitle{
-  background: darkblue;
-  font-size: 20px;
+  background: rgba(13, 57, 122, 1);
   font-weight: bold;
   color: white;
 }

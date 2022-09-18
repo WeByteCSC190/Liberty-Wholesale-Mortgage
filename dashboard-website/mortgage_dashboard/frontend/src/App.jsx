@@ -8,7 +8,7 @@ import Borrowers from "./pages/Borrowers";
 import Resources from "./pages/Resources";
 import SignIn from "./pages/sign-in/sign-in.jsx";
 import SignUp from "./pages/sign-up/sign-up.jsx";
-import Lenders from "./pages/lenders";
+import Lenders from "./pages/Lenders.jsx";
 import Users from "./pages/Admin/Users.jsx";
 import AddUser from "./pages/Admin/Add-Users.jsx";
 import EditResources from "./pages/Admin/EditResources";
