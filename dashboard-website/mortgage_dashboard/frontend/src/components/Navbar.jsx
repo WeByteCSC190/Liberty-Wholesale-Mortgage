@@ -5,18 +5,18 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import BlueLogo from '../logo_blue.png';
-import NavIcon from '../nav_icon.png'; 
+import BlueLogo from './images/blue_logo.png';
+import NavIcon from './images/blue_icon.png'; 
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import * as Icons from "@fortawesome/free-solid-svg-icons"
 
-
+/* Renders the Navbar */
 export default function NavbarCustom() {
   return (
    <>
      <nav className="Navbar">
-        <Link to="/dashboard" className="site-logo">
+        <Link to="/" className="site-logo">
         <img
               src={BlueLogo} //MLO Support Logo
               width="150"
@@ -63,15 +63,16 @@ function SwitchPage( {to, children, ...props }) {
 function NavDropDownButton() {
   return (
     <>
-    <Dropdown>
+    <Dropdown className="NavOptions">
       <Dropdown.Toggle variant="success" id="NavDropDownButton">
       <FontAwesomeIcon icon={Icons.faUser} size="2x" />
       </Dropdown.Toggle>
 
-      <Dropdown.Menu >
+      <Dropdown.Menu className="NavDropdownOptions">
         <Dropdown.Item>
         <Link to="/account">Account</Link>
        </Dropdown.Item>
+
       <Dropdown.Item>
         <Link to="/sign-out">Sign Out</Link>
       </Dropdown.Item>
