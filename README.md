@@ -44,7 +44,7 @@ For macOS: python3 manage.py runserver
 
 In the frontend directory, run the command: npm run dev
 
-If "dev" is missing when running "npm run dev", in the frontend directory, run command: npm i react-scripts
+If an error message stating that "dev" is missing after using command "npm run dev", in the frontend directory, run command: npm i react-scripts
 
 Then use command: npm start
 
