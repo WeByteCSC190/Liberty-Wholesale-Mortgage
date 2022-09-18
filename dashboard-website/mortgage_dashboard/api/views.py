@@ -10,13 +10,9 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
-<<<<<<< HEAD
-from .serializers import ClientSerializer, AddClient, UserSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer
-from .models import Client, User,Lead,Borrower,RecentBorrowers
-=======
-from .serializers import AddLead, ClientSerializer, AddClient, LeadSerializer, UserSerializer
-from .models import Client, Lead, User
->>>>>>> e349ea3b6edb28fe7a9c5386fc6d1c6f9eb1beea
+
+from .serializers import AddLead, ClientSerializer, AddClient, UserSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer
+from .models import Client, User, Lead, Borrower, RecentBorrowers
 
 # Create your views here.
 
@@ -110,19 +106,17 @@ class AddClientView(APIView):
             
             return Response(ClientSerializer(client).data, status=status.HTTP_200_OK)
 
-<<<<<<< HEAD
 class LeadViewSet(viewsets.ModelViewSet):
-    queryset=Lead.objects.all().order_by('fname')
+    queryset=Lead.objects.all()
     serializer_class=LeadSerializer
 
 class BorrowerViewSet(viewsets.ModelViewSet):
-    queryset=Borrower.objects.all().order_by('fname')
+    queryset=Borrower.objects.all()
     serializer_class=BorrowerSerializer
 
 class RecentBorrowerViewSet(viewsets.ModelViewSet):
-    queryset=RecentBorrowers.objects.all().order_by('date')
+    queryset=RecentBorrowers.objects.all()
     serializer_class=RecentBorrowerSerializer
-=======
 
 class LeadView(generics.ListCreateAPIView):
     queryset = Lead.objects.all()
@@ -149,4 +143,3 @@ class addLeadView(APIView):
             lead.save()
 
             return Response(LeadSerializer(lead).data, status=status.HTTP_200_OK)
->>>>>>> e349ea3b6edb28fe7a9c5386fc6d1c6f9eb1beea
