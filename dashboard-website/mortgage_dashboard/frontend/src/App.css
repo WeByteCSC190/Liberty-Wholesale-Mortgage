@@ -1,5 +1,5 @@
 body{
-  font-size: 13px;
+  /*font-size: 13px;*/
 }
 .App {
   /* display: grid;
@@ -26,12 +26,56 @@ body{
   align-items: center;
 }
 .Navbar{
-  background: rgb(7, 0, 121);
+  box-sizing: border-box;
+  margin: 0; 
+  background-color: rgba(13, 57, 122, 1);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 3rem;
+  padding: 0 1rem; 
 }
+
+.NavbarMenu {
+  display: flex; 
+  justify-content: center;
+  
+}
+
+
 .Navbar a{
-  color: white !important;
-  font-weight:700;
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+    
 }
+
+.Navbar ul {
+  padding: 1rem;
+  margin: 0;
+  list-style: none;
+  gap: 4rem;
+}
+
+.Navbar li.active{
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+  font-weight: bold;
+
+}
+
+/* Changes color for the link in the Navbar Menu when mouse is hovering */
+.Navbar li:hover{
+  color: rgb(45, 208, 245);
+}
+
+.NavDropDownButton {
+  border: none;
+}
+
 .Table{
   margin:10% 0;
 

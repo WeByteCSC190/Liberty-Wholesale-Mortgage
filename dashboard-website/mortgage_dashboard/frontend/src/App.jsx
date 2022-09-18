@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import './App.css';
-import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard.jsx";
 import Account from "./pages/Account";
 import Leads from "./pages/Leads";
@@ -17,11 +16,10 @@ import EditResources from "./pages/Admin/EditResources";
 const App = () => {
   return (
     <div className="App">
-      <div className="Header"></div>
-
+      <div className="Header"> 
       <Routes>
         <Route path="" element={<Dashboard />} />
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="Account" element={<Account />} />
         <Route path="Leads" element={<Leads />} />
         <Route path="Borrowers" element={<Borrowers />} />
@@ -33,13 +31,12 @@ const App = () => {
         <Route path="Edit-Resources" element={<EditResources />} />
         <Route path="Lenders" element={<Lenders />} />
       </Routes>
-      
-      <div className="Content">
-        <div className="milestone"></div>
-        <div className="recent-leads"></div>
-        <div className="recent-borrowers"></div>
-        <div className="announcements"></div>
       </div>
+
+      <div className="Content">
+        
+      </div>
+
       <div className="Footer">
         <p>All Rights Reserved, Liberty Wholesale Mortgage</p>
       </div>
@@ -48,3 +45,8 @@ const App = () => {
 }
 
 export default App;
+
+//<div className="milestone"></div>
+// <div className="recent-leads"></div>
+//<div className="recent-borrowers"></div>
+//<div className="announcements"></div>
