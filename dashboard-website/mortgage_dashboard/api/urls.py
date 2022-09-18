@@ -1,5 +1,5 @@
 from unicodedata import name
-from django.urls import path
+from django.urls import path, include
 from .views import ClientView, AddClient, LeadView, AddLead
 from . import views
 
@@ -35,8 +35,5 @@ urlpatterns = [
     #automatic URL routing
     path('',include(router.urls)),
     path('api/', include('rest_framework.urls', namespace='rest_framework'))
-    
-
-
 
 ]
