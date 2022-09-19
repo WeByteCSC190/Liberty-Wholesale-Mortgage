@@ -45,8 +45,7 @@ For macOS: python3 manage.py runserver
 In the frontend directory, run the command: npm run dev
 
 If an error message stating that "dev" is missing after using "npm run dev", in the frontend directory, run command: npm i react-scripts
-
-Then use command: npm start
+Afterwards, run command: npm start
 
 
 Note that you will need to run two processes at the same time, so either use "tmux" to run them in the same terminal window, run it in two terminals, or run them in the background by adding '&' to the end of the commands.
