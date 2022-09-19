@@ -4,6 +4,7 @@ from tarfile import LENGTH_NAME
 from xmlrpc.client import DateTime
 from django.db import models
 import random
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -148,19 +149,18 @@ class LoanOfficer(models.Model):
         return self.mileStone
 
 
-class User(models.Model):
-    resources = models.ForeignKey(
-        Resources, blank=True, null=True, on_delete=models.CASCADE)
+class UserProfile(models.Model):
+    # resources = models.ForeignKey(
+    #     Resources, blank=True, null=True, on_delete=models.CASCADE)
 
-    userName = models.CharField(max_length=40, null=True, blank=True)
-    password = models.CharField(max_length=20, null=True, blank=True)
-    uID = models.IntegerField(
-        null=False, default=generate_random_number(), unique=True)
-    fName = models.CharField(max_length=40, null=True, blank=True)
-    lName = models.CharField(max_length=40, null=True, blank=True)
-    nmlsID = models.IntegerField(null=False, default=generate_random_number(
-    ), unique=True)  # could not tell what the variable name is supposed to be
-    ssn = models.IntegerField(null=False, blank=False)
+    # userName = models.CharField(max_length=40, null=True, blank=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    password = models.CharField(max_length=20, default='')
+    uID = models.IntegerField(default='')
+    fName = models.CharField(max_length=40, default='')
+    lName = models.CharField(max_length=40, default='')
+    nmlsID = models.IntegerField(default='')  # could not tell what the variable name is supposed to be
+    ssn = models.IntegerField(default='')
 
     def __str__(self):
         return str(self.fName)

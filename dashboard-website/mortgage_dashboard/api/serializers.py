@@ -1,6 +1,7 @@
 from dataclasses import field
 from rest_framework import serializers
 from .models import * 
+from django.contrib.auth.models import User
 
 ## Serializer is a component that converts
 ## Django models to JSON objects and vice versa
@@ -23,21 +24,21 @@ class BorrowerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class LoanProcessorSerializer(serializers.HyperlinkedModelSerializer):
+class LoanProcessorSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
 
 
-class LoanOfficerSerializer(serializers.HyperlinkedModelSerializer):
+class LoanOfficerSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('id', 'username',)
 
 class ClientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
