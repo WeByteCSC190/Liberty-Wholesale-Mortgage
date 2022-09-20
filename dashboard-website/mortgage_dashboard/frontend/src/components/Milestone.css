@@ -1,40 +1,82 @@
 .Milestone{
-  border: 10px solid silver;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: .1fr 1fr;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
+  width:99%;
   background: black;
+  border-radius: 15px;
 }
 
 #milestones-title{
-  grid-row: 1/1;
+  display: flex;
+  text-align: left;
   color: white;
+  padding: 10px;
 }
-#goal-1, #goal-2, #goal-3, #goal-4, #goal-5{
-  background: green;
-  border: 1px solid white;
-  height: 30%;
+.progress-meter {
+  padding: 0%;
 }
 
-#goal-1{
-  grid-column: 1/1;
-  grid-row: 2/2;
+#status-text{
+  color: white;
+  text-align: center;
 }
-#goal-2{
-  grid-column: 2/2;
-  grid-row: 2/2;
+
+ol.progress-meter {
+  padding-bottom: 9.5px;
+  list-style-type: none;
 }
-#goal-3{
-  grid-column: 3/3;
-  grid-row: 2/2;
+ol.progress-meter li {
+  display: inline-block;
+  text-align: center;
+  text-indent: -19px;
+  height: 36px;
+  width: 50%;
+  font-size: 12px;
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
 }
-#goal-4{
-  grid-column: 4/4;
-  grid-row: 2/2;
+ol.progress-meter li:before {
+  position: relative;
+  float: left;
+  text-indent: 0;
+  left: -webkit-calc(50% - 9.5px);
+  left: -moz-calc(50% - 9.5px);
+  left: -ms-calc(50% - 9.5px);
+  left: -o-calc(50% - 9.5px);
+  left: calc(50% - 9.5px);
 }
-#goal-5{
-  grid-column: 5/5;
-  grid-row: 2/2;
+ol.progress-meter li.done {
+  font-size: 12px;
+}
+ol.progress-meter li.done:before {
+  content: "\2713";
+  height: 25px;
+  width: 25px;
+  line-height: 21.85px;
+  bottom: -28.175px;
+  border: none;
+  border-radius: 19px;
+}
+ol.progress-meter li.todo {
+  font-size: 12px;
+}
+ol.progress-meter li.todo:before {
+  content: "\2B24";
+  font-size: 17.1px;
+  bottom: -26.95px;
+  line-height: 18.05px;
+}
+ol.progress-meter li.done {
+  color: black;
+  border-bottom-color: yellowgreen;
+}
+ol.progress-meter li.done:before {
+  color: white;
+  background-color: yellowgreen;
+}
+ol.progress-meter li.todo {
+  color: silver;
+  border-bottom-color: silver;
+}
+ol.progress-meter li.todo:before {
+  color: silver;
 }

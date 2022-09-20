@@ -1,47 +1,36 @@
 import * as React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import './RecentLeads.css'
 
-const createData = (date, fname, lname, lead_status) =>{
-    return { date, fname, lname, lead_status };
+const createData = (case_id, date, fname, lname, phone) =>{
+    return { case_id, date, fname, lname, phone };
 }
 
 const rows = [
-  createData('03/01/21', 'Claire', 'Winchester', 3),
-  createData('06/31/20', 'Dave', 'Crocker', 3),
-  createData('07/11/19', 'Batman', 'NotWayne', 3),
+  createData('1000232', '03/01/21', 'Claire', 'Winchester', '9167982333'),
+  createData('1000323', '06/31/20', 'Dave', 'Crocker', '9163839848'),
+  createData('1000324', '07/11/19', 'Batman', 'NotWayne', '9163938484'),
 ];
 
 const RecentLeads = () => {
   return (
     <div className="RecentLeads">
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">Date</TableCell>
-              <TableCell align="right">First Name</TableCell>
-              <TableCell align="right">Last Name</TableCell>
-              <TableCell align="right">Lead Status</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow
-                key={row.date}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                {/* <TableCell component="th" scope="row"> */}
-                {/*   {row.name} */}
-                {/* </TableCell> */}
-                <TableCell align="right">{row.date}</TableCell>
-                <TableCell align="right">{row.fname}</TableCell>
-                <TableCell align="right">{row.lname}</TableCell>
-                <TableCell align="right">{row.lead_status}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <div className='RecentLeadsTitle'><p>Recently Added Leads</p></div>
+      <ol className='ColumnsNames LeadsData'>
+        <li>Case ID</li>
+        <li>Date</li>
+        <li>First</li>
+        <li>Last</li>
+        <li>Phone #</li>
+      </ol>
+      {rows.map((row) => (
+        <ol className='LeadsData'>
+          <li>{row.case_id}</li>
+          <li>{row.date}</li>
+          <li>{row.fname}</li>
+          <li>{row.lname}</li>
+          <li>{row.phone}</li>
+        </ol>
+      ))}
     </div>
   );
 }

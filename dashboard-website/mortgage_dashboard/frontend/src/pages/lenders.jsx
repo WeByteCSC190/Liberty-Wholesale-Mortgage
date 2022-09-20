@@ -1,11 +1,13 @@
 import * as React from 'react';
 import Navbar from "../components/Navbar";
+import Table from "../components/Table"; 
 
-export default function Dashboard() {
+export default function Lenders() {
   return (
-    <div className="Dashboard">
-      <Navbar />
+    <>
+     <Navbar />
       <p> lenders</p>
-    </div>
+      <Table/>
+    </>
   )
 }

@@ -5,13 +5,13 @@ const Milestone = () => {
   return (
     <div className="Milestone">
       <div id='milestones-title'>
-        <h1> Milestones </h1>
+        <h1> Deals Closed</h1>
       </div>
-      <div id='goal-1'>Goal 1</div>
-      <div id='goal-2'>Goal 2</div>
-      <div id='goal-3'>Goal 3</div>
-      <div id='goal-4'>Goal 4</div>
-      <div id='goal-5'>Goal 5</div>
+      <ol className='progress-meter'>
+        <li className='goal-1 done'>Task 1</li>
+        <li className='goal-2 done'>Task 2</li>
+      </ol>
+      <p id='status-text'>15 out of 20 items completed</p>
     </div>
   );
 }

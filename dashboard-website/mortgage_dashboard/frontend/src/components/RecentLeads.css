@@ -1,0 +1,35 @@
+.RecentLeads{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+}
+.LeadsData{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.LeadsData li{
+  height: 10%;
+  width: 20%;
+  display:inline-block;
+  padding: 30px;
+  border-bottom: 1px solid black;
+  font-size: 12px;
+}
+ol{
+  list-style-type:none ;
+}
+
+.ColumnsNames li{
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.RecentLeadsTitle{
+  background: rgba(13, 57, 122, 1);
+  font-weight: bold;
+  color: white;
+}
+

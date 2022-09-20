@@ -1,5 +1,5 @@
 from unicodedata import name
-from django.urls import path
+from django.urls import path, include
 from .views import ClientView, AddClient, LeadView, AddLead
 from . import views
 
@@ -16,7 +16,7 @@ router=routers.DefaultRouter()
 router.register(r'leads',views.LeadViewSet)
 router.register(r'borrowers',views.BorrowerViewSet)
 router.register(r'recentBorrowers',views.RecentBorrowerViewSet)
-
+router.register(r'recentLeads',views.RecentLeadsViewSet)
 
 urlpatterns = [
     path('get-leads', LeadView.as_view() ),
@@ -24,7 +24,7 @@ urlpatterns = [
     path('get-borrowers',ClientView.as_view() ),
     path('add_client', AddClient),
     path('recent_borrowers', ClientView.as_view()),
-
+    path('recent_leads',ClientView.as_view()),
     # path('',views.apiView, name='apiView'),
     path('userList/',views.listAll, name='userList'),
     path('userDetails/<int:pk>/',views.userDetail, name='userDetail'),
@@ -35,8 +35,5 @@ urlpatterns = [
     #automatic URL routing
     path('',include(router.urls)),
     path('api/', include('rest_framework.urls', namespace='rest_framework'))
-    
-
-
 
 ]
