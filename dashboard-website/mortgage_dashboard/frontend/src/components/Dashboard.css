@@ -3,10 +3,7 @@
   grid-template-columns: 45% 5% 1fr;
   grid-template-rows: 10% 15% 15% 5% 30% 1fr;
 }
-.Navbar{
-	grid-column: 1/none;
-	grid-row: 1/1;
-}
+
 .Milestone{
   grid-column: 1/none;
   grid-row: 2/2;

@@ -11,3 +11,16 @@ export default function Lenders() {
     </>
   )
 }
+
+
+
+const fillLendersData = (company_id, company_name, main_program, general_email) =>{
+  return { company_id, company_name, main_program, general_email };
+}
+
+// On Lenders Mockup
+// Visable Row: company_id, company_name, main_program, general_email
+// Hidden Row: 
+
+
+
