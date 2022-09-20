@@ -7,12 +7,14 @@ import Leads from "./pages/Leads";
 import Borrowers from "./pages/Borrowers";
 import Resources from "./pages/Resources";
 import SignIn from "./pages/sign-in/sign-in.jsx";
-import SignUp from "./pages/sign-up/sign-up.jsx";
-import Lenders from "./pages/Lenders.jsx";
-import Users from "./pages/Admin/Users.jsx";
+import Help from "./pages/sign-in/help.jsx";
+import Lenders from "./pages/lenders";
+import Privacy from "./components/legal/privacy.jsx";
+import Terms from "./components/legal/terms.jsx";
 import AddUser from "./pages/Admin/Add-Users.jsx";
+import Users from "./pages/Admin/Users.jsx";
 import EditResources from "./pages/Admin/EditResources";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 const App = () => {
   return (
     <div className="App">
@@ -25,7 +27,9 @@ const App = () => {
         <Route path="Borrowers" element={<Borrowers />} />
         <Route path="Resources" element={<Resources />} />
         <Route path="Sign-In" element={<SignIn />} />
-        <Route path="Sign-Up" element={<SignUp />} />
+        <Route path="Help" element={<Help />} />
+        <Route path="Privacy" element={<Privacy />} />
+        <Route path="Terms" element={<Terms />} />
         <Route path="Users" element={<Users />} />
         <Route path="Add-User" element={<AddUser />} />
         <Route path="Edit-Resources" element={<EditResources />} />
@@ -37,9 +41,9 @@ const App = () => {
         
       </div>
 
-      <div className="Footer">
+      {/* <div className="Footer">
         <p>All Rights Reserved, Liberty Wholesale Mortgage</p>
-      </div>
+      </div> */}
     </div >
   )
 }
