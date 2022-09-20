@@ -18,26 +18,22 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='lead',
             name='creditScore',
-            field=models.IntegerField(
-                default=690002, unique=True, verbose_name='Credit Score'),
+            field=models.IntegerField(default=690002, unique=True, verbose_name='Credit Score'),
         ),
         migrations.AlterField(
             model_name='milestone',
             name='id',
-            field=models.IntegerField(
-                default=242396, primary_key=True, serialize=False, unique=True, verbose_name='ID'),
+            field=models.IntegerField(default=242396, primary_key=True, serialize=False, unique=True, verbose_name='ID'),
         ),
         migrations.AlterField(
             model_name='resources',
             name='id',
-            field=models.IntegerField(
-                default=633763, primary_key=True, serialize=False, unique=True, verbose_name='ID'),
+            field=models.IntegerField(default=633763, primary_key=True, serialize=False, unique=True, verbose_name='ID'),
         ),
         migrations.AlterField(
             model_name='status',
             name='id',
-            field=models.IntegerField(
-                default=933048, unique=True, verbose_name='ID'),
+            field=models.IntegerField(default=933048, unique=True, verbose_name='ID'),
         ),
         migrations.AlterField(
             model_name='user',
