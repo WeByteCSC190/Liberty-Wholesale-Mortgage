@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from rest_framework import permissions 
 from rest_framework.response import Response
 from api.models import UserProfile
+from .serializers import UserSerializer
 from api.serializers import UserProfileSerializer
 from django.contrib.auth.models import User
 from django.contrib import auth
@@ -23,29 +24,28 @@ class SignupView(APIView):
         password = data['password']
         re_password = data['re_password']
 
-        try:
-            if password == re_password:
-                if User.objects.filter(username=username).exists():
-                    return Response({'error': 'Username already exists' })
+        # try:
+        if password == re_password:
+            if User.objects.filter(username=username).exists():
+                return Response({'error': 'Username already exists' })
+            else:
+                if len(password) < 6:
+                    return Response({'error': 'Password must be at least 6 characters' })
                 else:
-                    if len(password) < 6:
-                        return Response({'error': 'Password must be at least 6 characters' })
-                    else:
-                        user = User.objects.create_user(username=username, password=password)
+                    user = User.objects.create_user(username=username, password=password)
+                    user.save()
 
-                        user.save()
+                    user = User.objects.get(id=user.id)
+                            
+                    userProfile = UserProfile(user = user, password = '',uID = 000000, fName= '', lName= '',nmlsID= 000000, ssn= 000000)
 
-                        user = User.objects.get(id=user.id)
-    
-                        userProfile = UserProfile(user = user, password = '',uID = '', fName= '', lName= '',nmlsID= '', ssn= '')
-                        # userProfile = UserProfile(user=usr, first_name='',last_name='',phone='',city='')
-                        userProfile.save()
-
-                        return Response({ 'success': 'User created successfully' })
-            else: 
-                return Response({'error': 'Passwords do not match' })
-        except:
-            return Response({'error': 'Something went wrong registering account.' })
+                    userProfile.save()
+                
+                    return Response({ 'success': 'User created successfully'})
+        else: 
+            return Response({'error': 'Passwords do not match' })
+        # except:
+        #     return Response({'error': 'Something went wrong registering account.'})
 
 @method_decorator(csrf_protect, name='dispatch')
 class CheckAuthenticatedView(APIView): 
@@ -71,7 +71,7 @@ class LoginView(APIView):
         
         try:
             if request.method == "POST":
-                userName = data['userName']
+                userName = data['username']
                 password = data['password']
 
                 user = auth.authenticate(request, username=userName, password=password) 
@@ -79,7 +79,7 @@ class LoginView(APIView):
                 if user is not None:
                     auth.login(request, user)
                     # return redirect('dashboard')
-                    return Response({'success': 'User authenticated', 'userName': userName})
+                    return Response({'success': 'User authenticated', 'username': userName})
 
                 else:
                     return Response({'error': 'Error Authenticating' })
@@ -109,7 +109,7 @@ class GetUsersView(APIView):
 
     def get(self, request, format=None):
         users = User.objects.all()
-        users = UserProfileSerializer(users, many= True)
+        users = UserSerializer(users, many= True)
         return Response(users.data)
 
 

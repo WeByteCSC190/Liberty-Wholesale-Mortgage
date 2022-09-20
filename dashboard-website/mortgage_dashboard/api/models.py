@@ -2,8 +2,8 @@ from datetime import datetime
 from sqlite3 import Date
 from tarfile import LENGTH_NAME
 from xmlrpc.client import DateTime
-from django.db import models
 import random
+from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -156,11 +156,11 @@ class UserProfile(models.Model):
     # userName = models.CharField(max_length=40, null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     password = models.CharField(max_length=20, default='')
-    uID = models.IntegerField(default='')
+    uID = models.IntegerField(default=000000)
     fName = models.CharField(max_length=40, default='')
     lName = models.CharField(max_length=40, default='')
-    nmlsID = models.IntegerField(default='')  # could not tell what the variable name is supposed to be
-    ssn = models.IntegerField(default='')
+    nmlsID = models.IntegerField(default=000000)  # could not tell what the variable name is supposed to be
+    ssn = models.IntegerField(default=000000)
 
     def __str__(self):
         return str(self.fName)

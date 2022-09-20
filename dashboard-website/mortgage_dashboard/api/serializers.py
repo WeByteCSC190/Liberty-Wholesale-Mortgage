@@ -37,8 +37,8 @@ class LoanOfficerSerializer(serializers.ModelSerializer):
 
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ('id', 'username',)
+        model = UserProfile
+        fields = '__all__'
 
 class ClientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
