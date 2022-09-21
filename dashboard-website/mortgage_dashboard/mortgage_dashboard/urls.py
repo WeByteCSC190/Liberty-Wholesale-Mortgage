@@ -9,6 +9,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')), 
     path('api/', include('api.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    # path('', TemplateView.as_view(template_name='/public/index.html')),    
     path('accounts/', include('accounts.urls')),
     path('profile/', include('users.urls')), 
 ]
