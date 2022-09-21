@@ -115,7 +115,7 @@ class BorrowerViewSet(viewsets.ModelViewSet):
     serializer_class=BorrowerSerializer
 
 class RecentBorrowerViewSet(viewsets.ModelViewSet):
-    queryset=RecentBorrowers.objects.all()
+    queryset=RecentBorrowers.objects.all()[:3]
     serializer_class=RecentBorrowerSerializer
 
 class LenderViewSet(viewsets.ModelViewSet):
@@ -123,7 +123,7 @@ class LenderViewSet(viewsets.ModelViewSet):
     serializer_class=LenderSerializer
 
 class RecentLeadsViewSet(viewsets.ModelViewSet):
-    queryset=RecentLeads.objects.all()
+    queryset=RecentLeads.objects.all()[:3]
     serializer_class=RecentLeadsSerializer
 
 class LeadView(generics.ListCreateAPIView):
