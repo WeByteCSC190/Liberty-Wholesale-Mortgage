@@ -6,6 +6,7 @@ admin.site.register(User)
 admin.site.register(Client)
 admin.site.register(News)
 admin.site.register(Anouncements)
+admin.site.register(Annoucements)
 admin.site.register(Files)
 
 admin.site.register(Media)

@@ -11,8 +11,8 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
 
-from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, UserSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer
-from .models import Client, RecentLeads, User, Lead, Borrower, RecentBorrowers,RecentLeads, Lender
+from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, UserSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer
+from .models import Client, RecentLeads, User, Lead, Borrower, RecentBorrowers,RecentLeads, Lender,Annoucements
 
 # Create your views here.
 
@@ -125,6 +125,10 @@ class LenderViewSet(viewsets.ModelViewSet):
 class RecentLeadsViewSet(viewsets.ModelViewSet):
     queryset=RecentLeads.objects.all()[:3]
     serializer_class=RecentLeadsSerializer
+
+class AnnoucementsViewSet(viewsets.ModelViewSet):
+    queryset=Annoucements.objects.all()
+    serializer_class=AnnoucementsSerializer
 
 class LeadView(generics.ListCreateAPIView):
     queryset = Lead.objects.all()

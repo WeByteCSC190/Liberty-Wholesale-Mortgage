@@ -31,13 +31,13 @@ class News(models.Model):
     def __str__(self):
         return self.desc
 
-
 class Anouncements(models.Model):
     desc = models.TextField('Description', blank=True)
     link = models.URLField('Website Address')
 
     def __str__(self):
         return self.link
+
 
 
 class Files(models.Model):
@@ -86,6 +86,12 @@ class Status(models.Model):
     def __str__(self):
         return str(self.id)
 
+class Annoucements(models.Model):
+     date=models.DateTimeField('Date')
+     content=models.TextField('Content',blank=True)
+
+     def __str__(self):
+         return str(self.date)+" "+str(self.content)
 
 class Lead(models.Model):
     resources = models.ForeignKey(
