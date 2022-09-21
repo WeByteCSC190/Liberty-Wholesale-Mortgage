@@ -202,3 +202,12 @@ class RecentLeads(models.Model):
 
      def __str__(self):
         return str(self.date)
+
+class Lender(models.Model):
+    company = models.CharField('Company', max_length=40, null=True, blank=True)
+    programs = models.CharField('Programs', max_length=40, null=True, blank=True)
+    phone_num = models.CharField('Phone Number', max_length=16, null=True)
+    email = models.EmailField('Email Address', blank=True)
+
+    def __str__(self):
+        return self.company
