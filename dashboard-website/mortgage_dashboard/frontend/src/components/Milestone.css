@@ -1,82 +1,57 @@
 .Milestone{
-  margin: 0 auto;
-  width:99%;
   background: black;
-  border-radius: 15px;
-}
-
-#milestones-title{
+  height: 100%;
+  width: 99%;
   display: flex;
-  text-align: left;
-  color: white;
-  padding: 10px;
+  overflow-y: auto;
 }
-.progress-meter {
-  padding: 0%;
+#milestones-title{
+  color:white;
 }
-
-#status-text{
-  color: white;
-  text-align: center;
-}
-
-ol.progress-meter {
-  padding-bottom: 9.5px;
-  list-style-type: none;
-}
-ol.progress-meter li {
-  display: inline-block;
-  text-align: center;
-  text-indent: -19px;
-  height: 36px;
-  width: 50%;
-  font-size: 12px;
-  border-bottom-width: 4px;
-  border-bottom-style: solid;
-}
-ol.progress-meter li:before {
+.timeline {
   position: relative;
-  float: left;
-  text-indent: 0;
-  left: -webkit-calc(50% - 9.5px);
-  left: -moz-calc(50% - 9.5px);
-  left: -ms-calc(50% - 9.5px);
-  left: -o-calc(50% - 9.5px);
-  left: calc(50% - 9.5px);
+	width:800px;
+	height: 20px;
+	list-style: none;
+	text-align: justify;
+	margin: 80px auto;
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,0)), color-stop(45%, rgba(255,255,255,0)), color-stop(51%, rgba(191,128,11,1)), color-stop(57%, rgba(255,255,255,0)), color-stop(100%, rgba(255,255,255,0)));
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 45%, rgba(191,128,11,1) 51%, rgba(255,255,255,0) 57%, rgba(255,255,255,0) 100%);
 }
-ol.progress-meter li.done {
-  font-size: 12px;
+.timeline:after {
+  display: inline-block;
+  content: "";
+  width: 100%;
 }
-ol.progress-meter li.done:before {
-  content: "\2713";
-  height: 25px;
-  width: 25px;
-  line-height: 21.85px;
-  bottom: -28.175px;
-  border: none;
-  border-radius: 19px;
+.timeline li {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: green;
+	text-align: center;
+	line-height: 1.2vw;
+	position: relative;
+	border-radius: 50%;
 }
-ol.progress-meter li.todo {
-  font-size: 12px;
+.timeline li:before {
+	display: inline-block;
+	content: attr(data-year);
+	font-size: 26px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 }
-ol.progress-meter li.todo:before {
-  content: "\2B24";
-  font-size: 17.1px;
-  bottom: -26.95px;
-  line-height: 18.05px;
+.timeline li:nth-child(odd):before {
+	top: -40px;
 }
-ol.progress-meter li.done {
-  color: black;
-  border-bottom-color: yellowgreen;
+.timeline li:nth-child(even):before {
+	bottom: -40px;
 }
-ol.progress-meter li.done:before {
-  color: white;
-  background-color: yellowgreen;
-}
-ol.progress-meter li.todo {
-  color: silver;
-  border-bottom-color: silver;
-}
-ol.progress-meter li.todo:before {
-  color: silver;
+.timeline li:after {
+	display: inline-block;
+	content: attr(data-text);
+	font-size: 16px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
 }

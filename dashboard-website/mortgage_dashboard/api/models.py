@@ -2,7 +2,6 @@ from datetime import datetime
 from sqlite3 import Date
 from tarfile import LENGTH_NAME
 from xmlrpc.client import DateTime
-import zoneinfo
 from django.db import models
 from django.db.models import OuterRef, Subquery
 import random

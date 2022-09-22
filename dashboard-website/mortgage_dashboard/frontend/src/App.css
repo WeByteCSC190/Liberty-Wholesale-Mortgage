@@ -24,21 +24,22 @@ body{
 
 .Navbar{
   box-sizing: border-box;
-  margin: 0; 
+  margin: 0;
   background-color: rgba(13, 57, 122, 1);
   color: white;
   justify-content: space-between;
   align-items: static;
-  display: flex; 
+  display: flex;
   gap: 3rem;
-  padding: 0 1rem; 
-  z-index: 4; 
+  padding: 0 1rem;
+  z-index: 4;
+  height: 10vh;
 }
 
 .NavbarMenu {
-  display: flex; 
+  display: flex;
   justify-content: center;
-  
+ 
 }
 
 
