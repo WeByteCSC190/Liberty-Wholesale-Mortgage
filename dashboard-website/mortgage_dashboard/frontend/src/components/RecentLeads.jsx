@@ -1,36 +1,44 @@
 import * as React from 'react';
-import './RecentLeads.css'
+import './RecentLeads.css';
+import axios from "axios";
 
-const createData = (case_id, date, fname, lname, phone) =>{
-    return { case_id, date, fname, lname, phone };
+
+const createData = (date, fname, lname) =>{
+    return {date, fname, lname};
 }
 
 const rows = [
-  createData('1000232', '03/01/21', 'Claire', 'Winchester', '9167982333'),
-  createData('1000323', '06/31/20', 'Dave', 'Crocker', '9163839848'),
-  createData('1000324', '07/11/19', 'Batman', 'NotWayne', '9163938484'),
+  createData('03/01/21', 'Claire', 'Winchester'),
+  createData('06/31/20', 'Dave', 'Crocker'),
+  createData('07/11/19', 'Batman', 'NotWayne'),
 ];
 
+const requestTry = axios.get("http://localhost:8000/api/recentLeads/")
+
 const RecentLeads = () => {
+  const rows2 = requestTry.then(response => {
+    console.log(response)
+  }).catch(error => {
+    console.log(error)
+  })
+  console.log(rows2)
   return (
     <div className="RecentLeads">
       <div className='RecentLeadsTitle'><p>Recently Added Leads</p></div>
-      <ol className='ColumnsNames LeadsData'>
-        <li>Case ID</li>
+      <ol className='RecentLeadsColumnNames'>
         <li>Date</li>
         <li>First</li>
         <li>Last</li>
-        <li>Phone #</li>
       </ol>
+      <div className="RecentLeadsTable">
       {rows.map((row) => (
-        <ol className='LeadsData'>
-          <li>{row.case_id}</li>
+        <ol className='RecentLeadsData'>
           <li>{row.date}</li>
           <li>{row.fname}</li>
           <li>{row.lname}</li>
-          <li>{row.phone}</li>
         </ol>
       ))}
+      </div>
     </div>
   );
 }
