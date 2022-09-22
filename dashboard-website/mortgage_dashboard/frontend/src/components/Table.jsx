@@ -2,7 +2,8 @@ import Table from 'react-bootstrap/Table';
 
 function TableComponent() {
   return (
-    <Table className="Table" responsive>
+    <div style={{ paddingLeft: 90, paddingRight:90 }}>
+    <Table className="Table" responsive >
       <thead>
         <tr>
           <th>#</th>
@@ -31,7 +32,8 @@ function TableComponent() {
           ))}
         </tr>
       </tbody>
-    </Table>
+      </Table>
+      </div>
   );
 }
 
