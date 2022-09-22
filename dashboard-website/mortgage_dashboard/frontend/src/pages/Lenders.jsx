@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Navbar from "../components/Navbar";
 import Table from "../components/Table"; 
-
+import Search from "../components/Search";
 export default function Lenders() {
   return (
     <>
      <Navbar />
-      <p> lenders</p>
+     <Search />
       <Table/>
     </>
   )
