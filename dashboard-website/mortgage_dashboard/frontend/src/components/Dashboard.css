@@ -1,17 +1,19 @@
 .Dashboard{
   display: grid;
+  position:absolute;
   grid-template-columns: 45% 5% 1fr;
-  grid-template-rows: 10% 15% 15% 5% 30% 1fr;
+  grid-template-rows: 1% 12% 18% 1% 28% 28% 1fr;
+  height: 100%;
+  width: 100%;
+  overflow-y:auto;
 }
-.Navbar{
-	grid-column: 1/none;
-	grid-row: 1/1;
-}
+
 .Milestone{
-  grid-column: 1/none;
+  grid-column: 1/4;
   grid-row: 2/2;
 }
 .DashboardCards{
+  position:relative;
   grid-column: 1/none;
   grid-row: 3/3;
 }
@@ -25,7 +27,7 @@
 }
 .AnnouncementsWidget{
   grid-column: 3/3;
-  grid-row: 5/6;
+  grid-row: 5/7;
 }
 
 

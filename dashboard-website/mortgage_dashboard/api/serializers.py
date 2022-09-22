@@ -5,7 +5,10 @@ from .models import *
 ## Serializer is a component that converts
 ## Django models to JSON objects and vice versa
 
-
+class AnnoucementsSerializer(serializers.HyperlinkedModelSerializer):
+      class Meta:
+          model= Annoucements
+          fields=('date','content')
 class LeadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lead
@@ -57,3 +60,8 @@ class RecentLeadsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model= RecentLeads
         fields =('date','fname','lname')
+
+class LenderSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model= Lender
+        fields =('company','programs','phone_num', 'email')

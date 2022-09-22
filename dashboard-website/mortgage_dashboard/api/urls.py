@@ -17,14 +17,17 @@ router.register(r'leads',views.LeadViewSet)
 router.register(r'borrowers',views.BorrowerViewSet)
 router.register(r'recentBorrowers',views.RecentBorrowerViewSet)
 router.register(r'recentLeads',views.RecentLeadsViewSet)
-
+router.register(r'lender',views.LenderViewSet)
+router.register(r'Annoucements',views.AnnoucementsViewSet)
 urlpatterns = [
     path('get-leads', LeadView.as_view() ),
     path('add_lead', AddLead),
     path('get-borrowers',ClientView.as_view() ),
     path('add_client', AddClient),
     path('recent_borrowers', ClientView.as_view()),
+    path('get_lender', ClientView.as_view()),
     path('recent_leads',ClientView.as_view()),
+    path('Annoucements',ClientView.as_view()),
     # path('',views.apiView, name='apiView'),
     path('userList/',views.listAll, name='userList'),
     path('userDetails/<int:pk>/',views.userDetail, name='userDetail'),
