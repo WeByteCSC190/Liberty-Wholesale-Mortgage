@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.urls import path, include
-from .views import ClientView, AddClient, LeadView, AddLead
+from .views import ClientView, AddClient, LeadView, AddLead, LenderView
 from . import views
 
 
@@ -25,7 +25,7 @@ urlpatterns = [
     path('get-borrowers',ClientView.as_view() ),
     path('add_client', AddClient),
     path('recent_borrowers', ClientView.as_view()),
-    path('get_lender', ClientView.as_view()),
+    path('get-lender', LenderView.as_view()),
     path('recent_leads',ClientView.as_view()),
     path('Annoucements',ClientView.as_view()),
     # path('',views.apiView, name='apiView'),

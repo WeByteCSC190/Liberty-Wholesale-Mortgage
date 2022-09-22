@@ -2,6 +2,7 @@ from datetime import datetime
 from sqlite3 import Date
 from tarfile import LENGTH_NAME
 from xmlrpc.client import DateTime
+import zoneinfo
 from django.db import models
 from django.db.models import OuterRef, Subquery
 import random
@@ -211,9 +212,9 @@ class RecentLeads(models.Model):
 
 class Lender(models.Model):
     company = models.CharField('Company', max_length=40, null=True, blank=True)
+    state = models.CharField('State', max_length=40, null=True, blank=True)
+    rating = models.CharField('Rating', max_length=2, null=True, blank=True)
     programs = models.CharField('Programs', max_length=40, null=True, blank=True)
-    phone_num = models.CharField('Phone Number', max_length=16, null=True)
-    email = models.EmailField('Email Address', blank=True)
 
     def __str__(self):
         return self.company

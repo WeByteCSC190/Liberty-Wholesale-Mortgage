@@ -64,4 +64,4 @@ class RecentLeadsSerializer(serializers.HyperlinkedModelSerializer):
 class LenderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model= Lender
-        fields =('company','programs','phone_num', 'email')
+        fields =('company', 'state', 'rating', 'programs')
