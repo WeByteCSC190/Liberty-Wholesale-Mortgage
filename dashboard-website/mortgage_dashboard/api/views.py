@@ -5,6 +5,7 @@ from django.shortcuts import render
 from rest_framework import generics, status
 
 from rest_framework import viewsets
+from rest_framework import filters
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
@@ -121,10 +122,14 @@ class RecentBorrowerViewSet(viewsets.ModelViewSet):
 class LenderViewSet(viewsets.ModelViewSet):
     queryset=Lender.objects.all()
     serializer_class=LenderSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['company', 'state', 'programs']
 
 class LenderView(generics.ListCreateAPIView):
     queryset = Lender.objects.all()
     serializer_class= LenderSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['company', 'state', 'programs']
 
 class RecentLeadsViewSet(viewsets.ModelViewSet):
     queryset=RecentLeads.objects.all()[:3]
