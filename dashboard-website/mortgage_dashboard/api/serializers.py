@@ -19,7 +19,11 @@ class AddLead(serializers.ModelSerializer):
         model = Lead
         fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
 
-
+class AddBorrower(serializers.ModelSerializer):
+    class Meta:
+        model = Borrower
+        fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
+        
 class BorrowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Borrower

@@ -12,7 +12,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
 
-from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, UserSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer
+from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, AddBorrower, UserSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer
 from .models import Client, RecentLeads, User, Lead, Borrower, RecentBorrowers,RecentLeads, Lender,Annoucements
 
 # Create your views here.
@@ -164,3 +164,30 @@ class addLeadView(APIView):
             lead.save()
 
             return Response(LeadSerializer(lead).data, status=status.HTTP_200_OK)
+
+class BorrowerView(generics.ListCreateAPIView):
+    queryset = Borrower.objects.all()
+    serializer_class= ClientSerializer
+
+class AddBorrower(APIView):
+    serializer_class = AddBorrower
+    def post(self, request, format=None):
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
+
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            caseId = serializer.data.get('caseId')
+            date = serializer.data.get('Date')
+            fName = serializer.data.get('fName')
+            lName = serializer.data.get('lName')
+            creditScore = serializer.data.get('creditScore')
+            email = serializer.data.get('email')
+            phone_num = serializer.data.get('phone_num')
+            status = serializer.data.get('status')
+
+            borrower = Borrower(caseId=caseId,date=date,fName=fName,lName=lName,creditScore=creditScore,email=email,phone_num=phone_num,status=status)
+            borrower.save()
+
+            return Response(BorrowerSerializer(Borrower).data, status=status.HTTP_200_OK)
+
