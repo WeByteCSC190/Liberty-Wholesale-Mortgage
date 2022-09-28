@@ -1,5 +1,6 @@
 
 .DashboardCards{
+  position: relative;
   display: flex;
   justify-content: space-between;
 }
@@ -16,22 +17,27 @@
 .CardTitle{
   flex-grow: 1;
   flex-basis: 50%;
-  font-size: 16px;
+  font-size: .8vw;
   display: inline-block;
   padding: 5px;
 }
 
 .CardFilter{
+  position: absolute;
+  right: 10%;
   flex-grow: 1;
   flex-basis: 50%;
   display: inline-block;
-  font-size: 11px;
+  font-size: .5vw;
   margin: 0;
 }
 
 .CardValue{
+  position: absolute;
+  top: 30%;
+  right: 45%;
   flex-basis: 100%;
-  font-size: 50px;
+  font-size: 3vw;
   text-align: center;
   font-weight: bolder;
 }

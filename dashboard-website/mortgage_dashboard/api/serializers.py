@@ -6,7 +6,10 @@ from django.contrib.auth.models import User
 ## Serializer is a component that converts
 ## Django models to JSON objects and vice versa
 
-
+class AnnoucementsSerializer(serializers.HyperlinkedModelSerializer):
+      class Meta:
+          model= Annoucements
+          fields=('date','content')
 class LeadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lead
@@ -17,7 +20,11 @@ class AddLead(serializers.ModelSerializer):
         model = Lead
         fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
 
-
+class AddBorrower(serializers.ModelSerializer):
+    class Meta:
+        model = Borrower
+        fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
+        
 class BorrowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Borrower
@@ -54,3 +61,12 @@ class RecentBorrowerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = RecentBorrowers
         fields = ('date', 'fname', 'lname')
+class RecentLeadsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model= RecentLeads
+        fields =('date','fname','lname')
+
+class LenderSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model= Lender
+        fields =('company', 'state', 'rating', 'programs', 'lender_FHA_ID', 'lender_VA_ID', 'account_executive', 'phone_num', 'email', 'website')

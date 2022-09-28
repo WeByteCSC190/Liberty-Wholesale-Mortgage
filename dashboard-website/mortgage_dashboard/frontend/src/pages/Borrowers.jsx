@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import Navbar from "../components/Navbar";
-
+import Search from "../components/Search";
 const Borrowers = () => {
   function createData(fname, lname, email, phone_num, date) {
     return { fname, lname, email, phone_num, date };
@@ -17,7 +17,9 @@ const Borrowers = () => {
   ];
   return (
     <div className="Borrowers">
-       <Navbar />
+      <Navbar />
+      <Search />
+      <br/>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>

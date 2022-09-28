@@ -2,6 +2,9 @@ from datetime import datetime
 from sqlite3 import Date
 from tarfile import LENGTH_NAME
 from xmlrpc.client import DateTime
+import zoneinfo
+from django.db import models
+from django.db.models import OuterRef, Subquery
 import random
 from django.db import models
 from django.contrib.auth.models import User
@@ -30,13 +33,13 @@ class News(models.Model):
     def __str__(self):
         return self.desc
 
-
 class Anouncements(models.Model):
     desc = models.TextField('Description', blank=True)
     link = models.URLField('Website Address')
 
     def __str__(self):
         return self.link
+
 
 
 class Files(models.Model):
@@ -85,6 +88,12 @@ class Status(models.Model):
     def __str__(self):
         return str(self.id)
 
+class Annoucements(models.Model):
+     date=models.DateTimeField('Date')
+     content=models.TextField('Content',blank=True)
+
+     def __str__(self):
+         return str(self.date)+" "+str(self.content)
 
 class Lead(models.Model):
     resources = models.ForeignKey(
@@ -191,4 +200,29 @@ class RecentBorrowers(models.Model):
     lname = models.CharField('Last Name', max_length=40, null=True, blank=True)
 
     def __str__(self):
-        return str(self.date)
+        return str(self.date)+" "+str(self.fname)+" "+str(self.lname)
+
+class RecentLeads(models.Model):
+     date = models.CharField('Date', max_length=10, null=True, blank=True)
+     fname = models.CharField(
+        'First Name', max_length=40, null=True, blank=True)
+     lname = models.CharField('Last Name', max_length=40, null=True, blank=True)
+
+     def __str__(self):
+         return str(self.date)+" "+str(self.fname)+" "+str(self.lname)
+
+class Lender(models.Model):
+    company = models.CharField('Company', max_length=40, null=True, blank=True)
+    state = models.CharField('State', max_length=40, null=True, blank=True)
+    rating = models.CharField('Rating', max_length=2, null=True, blank=True)
+    programs = models.CharField('Programs', max_length=40, null=True, blank=True)
+
+    lender_FHA_ID = models.CharField('Lender FHA ID', max_length=20, null=True, blank=True)
+    lender_VA_ID = models.CharField('Lender VA ID', max_length=20, null=True, blank=True)
+    account_executive = models.CharField('Account Executive', max_length=20, null=True, blank=True)
+    phone_num = models.CharField('Phone', max_length=30, null=True, blank=True)
+    email = models.EmailField('Email', blank=True)
+    website = models.CharField('Website', max_length=50, null=True, blank=True)
+
+    def __str__(self):
+        return self.company

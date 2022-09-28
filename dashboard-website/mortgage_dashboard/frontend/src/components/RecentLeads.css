@@ -1,35 +1,55 @@
 .RecentLeads{
   display: flex;
+  position: relative;
   flex-direction: column;
+  margin: 20px;
   height: 100%;
-  overflow-y: auto;
 }
-.LeadsData{
+
+.RecentLeadsTable{
+  position: relative;
+  overflow-y:auto;
+  overflow-x:auto;
+}
+.RecentLeadsData{
   width: 100%;
   margin: 0;
   padding: 0;
 }
 
-.LeadsData li{
-  height: 10%;
+.RecentLeadsData li{
+  height: 5%;
   width: 20%;
+  padding: 15px;
   display:inline-block;
-  padding: 30px;
   border-bottom: 1px solid black;
-  font-size: 12px;
+  font-size: 1vw;
 }
 ol{
   list-style-type:none ;
 }
 
-.ColumnsNames li{
+.RecentLeadsColumnNames{
+  border-bottom: 1px solid black;
+
+}
+.RecentLeadsColumnNames ol{
+    font-size: 1vw;
+    overflow-x:auto;
+    border-bottom: 1px solid black;
+}
+.RecentLeadsColumnNames li{
+  display: inline-block;
+  height: 5%;
+  width: 20%;
   font-weight: bold;
-  font-size: 13px;
+  font-size: 1vw;
 }
 
 .RecentLeadsTitle{
-  background: darkblue;
-  font-size: 20px;
+  background: rgba(13, 57, 122, 1);
+  font-size: 1.2vw;
+  height: 30px;
   font-weight: bold;
   color: white;
 }

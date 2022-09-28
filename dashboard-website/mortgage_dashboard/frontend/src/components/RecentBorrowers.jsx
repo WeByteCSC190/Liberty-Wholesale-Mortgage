@@ -15,13 +15,14 @@ const RecentBorrowers = () => {
   return (
     <div className="RecentBorrowers">
       <div className='RecentBorrowersTitle'>Recently Added Borrowers</div>
-      <ol className='RecentBorrowersColumnsNames RecentBorrowersData'>
+      <ol className='RecentBorrowersColumnNames'>
         <li>Case ID</li>
         <li>Date</li>
         <li>First</li>
         <li>Last</li>
         <li>Phone #</li>
       </ol>
+      <div classNaame='RecentBorrowersTable'>
       {rows.map((row) => (
         <ol className='RecentBorrowersData'>
           <li>{row.case_id}</li>
@@ -31,6 +32,7 @@ const RecentBorrowers = () => {
           <li>{row.phone}</li>
         </ol>
       ))}
+      </div>
     </div>
   );
 }
