@@ -12,8 +12,8 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
 
-from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, AddBorrower, UserSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer
-from .models import Client, RecentLeads, User, Lead, Borrower, RecentBorrowers,RecentLeads, Lender,Annoucements
+from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer
+from .models import Client, RecentLeads, UserProfile, Lead, Borrower, RecentBorrowers,RecentLeads, Lender,Annoucements
 
 # Create your views here.
 
@@ -45,20 +45,20 @@ from .models import Client, RecentLeads, User, Lead, Borrower, RecentBorrowers,R
 
 @api_view(['GET'])
 def listAll(request):
-    users = User.objects.all()
-    serializer = UserSerializer(users, many = True)
+    users = UserProfile.objects.all()
+    serializer = UserProfileSerializer(users, many = True)
     
     return Response(serializer.data)
 
 @api_view(['GET'])
 def userDetail(request,pk):
-    user = User.objects.get(id = pk)
-    serializer = UserSerializer(user, many = False)
+    user = UserProfile.objects.get(id = pk)
+    serializer = UserProfileSerializer(user, many = False)
     return Response(serializer.data)
 
 @api_view(['POST'])
 def createUser(request):
-    serializer = UserSerializer(data = request.data)
+    serializer = UserProfileSerializer(data = request.data)
     
     if serializer.is_valid():
         serializer.save()
@@ -67,8 +67,8 @@ def createUser(request):
 
 @api_view(['POST'])
 def updateUser(request,pk):
-    user = User.objects.get(id = pk)
-    serializer = UserSerializer(instance=user, data=request.data)
+    user = UserProfile.objects.get(id = pk)
+    serializer = UserProfileSerializer(instance=user, data=request.data)
     
     if serializer.is_valid():
         serializer.save()
@@ -77,7 +77,7 @@ def updateUser(request,pk):
 
 @api_view(['DELETE'])
 def deleteUser(request,pk):
-    user = User.objects.get(id = pk)
+    user = UserProfile.objects.get(id = pk)
     user.delete()
     return Response('Item deleted')
 
