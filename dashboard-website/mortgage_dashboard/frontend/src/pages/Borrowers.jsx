@@ -2,7 +2,24 @@ import * as React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import Navbar from "../components/Navbar";
 import Search from "../components/Search";
+
+
 const Borrowers = () => {
+  return (
+    <>
+    <div className="Header">
+      <Navbar />
+      <p className="Page-Title">Borrowers</p>
+    </div>
+    <div className="Content">
+      <BorrowersTable />
+    </div>
+    </>
+  )
+}
+export default Borrowers; 
+
+const BorrowersTable = () => {
   function createData(fname, lname, email, phone_num, date) {
     return { fname, lname, email, phone_num, date };
   }
@@ -17,7 +34,7 @@ const Borrowers = () => {
   ];
   return (
     <div className="Borrowers">
-      <Navbar />
+      
       <Search />
       <br/>
       <TableContainer component={Paper}>
@@ -49,8 +66,8 @@ const Borrowers = () => {
             ))}
           </TableBody>
         </Table>
-      </TableContainer>    </div>
+      </TableContainer>   
+       </div>
   );
 }
 
-export default Borrowers;

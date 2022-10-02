@@ -3,10 +3,14 @@ import Navbar from "../components/Navbar";
 
 const Resources = () => {
   return (
-    <div className="Resources">
+    <>
+    <div className="Header">
       <Navbar />
-      <p> Resources </p>
+      <p className="Page-Title">Resources</p>
     </div>
+    <div className="Content"> 
+    </div>
+    </>
   )
 }
 

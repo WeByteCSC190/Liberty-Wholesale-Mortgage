@@ -1,13 +1,20 @@
 import * as React from 'react';
 import Navbar from "../components/Navbar";
+import LendersTable from "../components/TableLenders"; 
 import Table from "../components/Table"; 
+import SearchLenders from "../components/SearchLenders";
 import Search from "../components/Search";
 export default function Lenders() {
   return (
     <>
-     <Navbar />
-     <Search />
-      <Table/>
+    <div className="Header">
+      <Navbar />
+      <p className="Page-Title">Lenders</p>
+    </div>
+    <div className="Content">
+     <SearchLenders />
+     <LendersTable />
+    </div>
     </>
   )
 }

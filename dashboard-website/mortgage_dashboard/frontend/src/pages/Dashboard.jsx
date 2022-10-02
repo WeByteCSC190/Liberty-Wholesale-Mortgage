@@ -10,13 +10,18 @@ import DashboardCards from "../components/DashboardCards"
 const Dashboard = () => {
   return (
     <>
-     <Navbar />
+    <div className="Header">
+      <Navbar />
+      <p className="Page-Title">Dashboard</p>
+    </div>
+    <div className="Content"> 
       <div className="Dashboard">
       <Milestone />
       <DashboardCards />
       <RecentLeads />
       <RecentBorrowers />
       <AnnouncementsWidget />
+    </div>
     </div>
     </>
   )

@@ -49,8 +49,6 @@ export default function NavbarCustom() {
            
          </Nav> 
          
-         
-         
         </Navbar.Collapse>
           <NavDropButton />
       </Container>

@@ -3,7 +3,20 @@ import Navbar from "../components/Navbar";
 import Search from "../components/Search";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
-const Leads = () => {
+export default function Leads() {
+  return (
+    <>
+    <div className="Header">
+      <Navbar />
+      <p className="Page-Title">Leads</p>
+    </div>
+    <div className="Content">
+      <LeadsTable />
+    </div>
+    </>
+  )
+}
+const LeadsTable = () => {
   function createData(date, fname, lname, fico, email, phone_num, lead_status) {
     return { date, fname, lname, fico, email, phone_num, lead_status };
   }
@@ -17,10 +30,9 @@ const Leads = () => {
     createData('09/21/16', 'Prenoit', 'Frenchman', 159, 'prenoitf@hotmail.uk', '916-799-0111', 3),
   ];
   return (
-    <div className="Leads">
-      <Navbar />
-      <Search />
-      <br/>
+   <>
+    <Search />
+      <br/> 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -57,8 +69,8 @@ const Leads = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+  </> 
   );
 }
 
-export default Leads;
+
