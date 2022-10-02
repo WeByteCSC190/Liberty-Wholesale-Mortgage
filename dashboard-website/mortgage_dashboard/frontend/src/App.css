@@ -28,71 +28,59 @@ body{
 /* CSS Code for Navbar */
 
 .Navbar {
-  box-sizing: border-box;
-  margin: 0;
-  background-color: rgba(13, 57, 122, 1);
-  color: white;
-  justify-content: space-between;
-  align-items: static;
-  display: flex;
-  gap: 3rem;
-  padding: 0 1rem;
-  z-index: 4;
-  height: 10vh;
- 
-  
+    box-sizing: border-box;
+    margin: 0; 
+    height: 10vh;
+    background-color: rgba(13, 57, 122, 1);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+    padding: 0 1rem; 
+    margin-bottom: 2%;
+
 }
 
-.Navbar a{
-  color: inherit;
-  text-decoration: none;
+.Navbar a {
   height: 100%;
   display: flex;
-  align-items: center;
-    
+  text-decoration: none;
 }
 
-.NavbarMenu {
-  display: flex;
-  justify-content: center;
 
-}
 
-.Nav-Links {
+.Nav-Menu {
   display: flex; 
   justify-content: center;
-  gap: 3rem;
   padding: 1rem;
   margin: 0;
   list-style: none;
+  gap: 4rem;
+
+}
+
+.Nav-Menu li a {
+  color: inherit;
+  text-decoration: none;
+  text-align: center;
+  display: block; 
 }
 
 
-.Nav-Links:hover a {
-  color: rgb(45, 208, 245) !important;
-}
-
-.Nav-Links:active a {
+.Nav-Menu li.active {
   text-decoration: underline;
   text-underline-offset: 1rem;
   font-weight: bold;
 }
 
-.Nav-Drop {
-  color: white; 
-  display: flex;
+.Nav-Menu a:hover {
+  color: rgb(45, 208, 245);
 }
 
-@media(max-width: 600px) {
- 
-  .Nav-Links { 
-    width: 100%;
-    height: 100%; 
-    flex-direction: column;
-    background-color: rgba(13, 57, 122, 1);
-    gap: 0; 
 
-  }
+
+@media (max-width: 600px) {
+
 }
 
 

@@ -16,8 +16,9 @@ import * as Icons from "@fortawesome/free-solid-svg-icons"
 export default function NavbarCustom() {
   return (
     <>
-       <Navbar className="Navbar" expand="lg">
+      <Navbar className="Navbar" expand="lg">
       <Container fluid>
+
         <Navbar.Brand href="/">
         <img
           src={BlueLogo} //MLO Support Logo
@@ -27,31 +28,49 @@ export default function NavbarCustom() {
           alt="MLO Support"
         />
         </Navbar.Brand>
-
+       
 
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-        <Col className="Nav-Menu"> 
+         
           <Nav
             className="me-auto my-2"
             style={{ maxHeight: '100px' }}
-            navbarScroll>
-            <Container className="Nav-Links">
-            <Nav.Link href="/">Dashboard</Nav.Link>
-            <Nav.Link href="/leads">Leads</Nav.Link>
-            <Nav.Link href="/borrowers">Borrowers</Nav.Link>
-            <Nav.Link href="/lenders" >Lenders</Nav.Link>
-            <Nav.Link href="/resources" >Resources</Nav.Link>
-            </Container>
-          </Nav> 
-          </Col>
-        
-        <NavDropButton />
+            navbarScroll
+            >
+            
+           <Container className="Nav-Menu">
+            <SwitchPage href="/">Dashboard</SwitchPage> 
+            <SwitchPage href="/leads">Leads</SwitchPage>
+            <SwitchPage href="/borrowers">Borrowers</SwitchPage>
+            <SwitchPage href="/lenders" >Lenders</SwitchPage>
+            <SwitchPage href="/resources" >Resources</SwitchPage>
+           </Container>
+           
+         </Nav> 
+         
+         
+         
         </Navbar.Collapse>
+          <NavDropButton />
       </Container>
     </Navbar>
     </>
   );
+}
+
+function SwitchPage( {href, children, ...props }) {
+  const resolvedPath = useResolvedPath(href)
+  const isActive = useMatch( {path: resolvedPath.pathname, end:true} ) 
+  
+  return (
+    // Checks the current page uses css to underline/bold the link on Navbar Menu
+      <li className={ isActive ? "active" : ""}> 
+          <Nav.Link href={href} {...props}>
+              {children}
+          </Nav.Link>
+      </li>
+  )
 }
 
 function NavDropButton() {
@@ -62,15 +81,18 @@ function NavDropButton() {
       <FontAwesomeIcon 
          icon={Icons.faUser} 
          size="2x" 
+         
          />
       </Dropdown.Toggle>
 
-      <Dropdown.Menu className="NavDropdownOptions">
-        <Dropdown.Item>
+      <Dropdown.Menu className="NavDropMenu"
+        style={{ right: 0, left: 'auto' }}
+      >
+        <Dropdown.Item className="Drop-Item">
         <Link to="/account">Account</Link>
        </Dropdown.Item>
 
-      <Dropdown.Item>
+      <Dropdown.Item className="Drop-Item">
         <Link to="/sign-out">Sign Out</Link>
       </Dropdown.Item>
       </Dropdown.Menu>
