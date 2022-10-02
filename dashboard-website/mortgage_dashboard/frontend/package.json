@@ -18,7 +18,7 @@
     "bootstrap": "^5.2.1",
     "install": "^0.13.0",
     "js-cookie": "^3.0.1",
-    "react": "latest",
+    "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "latest",
     "react-redux": "^8.0.4",
