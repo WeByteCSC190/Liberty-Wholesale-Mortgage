@@ -6,12 +6,16 @@ body{
   background: white;
 }
 
-.Header{
+.Header {
   z-index: 4;
 }
 
 .Content{
   
+}
+
+.Header + .Content {
+
 }
 
 .Page-Title {
