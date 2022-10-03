@@ -5,14 +5,15 @@ from django.shortcuts import render
 from rest_framework import generics, status
 
 from rest_framework import viewsets
+from rest_framework import filters
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 
 
-from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, UserSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer
-from .models import Client, RecentLeads, User, Lead, Borrower, RecentBorrowers,RecentLeads, Lender,Annoucements
+from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer
+from .models import Client, RecentLeads, UserProfile, Lead, Borrower, RecentBorrowers,RecentLeads, Lender,Annoucements
 
 # Create your views here.
 
@@ -44,20 +45,20 @@ from .models import Client, RecentLeads, User, Lead, Borrower, RecentBorrowers,R
 
 @api_view(['GET'])
 def listAll(request):
-    users = User.objects.all()
-    serializer = UserSerializer(users, many = True)
+    users = UserProfile.objects.all()
+    serializer = UserProfileSerializer(users, many = True)
     
     return Response(serializer.data)
 
 @api_view(['GET'])
 def userDetail(request,pk):
-    user = User.objects.get(id = pk)
-    serializer = UserSerializer(user, many = False)
+    user = UserProfile.objects.get(id = pk)
+    serializer = UserProfileSerializer(user, many = False)
     return Response(serializer.data)
 
 @api_view(['POST'])
 def createUser(request):
-    serializer = UserSerializer(data = request.data)
+    serializer = UserProfileSerializer(data = request.data)
     
     if serializer.is_valid():
         serializer.save()
@@ -66,8 +67,8 @@ def createUser(request):
 
 @api_view(['POST'])
 def updateUser(request,pk):
-    user = User.objects.get(id = pk)
-    serializer = UserSerializer(instance=user, data=request.data)
+    user = UserProfile.objects.get(id = pk)
+    serializer = UserProfileSerializer(instance=user, data=request.data)
     
     if serializer.is_valid():
         serializer.save()
@@ -76,7 +77,7 @@ def updateUser(request,pk):
 
 @api_view(['DELETE'])
 def deleteUser(request,pk):
-    user = User.objects.get(id = pk)
+    user = UserProfile.objects.get(id = pk)
     user.delete()
     return Response('Item deleted')
 
@@ -121,6 +122,14 @@ class RecentBorrowerViewSet(viewsets.ModelViewSet):
 class LenderViewSet(viewsets.ModelViewSet):
     queryset=Lender.objects.all()
     serializer_class=LenderSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['company', 'state', 'programs']
+
+class LenderView(generics.ListCreateAPIView):
+    queryset = Lender.objects.all()
+    serializer_class= LenderSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['company', 'state', 'programs']
 
 class RecentLeadsViewSet(viewsets.ModelViewSet):
     queryset=RecentLeads.objects.all()[:3]
@@ -155,3 +164,30 @@ class addLeadView(APIView):
             lead.save()
 
             return Response(LeadSerializer(lead).data, status=status.HTTP_200_OK)
+
+class BorrowerView(generics.ListCreateAPIView):
+    queryset = Borrower.objects.all()
+    serializer_class= ClientSerializer
+
+class AddBorrower(APIView):
+    serializer_class = AddBorrower
+    def post(self, request, format=None):
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
+
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            caseId = serializer.data.get('caseId')
+            date = serializer.data.get('Date')
+            fName = serializer.data.get('fName')
+            lName = serializer.data.get('lName')
+            creditScore = serializer.data.get('creditScore')
+            email = serializer.data.get('email')
+            phone_num = serializer.data.get('phone_num')
+            status = serializer.data.get('status')
+
+            borrower = Borrower(caseId=caseId,date=date,fName=fName,lName=lName,creditScore=creditScore,email=email,phone_num=phone_num,status=status)
+            borrower.save()
+
+            return Response(BorrowerSerializer(Borrower).data, status=status.HTTP_200_OK)
+

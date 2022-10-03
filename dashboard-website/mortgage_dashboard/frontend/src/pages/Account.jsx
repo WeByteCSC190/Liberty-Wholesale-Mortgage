@@ -3,10 +3,15 @@ import Navbar from "../components/Navbar";
 
 const Account = () => {
   return (
-    <div className="Account">
+    <>
+    <div className="Header">
       <Navbar />
-      <p>Account</p>
+      <p className="Page-Title">Account</p>
     </div>
+    <div className="Content">
+
+    </div>
+    </>
   )
 }
 
