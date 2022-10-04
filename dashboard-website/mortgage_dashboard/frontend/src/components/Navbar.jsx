@@ -12,6 +12,7 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import * as Icons from "@fortawesome/free-solid-svg-icons"
 import React, { Fragment } from 'react';
+import {logout} from '../actions/auth';
 
 /* Renders the Navbar */
 export default function NavbarCustom() {
@@ -74,7 +75,7 @@ function SwitchPage( {href, children, ...props }) {
 }
 
 
-function NavDropButton() {
+function NavDropButton(isAuthenticated, logout) {
   return (
     <>
     <Dropdown className="NavOptions">
@@ -94,7 +95,8 @@ function NavDropButton() {
        </Dropdown.Item>
 
       <Dropdown.Item className="Drop-Item">
-        <Link to="/sign-out">Sign Out</Link>
+        <a className='nav-item' onClick={logout} href='#!' >Sign Out</a>
+        {/* <Link onClick={logout} href='#!'>Sign Out</Link> */}
       </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>

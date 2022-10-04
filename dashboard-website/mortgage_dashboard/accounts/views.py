@@ -33,13 +33,11 @@ class SignupView(APIView):
                         return Response({'error': 'Password must be at least 6 characters' })
                     else:
                         user = User.objects.create_user(username=username, password=password)
-                        user.save()
 
                         user = User.objects.get(id=user.id)
                                 
-                        userProfile = UserProfile(user = user, password = '',uID = 000000, fName= '', lName= '',nmlsID= 000000, ssn= 000000)
+                        UserProfile.objects.create(user = user, password = '',uID = 000000, fName= '', lName= '',nmlsID= 000000, ssn= 000000)
 
-                        userProfile.save()
                     
                         return Response({ 'success': 'User created successfully'})
             else: 
@@ -50,9 +48,9 @@ class SignupView(APIView):
 @method_decorator(csrf_protect, name='dispatch')
 class CheckAuthenticatedView(APIView): 
      def get(self, request, format = None):
-        
+        user = self.request.user
         try:
-            isAuthenticated = User.is_authenticated
+            isAuthenticated = user.is_authenticated
         
             if isAuthenticated:
                 return Response({'isAuthenticated': 'success'})

@@ -1,10 +1,10 @@
-import React, { useState,Component } from "react";
+import React, { useState } from "react";
 import {register} from '../../actions/auth';
 import {connect} from 'react-redux';
 import { Navigate, Link } from 'react-router-dom';
 import CSRFToken from "../../components/CSRFToken";
 
-const AddUsers  = ({register}) => {
+const AddUsers  = ({register, isAuthenticated}) => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -25,11 +25,11 @@ const AddUsers  = ({register}) => {
     }
   };
 
-  // if( isAuthenticated ){
-  //   return <Navigate to='/dashboard' />;
-  // }
-  if(accountCreated)
-    return <Navigate to='/sign-in' />;
+  if( isAuthenticated ){
+    return <Link to='/dashboard' />;
+  }
+  else if(accountCreated)
+    return <Link to='/sign-in' />;
 
 
   return (
@@ -84,5 +84,8 @@ const AddUsers  = ({register}) => {
   );
 };
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
-export default connect(null, {register}) (AddUsers);
+export default connect(mapStateToProps, {register}) (AddUsers);
