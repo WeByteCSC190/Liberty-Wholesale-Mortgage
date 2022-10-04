@@ -16,7 +16,7 @@ router=routers.DefaultRouter()
 router.register(r'leads',views.LeadViewSet)
 router.register(r'borrowers',views.BorrowerViewSet)
 router.register(r'recentBorrowers',views.RecentBorrowerViewSet)
-router.register(r'recentLeads',views.RecentLeadsViewSet)
+# router.register(r'recentLeads',views.RecentLeadsViewSet)
 router.register(r'lender',views.LenderViewSet)
 router.register(r'Annoucements',views.AnnoucementsViewSet)
 urlpatterns = [
