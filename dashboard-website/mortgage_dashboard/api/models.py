@@ -166,7 +166,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     password = models.CharField(max_length=20, default='')
     uID = models.IntegerField(default=000000)
-    fName = models.CharField(max_length=40, default='')
+    fName = models.CharField(max_length=40, default='') 
     lName = models.CharField(max_length=40, default='')
     nmlsID = models.IntegerField(default=000000)  # could not tell what the variable name is supposed to be
     ssn = models.IntegerField(default=000000)

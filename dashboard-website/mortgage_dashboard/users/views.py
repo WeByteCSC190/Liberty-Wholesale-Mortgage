@@ -1,6 +1,5 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from django.contrib.auth.models import User
 from api.models import UserProfile
 from api.serializers import UserProfileSerializer 
 
@@ -9,8 +8,6 @@ class GetUserProfileView(APIView):
         try:
             user = self.request.user
             username = user.username 
-
-            user = User.objects.get(id=user.id) 
 
             user_profile = UserProfile.objects.get(user = user)
             user_profile = UserProfileSerializer(user_profile)
@@ -35,8 +32,6 @@ class UpdateUserProfileView(APIView):
             nmlsID = data['nmlsID']
             ssn = data['ssn']
             
-            user = User.objects.get(id = user.id)
-
             UserProfile.objects.filter(user = user.id).update(password=password,uID=uID,fName=fName,lName=lName,nmlsID=nmlsID,ssn=ssn)
             
             user_profile = UserProfile.objects.get(user=user)
