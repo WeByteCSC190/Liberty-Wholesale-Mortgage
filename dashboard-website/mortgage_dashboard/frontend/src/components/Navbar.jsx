@@ -11,6 +11,8 @@ import NavIcon from './images/blue_icon.png';
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import * as Icons from "@fortawesome/free-solid-svg-icons"
+import React, { Fragment } from 'react';
+import {logout} from '../actions/auth';
 
 /* Renders the Navbar */
 export default function NavbarCustom() {
@@ -40,6 +42,7 @@ export default function NavbarCustom() {
             >
             
            <Container className="Nav-Menu">
+
             <SwitchPage href="/">Dashboard</SwitchPage> 
             <SwitchPage href="/leads">Leads</SwitchPage>
             <SwitchPage href="/borrowers">Borrowers</SwitchPage>
@@ -60,7 +63,6 @@ export default function NavbarCustom() {
 function SwitchPage( {href, children, ...props }) {
   const resolvedPath = useResolvedPath(href)
   const isActive = useMatch( {path: resolvedPath.pathname, end:true} ) 
-  
   return (
     // Checks the current page uses css to underline/bold the link on Navbar Menu
       <li className={ isActive ? "active" : ""}> 
@@ -68,10 +70,12 @@ function SwitchPage( {href, children, ...props }) {
               {children}
           </Nav.Link>
       </li>
+      
   )
 }
 
-function NavDropButton() {
+
+function NavDropButton(isAuthenticated, logout) {
   return (
     <>
     <Dropdown className="NavOptions">
@@ -91,7 +95,8 @@ function NavDropButton() {
        </Dropdown.Item>
 
       <Dropdown.Item className="Drop-Item">
-        <Link to="/sign-out">Sign Out</Link>
+        <a className='nav-item' onClick={logout} href='#!' >Sign Out</a>
+        {/* <Link onClick={logout} href='#!'>Sign Out</Link> */}
       </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>

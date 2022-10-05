@@ -15,36 +15,44 @@ import AddUser from "./pages/Admin/Add-Users.jsx";
 import Users from "./pages/Admin/Users.jsx";
 import EditResources from "./pages/Admin/EditResources";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import {Provider } from 'react-redux';
+import store from './store';
+import Layout from './hocs/layout';
+
+
 const App = () => {
   return (
-    <div className="App">
-      <div className="Header"> 
-      <Routes>
-        <Route path="" element={<Dashboard />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="Account" element={<Account />} />
-        <Route path="Leads" element={<Leads />} />
-        <Route path="Borrowers" element={<Borrowers />} />
-        <Route path="Resources" element={<Resources />} />
-        <Route path="Sign-In" element={<SignIn />} />
-        <Route path="Help" element={<Help />} />
-        <Route path="Privacy" element={<Privacy />} />
-        <Route path="Terms" element={<Terms />} />
-        <Route path="Users" element={<Users />} />
-        <Route path="Add-User" element={<AddUser />} />
-        <Route path="Edit-Resources" element={<EditResources />} />
-        <Route path="Lenders" element={<Lenders />} />
-      </Routes>
-      </div>
+    <Provider store = {store}>
+      <div className="App">
+        <div className="Header"> 
+        <Routes>
+            <Route path="" element={<Dashboard />} />
+            <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="Account" element={<Account />} />
+            <Route path="Leads" element={<Leads />} />
+            <Route path="Borrowers" element={<Borrowers />} />
+            <Route path="Resources" element={<Resources />} />
+            <Route path="Sign-In" element={<SignIn />} />
+            <Route path="Help" element={<Help />} />
+            <Route path="Privacy" element={<Privacy />} />
+            <Route path="Terms" element={<Terms />} />
+            <Route path="Users" element={<Users />} />
+            <Route path="Add-User" element={<AddUser />} />
+            <Route path="Edit-Resources" element={<EditResources />} />
+            <Route path="Lenders" element={<Lenders />} />
+        </Routes>
+        </div>
 
-      <div className="Content">
-        
-      </div>
+        <div className="Content">
+          
+        </div>
 
-      {/* <div className="Footer">
-        <p>All Rights Reserved, Liberty Wholesale Mortgage</p>
-      </div> */}
-    </div >
+        {/* <div className="Footer">
+          <p>All Rights Reserved, Liberty Wholesale Mortgage</p>
+        </div> */}
+      </div >      
+    </Provider>
   )
 }
 
