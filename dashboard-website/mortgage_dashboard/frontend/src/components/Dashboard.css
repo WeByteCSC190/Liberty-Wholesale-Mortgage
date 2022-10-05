@@ -1,0 +1,33 @@
+.Dashboard{
+  display: grid;
+  position:absolute;
+  grid-template-columns: 45% 5% 1fr;
+  grid-template-rows: 1% 12% 18% 1% 28% 28% 1fr;
+  height: 100%;
+  width: 100%;
+  overflow-y:auto;
+}
+
+.Milestone{
+  grid-column: 1/4;
+  grid-row: 2/2;
+}
+.DashboardCards{
+  position:relative;
+  grid-column: 1/none;
+  grid-row: 3/3;
+}
+.RecentLeads{
+  grid-column: 1/1;
+  grid-row: 5/5;
+}
+.RecentBorrowers{
+  grid-column: 1/1;
+  grid-row: 6/6;
+}
+.AnnouncementsWidget{
+  grid-column: 3/3;
+  grid-row: 5/7;
+}
+
+

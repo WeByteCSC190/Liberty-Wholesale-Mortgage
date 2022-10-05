@@ -1,0 +1,55 @@
+.RecentBorrowers{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin: 20px;
+  height: 100%;
+}
+
+.RecentBorrowersTable{
+  position: relative;
+  overflow-y:auto;
+  overflow-x:auto;
+}
+.RecentBorrowersData{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.RecentBorrowersData li{
+  height: 5%;
+  width: 20%;
+  padding: 15px;
+  display:inline-block;
+  border-bottom: 1px solid black;
+  font-size: 1vw;
+}
+ol{
+  list-style-type:none ;
+}
+
+.RecentBorrowersColumnNames{
+  border-bottom: 1px solid black;
+
+}
+.RecentBorrowersColumnNames ol{
+    font-size: 1vw;
+    overflow-x:auto;
+    border-bottom: 1px solid black;
+}
+.RecentBorrowersColumnNames li{
+  display: inline-block;
+  height: 5%;
+  width: 20%;
+  font-weight: bold;
+  font-size: 1vw;
+}
+
+.RecentBorrowersTitle{
+  background: rgba(13, 57, 122, 1);
+  font-size: 1.2vw;
+  height: 30px;
+  font-weight: bold;
+  color: white;
+}
