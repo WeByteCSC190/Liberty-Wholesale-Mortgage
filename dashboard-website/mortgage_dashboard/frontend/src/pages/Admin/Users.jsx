@@ -1,24 +1,41 @@
 import * as React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import Navbar from "../../components/Navbar";
-import TableComponent from "../../components/Table";
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import Navbar from "../../components/NavbarAdmin";
+import Table from "../../components/Table";
 export default function Users() {
-  function createData(fname, lname, username, phone_num, date) {
-    return { fname, lname, username, phone_num, date };
-  }
+  const [dataTable, setDataTable] = useState([]);
+  const getBorrowersUrl = "http://localhost:8000/api/borrowers";
+  function getBorrowers() {
+  axios({
+      method: "GET",
+      url:getBorrowersUrl,
+    }).then((response)=>{
+      const data = response.data;
+      setDataTable(response.data)
+     console.log(response)
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        }
+    })}
+  useEffect(() => {
+    getBorrowers();
+  }, []);
+  const column = [
+    { heading: 'First Name', value: 'fname' },
+    { heading: 'Last Name', value: 'lname' },
+    { heading: 'Email', value: 'email' },
+    { heading: 'Phone', value: 'phone_num' },
+    { heading: 'Date', value: 'date' },
+  ]
 
-  const rows = [
-    createData('Claire', 'Winchester', 'claire@hotmail.uk', '916-799-0111', '03/01/21'),
-    createData('Dave', 'Crocker', 'odd@hotmail.uk', '916-799-0111', '06/31/20'),
-    createData('Batman', 'NotWayne', 'notwayne@hotmail.uk', '916-799-0111', '07/11/19'),
-    createData('Monsour', 'Friedman', 'mfriedman@hotmail.uk', '916-799-0111', '01/01/18'),
-    createData('Jessica', 'Casa', 'casa@hotmail.uk', '916-799-0111', '04/18/17'),
-    createData('Prenoit', 'Frenchman', 'prenoitf@hotmail.uk', '916-799-0111', '09/21/16'),
-  ];
   return (
     <div className="Borrowers">
        <Navbar />
-       <TableComponent />
+       <Table data={dataTable} column={column}/>
           </div>
   );
 }
