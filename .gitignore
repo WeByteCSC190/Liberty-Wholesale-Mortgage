@@ -382,7 +382,7 @@ dist
 **/*.backup.*
 **/*.back.*
 
-node_modules
+dashboard-website/mortgage_dashboard/frontend/node_modules
 
 *.sublime*
 
