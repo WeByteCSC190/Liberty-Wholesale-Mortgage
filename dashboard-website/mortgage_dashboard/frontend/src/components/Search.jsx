@@ -6,11 +6,11 @@ import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Icons from "@fortawesome/free-solid-svg-icons";
 class Search extends Component {
-  
   constructor(props) {
     super(props)
     this.state = {
-      Leads: [],
+      Items: [""],
+      url: props.url
     }
     this.node = React.createRef()
   }
@@ -25,27 +25,30 @@ class Search extends Component {
       return
     }
     this.setState({
-      Leads: [],
+      Items: [],
     })
   }
   handleAPI = async (e) => {
     await axios
-      .get('')      //insert API call here later
+      .get(this.state.url)      //insert API call here later
       .then((res) => {
         this.setState({
-          Leads: res.data,
+          Items: res.data
         })
       })
       .catch((err) => {
         alert(err)
       })
     let convertToLc = e.target.value.toLowerCase()
-    let filterData = this.state.Leads.filter((e) => {
-      let nameToLc = e.name.toLowerCase()
+   
+    let filterData = this.state.Items.filter((e) => {
+      let nameToLc = e.fname.toLowerCase()
+       console.log(nameToLc.indexOf(convertToLc))
       return nameToLc.indexOf(convertToLc) !== -1
     })
+    console.log(this.state.Items)
     this.setState({
-      Leads: filterData,
+      Items: filterData,
     })
   }
   render() {
@@ -64,11 +67,12 @@ class Search extends Component {
             ref={this.node} />
             </div>
             <ul className="list-group">
-            {this.state.Leads.map((res) => {
+                {this.state.Items.map((res) => {
+                  console.log(res)
                 return (
                 <a href="/"
                     className="list-group-item list-group-item-action"
-                    >{res.name}
+                    >{res.fname} {res.lname}
                 </a>
                 )
             })}
@@ -82,7 +86,7 @@ class Search extends Component {
     </Container>
     <Container className="mt-4 mb-4">
     <Row  xs="auto" >
-        <Col>
+        <Col className="mt-2">
             Filters:
         </Col>
         <Col>
