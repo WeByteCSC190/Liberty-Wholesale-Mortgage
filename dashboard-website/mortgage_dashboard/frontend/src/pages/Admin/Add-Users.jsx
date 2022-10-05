@@ -3,7 +3,7 @@ import {register} from '../../actions/auth';
 import {connect} from 'react-redux';
 import { Navigate, Link } from 'react-router-dom';
 import CSRFToken from "../../components/CSRFToken";
-
+import Navbar from "../../components/NavbarAdmin";
 const AddUsers  = ({register, isAuthenticated}) => {
   const [formData, setFormData] = useState({
     username: '',
@@ -33,7 +33,10 @@ const AddUsers  = ({register, isAuthenticated}) => {
 
 
   return (
-      <div className='container mt-5'>
+    <>
+    <div className="Header">
+      <Navbar />
+    <div className='container mt-5'>
             <h1>Register for an Account</h1>
             <form onSubmit={e => onSubmit(e)}>
               <CSRFToken />
@@ -80,7 +83,9 @@ const AddUsers  = ({register, isAuthenticated}) => {
             <p className='mt-3'>
                 Already have an Account? <Link to='/sign-in'>Sign In</Link>
             </p>
-        </div>    
+        </div>  
+        </div>
+    </>
   );
 };
 
