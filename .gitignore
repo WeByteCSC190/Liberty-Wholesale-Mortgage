@@ -382,7 +382,8 @@ dist
 **/*.backup.*
 **/*.back.*
 
-node_modules
+**/frontend/node_modules/**
+**/frontend/node/**
 
 *.sublime*
 
