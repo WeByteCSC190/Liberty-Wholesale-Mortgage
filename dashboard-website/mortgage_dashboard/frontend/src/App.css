@@ -44,6 +44,7 @@ body{
     box-sizing: border-box;
     margin: 0; 
     height: 10vh;
+    min-height: 10vh;
     background-color: rgba(13, 57, 122, 1);
     color: white;
     display: flex;
@@ -314,7 +315,7 @@ h1 {
 .table-title {
   font-size: 20px;
 }
-.table-head {
+.table-heading {
   background-color: rgba(13, 57, 122, 1);
   color: white; 
 }

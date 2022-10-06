@@ -50,6 +50,7 @@ class Search extends Component {
   }
   render() {
     return (
+      <div style={{ paddingLeft: 90, paddingRight:90 }}>
       <div className="container mt-5 search-container">
         <Container className="mt-4">
         <Row>
@@ -100,6 +101,7 @@ class Search extends Component {
         </Col>
     </Row>
     </Container>
+      </div>
       </div>
     )
   }
