@@ -201,17 +201,17 @@ class AddBorrower(APIView):
 
             return Response(BorrowerSerializer(Borrower).data, status=status.HTTP_200_OK)
 
-def BorrowerSearch(request):
-    if request.method =="POST":
-        searched = request.POST('searched')
-    borrower = Borrower.objects.filter(id__contains = searched)
-    return render(request, ','{'searched':searched, borrower = Borrower})
-    else:
-        return render(request, ,{})
+# def BorrowerSearch(request):
+#     if request.method =="POST":
+#         searched = request.POST('searched')
+#     borrower = Borrower.objects.filter(id__contains = searched)
+#     return render(request, ','{'searched':searched, borrower = Borrower})
+#     else:
+#         return render(request, ,{})
 
-def BorrowerEditCheckBox(request):
-    if request.method =="POST":
-        status_list = request.POST.getlist('boxes')
+# def BorrowerEditCheckBox(request):
+#     if request.method =="POST":
+#         status_list = request.POST.getlist('boxes')
 
-        for x in status_list:
-            Event.object.filter(pk=int(x)),update(Approved = True)
+#         for x in status_list:
+#             Event.object.filter(pk=int(x)),update(Approved = True)
