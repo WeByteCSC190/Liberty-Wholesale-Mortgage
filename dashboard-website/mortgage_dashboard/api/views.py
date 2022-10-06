@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
+from rest_framework import permissions 
 
 
 from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer
@@ -108,38 +109,46 @@ class AddClientView(APIView):
             return Response(ClientSerializer(client).data, status=status.HTTP_200_OK)
 
 class LeadViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
     queryset=Lead.objects.all()
     serializer_class=LeadSerializer
 
 class BorrowerViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
     queryset=Borrower.objects.all()
     serializer_class=BorrowerSerializer
 
 class RecentBorrowerViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
     queryset=RecentBorrowers.objects.all()[:3]
     serializer_class=RecentBorrowerSerializer
 
 class LenderViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
     queryset=Lender.objects.all()
     serializer_class=LenderSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['company', 'state', 'programs']
 
 class LenderView(generics.ListCreateAPIView):
+    permission_classes = (permissions.AllowAny, )
     queryset = Lender.objects.all()
     serializer_class= LenderSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['company', 'state', 'programs']
 
 class RecentLeadsViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
     queryset=RecentLeads.objects.all()[:3]
     serializer_class=RecentLeadsSerializer
 
 class AnnoucementsViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
     queryset=Annoucements.objects.all()
     serializer_class=AnnoucementsSerializer
 
 class LeadView(generics.ListCreateAPIView):
+    permission_classes = (permissions.AllowAny, )
     queryset = Lead.objects.all()
     serializer_class= ClientSerializer
 
@@ -166,6 +175,7 @@ class addLeadView(APIView):
             return Response(LeadSerializer(lead).data, status=status.HTTP_200_OK)
 
 class BorrowerView(generics.ListCreateAPIView):
+    permission_classes = (permissions.AllowAny, )
     queryset = Borrower.objects.all()
     serializer_class= ClientSerializer
 
@@ -191,17 +201,17 @@ class AddBorrower(APIView):
 
             return Response(BorrowerSerializer(Borrower).data, status=status.HTTP_200_OK)
 
-def BorrowerSearch(request):
-    if request.method =="POST":
-        searched = request.POST('searched')
-    borrower = Borrower.objects.filter(id__contains = searched)
-    return render(request, ','{'searched':searched, borrower = Borrower})
-    else:
-        return render(request, ,{})
+# def BorrowerSearch(request):
+#     if request.method =="POST":
+#         searched = request.POST('searched')
+#     borrower = Borrower.objects.filter(id__contains = searched)
+#     return render(request, ','{'searched':searched, borrower = Borrower})
+#     else:
+#         return render(request, ,{})
 
-def BorrowerEditCheckBox(request):
-    if request.method =="POST":
-        status_list = request.POST.getlist('boxes')
+# def BorrowerEditCheckBox(request):
+#     if request.method =="POST":
+#         status_list = request.POST.getlist('boxes')
 
-        for x in status_list:
-            Event.object.filter(pk=int(x)),update(Approved = True)
+#         for x in status_list:
+#             Event.object.filter(pk=int(x)),update(Approved = True)
