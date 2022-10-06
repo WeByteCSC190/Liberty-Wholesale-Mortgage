@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,7 +21,8 @@ export default function NavbarCustom() {
     <>
       <Navbar className="Navbar" expand="lg">
       <Container fluid>
-
+        
+        <Col>
         <Navbar.Brand href="/">
         <img
           src={BlueLogo} //MLO Support Logo
@@ -30,7 +32,7 @@ export default function NavbarCustom() {
           alt="MLO Support"
         />
         </Navbar.Brand>
-       
+       </Col>
 
         <Navbar.Toggle 
           style={{
@@ -48,8 +50,7 @@ export default function NavbarCustom() {
             >
             
            <Container className="Nav-Menu">
-
-            <SwitchPage href="/">Dashboard</SwitchPage> 
+            <SwitchPage href="/">Dashboard</SwitchPage>
             <SwitchPage href="/leads">Leads</SwitchPage>
             <SwitchPage href="/borrowers">Borrowers</SwitchPage>
             <SwitchPage href="/lenders" >Lenders</SwitchPage>
@@ -57,10 +58,9 @@ export default function NavbarCustom() {
            </Container>
            
          </Nav>
-         
           <NavDropButton />
-        
         </Navbar.Collapse>
+        
       </Container>
     </Navbar>
     </>

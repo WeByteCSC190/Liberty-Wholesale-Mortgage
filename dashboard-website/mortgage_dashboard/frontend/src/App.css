@@ -44,9 +44,11 @@ body{
     box-sizing: border-box;
     margin: 0; 
     height: 10vh;
+    min-height: 10vh;
     background-color: rgba(13, 57, 122, 1);
     color: white;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     gap: 4rem;
     padding: 0 1rem; 
@@ -63,19 +65,18 @@ body{
 
 
 .Nav-Menu {
-  display: flex; 
+  display: inline-flex; 
   justify-content: center;
   padding: 1rem;
-  margin: 0;
   list-style: none;
-  gap: 4rem;
-
+  gap: 5rem;
+  margin-left: 20%;
+  
 }
 
 .Nav-Menu li a {
   color: inherit;
   text-decoration: none;
-  text-align: center;
   display: block; 
 }
 
@@ -314,7 +315,7 @@ h1 {
 .table-title {
   font-size: 20px;
 }
-.table-head {
+.table-heading {
   background-color: rgba(13, 57, 122, 1);
   color: white; 
 }
