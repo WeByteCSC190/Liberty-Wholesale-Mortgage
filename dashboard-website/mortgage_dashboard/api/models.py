@@ -1,4 +1,5 @@
 from datetime import datetime
+from pyexpat import model
 from sqlite3 import Date
 from tarfile import LENGTH_NAME
 from xmlrpc.client import DateTime
@@ -116,15 +117,19 @@ class Lead(models.Model):
 
 
 class Borrower(models.Model):
-    id = models.IntegerField('ID', primary_key=True, null=False,
-                             default=generate_random_number(), unique=True)
-    fname = models.CharField(
-        'First Name', max_length=40, null=True, blank=True)
-    lname = models.CharField('Last Name', max_length=40, null=True, blank=True)
-    email = models.CharField('Email', max_length=40, null=True, blank=True)
-    phone_num = models.CharField(max_length=12, default="-1")
-    date = models.CharField(max_length=20, null=True)
-
+    caseId = models.IntegerField(
+        'Case ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
+    date = models.DateTimeField('Date')
+    fName = models.CharField(max_length=40, null=True, blank=True)
+    lName = models.CharField(max_length=40, null=True, blank=True)
+    creditScore = models.IntegerField(
+        'Credit Score', null=False, default=generate_random_number(), unique=True)
+    email = models.EmailField('Email Address')
+    phone_num = models.CharField('Phone Number', max_length=16, null=True)
+    status = models.ForeignKey(
+        Status, blank=True, null=True, on_delete=models.CASCADE)
+    status_check = models.BooleanField('Approved', default = False)
+    
     def __str__(self):
         return self.fname
 
