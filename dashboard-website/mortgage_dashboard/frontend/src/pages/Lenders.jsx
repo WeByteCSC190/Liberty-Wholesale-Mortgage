@@ -11,7 +11,7 @@ export default function Lenders() {
       <Navbar />
       <p className="Page-Title">Lenders</p>
     </div>
-    <div className="Content">
+    <div className="Lenders-Body">
      <SearchLenders />
      <LendersTable />
     </div>
@@ -21,9 +21,7 @@ export default function Lenders() {
 
 
 
-const fillLendersData = (company_id, company_name, main_program, general_email) =>{
-  return { company_id, company_name, main_program, general_email };
-}
+
 
 // On Lenders Mockup
 // Visable Row: company_id, company_name, main_program, general_email

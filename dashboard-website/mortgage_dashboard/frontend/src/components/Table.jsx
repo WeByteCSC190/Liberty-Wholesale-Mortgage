@@ -1,40 +1,34 @@
 import Table from 'react-bootstrap/Table';
 
-function TableComponent() {
+const TableComponent = ({ data, column }) => {
   return (
     <div style={{ paddingLeft: 90, paddingRight:90 }}>
     <Table className="Table" responsive >
       <thead>
         <tr>
-          <th>#</th>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <th key={index}>Table heading</th>
-          ))}
+          {column.map((item, index) => <TableHeadItem item={item} />)}
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
-        </tr>
-        <tr>
-          <td>2</td>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
-        </tr>
-        <tr>
-          <td>3</td>
-          {Array.from({ length: 5 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
-        </tr>
+         {data.map((item, index) => <TableRow item={item} column={column} />)}
       </tbody>
       </Table>
       </div>
   );
 }
+const TableHeadItem = ({ item }) => <th>{item.heading}</th>
+const TableRow = ({ item, column }) => (
+  <tr>
+    {column.map((columnItem, index) => {
+
+      if(columnItem.value.includes('.')) {
+        const itemSplit = columnItem.value.split('.') //['address', 'city']
+        return <td>{item[itemSplit[0]][itemSplit[1]]}</td>
+      }
+
+      return <td>{item[`${columnItem.value}`]}</td>
+    })}
+  </tr>
+)
 
 export default TableComponent;

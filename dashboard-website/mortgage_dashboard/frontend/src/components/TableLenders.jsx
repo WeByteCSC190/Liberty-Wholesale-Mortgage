@@ -1,11 +1,10 @@
-
-import React, { useState } from 'react';
+import {useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Collapse from 'react-bootstrap/Collapse';
-
+import axios from 'axios';
 
 
 export default function LendersTable() {
@@ -16,33 +15,17 @@ export default function LendersTable() {
     <div style={{ paddingLeft: 90, paddingRight:90 }}>
     <Table className="Table" responsive >
       <thead>
+        <tr className="table-title">List of Lenders</tr>
       <tr className="table-head">
-          <th>#</th>
-          {Array.from({ length: 4 }).map((_, index) => (
-            <th key={index}>Table heading</th>
-            
-          ))}
-        </tr>
+         <td>Company</td>
+         <td>State</td>
+         <td>Rating</td>
+         <td>Programs</td>
+         <td></td>
+         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          {Array.from({ length: 4 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
-        </tr>
-        <tr>
-          <td>2</td>
-          {Array.from({ length: 4 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
-        </tr>
-        <tr>
-          <td>3</td>
-          {Array.from({ length: 4 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
-        </tr>
+      <tbody className= "table-body">
+      
       </tbody>
       </Table>
       </div>
@@ -51,23 +34,38 @@ export default function LendersTable() {
   );
 }
 
-/*
- <div style={{ paddingLeft: 90, paddingRight:90 }}>
-    <Table className="Table" responsive >
+const createData = (company_id, company, state, rating, programs) => {
+  return { company_id, company, state, rating, programs };
+}
+
+function GetData() {
+    const [quote, setQuote] = useState(' ')
+    const getQuote = () => {
+      axios.get('')
+    }
+    return (
+      <>
       
-    <thead>
-       /* <tr className="table-title"><th>List of Lenders</th></tr>
-        <tr className="table-head">
-          <th>#</th>
-          <th>Company</th>
-          <th>State</th>
-          <th>Rating</th>
-          <th>Programs</th>
-        </tr>
-      </thead> 
-    </Table>
-    </div>
-*/
+      </>
+
+    ); 
+}
+
+
+
+function ExpandButton() {
+  return(
+    <>
+    <Button>
+
+    </Button>
+    </>
+  )
+}
+
+const renderLendersList = ()  => {
+
+}
 
 const index = () => {
   return (

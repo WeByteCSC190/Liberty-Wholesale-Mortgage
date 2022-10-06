@@ -6,20 +6,24 @@ body{
   background: white;
 }
 
-.Header{
+.Header {
   z-index: 4;
+  margin-bottom: 1%;
 }
 
-.Content{
+.Content {
   
 }
 
+
 .Page-Title {
-  text-align: left;
-  font-family: Arial, sans-serif;
-  font-size: 24px;
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.4;
   font-weight: bold;
   color: rgba(13, 57, 122, 1);
+  display: flex;
+  align-items: center;
   margin-left: 2%; 
   margin-top: 1%;
 
@@ -97,6 +101,18 @@ body{
   margin:10% 0;
 
 }
+
+.table-title {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: bold;
+  color: rgba(13, 57, 122, 1);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.2%;
+}
+
 
 /*
 .Dashboard{
@@ -289,6 +305,11 @@ h1 {
   font-weight: bold;
 }
 
+
+/* Lenders Page */
+.Lenders-Body {
+  margin: 1em;
+}
 /* Table Component for Lenders */
 .table-title {
   font-size: 20px;

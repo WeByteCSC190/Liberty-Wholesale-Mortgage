@@ -32,13 +32,7 @@ export default function NavbarCustom() {
         </Navbar.Brand>
        
 
-        <Navbar.Toggle 
-          style={{
-            color: 'white', 
-            marginBottom: 0,
-          }}
-          aria-controls="navbarScroll" 
-        />
+        <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
          
           <Nav
@@ -49,18 +43,15 @@ export default function NavbarCustom() {
             
            <Container className="Nav-Menu">
 
-            <SwitchPage href="/">Dashboard</SwitchPage> 
-            <SwitchPage href="/leads">Leads</SwitchPage>
-            <SwitchPage href="/borrowers">Borrowers</SwitchPage>
-            <SwitchPage href="/lenders" >Lenders</SwitchPage>
-            <SwitchPage href="/resources" >Resources</SwitchPage>
+            <SwitchPage href="/Users">View Users</SwitchPage> 
+            <SwitchPage href="/Add-User">Add User</SwitchPage>
+            <SwitchPage href="/Edit-Resources">Edit Resources</SwitchPage>
            </Container>
            
-         </Nav>
+         </Nav> 
          
-          <NavDropButton />
-        
         </Navbar.Collapse>
+          <NavDropButton />
       </Container>
     </Navbar>
     </>
