@@ -2,21 +2,18 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Navbar from "../components/Navbar";
 import LendersTable from "../components/TableLenders"; 
-import Table from "../components/Table"; 
 import LendersSearch from "../components/SearchLenders";
-import Search from "../components/Search";
 import axios from 'axios';
-
 
 
 const Lenders =() => {
   const [dataTable, setDataTable] = useState([]);
   function getLenders() {
   const getData = () => {
-    axios.get("http://localhost:8000/api/lenders")
+    axios.get("http://localhost:8000/api/lender")
     .then(response => {
-      console.log(response.data.content)
-      setDataTable(response.data.content)
+      console.log(response)
+      setDataTable(response)
     }).catch(error => {
       console.log(TypeError)
     })
@@ -64,14 +61,3 @@ const Lenders =() => {
   )
 } 
 export default Lenders; 
-
-
-
-
-
-// On Lenders Mockup
-// Visable Row: company_id, company_name, main_program, general_email
-// Hidden Row: 
-
-
-

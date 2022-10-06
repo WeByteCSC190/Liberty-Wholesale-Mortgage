@@ -9,11 +9,23 @@ import axios from 'axios';
 
 
 const LendersTableComponent = ({ data, column, columnTwo, columnLink }) => {
+
+  function ExpandRow(columnTwo, columnLink) {
+    const [isExpanded, setExpand] = useState(false)
+    
+    return(
+      <>
+      <Button className="Lenders-Toggle" 
+        onClick={() => setExpand(!isExpanded)}>
+        Toggle</Button>
+      </>
+    )
+
+  }
+
   return (
     <div style={{ paddingLeft: 90, paddingRight:90 }}>
 
-      
-     
     <Table className="Table" responsive >
       <thead>
         <tr className="table-title">List of Lenders</tr>
@@ -22,6 +34,7 @@ const LendersTableComponent = ({ data, column, columnTwo, columnLink }) => {
         </tr>
       </thead>
       <tbody>
+        <tr><ExpandRow /></tr>
          {data.map((item, index) => <TableRow item={item} column={column} />)}
          {data.map((item, index) => <TableRow item={item} columnTwo={columnTwo} />)}
          {data.map((item, index) => <TableRow item={item} columnLink={columnLink} />)}
@@ -40,6 +53,7 @@ const TableRow = ({ item, column, columnTwo, columnLink }) => (
         const itemSplit = columnItem.value.split('.') //['address', 'city']
         return <td>{item[itemSplit[0]][itemSplit[1]]}</td>
       }
+
 
       return <td>{item[`${columnItem.value}`]}</td>
     })}
