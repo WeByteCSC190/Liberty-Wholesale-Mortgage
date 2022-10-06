@@ -10,17 +10,18 @@ from rest_framework import routers
 ##  Which should show how to handle these.
 ##  After defining these, we can then use these
 ##  by calling the fetch function in the frontend
-##  Which will grab the output from the endpoint.
+##  Which will grab the output from the endpoint. 
 
 router=routers.DefaultRouter()
 router.register(r'leads',views.LeadViewSet)
 router.register(r'borrowers',views.BorrowerViewSet)
 router.register(r'recentBorrowers',views.RecentBorrowerViewSet)
-# router.register(r'recentLeads',views.RecentLeadsViewSet)
+router.register(r'recentLeads',views.RecentLeadsViewSet)
 router.register(r'lender',views.LenderViewSet)
 router.register(r'Annoucements',views.AnnoucementsViewSet)
 urlpatterns = [
     path('get-leads', LeadView.as_view() ),
+    
     path('add_lead', AddLead),
     path('get-borrowers',ClientView.as_view() ),
     path('add_client', AddClient),
