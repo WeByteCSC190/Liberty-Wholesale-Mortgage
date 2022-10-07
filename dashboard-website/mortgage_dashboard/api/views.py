@@ -120,7 +120,7 @@ class BorrowerViewSet(viewsets.ModelViewSet):
 
 class RecentBorrowerViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
-    queryset=RecentBorrowers.objects.all()[:3]
+    queryset=RecentBorrowers.objects.filter(date=3).order_by('date')
     serializer_class=RecentBorrowerSerializer
 
 class LenderViewSet(viewsets.ModelViewSet):
@@ -139,7 +139,7 @@ class LenderView(generics.ListCreateAPIView):
 
 class RecentLeadsViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
-    queryset=RecentLeads.objects.all()[:3]
+    queryset=RecentLeads.objects.filter(date=3).order_by('date')
     serializer_class=RecentLeadsSerializer
 
 class AnnoucementsViewSet(viewsets.ModelViewSet):
