@@ -61,6 +61,10 @@ class RecentBorrowerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = RecentBorrowers
         fields = ('date', 'fname', 'lname')
+class ImportantAnnoucementsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ImportantAnnoucements
+        fields = ('date', 'fname', 'lname')
 class RecentLeadsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model= RecentLeads
