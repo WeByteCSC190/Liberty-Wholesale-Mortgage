@@ -331,3 +331,14 @@ h1 {
   background-color: white; 
   align-content: center;
 }
+
+.btn-filter {
+  background-color: rgb(169, 191, 225) !important;
+  border-color:rgb(169, 191, 225);
+}
+
+.loader{
+  position:fixed;
+  left:50%;
+  top:50%;
+}
