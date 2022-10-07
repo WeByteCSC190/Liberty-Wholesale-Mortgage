@@ -21,7 +21,7 @@ body{
   font-size: 1.25rem;
   line-height: 1.4;
   font-weight: bold;
-  color: rgba(13, 57, 122, 1);
+  color: black;
   display: flex;
   align-items: center;
   margin-left: 2%; 
@@ -29,13 +29,19 @@ body{
 
 }
 
-.Footer{
-  grid-column: 1/ none;
+.Footer-body {
+ /* grid-column: 1/ none;
   grid-row: 3/3;
   background: white;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;*/
+    box-sizing: border-box;
+    margin: 0; 
+    height: 10vh;
+    min-height: 10vh;
+    background-color: rgba(13, 57, 122, 1);
+    flex-direction: row;
 }
 
 /* CSS Code for Navbar */
@@ -108,7 +114,7 @@ body{
   font-size: 1.25rem;
   line-height: 1.4;
   font-weight: bold;
-  color: rgba(13, 57, 122, 1);
+  color: black;
   display: flex;
   align-items: center;
   margin-bottom: 0.2%;
@@ -318,4 +324,10 @@ h1 {
 .table-heading {
   background-color: rgba(13, 57, 122, 1);
   color: white; 
+}
+
+.last-table-row {
+  border-top: 3;
+  background-color: white; 
+  align-content: center;
 }

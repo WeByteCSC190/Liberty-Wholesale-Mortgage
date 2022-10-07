@@ -2,23 +2,25 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Navbar from "../components/Navbar";
 import LendersTable from "../components/TableLenders"; 
+import Table from "../components/Table"
 import LendersSearch from "../components/SearchLenders";
+import Footer from "../components/Footer"; 
 import axios from 'axios';
 
 
 const Lenders =() => {
   const [dataTable, setDataTable] = useState([]);
-  function getLenders() {
-  const getData = () => {
-    axios.get("http://localhost:8000/api/lender")
-    .then(response => {
-      console.log(response)
-      setDataTable(response)
-    }).catch(error => {
-      console.log(TypeError)
-    })
+    function getLenders() {
+      axios.get("http://localhost:8000/api/lender/")
+      .then((response) => {
+        console.log(response.data)
+        setDataTable(response.data)
+      }
+    ).catch((error => {
+      console.log(error)
+    }))
   }
-}
+  
   useEffect(() => {
     getLenders();
   }, []);
@@ -37,11 +39,12 @@ const Lenders =() => {
     { heading: 'Phone Number', value: 'phone_num' },
     { heading: 'Email', value: 'email' },
     
-  ]
+  ] 
 
   const columnLink = [
     { heading: 'TPO Login', value: 'website' },
-  ]
+  ] 
+
   return (
     <>
     <div className="Header">
@@ -50,14 +53,12 @@ const Lenders =() => {
      <p className="Page-Title">Lenders</p>
     <div className="Content">
     <LendersSearch />
-    <LendersTable 
-       data={dataTable} 
-       column={column} 
-       columnTwo={columnTwo} 
-       columnLink={columnLink}
-     />
+    <LendersTable data={dataTable}  column={column} />
+    </div>
+    <div className="Footer">
+      
     </div>
     </>
   )
-} 
+  }
 export default Lenders; 
