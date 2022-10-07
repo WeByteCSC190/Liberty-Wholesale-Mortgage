@@ -1,4 +1,6 @@
+from import_export.admin import ImportExportModelAdmin
 from django.contrib import admin
+from import_export import resources
 from . models import *
 
 # Register your models here.
@@ -19,7 +21,15 @@ admin.site.register(LoanOfficer)
 admin.site.register(LoanProcessor)
 admin.site.register(RecentBorrowers)
 admin.site.register(RecentLeads)
-admin.site.register(Lender)
+
+class LenderResources(resources.ModelResource):
+    class Meta:
+        model = Lender
+
+class LenderAdmin(ImportExportModelAdmin):
+    resource_class = LenderResources
+
+admin.site.register(Lender, LenderAdmin)
 
 
 

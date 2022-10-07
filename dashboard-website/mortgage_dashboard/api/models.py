@@ -217,17 +217,17 @@ class RecentLeads(models.Model):
          return str(self.date)+" "+str(self.fname)+" "+str(self.lname)
 
 class Lender(models.Model):
-    company = models.CharField('Company', max_length=40, null=True, blank=True)
-    state = models.CharField('State', max_length=40, null=True, blank=True)
+    company = models.CharField('Company', max_length=200, null=True, blank=True)
+    state = models.CharField('State', max_length=200, null=True, blank=True)
     rating = models.CharField('Rating', max_length=2, null=True, blank=True)
-    programs = models.CharField('Programs', max_length=40, null=True, blank=True)
+    programs = models.CharField('Programs', max_length=200, null=True, blank=True)
 
     lender_FHA_ID = models.CharField('Lender FHA ID', max_length=20, null=True, blank=True)
     lender_VA_ID = models.CharField('Lender VA ID', max_length=20, null=True, blank=True)
     account_executive = models.CharField('Account Executive', max_length=20, null=True, blank=True)
     phone_num = models.CharField('Phone', max_length=30, null=True, blank=True)
     email = models.EmailField('Email', blank=True)
-    website = models.CharField('Website', max_length=50, null=True, blank=True)
+    website = models.CharField('Website', max_length=200, null=True, blank=True)
 
     def __str__(self):
-        return self.company
+        return self.company + " (" + self.state + ")"

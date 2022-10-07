@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'dashboard.apps.DashboardConfig',
     'api.apps.ApiConfig',
     'rest_framework',
+    'import_export',
     # 'frontend.apps.FrontendConfig'
     'corsheaders',
     'accounts', 
