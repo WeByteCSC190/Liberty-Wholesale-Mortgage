@@ -7,91 +7,101 @@ import Search from "../components/Search";
 import Table from "../components/Table";
 import Loader from "../components/spinner";
 const Borrowers = () => {
-  const testData = [{
-    fname: "Alex",
-    lname: "Doe",
-    email: "Alextsf@gmail.com",
-    phone_num: "9124753123",
-    date: "11-02-2015"
-  },
-  {
-    fname: "Mia",
-    lname: "Lee",
-    email: "Mia-Lee@hotmail.com",
-    phone_num: "75200932456",
-    date: "11-20-2020"
-    },
-  {
-    fname: "James",
-    lname: "Chu",
-    email: "James.Chu@gmail.com",
-    phone_num: "8883921789",
-    date: "01-01-2019"
-  }
-  ];
+  // const testData = [
+    // {
+  //   fname: "Alex",
+  //   lname: "Doe",
+  //   email: "Alextsf@gmail.com",
+  //   phone_num: "9124753123",
+  //   date: "11-02-2015"
+  // },
+  // {
+  //   fname: "Mia",
+  //   lname: "Lee",
+  //   email: "Mia-Lee@hotmail.com",
+  //   phone_num: "75200932456",
+  //   date: "11-20-2020"
+  //   },
+  // {
+  //   fname: "James",
+  //   lname: "Chu",
+  //   email: "James.Chu@gmail.com",
+  //   phone_num: "8883921789",
+  //   date: "01-01-2019"
+  // }
+  // ];
   // console.log(testData)
   const [dataTable, setDataTable] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const getBorrowersUrl = "http://localhost:8000/api/borrowers/";
+  let testData = []
+  
+  function getBorrowers() {
+  axios({
+      method: "GET",
+      url:getBorrowersUrl,
+    }).then((response)=>{
+      const data = response.data;
+      setDataTable(data)
+      testData = data;
+      return data
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        }
+    })
+}
+
   useEffect(() => {
-    // getBorrowers();
-    // setDataTable([])
+    getBorrowers();
     fetchData(searchValue, filterType).then((dataTable) => {
       setDataTable(dataTable);
       console.log(dataTable)
     })
     const filteredData = filterTable(searchValue, filterType);
     setDataTable(filteredData);
-  }, [searchValue,filterType]);
+  }, [searchValue, filterType]);
 
-  // const getBorrowersUrl = "http://localhost:8000/api/borrowers";
-  // function getBorrowers() {
-  // axios({
-  //     method: "GET",
-  //     url:getBorrowersUrl,
-  //   }).then((response)=>{
-  //     const data = response.data;
-  //     // setDataTable(data)
-  //    console.log(data)
-  //   }).catch((error) => {
-  //     if (error.response) {
-  //       console.log(error.response);
-  //       console.log(error.response.status);
-  //       console.log(error.response.headers);
-  //       }
-  //   })}
-  // useEffect(() => {
-  //   getBorrowers();
-  // }, []);
+
   const column = [
-    { heading: 'First Name', value: 'fname' },
-    { heading: 'Last Name', value: 'lname' },
+    { heading: 'CaseId ', value: 'caseId' },
+    { heading: 'First Name', value: 'fName' },
+    { heading: 'Last Name', value: 'lName' },
+    { heading: 'Credit Score', value: 'creditScore' },
     { heading: 'Email', value: 'email' },
     { heading: 'Phone', value: 'phone_num' },
     { heading: 'Date', value: 'date' },
+    { heading: 'Approved', value: 'status_check' },
+    { heading: 'status', value: 'status' },
   ]
 
   const fetchData = (searchValue, filterType) => {
     setIsLoading(true);
+    
     return new Promise((resolve) => {
+         
       setTimeout(() => {
+   
         if (searchValue !== '') {
-          resolve(testData.filter(dataTable => dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
+          resolve(testData.filter(dataTable => dataTable.fName.toLowerCase().includes(searchValue.toLowerCase())
           ));
         }
         if (filterType !== '') {
           switch (filterType) {
             case 'First Name':
-              console.log("filter by first name")
-              resolve(handleSorting("fname", 'asc'))
+              // console.log("filter by first name")
+              resolve(handleSorting("fName", 'asc'))
             case 'Last Name':
-              console.log("filter by last name")
-              resolve(handleSorting("lname", 'asc'))
+              // console.log("filter by last name")
+              resolve(handleSorting("lName", 'asc'))
             case 'Date':
-              console.log("filter by date")
-              resolve(handleSortingDate())
-            //  return testData
+              // console.log("filter by date")
+              // resolve(handleSortingDate())
+             resolve(testData)
             default:
               resolve(testData)
           }
@@ -125,18 +135,19 @@ const handleSortingDate = () => {
 };
   const filterTable = (searchValue, filterType) => {
     setIsLoading(true);
+    console.log("filterTable function called")
     if (filterType !== '') {
       switch(filterType) {
         case 'First Name':
-            console.log("filter by first name")
-            return handleSorting("fname", 'asc')
+            // console.log("filter by first name")
+            return handleSorting("fName", 'asc')
         case 'Last Name':
-            console.log("filter by last name")
-            return handleSorting("lname", 'asc')
+            // console.log("filter by last name")
+            return handleSorting("lName", 'asc')
         case 'Date':
-            console.log("filter by date")
-            return handleSortingDate()
-          //  return testData
+            // console.log("filter by date")
+            // return handleSortingDate()
+           return testData
         default:
             return testData
       }
