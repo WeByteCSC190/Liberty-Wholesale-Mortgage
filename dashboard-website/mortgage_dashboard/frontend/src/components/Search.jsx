@@ -20,7 +20,7 @@ const Search=({callback1, callback2})=> {
         clicked[i].classList.remove('btn-filter')
     e.target.className += ' btn-filter'
     console.log(filterValue)
-    setFilterValue(e.target.value)
+    // setFilterValue(e.target.value)
     callback2(filterValue)
   }
     return (
