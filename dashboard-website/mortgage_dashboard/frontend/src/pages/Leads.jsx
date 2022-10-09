@@ -8,9 +8,10 @@ export default function Leads() {
     <>
     <div className="Header">
       <Navbar />
-      <p className="Page-Title">Leads</p>
+      
     </div>
     <div className="Content">
+      <p className="Page-Title">Leads</p>
       <LeadsTable />
     </div>
     </>

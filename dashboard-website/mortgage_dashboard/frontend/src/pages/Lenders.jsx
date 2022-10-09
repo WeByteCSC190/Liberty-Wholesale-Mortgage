@@ -50,14 +50,13 @@ const Lenders =() => {
     <div className="Header">
       <Navbar />
     </div>
-     <p className="Page-Title">Lenders</p>
+     
     <div className="Content">
+    <p className="Page-Title">Lenders</p>
     <LendersSearch />
     <LendersTable data={dataTable}  column={column} />
     </div>
-    <div className="Footer">
-      
-    </div>
+    
     </>
   )
   }
