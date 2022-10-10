@@ -4,15 +4,25 @@ import './Milestone.css'
 const Milestone = () => {
   return (
     <div className="Milestone">
-      <div id='milestones-title'>
-        <h1> Deals Closed</h1>
+      <div className='Milestone-Title'>
+        Deals Closed
       </div>
-      <ol className='timeline'>
-        <li className='goal-1 done'></li>
-        <li className='goal-2 done'></li>
+      <ol className='Milestone-Progress-Tracker'>
+        <li classname="Milestone-Circle-Content">
+          <div className="Circle Completed"></div>
+          <p id="text">Goal 1</p>
+        </li>
+        <li classname="Milestone-Circle-Content">
+          <div className="Circle Completed"></div>
+          <p id="text">Goal 2</p>
+        </li>
+        <li classname="Milestone-Circle-Content">
+          <div className="Circle Active"></div>
+          <p id="text">Goal 3</p>
+        </li>
       </ol>
-      <p id='status-text'>15 out of 20 items completed</p>
-    </div>
+      <div className='Milestone-Progress-Meter'></div>
+    </div >
   );
 }
 

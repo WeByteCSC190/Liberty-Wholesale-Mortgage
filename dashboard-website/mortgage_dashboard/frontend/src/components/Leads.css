@@ -1,0 +1,19 @@
+.Leads-Title{
+  color: blue;
+  font-size: 2em;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.Leads-Table-Title{
+  color:black;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.Leads-Table{
+  width: 90%;
+  position: relative;
+  background: black-color;
+}
+

@@ -19,7 +19,8 @@
 
 .RecentLeadsData li{
   height: 5%;
-  width: 20%;
+  width: 33%;
+  text-align: left;
   padding: 15px;
   display:inline-block;
   border-bottom: 1px solid black;
@@ -30,6 +31,9 @@ ol{
 }
 
 .RecentLeadsColumnNames{
+  padding: 5px;
+  display: inline-block;
+  text-align: left;
   border-bottom: 1px solid black;
 
 }

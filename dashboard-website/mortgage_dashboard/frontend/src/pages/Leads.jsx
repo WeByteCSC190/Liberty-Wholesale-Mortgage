@@ -1,4 +1,5 @@
 import * as React from 'react';
+import "../components/Leads.css";
 import Navbar from "../components/Navbar";
 import Search from "../components/Search";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
@@ -6,14 +7,14 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 export default function Leads() {
   return (
     <>
-    <div className="Header">
-      <Navbar />
-      
-    </div>
-    <div className="Content">
-      <p className="Page-Title">Leads</p>
-      <LeadsTable />
-    </div>
+      <div className="Leads-Header">
+        <Navbar />
+
+      </div>
+      <div className="Leads-Content">
+        <p className="Leads-Title">Leads</p>
+        <LeadsTable />
+      </div>
     </>
   )
 }
@@ -31,10 +32,13 @@ const LeadsTable = () => {
     createData('09/21/16', 'Prenoit', 'Frenchman', 159, 'prenoitf@hotmail.uk', '916-799-0111', 3),
   ];
   return (
-   <>
-    <Search />
-      <br/> 
-      <TableContainer component={Paper}>
+    <>
+      <Search />
+      <br />
+      <div className="Leads-Table-Title">
+        <p>List of Leads</p>
+      </div>
+      <TableContainer component={Paper} className="Leads-Table">
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -70,7 +74,7 @@ const LeadsTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
-  </> 
+    </>
   );
 }
 

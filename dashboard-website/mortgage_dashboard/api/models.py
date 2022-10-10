@@ -3,7 +3,6 @@ from pyexpat import model
 from sqlite3 import Date
 from tarfile import LENGTH_NAME
 from xmlrpc.client import DateTime
-import zoneinfo
 from django.db import models
 from django.db.models import OuterRef, Subquery
 import random
@@ -20,12 +19,12 @@ from django.contrib.auth.models import User
 # I need someone to finish this according to
 # negins DB mapping in draw.io, located in
 # the db channel in our Discord
-# This is a sample function, must be improved if intended to be used for cid
+# This is a sample function, must be improved if intended to be used for cID
 
 
 def generate_random_number():
-    cid = random.randrange(1000000)
-    return cid
+    cID = random.randrange(1000000)
+    return cID
 
 
 class News(models.Model):
@@ -131,7 +130,7 @@ class Borrower(models.Model):
     status_check = models.BooleanField('Approved', default = False)
     
     def __str__(self):
-        return self.fname
+        return self.fName
 
 
 class MileStone(models.Model):
@@ -181,7 +180,7 @@ class UserProfile(models.Model):
 
 
 class Client(models.Model):
-    # this is a template model, ex. cid needs to have a default value
+    # this is a template model, ex. cID needs to have a default value
     resources = models.ForeignKey(
         Resources, blank=True, null=True, on_delete=models.CASCADE)
 
@@ -207,21 +206,21 @@ class ImportantAnnoucements(models.Model):
 class RecentBorrowers(models.Model):
 
     date = models.CharField('Date', max_length=10, null=True, blank=True)
-    fname = models.CharField(
+    fName = models.CharField(
         'First Name', max_length=40, null=True, blank=True)
-    lname = models.CharField('Last Name', max_length=40, null=True, blank=True)
+    lName = models.CharField('Last Name', max_length=40, null=True, blank=True)
 
     def __str__(self):
-        return str(self.date)+" "+str(self.fname)+" "+str(self.lname)
+        return str(self.date)+" "+str(self.fName)+" "+str(self.lName)
 
 class RecentLeads(models.Model):
      date = models.CharField('Date', max_length=10, null=True, blank=True)
-     fname = models.CharField(
+     fName = models.CharField(
         'First Name', max_length=40, null=True, blank=True)
-     lname = models.CharField('Last Name', max_length=40, null=True, blank=True)
+     lName = models.CharField('Last Name', max_length=40, null=True, blank=True)
 
      def __str__(self):
-         return str(self.date)+" "+str(self.fname)+" "+str(self.lname)
+         return str(self.date)+" "+str(self.fName)+" "+str(self.lName)
 
 class Lender(models.Model):
     company = models.CharField('Company', max_length=200, null=True, blank=True)

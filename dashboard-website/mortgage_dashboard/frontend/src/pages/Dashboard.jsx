@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '../components/Dashboard.css';
-import Navbar from "../components/Navbar"; 
+import Navbar from "../components/Navbar";
 import Milestone from "../components/Milestone";
 import RecentLeads from "../components/RecentLeads";
 import RecentBorrowers from "../components/RecentBorrowers";
@@ -10,19 +10,19 @@ import DashboardCards from "../components/DashboardCards"
 const Dashboard = () => {
   return (
     <>
-    <div className="Header">
-      <Navbar />
-      <p className="Page-Title">Dashboard</p>
-    </div>
-    <div className="Content"> 
-      <div className="Dashboard">
-      <Milestone />
-      <DashboardCards />
-      <RecentLeads />
-      <RecentBorrowers />
-      <AnnouncementsWidget />
-    </div>
-    </div>
+      <div className="Header">
+        <Navbar />
+        <p className="Dashboard-Title">Dashboard</p>
+      </div>
+      <div className="Content">
+        <div className="Dashboard">
+          <Milestone />
+          <DashboardCards />
+          <RecentLeads />
+          <RecentBorrowers />
+          <AnnouncementsWidget />
+        </div>
+      </div>
     </>
   )
 }
