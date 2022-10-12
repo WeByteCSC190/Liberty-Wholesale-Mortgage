@@ -79,7 +79,7 @@ class Status(models.Model):
     # 2lead = models.ForeignKey(Lead, blank=True, null = True)
     # borrower = models.ForeignKey(Lead, blank=True, null= True)
     status = models.CharField(
-        'Status', primary_key=True, max_length=12, null=False, blank=True)
+        'Status', primary_key=True, max_length=50, null=False, blank=True)
     id = models.IntegerField(
         'ID', null=False, default=generate_random_number(), unique=True)
     name = models.CharField('Name', max_length=40, null=True, blank=True)
@@ -126,7 +126,8 @@ class Borrower(models.Model):
     email = models.EmailField('Email Address')
     phone_num = models.CharField('Phone Number', max_length=16, null=True)
     status = models.ForeignKey(
-        Status, blank=True, null=True, on_delete=models.CASCADE)
+       Status, blank=True, null=True, on_delete=models.CASCADE)
+    
     status_check = models.BooleanField('Approved', default = False)
     
     def __str__(self):
