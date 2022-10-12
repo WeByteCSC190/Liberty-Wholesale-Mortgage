@@ -5,45 +5,56 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 function AddRow() {
   const [show, setShow] = useState(false);
-  // this.state = {
-  //     caseid:'',
-  //     fname: '',
-  //     lname: '',
-  //     email: '',
-  //     phone: '',
-  //     status: '',
-  //     score: '',
-  //     isApproved:false
-  // };
-//  onChange = (e) => {
-    /*
-      Because we named the inputs to match their
-      corresponding values in state, it's
-      super easy to update the state
-    */
-    // this.setState({ [e.target.name]: e.target.value });
-  // }
+  const [formValue, setformValue] = React.useState({
+      caseId:'',
+      fName: '',
+      lName: '',
+      email: '',
+      phone_num: '',
+      status: '',
+      creditScore: '',
+      date:'',
+      status_check:false
+  });
+
+  const handleSubmit = async() => {
+  // store the states in the form data
+  var form = new FormData();
+    form.append("caseId", formValue.caseId)
+    form.append("fName", formValue.fName)
+    form.append("lName", formValue.lName)
+    form.append("email", formValue.email)
+    form.append("phone_num", formValue.phone_num)
+    form.append("status", formValue.status)
+    form.append("creditScore", formValue.creditScore)
+    form.append("status_check", formValue.status_check)
+    form.append("date", formValue.date)
+    console.log(formValue)
+  try {
+    const postBorrowers = "http://localhost:8000/api/borrowers/";
+    const response = await axios({
+      method: "post",
+      url: postBorrowers,
+      data: formValue,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    console.log(response);
+  } catch(error) {
+    console.log(error)
+  }
+}
+
+  const handleChange = (event) => {
+    
+    setformValue({
+      ...formValue,
+      [event.target.name]: event.target.value
+    });
+  }
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  function handleSubmit() {
-  const postBorrowers = "http://localhost:8000/api/borrowers/";
-  axios({
-      method: "POST",
-      url:postBorrowers,
-    }).then((response)=>{
-      const data = response.data;
-      console.log(data);
-    }).catch((error) => {
-      if (error.response) {
-        console.log(error.response);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-        }
-    })
-}
   return (
-    // const { caseid, fname, lname, email,phone,status,score, isApproved } = this.state;
     <>
       <Button variant="primary" onClick={handleShow}>
         Add a Row
@@ -57,7 +68,8 @@ function AddRow() {
           <Form>
       <Form.Group className="mb-3" controlId="">
         <Form.Label>Case ID</Form.Label>
-        <Form.Control type="text" placeholder="Enter Case ID" />
+        <Form.Control name="caseId" type="text" placeholder="Enter Case ID" value={formValue.caseId}
+        onChange={handleChange}/>
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
         </Form.Text>
@@ -65,45 +77,53 @@ function AddRow() {
       
       <Form.Group className="mb-3" controlId="">
         <Form.Label>First Name</Form.Label>
-        <Form.Control type="text" placeholder="First Name" />
+        <Form.Control name="fName" type="text" placeholder="First Name" value={formValue.fName}
+        onChange={handleChange}/>
         </Form.Group>
             
        <Form.Group className="mb-3" controlId="">
         <Form.Label>Last Name</Form.Label>
-        <Form.Control type="text" placeholder="Last Name" />
+        <Form.Control name="lName" type="text" placeholder="Last Name" value={formValue.lName}
+        onChange={handleChange}/>
         </Form.Group>
             
        <Form.Group className="mb-3" controlId="">
         <Form.Label>Credit Score</Form.Label>
-        <Form.Control type="text" placeholder="Credit Score" />
+        <Form.Control name="creditScore" type="text" placeholder="Credit Score" value={formValue.creditScore}
+        onChange={handleChange} />
         </Form.Group>
       
         <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
-        <Form.Control type="email" placeholder="Enter Email" />
+        <Form.Control name="email" type="email" placeholder="Enter Email" value={formValue.email}
+        onChange={handleChange}/>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="">
         <Form.Label>Phone</Form.Label>
-        <Form.Control type="text" placeholder="Enter Phone Number" />
+        <Form.Control name="phone_num" type="text" placeholder="Enter Phone Number" value={formValue.phone_num}
+        onChange={handleChange} />
         </Form.Group>
         
         <Form.Group className="mb-3" controlId="">
         <Form.Label>Select Status</Form.Label>
-         <Form.Select aria-label="Default select example">
+        <Form.Select name="status" aria-label="Default select example" value={formValue.status}
+        onChange={handleChange}>
         <option>Open to select status</option>
-        <option value="1">Closed</option>
-        <option value="2">New</option>
-        <option value="3">In progress </option>
+        <option value="Closed">Closed</option>
+        <option value="New">New</option>
+        <option value="In progress">In progress </option>
         </Form.Select>
-        </Form.Group>
-        
+            </Form.Group>
+            
         <Form.Group controlId="date">
           <Form.Label>Select Date</Form.Label>
-          <Form.Control type="date" name="date" placeholder="Creation Date" />
+          <Form.Control name="date" type="date" placeholder="Creation Date" value={formValue.date}
+        onChange={handleChange}/>
         </Form.Group>
         <Form.Group className="mb-3" controlId="">
-        <Form.Check type="checkbox" label="The borrower is approved" />
+        <Form.Check value={formValue.status_check}
+        onChange={handleChange} type="checkbox" label="The borrower is approved" />
         </Form.Group>
         </Form>
         </Modal.Body>
