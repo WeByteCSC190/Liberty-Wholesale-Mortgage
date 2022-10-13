@@ -12,7 +12,7 @@ export default function Leads() {
 
       </div>
       <div className="Leads-Content">
-        <p className="Leads-Title">Leads</p>
+         <p className="Page-Title">Leads</p>
         <LeadsTable />
       </div>
     </>
@@ -36,11 +36,16 @@ const LeadsTable = () => {
       <Search />
       <br />
       <div className="Leads-Table-Title">
-        <p>List of Leads</p>
+        
       </div>
+      <div style={{ paddingLeft: 90, paddingRight:90 }}>
+        <tr className="table-title">List of Leads</tr>
       <TableContainer component={Paper} className="Leads-Table">
+       
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          
           <TableHead sx={{ backgroundColor: "#0d397a", fontSize: "16px" }}>
+            
             <TableRow >
               <TableCell sx={{ color: "white" }} align="right">Case ID</TableCell>
               <TableCell sx={{ color: "white" }} align="right">Date</TableCell>
@@ -81,6 +86,7 @@ const LeadsTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      </div>
     </>
   );
 }

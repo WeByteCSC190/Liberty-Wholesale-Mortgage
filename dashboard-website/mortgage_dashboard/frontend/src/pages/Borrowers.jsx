@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Search from "../components/Search";
 import Table from "../components/Table";
 import Loader from "../components/spinner";
+import Footer from '../components/Footer';
 const Borrowers = () => {
   // const testData = [
     // {
@@ -147,7 +148,7 @@ const handleSortingDate = () => {
         case 'Date':
             // console.log("filter by date")
             // return handleSortingDate()
-           return testData
+           
         default:
             return testData
       }
@@ -163,14 +164,25 @@ const handleSortingDate = () => {
     setIsLoading(false);
   };
   return (
-    <div className="Borrowers">
+    <>
+    <div className="Header">
       <Navbar />
+    </div>
+     <p className="Page-Title">Borrowers</p>
+     <div className="Content">
+     <div className="Borrowers">
+      
       {isLoading ?
         <Loader /> :   <div>    <Search callback1={(searchValue)=> setSearchValue(searchValue)} callback2={(filterType)=> setFilterType(filterType)}/>
           <Table data={dataTable} column={column} />
         </div>
       }
       </div>
+      </div>
+      <div className="Footer">
+        <Footer />
+      </div>
+      </>
   );
 }
 

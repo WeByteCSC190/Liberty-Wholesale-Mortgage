@@ -12,10 +12,12 @@ const Dashboard = () => {
     <>
       <div className="Header">
         <Navbar />
-        <p className="Dashboard-Title">Dashboard</p>
+        
       </div>
+      
       <div className="Content">
-        <div className="Dashboard">
+        <p className="Page-Title">Dashboard</p>
+        <div className="Dashboard"> 
           <Milestone />
           <DashboardCards />
           <RecentLeads />

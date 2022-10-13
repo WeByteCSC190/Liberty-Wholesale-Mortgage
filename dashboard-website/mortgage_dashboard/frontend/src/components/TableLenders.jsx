@@ -38,15 +38,16 @@ const LendersTableComponent = ({ data, column }) => {
       </thead>
       <tbody>
          {data.map((item, index) => <TableRow item={item} column={column} />)}
-
+         <tr className="last-table-row">Showing {} out of {data.length} </tr>
       </tbody>
       </Table>
       </div>
   );
 }
-const TableHeadItem = ({ item }) => <th>{item.heading}</th>
+const TableHeadItem = ({ item }) => 
+  <th>{item.heading}</th>
   const TableRow = ({ item, column }) => (
-    <tr>
+    <tr className="table-row">
       {column.map((columnItem, index) => {
   
         if(columnItem.value.includes('.')) {
