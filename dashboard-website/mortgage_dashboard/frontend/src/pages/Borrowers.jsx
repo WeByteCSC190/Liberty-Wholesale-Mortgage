@@ -174,7 +174,7 @@ const handleSortingDate = () => {
       
       {isLoading ?
         <Loader /> :   <div>    <Search callback1={(searchValue)=> setSearchValue(searchValue)} callback2={(filterType)=> setFilterType(filterType)}/>
-          <Table data={dataTable} column={column} />
+          <Table page={"Borrowers"} data={dataTable} column={column} />
         </div>
       }
       </div>
