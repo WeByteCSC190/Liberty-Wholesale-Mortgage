@@ -29,7 +29,7 @@ const LendersTableComponent = ({ data, column }) => {
   return (
     <div style={{ paddingLeft: 90, paddingRight:90 }}>
 
-    <Table className="Table" responsive >
+    <Table className="Table" responsive hover>
       <thead>
         <tr className="table-title">List of Lenders</tr>
         <tr className="table-heading">

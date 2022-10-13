@@ -1,12 +1,17 @@
 import Table from 'react-bootstrap/Table';
-
+import AddRow from "../components/modals/AddRow";
 const TableComponent = ({ data, column }) => {
   return (
-    <div style={{ paddingLeft: 90, paddingRight:90 }}>
-    <Table className="Table" responsive >
-      <thead>
+    <div style={{ paddingLeft: 90, paddingRight: 90 }}>
+      <h2>List of Borrowers</h2>
+      <Table className="Table" responsive hover >
+        
+      <thead className="table-heading table-row">
+      
         <tr>
-          {column.map((item, index) => <TableHeadItem item={item} />)}
+            {column.map((item, index) =>
+              <TableHeadItem item={item} />
+            )}
         </tr>
       </thead>
       <tbody>
@@ -16,7 +21,15 @@ const TableComponent = ({ data, column }) => {
       </div>
   );
 }
-const TableHeadItem = ({ item }) => <th>{item.heading}</th>
+const TableHeadItem = ({ item }) =>
+  {
+  if (item.heading === 'AddRow') {
+    return (<th><AddRow /></th>);
+      } else {
+        return (<th>{`${item.heading}`}</th>);
+      }
+};
+
 const TableRow = ({ item, column }) => (
   <tr>
     {column.map((columnItem, index) => {

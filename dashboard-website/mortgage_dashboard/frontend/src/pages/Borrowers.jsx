@@ -76,8 +76,8 @@ const Borrowers = () => {
     { heading: 'Email', value: 'email' },
     { heading: 'Phone', value: 'phone_num' },
     { heading: 'Date', value: 'date' },
-    { heading: 'Approved', value: 'status_check' },
     { heading: 'status', value: 'status' },
+    {heading: 'AddRow', value:'Add a Row'}
   ]
 
   const fetchData = (searchValue, filterType) => {
