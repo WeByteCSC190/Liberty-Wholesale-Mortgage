@@ -38,8 +38,9 @@ const LendersTableComponent = ({ data, column }) => {
       </thead>
       <tbody>
          {data.map((item, index) => <TableRow item={item} column={column} />)}
-         <tr className="last-table-row">Showing {} out of {data.length} </tr>
+         
       </tbody>
+      <tr className="last-table-row">Showing {data.length} out of {data.length} results </tr>
       </Table>
       </div>
   );

@@ -393,15 +393,20 @@ h1 {
   font-family: Helvetica;
 }
 
+/*
 .table-row:hover {
   background-color: #23abd4;
   color: white;
 }
+*/
 
 .last-table-row {
+  font-family: Helvetica;
   border-top: 3;
-  background-color: white; 
+  border-top-color: rgba(13, 57, 122, 1);
+  margin-top: 1%;
   align-content: center;
+  margin-bottom: 2%; 
 }
 
 .btn-filter {
