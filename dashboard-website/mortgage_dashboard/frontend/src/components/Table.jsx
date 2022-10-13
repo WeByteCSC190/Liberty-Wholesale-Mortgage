@@ -1,10 +1,11 @@
 import Table from 'react-bootstrap/Table';
 import AddRow from "../components/modals/AddRow";
+import ActionBtn from "../components/buttons/Action";
 const TableComponent = ({ page, data, column }) => {
-  let pageName = page
+ let pageName = page
   return (
-    <div style={{ paddingLeft: 90, paddingRight: 90 }}>
-  
+    <div style={{ paddingBottom: 300,paddingLeft: 90, paddingRight: 90 }}>
+
       <Table className="Table" responsive hover >
       <thead>
       <tr className="table-title">List of {pageName}</tr>
@@ -28,9 +29,9 @@ const TableHeadItem = ({ item }) =>
   {
   if (item.heading === 'AddRow') {
     return (<th><AddRow /></th>);
-      } else {
-        return (<th>{`${item.heading}`}</th>);
-      }
+  } else {
+    return (<th>{`${item.heading}`}</th>);
+  }
 };
 
 const TableRow = ({ item, column }) => (
@@ -41,8 +42,12 @@ const TableRow = ({ item, column }) => (
         const itemSplit = columnItem.value.split('.') //['address', 'city']
         return <td>{item[itemSplit[0]][itemSplit[1]]}</td>
       }
-
-      return <td>{item[`${columnItem.value}`]}</td>
+      if (columnItem.heading === 'AddRow') {
+        return (<th><ActionBtn /></th>);
+      } else {
+        return <td>{item[`${columnItem.value}`]}</td>
+      }
+      
     })}
   </tr>
 )

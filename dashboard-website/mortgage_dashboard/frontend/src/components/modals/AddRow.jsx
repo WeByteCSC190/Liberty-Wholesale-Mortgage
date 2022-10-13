@@ -38,9 +38,9 @@ function AddRow() {
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     });
-    handleClose();
-    window.reload();
-    console.log(response);
+   handleClose();
+    // navigate("/borrowers");
+    // handleClose();
   } catch(error) {
     console.log(error)
   }
