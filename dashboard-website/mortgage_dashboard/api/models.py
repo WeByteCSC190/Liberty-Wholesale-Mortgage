@@ -8,6 +8,7 @@ from django.db.models import OuterRef, Subquery
 import random
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 
@@ -205,23 +206,26 @@ class ImportantAnnoucements(models.Model):
          return str(self.date)
 
 class RecentBorrowers(models.Model):
-
-    date = models.CharField('Date', max_length=10, null=True, blank=True)
+    caseId = models.IntegerField(
+        'Case ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
+    date = models.DateTimeField('Date',default=timezone.now)
     fName = models.CharField(
         'First Name', max_length=40, null=True, blank=True)
     lName = models.CharField('Last Name', max_length=40, null=True, blank=True)
-
+    phone_num = models.CharField('Phone Number', max_length=16, null=True)
     def __str__(self):
-        return str(self.date)+" "+str(self.fName)+" "+str(self.lName)
+        return str(self.caseId)+" "+str(self.fName)+" "+str(self.lName)+" "+str(self.phone_num)
 
 class RecentLeads(models.Model):
-     date = models.CharField('Date', max_length=10, null=True, blank=True)
+     caseId = models.IntegerField(
+        'Case ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
+     date = models.DateTimeField('Date',default=timezone.now)
      fName = models.CharField(
         'First Name', max_length=40, null=True, blank=True)
      lName = models.CharField('Last Name', max_length=40, null=True, blank=True)
-
+     phone_num = models.CharField('Phone Number', max_length=16, null=True)
      def __str__(self):
-         return str(self.date)+" "+str(self.fName)+" "+str(self.lName)
+         return str(self.caseId)+" "+str(self.fName)+" "+str(self.lName)+" "+str(self.phone_num)
 
 class Lender(models.Model):
     company = models.CharField('Company', max_length=200, null=True, blank=True)
