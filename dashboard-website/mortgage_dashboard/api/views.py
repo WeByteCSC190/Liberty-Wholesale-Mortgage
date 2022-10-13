@@ -13,8 +13,8 @@ from rest_framework.decorators import api_view
 from rest_framework import permissions 
 
 
-from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer,ImportantAnnoucementsSerializer
-from .models import Client, ImportantAnnoucements, RecentLeads, UserProfile, Lead, Borrower, RecentBorrowers,RecentLeads, Lender,Annoucements
+from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer,ImportantAnnoucementsSerializer,LenderLogoSerializer
+from .models import Client, ImportantAnnoucements, RecentLeads, UserProfile, Lead, Borrower, RecentBorrowers,RecentLeads, Lender,Annoucements,LenderLogo
 
 # Create your views here.
 
@@ -136,6 +136,20 @@ class LenderView(generics.ListCreateAPIView):
     serializer_class= LenderSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['company', 'state', 'programs']
+
+class LenderLogoViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
+    queryset=LenderLogo.objects.all()
+    serializer_class=LenderLogoSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['company']
+
+class LenderLogoView(generics.ListCreateAPIView):
+    permission_classes = (permissions.AllowAny, )
+    queryset = LenderLogo.objects.all()
+    serializer_class= LenderLogoSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['company']
 
 class RecentLeadsViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )

@@ -22,12 +22,15 @@ admin.site.register(LoanProcessor)
 admin.site.register(RecentBorrowers)
 admin.site.register(RecentLeads)
 admin.site.register(ImportantAnnoucements)
+admin.site.register(LenderLogo)
 class LenderResources(resources.ModelResource):
     class Meta:
         model = Lender
 
 class LenderAdmin(ImportExportModelAdmin):
     resource_class = LenderResources
+    list_display = ("company", "state")
+    search_fields = ['company', 'state', 'programs']
 
 admin.site.register(Lender, LenderAdmin)
 

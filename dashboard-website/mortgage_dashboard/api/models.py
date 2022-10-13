@@ -235,6 +235,14 @@ class Lender(models.Model):
     phone_num = models.CharField('Phone', max_length=30, null=True, blank=True)
     email = models.EmailField('Email', blank=True)
     website = models.CharField('Website', max_length=200, null=True, blank=True)
+    #website = models.URLField('Website', null=True, blank=True)
 
     def __str__(self):
-        return self.company + " (" + self.state + ")"
+        return f"{self.company},{self.state}"
+
+class LenderLogo(models.Model):
+    company = models.CharField('Company', max_length=200, null=True, blank=True)
+    logo = models.ImageField(null=True, blank=True, upload_to="images/")
+
+    def __str__(self):
+         return self.company

@@ -73,4 +73,9 @@ class RecentLeadsSerializer(serializers.HyperlinkedModelSerializer):
 class LenderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model= Lender
-        fields =('company', 'state', 'rating', 'programs', 'lender_FHA_ID', 'lender_VA_ID', 'account_executive', 'phone_num', 'email', 'website')
+        fields = '__all__'
+
+class LenderLogoSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = LenderLogo
+        fields = '__all__'
