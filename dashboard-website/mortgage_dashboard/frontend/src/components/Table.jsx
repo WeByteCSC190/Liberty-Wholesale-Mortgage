@@ -4,7 +4,7 @@ const TableComponent = ({ page, data, column }) => {
   let pageName = page
   return (
     <div style={{ paddingLeft: 90, paddingRight: 90 }}>
-      
+  
       <Table className="Table" responsive hover >
       <thead>
       <tr className="table-title">List of {pageName}</tr>
