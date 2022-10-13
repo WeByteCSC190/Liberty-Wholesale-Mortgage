@@ -57,6 +57,8 @@ export const login = (username,password) => async dispatch => {
                 type: LOGIN_SUCCESS,
                 payload: res.data.username
             });
+
+
         } else{
             dispatch({
                 type: LOGIN_FAIL
