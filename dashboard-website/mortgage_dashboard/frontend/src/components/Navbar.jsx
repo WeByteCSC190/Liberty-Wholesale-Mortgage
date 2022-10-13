@@ -14,9 +14,20 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import * as Icons from "@fortawesome/free-solid-svg-icons"
 import React, { Fragment } from 'react';
 import {logout} from '../actions/auth';
-
+import {connect} from 'react-redux'; 
 /* Renders the Navbar */
-export default function NavbarCustom() {
+
+// export default function NavbarCustom() {
+const NavbarCustom = (isAuthenticated, logout) =>{    
+
+  // const authenticatedLinks = (
+  //   <Fragment>
+  //     <li className='Nav-Menu'>
+  //       <NavLink className = ''></NavLink>
+  //     </li>
+  //   </Fragment>
+  // );
+
   return (
     <>
       <Navbar className="Navbar" expand="lg">
@@ -67,6 +78,22 @@ export default function NavbarCustom() {
   );
 }
 
+// function Authenticated( {href, children, ...props }) {
+//   const resolvedPath = useResolvedPath(href)
+//   const isActive = useMatch( {path: resolvedPath.pathname, end:true} ) 
+//   return (
+//     // Checks the current page uses css to underline/bold the link on Navbar Menu
+//       <li className={ isActive ? "active" : ""}> 
+//           <Nav.Link href={href} {...props}>
+//               {children}
+//           </Nav.Link>
+//       </li>
+      
+//   )
+// }
+
+
+
 function SwitchPage( {href, children, ...props }) {
   const resolvedPath = useResolvedPath(href)
   const isActive = useMatch( {path: resolvedPath.pathname, end:true} ) 
@@ -111,3 +138,7 @@ function NavDropButton(isAuthenticated, logout) {
   );
 }
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+export default connect(mapStateToProps,{logout})(NavbarCustom);

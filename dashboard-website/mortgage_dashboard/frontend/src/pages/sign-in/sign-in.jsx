@@ -2,7 +2,7 @@ import React, {useState } from "react";
 import logo from '../../logo.jpg'; 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {Link} from "react-router-dom";
+import {Navigate, Link} from "react-router-dom";
 import {login} from '../../actions/auth';
 import CSRFToken from "../../components/CSRFToken";
 import {connect} from 'react-redux';
@@ -25,7 +25,7 @@ const SignIn = ({login, isAuthenticated}) => {
   };
 
   if( isAuthenticated ){
-    return <Link to='/dashboard' />;
+    return <Navigate to='/Dashboard' />;
   }
 
   
