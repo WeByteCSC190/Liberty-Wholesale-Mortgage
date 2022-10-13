@@ -1,57 +1,73 @@
 .Milestone{
   background: black;
   height: 100%;
-  width: 99%;
+  width: 95%;
   display: flex;
   overflow-y: auto;
+  justify-self: center;
 }
-#milestones-title{
+.Milestone-Title{
   color:white;
+  font-weight: bold;
 }
-.timeline {
+
+
+.Milestone-Progress-Meter{
+  top: 7%;
+  left: 5%;
+  width: 40%;
+  height: 10px;
+  position: absolute;
+  background: lightgreen;
+}
+
+.Milestone-Progress-Tracker{
+  top: 6%;
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  z-index: 1;
+}
+
+.Milestone-Circle-Content{
+  text-align: center;
+  float: left;
+}
+
+.Circle{
   position: relative;
-	width:800px;
-	height: 20px;
-	list-style: none;
-	text-align: justify;
-	margin: 80px auto;
-	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,0)), color-stop(45%, rgba(255,255,255,0)), color-stop(51%, rgba(191,128,11,1)), color-stop(57%, rgba(255,255,255,0)), color-stop(100%, rgba(255,255,255,0)));
-	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 45%, rgba(191,128,11,1) 51%, rgba(255,255,255,0) 57%, rgba(255,255,255,0) 100%);
+  display:inline-block; 
+  border-radius: 50%;
 }
-.timeline:after {
-  display: inline-block;
-  content: "";
-  width: 100%;
+
+.Active{
+  border: 20px solid gray;
 }
-.timeline li {
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	background: green;
-	text-align: center;
-	line-height: 1.2vw;
-	position: relative;
-	border-radius: 50%;
+
+.Completed{
+  border: 20px solid green;
 }
-.timeline li:before {
-	display: inline-block;
-	content: attr(data-year);
-	font-size: 26px;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
+
+
+
+#text{
+  position: relative;
+  color: white;
 }
-.timeline li:nth-child(odd):before {
-	top: -40px;
+
+
+/* If the screen size is 601px or more, set the font-size of <div> to 80px */
+@media only screen and (min-width: 1201px) {
+  .Milestone-Title{
+    font-size: 2rem;
+
+  }
 }
-.timeline li:nth-child(even):before {
-	bottom: -40px;
-}
-.timeline li:after {
-	display: inline-block;
-	content: attr(data-text);
-	font-size: 16px;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
+
+/* If the screen size is 600px or less, set the font-size of <div> to 30px */
+@media only screen and (max-width: 1200px) {
+  .Milestone-Title{
+    font-size: 1.5em;
+  }
 }

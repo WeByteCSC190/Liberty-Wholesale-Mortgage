@@ -5,12 +5,12 @@ import { useState, useEffect } from 'react';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Collapse from 'react-bootstrap/Collapse';
-import axios from 'axios';
 
 
-const LendersTableComponent = ({ data, column, columnTwo, columnLink }) => {
 
-  function ExpandRow(columnTwo, columnLink) {
+const LendersTableComponent = ({ data, column }) => {
+
+ /* function ExpandRow(columnTwo, columnLink) {
     const [isExpanded, setExpand] = useState(false)
     
     return(
@@ -21,12 +21,15 @@ const LendersTableComponent = ({ data, column, columnTwo, columnLink }) => {
       </>
     )
 
-  }
+  } 
+
+  const numberResults = 16
+  const totalResults = 20 */
 
   return (
     <div style={{ paddingLeft: 90, paddingRight:90 }}>
 
-    <Table className="Table" responsive >
+    <Table className="Table" responsive hover>
       <thead>
         <tr className="table-title">List of Lenders</tr>
         <tr className="table-heading">
@@ -34,30 +37,28 @@ const LendersTableComponent = ({ data, column, columnTwo, columnLink }) => {
         </tr>
       </thead>
       <tbody>
-        <tr><ExpandRow /></tr>
          {data.map((item, index) => <TableRow item={item} column={column} />)}
-         {data.map((item, index) => <TableRow item={item} columnTwo={columnTwo} />)}
-         {data.map((item, index) => <TableRow item={item} columnLink={columnLink} />)}
-
+         <tr className="last-table-row">Showing {} out of {data.length} </tr>
       </tbody>
       </Table>
       </div>
   );
 }
-const TableHeadItem = ({ item }) => <th>{item.heading}</th>
-const TableRow = ({ item, column, columnTwo, columnLink }) => (
-  <tr>
-    {column.map((columnItem, index) => {
+const TableHeadItem = ({ item }) => 
+  <th>{item.heading}</th>
+  const TableRow = ({ item, column }) => (
+    <tr className="table-row">
+      {column.map((columnItem, index) => {
+  
+        if(columnItem.value.includes('.')) {
+          const itemSplit = columnItem.value.split('.') //['address', 'city']
+          return <td>{item[itemSplit[0]][itemSplit[1]]}</td>
+        }
+  
+        return <td>{item[`${columnItem.value}`]}</td>
+      })}
+    </tr>
+  )
 
-      if(columnItem.value.includes('.')) {
-        const itemSplit = columnItem.value.split('.') //['address', 'city']
-        return <td>{item[itemSplit[0]][itemSplit[1]]}</td>
-      }
-
-
-      return <td>{item[`${columnItem.value}`]}</td>
-    })}
-  </tr>
-)
 
 export default LendersTableComponent;

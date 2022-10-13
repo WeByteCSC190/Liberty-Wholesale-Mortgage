@@ -50,21 +50,25 @@ class UserProfileSerializer(serializers.ModelSerializer):
 class ClientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Client
-        fields = ('cid', 'fname', 'lname', 'email', 'phone_num')
+        fields = ('cID', 'fName', 'lName', 'email', 'phone_num')
 
 class AddClient(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Client
-        fields = ('fname', 'lname', 'email', 'phone_num')
+        fields = ('fName', 'lName', 'email', 'phone_num')
 
 class RecentBorrowerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = RecentBorrowers
-        fields = ('date', 'fname', 'lname')
+        fields = ('date', 'fName', 'lName')
+class ImportantAnnoucementsSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ImportantAnnoucements
+        fields = ('date', 'content')
 class RecentLeadsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model= RecentLeads
-        fields =('date','fname','lname')
+        fields =('date','fName','lName')
 
 class LenderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

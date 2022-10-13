@@ -3,7 +3,6 @@ from pyexpat import model
 from sqlite3 import Date
 from tarfile import LENGTH_NAME
 from xmlrpc.client import DateTime
-import zoneinfo
 from django.db import models
 from django.db.models import OuterRef, Subquery
 import random
@@ -20,12 +19,12 @@ from django.contrib.auth.models import User
 # I need someone to finish this according to
 # negins DB mapping in draw.io, located in
 # the db channel in our Discord
-# This is a sample function, must be improved if intended to be used for cid
+# This is a sample function, must be improved if intended to be used for cID
 
 
 def generate_random_number():
-    cid = random.randrange(1000000)
-    return cid
+    cID = random.randrange(1000000)
+    return cID
 
 
 class News(models.Model):
@@ -80,7 +79,7 @@ class Status(models.Model):
     # 2lead = models.ForeignKey(Lead, blank=True, null = True)
     # borrower = models.ForeignKey(Lead, blank=True, null= True)
     status = models.CharField(
-        'Status', primary_key=True, max_length=12, null=False, blank=True)
+        'Status', primary_key=True, max_length=50, null=False, blank=True)
     id = models.IntegerField(
         'ID', null=False, default=generate_random_number(), unique=True)
     name = models.CharField('Name', max_length=40, null=True, blank=True)
@@ -127,11 +126,12 @@ class Borrower(models.Model):
     email = models.EmailField('Email Address')
     phone_num = models.CharField('Phone Number', max_length=16, null=True)
     status = models.ForeignKey(
-        Status, blank=True, null=True, on_delete=models.CASCADE)
+       Status, blank=True, null=True, on_delete=models.CASCADE)
+    
     status_check = models.BooleanField('Approved', default = False)
     
     def __str__(self):
-        return self.fname
+        return self.fName
 
 
 class MileStone(models.Model):
@@ -181,7 +181,7 @@ class UserProfile(models.Model):
 
 
 class Client(models.Model):
-    # this is a template model, ex. cid needs to have a default value
+    # this is a template model, ex. cID needs to have a default value
     resources = models.ForeignKey(
         Resources, blank=True, null=True, on_delete=models.CASCADE)
 
@@ -196,38 +196,45 @@ class Client(models.Model):
     def __str__(self):
         return self.cID
 
+class ImportantAnnoucements(models.Model):
+
+    date=models.DateTimeField('Date')
+    content=models.TextField('Content',blank=True)
+
+    def __str__(self):
+         return str(self.date)
 
 class RecentBorrowers(models.Model):
 
     date = models.CharField('Date', max_length=10, null=True, blank=True)
-    fname = models.CharField(
+    fName = models.CharField(
         'First Name', max_length=40, null=True, blank=True)
-    lname = models.CharField('Last Name', max_length=40, null=True, blank=True)
+    lName = models.CharField('Last Name', max_length=40, null=True, blank=True)
 
     def __str__(self):
-        return str(self.date)+" "+str(self.fname)+" "+str(self.lname)
+        return str(self.date)+" "+str(self.fName)+" "+str(self.lName)
 
 class RecentLeads(models.Model):
      date = models.CharField('Date', max_length=10, null=True, blank=True)
-     fname = models.CharField(
+     fName = models.CharField(
         'First Name', max_length=40, null=True, blank=True)
-     lname = models.CharField('Last Name', max_length=40, null=True, blank=True)
+     lName = models.CharField('Last Name', max_length=40, null=True, blank=True)
 
      def __str__(self):
-         return str(self.date)+" "+str(self.fname)+" "+str(self.lname)
+         return str(self.date)+" "+str(self.fName)+" "+str(self.lName)
 
 class Lender(models.Model):
-    company = models.CharField('Company', max_length=40, null=True, blank=True)
-    state = models.CharField('State', max_length=40, null=True, blank=True)
+    company = models.CharField('Company', max_length=200, null=True, blank=True)
+    state = models.CharField('State', max_length=200, null=True, blank=True)
     rating = models.CharField('Rating', max_length=2, null=True, blank=True)
-    programs = models.CharField('Programs', max_length=40, null=True, blank=True)
+    programs = models.CharField('Programs', max_length=200, null=True, blank=True)
 
     lender_FHA_ID = models.CharField('Lender FHA ID', max_length=20, null=True, blank=True)
     lender_VA_ID = models.CharField('Lender VA ID', max_length=20, null=True, blank=True)
     account_executive = models.CharField('Account Executive', max_length=20, null=True, blank=True)
     phone_num = models.CharField('Phone', max_length=30, null=True, blank=True)
     email = models.EmailField('Email', blank=True)
-    website = models.CharField('Website', max_length=50, null=True, blank=True)
+    website = models.CharField('Website', max_length=200, null=True, blank=True)
 
     def __str__(self):
-        return self.company
+        return self.company + " (" + self.state + ")"

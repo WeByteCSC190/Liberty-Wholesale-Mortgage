@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 
-export default class Privacy extends Component {
+export default class Template extends Component {
     render() {
-      return (
         <body class="legal-body">
      <h3></h3>
     <section class="legal-section">
       <div class="legal-container">
         <div class="legal-intro">
-          <h1>Privacy Policy</h1>
+          <h1>[Put name of topic here]</h1>
           <p>
             Last Updated: 
           </p>
@@ -50,6 +49,6 @@ export default class Privacy extends Component {
     </div>
     </section>
   </body>
-   ) }
+    }
 
 }

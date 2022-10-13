@@ -13,8 +13,8 @@ from rest_framework.decorators import api_view
 from rest_framework import permissions 
 
 
-from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer
-from .models import Client, RecentLeads, UserProfile, Lead, Borrower, RecentBorrowers,RecentLeads, Lender,Annoucements
+from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer,ImportantAnnoucementsSerializer
+from .models import Client, ImportantAnnoucements, RecentLeads, UserProfile, Lead, Borrower, RecentBorrowers,RecentLeads, Lender,Annoucements
 
 # Create your views here.
 
@@ -146,6 +146,11 @@ class AnnoucementsViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
     queryset=Annoucements.objects.all()
     serializer_class=AnnoucementsSerializer
+
+class ImportantAnnoucementsViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
+    queryset=ImportantAnnoucements.objects.all()[:3]
+    serializer_class=ImportantAnnoucementsSerializer
 
 class LeadView(generics.ListCreateAPIView):
     permission_classes = (permissions.AllowAny, )

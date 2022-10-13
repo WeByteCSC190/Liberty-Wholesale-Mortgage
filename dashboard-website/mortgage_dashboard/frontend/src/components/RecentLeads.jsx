@@ -3,8 +3,8 @@ import './RecentLeads.css';
 import axios from "axios";
 
 
-const createData = (date, fname, lname) =>{
-    return {date, fname, lname};
+const createData = (date, fname, lname) => {
+  return { date, fname, lname };
 }
 
 const rows = [
@@ -31,13 +31,13 @@ const RecentLeads = () => {
         <li>Last</li>
       </ol>
       <div className="RecentLeadsTable">
-      {rows.map((row) => (
-        <ol className='RecentLeadsData'>
-          <li>{row.date}</li>
-          <li>{row.fname}</li>
-          <li>{row.lname}</li>
-        </ol>
-      ))}
+        {rows.map((row) => (
+          <ol className='RecentLeadsData'>
+            <li>{row.date}</li>
+            <li>{row.fname}</li>
+            <li>{row.lname}</li>
+          </ol>
+        ))}
       </div>
     </div>
   );

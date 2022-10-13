@@ -52,7 +52,7 @@ const NavbarCustom = (isAuthenticated, logout) =>{
           }}
           aria-controls="navbarScroll" 
         />
-        <Navbar.Collapse id="navbarScroll">
+        <Navbar.Collapse variant="outline-primary" id="navbarScroll">
          
           <Nav
             className="me-auto my-2"
@@ -113,16 +113,24 @@ function NavDropButton(isAuthenticated, logout) {
   return (
     <>
     <Dropdown className="NavOptions">
-      <Dropdown.Toggle variant="success" id="NavDropDownButton">
+      <Dropdown.Toggle 
+         variant="outline-primary" 
+         style={{color: 'white', border: 0,}}
+         id="NavDropDownButton"
+      >
       <FontAwesomeIcon 
          icon={Icons.faUser} 
          size="2x" 
-         
-         />
+       />
+      
       </Dropdown.Toggle>
 
       <Dropdown.Menu className="NavDropMenu"
-        style={{ right: 0, left: 'auto' }}
+        style={{ 
+          right: 0, 
+          left: 'auto',
+          color: 'white',
+          border: 0,  }}
       >
         <Dropdown.Item className="Drop-Item">
         <Link to="/account">Account</Link>
@@ -142,3 +150,12 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 export default connect(mapStateToProps,{logout})(NavbarCustom);
+
+/*
+/ <FontAwesomeIcon 
+         icon={Icons.faUser} 
+         size="2x" 
+         
+         />
+
+*/

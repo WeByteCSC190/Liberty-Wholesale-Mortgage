@@ -6,8 +6,9 @@ const Resources = () => {
     <>
     <div className="Header">
       <Navbar />
-      <p className="Page-Title">Resources</p>
+      
     </div>
+    <p className="Page-Title">Resources</p>
     <div className="Content"> 
     </div>
     </>

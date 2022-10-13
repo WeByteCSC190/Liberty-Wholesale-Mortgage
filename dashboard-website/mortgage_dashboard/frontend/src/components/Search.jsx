@@ -5,11 +5,23 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Icons from "@fortawesome/free-solid-svg-icons";
-const Search=({callback})=> {  
-  const [innerValue, setInnerValue]=useState("");
+const Search=({callback1, callback2})=> {  
+  const [innerValue, setInnerValue] = useState("");
+  const [filterValue, setFilterValue]=useState("");
   const handleSubmit = e => {
     e.preventDefault()
-    callback(innerValue)
+    callback1(innerValue)
+  }
+  const handleFilter = e => {
+    e.preventDefault()
+    setFilterValue(e.target.value)
+    var clicked = document.querySelectorAll(".btn-filter")
+    for (var i = 0; i < clicked.length; i++) 
+        clicked[i].classList.remove('btn-filter')
+    e.target.className += ' btn-filter'
+    console.log(filterValue)
+    // setFilterValue(e.target.value)
+    callback2(filterValue)
   }
     return (
       <div className="container mt-5 search-container">
@@ -40,19 +52,24 @@ const Search=({callback})=> {
             Filters:
         </Col>
         <Col>
-            <button className="btn btn-primary">DATE</button>
+              <input value="Date" type="button"
+            onClick={handleFilter} className="btn btn-primary" />
         </Col>
         <Col>
-            <button className="btn btn-primary">FIRST NAME</button>
+             <input value="First Name" type="button"
+            onClick={handleFilter} className="btn btn-primary" />
         </Col>
         <Col>
-            <button className="btn btn-primary">LAST NAME</button>
+             <input value="Last Name" type="button"
+            onClick={handleFilter} className="btn btn-primary" />
         </Col>
         <Col>
-            <button className="btn btn-primary">STATUS</button>
+             <input value="Status" type="button"
+            onClick={handleFilter} className="btn btn-primary" />
         </Col>
         <Col>
-            <button className="btn btn-light">Reset</button>
+             <input value="Reset" type="button"
+            onClick={handleFilter} className="btn btn-primary" />
         </Col>
     </Row>
     </Container>
