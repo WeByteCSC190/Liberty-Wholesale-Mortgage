@@ -13,8 +13,8 @@ from rest_framework.decorators import api_view
 from rest_framework import permissions 
 
 
-from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer,ImportantAnnoucementsSerializer
-from .models import Client, ImportantAnnoucements, RecentLeads, UserProfile, Lead, Borrower, RecentBorrowers,RecentLeads, Lender,Annoucements
+from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer,ImportantAnnoucementsSerializer,LenderLogoSerializer
+from .models import Client, ImportantAnnoucements, RecentLeads, UserProfile, Lead, Borrower, RecentBorrowers,RecentLeads, Lender,Annoucements,LenderLogo
 
 # Create your views here.
 
@@ -120,7 +120,7 @@ class BorrowerViewSet(viewsets.ModelViewSet):
 
 class RecentBorrowerViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
-    queryset=RecentBorrowers.objects.filter(date=3).order_by('date')
+    queryset=RecentBorrowers.objects.all()[:3]
     serializer_class=RecentBorrowerSerializer
 
 class LenderViewSet(viewsets.ModelViewSet):
@@ -137,9 +137,23 @@ class LenderView(generics.ListCreateAPIView):
     filter_backends = [filters.SearchFilter]
     search_fields = ['company', 'state', 'programs']
 
+class LenderLogoViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
+    queryset=LenderLogo.objects.all()
+    serializer_class=LenderLogoSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['company']
+
+class LenderLogoView(generics.ListCreateAPIView):
+    permission_classes = (permissions.AllowAny, )
+    queryset = LenderLogo.objects.all()
+    serializer_class= LenderLogoSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['company']
+
 class RecentLeadsViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
-    queryset=RecentLeads.objects.filter(date=3).order_by('date')
+    queryset=RecentLeads.objects.all()[:3]
     serializer_class=RecentLeadsSerializer
 
 class AnnoucementsViewSet(viewsets.ModelViewSet):

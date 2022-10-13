@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {register} from '../../actions/auth';
 import {connect} from 'react-redux';
-import { Navigate, Link } from 'react-router-dom';
+import {useNavigate, Navigate, Link } from 'react-router-dom';
 import CSRFToken from "../../components/CSRFToken";
 import Navbar from "../../components/NavbarAdmin";
 const AddUsers  = ({register, isAuthenticated}) => {
@@ -14,22 +14,24 @@ const AddUsers  = ({register, isAuthenticated}) => {
   const [accountCreated, setAccountCreated] = useState(false);
 
   const {username, password, re_password} = formData;
+
   const onChange = e => setFormData({...formData,  [e.target.name]: e.target.value });
   
   const onSubmit = e => {
     e.preventDefault();
 
-    if (re_password == password){
+    if (re_password === password){
       register(username, password, re_password);
       setAccountCreated(true);
     }
   };
+  const navigate = useNavigate();
 
   if( isAuthenticated ){
-    return <Link to='/dashboard' />;
+    navigate("/dashboard");
   }
   else if(accountCreated)
-    return <Link to='/sign-in' />;
+    return <Navigate to='/sign-in' />;
 
 
   return (

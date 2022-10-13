@@ -31,7 +31,7 @@ export default function(state = initialState, action){
                 ...state,
                 isAuthenticatied: false
             }
-        case LOGIN_SUCCESS:
+        case LOGOUT_SUCCESS:
             return {
                 ...state,
                 isAuthenticatied: true,

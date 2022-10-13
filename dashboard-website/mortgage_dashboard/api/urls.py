@@ -1,7 +1,9 @@
 from unicodedata import name
 from django.urls import path, include
-from .views import ClientView, AddClient, LeadView, AddLead, LenderView
+from .views import ClientView, AddClient, LeadView, AddLead, LenderView, LenderLogoView
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 from rest_framework import routers
@@ -19,6 +21,7 @@ router.register(r'recentBorrowers',views.RecentBorrowerViewSet)
 router.register(r'ImportantAnnoucements',views.ImportantAnnoucementsViewSet)
 router.register(r'recentLeads',views.RecentLeadsViewSet)
 router.register(r'lender',views.LenderViewSet)        
+router.register(r'lenderLogo', views.LenderLogoViewSet)  
 router.register(r'Annoucements',views.AnnoucementsViewSet)
 urlpatterns = [
     path('get-leads', LeadView.as_view() ),
@@ -28,6 +31,7 @@ urlpatterns = [
     path('add_client', AddClient),
     path('recent_borrowers', ClientView.as_view()),
     path('get-lender', LenderView.as_view()),
+    path('get-lenderLogo', LenderLogoView.as_view()),
     path('recent_leads',ClientView.as_view()),
     # path('Annoucements',ClientView.as_view()),
     # path('',views.apiView, name='apiView'),le
@@ -41,4 +45,4 @@ urlpatterns = [
     path('',include(router.urls)),
     path('api/', include('rest_framework.urls', namespace='rest_framework'))
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

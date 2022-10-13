@@ -1,14 +1,15 @@
 import Table from 'react-bootstrap/Table';
 import AddRow from "../components/modals/AddRow";
 import ActionBtn from "../components/buttons/Action";
-const TableComponent = ({ data, column }) => {
+const TableComponent = ({ page, data, column }) => {
+ let pageName = page
   return (
     <div style={{ paddingBottom: 300,paddingLeft: 90, paddingRight: 90 }}>
+
       <Table className="Table" responsive hover >
-        
-      <thead className="table-heading table-row">
-      
-        <tr>
+      <thead>
+      <tr className="table-title">List of {pageName}</tr>
+      <tr className="table-heading">
             {column.map((item, index) =>
               <TableHeadItem item={item} />
             )}
@@ -17,6 +18,9 @@ const TableComponent = ({ data, column }) => {
       <tbody>
          {data.map((item, index) => <TableRow item={item} column={column} />)}
       </tbody>
+      <tr className="last-table-row">
+        Showing {data.length} out of {data.length} results 
+        </tr>
       </Table>
       </div>
   );
