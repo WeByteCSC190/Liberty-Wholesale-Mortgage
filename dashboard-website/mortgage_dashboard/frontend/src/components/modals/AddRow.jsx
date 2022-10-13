@@ -19,25 +19,27 @@ function AddRow() {
 
   const handleSubmit = async() => {
   // store the states in the form data
-  var form = new FormData();
-    form.append("caseId", formValue.caseId)
-    form.append("fName", formValue.fName)
-    form.append("lName", formValue.lName)
-    form.append("email", formValue.email)
-    form.append("phone_num", formValue.phone_num)
-    form.append("status", formValue.status)
-    form.append("creditScore", formValue.creditScore)
-    form.append("status_check", formValue.status_check)
-    form.append("date", formValue.date)
-    console.log(formValue)
+  var formData = new FormData();
+    formData.append("caseId", formValue.caseId)
+    formData.append("fName", formValue.fName)
+    formData.append("lName", formValue.lName)
+    formData.append("email", formValue.email)
+    formData.append("phone_num", formValue.phone_num)
+    formData.append("status", formValue.status)
+    formData.append("creditScore", formValue.creditScore)
+    formData.append("status_check", formValue.status_check)
+    formData.append("date", '2022-10-13T02:23:05Z')
+    console.log(Object.fromEntries(formData))
   try {
     const postBorrowers = "http://localhost:8000/api/borrowers/";
     const response = await axios({
       method: "post",
       url: postBorrowers,
-      data: formValue,
+      data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     });
+    handleClose();
+    window.reload();
     console.log(response);
   } catch(error) {
     console.log(error)
@@ -52,7 +54,21 @@ function AddRow() {
     });
   }
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false)
+    setformValue({
+      ...formValue,
+      caseId: '',
+      fName: '',
+      lName: '',
+      email: '',
+      phone_num: '',
+      status: '',
+      creditScore: '',
+      date: '',
+      status_check: false
+    });
+  }
   const handleShow = () => setShow(true);
   return (
     <>
