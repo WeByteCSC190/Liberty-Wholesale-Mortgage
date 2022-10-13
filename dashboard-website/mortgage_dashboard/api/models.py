@@ -105,7 +105,7 @@ class Lead(models.Model):
     fName = models.CharField(max_length=40, null=True, blank=True)
     lName = models.CharField(max_length=40, null=True, blank=True)
     creditScore = models.IntegerField(
-        'Credit Score', null=False, default=generate_random_number(), unique=True)
+        'Credit Score', blank=True, null=True, unique=False)
     email = models.EmailField('Email Address')
     phone_num = models.CharField('Phone Number', max_length=16, null=True)
     status = models.ForeignKey(
