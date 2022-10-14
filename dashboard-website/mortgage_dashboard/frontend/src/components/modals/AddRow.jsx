@@ -25,7 +25,7 @@ function AddRow() {
     formData.append("lName", formValue.lName)
     formData.append("email", formValue.email)
     formData.append("phone_num", formValue.phone_num)
-    formData.append("status", formValue.status)
+    formData.append("status", "")
     formData.append("creditScore", formValue.creditScore)
     formData.append("status_check", formValue.status_check)
     formData.append("date", '2022-10-13T02:23:05Z')
@@ -38,9 +38,8 @@ function AddRow() {
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     });
-   handleClose();
-    // navigate("/borrowers");
-    // handleClose();
+    window.location.reload(false);
+    handleClose();
   } catch(error) {
     console.log(error)
   }
