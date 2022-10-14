@@ -19,8 +19,7 @@
 
 .RecentLeadsData li{
   height: 5%;
-  width: 33%;
-  text-align: left;
+  width: 20%;
   padding: 15px;
   display:inline-block;
   border-bottom: 1px solid black;

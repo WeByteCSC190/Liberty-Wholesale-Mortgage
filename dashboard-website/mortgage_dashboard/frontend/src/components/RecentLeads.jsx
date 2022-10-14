@@ -43,11 +43,11 @@ const RecentLeads = () => {
       <div className="RecentLeadsTable">
         {leads.map((row) => (
           <ol className='RecentLeadsData'>
-            <li>{row.case_id}</li>
+            <li>{row.caseId}</li>
             <li>{row.date}</li>
             <li>{row.fName}</li>
             <li>{row.lName}</li>
-            <li>{row.phone}</li>
+            <li>{row.phone_num}</li>
           </ol>
         ))}
       </div>

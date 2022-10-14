@@ -34,11 +34,11 @@ const RecentBorrowers = () => {
       <div classNaame='RecentBorrowersTable'>
         {borrowers.map((row) => (
           <ol className='RecentBorrowersData'>
-            <li>{row.case_id}</li>
+            <li>{row.caseId}</li>
             <li>{row.date}</li>
-            <li>{row.fname}</li>
-            <li>{row.lname}</li>
-            <li>{row.phone}</li>
+            <li>{row.fName}</li>
+            <li>{row.lName}</li>
+            <li>{row.phone_num}</li>
           </ol>
         ))}
       </div>
