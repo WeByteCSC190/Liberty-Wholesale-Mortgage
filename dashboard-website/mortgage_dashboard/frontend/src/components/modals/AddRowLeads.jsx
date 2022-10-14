@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-function AddRow() {
+function AddRowLeads() {
   const [show, setShow] = useState(false);
   const [formValue, setformValue] = React.useState({
     caseId: '',
@@ -30,12 +30,11 @@ function AddRow() {
     formData.append("status_check", formValue.status_check)
     formData.append("date", '2022-10-13T02:23:05Z')
     console.log(Object.fromEntries(formData))
-    window.location.reload(false);
     try {
-      const postBorrowers = "http://localhost:8000/api/borrowers/";
+      const postLeads = "http://localhost:8000/api/leads/";
       const response = await axios({
         method: "post",
-        url: postBorrowers,
+        url: postLeads,
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
@@ -45,6 +44,7 @@ function AddRow() {
     } catch (error) {
       console.log(error)
     }
+    window.location.reload(false);
   }
 
   const handleChange = (event) => {
@@ -79,7 +79,7 @@ function AddRow() {
 
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Add a Borrower</Modal.Title>
+          <Modal.Title>Add a Lead</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -124,13 +124,12 @@ function AddRow() {
 
             <Form.Group className="mb-3" controlId="">
               <Form.Label>Select Status</Form.Label>
-              <Form.Select name="status" aria-label="Default select example" value={formValue.status}
-                onChange={handleChange}>
-                <option>Open to select status</option>
-                <option value="Closed">Closed</option>
-                <option value="New">New</option>
-                <option value="In progress">In progress </option>
-              </Form.Select>
+              {/* <Form.Select name="status" aria-label="Default select example" value={formValue.status} */}
+              {/*   onChange={handleChange}> */}
+              {/*   <option value="Closed">Closed</option> */}
+              {/*   <option value="New">New</option> */}
+              {/*   <option value="In progress">In progress </option> */}
+              {/* </Form.Select> */}
             </Form.Group>
 
             <Form.Group controlId="date">
@@ -138,10 +137,10 @@ function AddRow() {
               <Form.Control name="date" type="date" placeholder="Creation Date" value={formValue.date}
                 onChange={handleChange} />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="">
-              <Form.Check value={formValue.status_check}
-                onChange={handleChange} type="checkbox" label="The borrower is approved" />
-            </Form.Group>
+            {/* <Form.Group className="mb-3" controlId=""> */}
+            {/*   <Form.Check value={formValue.status_check} */}
+            {/*     onChange={handleChange} type="checkbox" label="The lead is approved" /> */}
+            {/* </Form.Group> */}
           </Form>
         </Modal.Body>
         <Modal.Footer>
@@ -157,4 +156,4 @@ function AddRow() {
   );
 }
 
-export default AddRow;
+export default AddRowLeads;
