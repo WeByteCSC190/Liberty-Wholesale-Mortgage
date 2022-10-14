@@ -162,6 +162,10 @@ const Lenders = () => {
           <SearchLenders 
               callback1={(searchValue)=> setSearchValue(searchValue)} 
               callback2={(filterType)=> setFilterType(filterType)}
+              button1={"Company"}
+              button2={"State"}
+              button3={"Rating"}
+              button4={"Programs"}
               />
           <TableLenders data={dataTable} column={column} />
         <div className="Footer">
