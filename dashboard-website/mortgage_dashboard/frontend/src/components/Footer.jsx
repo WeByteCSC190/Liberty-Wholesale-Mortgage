@@ -8,18 +8,15 @@ export default function Footer() {
     return (
     <>
     <Container fluid className="Footer-Body">
-     <footer className="Footer-Style">
+   
         <Row className="Footer-Row">
-            <Col className="Footer-Col">
-            <img className="Footer-Logo"
-                src={BlueLogo} //MLO Support Logo
-                alt="MLO Support"
-            />
-            <p>Powered by Liberty Wholesale Mortgage</p>
-            </Col>
+        <Col className="Footer-Col">
+            <h3>About</h3>
+            <p>MLO Support is provided by Liberty Wholesale Mortgage</p>
+        </Col>
             <Col className="Footer-Col">
                 <h3>Office</h3>
-                <p>Address of LWM</p>
+                <p>506 Drury Lane </p>
                 <p>Sacramento, California</p>
                 <p className="Footer-Email">support@lwm.com</p>
                 <h5>916-001-2930</h5>
@@ -34,7 +31,6 @@ export default function Footer() {
             </Col>
 
             <Col className="Footer-Col">
-                
                   <ul>
                      <h3>Social Media</h3>
                      <SwitchLink href="">Facebook</SwitchLink>
@@ -45,7 +41,7 @@ export default function Footer() {
             </Col>
         
         </Row>
-      </footer>
+     
     </Container>
     </>
         

@@ -1,13 +1,12 @@
 import Table from 'react-bootstrap/Table';
 import AddRow from "../components/modals/AddRow";
 const TableComponent = ({ page, data, column }) => {
-  let pageName = page
   return (
     <div style={{ paddingLeft: 90, paddingRight: 90 }}>
   
       <Table className="Table" responsive hover >
       <thead>
-      <tr className="table-title">List of {pageName}</tr>
+      <tr className="table-title">List of {page}</tr>
       <tr className="table-heading">
             {column.map((item, index) =>
               <TableHeadItem item={item} />
