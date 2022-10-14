@@ -8,7 +8,7 @@ import * as Icons from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from 'react';
 
 
-const Search=({callback1, callback2})=> {  
+const Search=({callback1, callback2, button1, button2, button3, button4 }) => {  
   const [innerValue, setInnerValue] = useState("");
   const [filterValue, setFilterValue]=useState("");
   const handleSubmit = e => {
@@ -57,24 +57,24 @@ const Search=({callback1, callback2})=> {
             Filters:
         </Col>
         <Col>
-              <input value="Company" type="button"
+              <input value={button1} type="button"
             onClick={handleFilter} className="btn btn-primary" />
         </Col>
         <Col>
-             <input value="State" type="button"
+             <input value={button2} type="button"
             onClick={handleFilter} className="btn btn-primary" />
         </Col>
         <Col>
-             <input value="Rating" type="button"
+             <input value={button3} type="button"
             onClick={handleFilter} className="btn btn-primary" />
         </Col>
         <Col>
-             <input value="Programs" type="button"
+             <input value={button4} type="button"
             onClick={handleFilter} className="btn btn-primary" />
         </Col>
         <Col>
              <input value="Reset" type="button"
-            onClick={handleFilter} className="btn btn-primary" />
+            onClick={handleFilter} className="btn btn-outline-dark" />
         </Col>
     </Row>
     </Container>
