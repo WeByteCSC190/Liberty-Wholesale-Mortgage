@@ -60,7 +60,7 @@ class AddClient(serializers.HyperlinkedModelSerializer):
 class RecentBorrowerSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = RecentBorrowers
-        fields = ('date', 'fName', 'lName')
+        fields = ('caseId','date', 'fName', 'lName','phone_num')
 class ImportantAnnoucementsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = ImportantAnnoucements
@@ -68,7 +68,7 @@ class ImportantAnnoucementsSerializer(serializers.HyperlinkedModelSerializer):
 class RecentLeadsSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model= RecentLeads
-        fields =('date','fName','lName')
+        fields =('caseId','date', 'fName', 'lName','phone_num')
 
 class LenderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
