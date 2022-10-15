@@ -197,13 +197,7 @@ class Client(models.Model):
     def __str__(self):
         return self.cID
 
-class ImportantAnnoucements(models.Model):
 
-    date=models.DateTimeField('Date')
-    content=models.TextField('Content',blank=True)
-
-    def __str__(self):
-         return str(self.date)
 
 
 

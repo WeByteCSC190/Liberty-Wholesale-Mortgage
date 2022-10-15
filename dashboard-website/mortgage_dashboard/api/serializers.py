@@ -61,10 +61,10 @@ class AddClient(serializers.HyperlinkedModelSerializer):
     #class Meta:
         #model = RecentBorrowers
         #fields = ('caseId','date', 'fName', 'lName','phone_num')
-class ImportantAnnoucementsSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = ImportantAnnoucements
-        fields = ('date', 'content')
+#class ImportantAnnoucementsSerializer(serializers.HyperlinkedModelSerializer):
+    #class Meta:
+        #model = ImportantAnnoucements
+        #fields = ('date', 'content')
 #class RecentLeadsSerializer(serializers.HyperlinkedModelSerializer):
     #class Meta:
         #model= RecentLeads

@@ -21,7 +21,7 @@ admin.site.register(LoanOfficer)
 admin.site.register(LoanProcessor)
 #admin.site.register(RecentBorrowers)
 #admin.site.register(RecentLeads)
-admin.site.register(ImportantAnnoucements)
+#admin.site.register(ImportantAnnoucements)
 admin.site.register(LenderLogo)
 class LenderResources(resources.ModelResource):
     class Meta:
