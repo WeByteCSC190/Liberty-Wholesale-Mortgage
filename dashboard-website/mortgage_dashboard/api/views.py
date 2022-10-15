@@ -13,8 +13,8 @@ from rest_framework.decorators import api_view
 from rest_framework import permissions 
 
 
-from .serializers import AddLead, ClientSerializer, AddClient, RecentLeadsSerializer, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer, RecentBorrowerSerializer, LenderSerializer, AnnoucementsSerializer,ImportantAnnoucementsSerializer,LenderLogoSerializer
-from .models import Client, ImportantAnnoucements, RecentLeads, UserProfile, Lead, Borrower, RecentBorrowers,RecentLeads, Lender,Annoucements,LenderLogo
+from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,ImportantAnnoucementsSerializer,LenderLogoSerializer
+from .models import Client, ImportantAnnoucements,  UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo
 
 # Create your views here.
 
@@ -120,8 +120,9 @@ class BorrowerViewSet(viewsets.ModelViewSet):
 
 class RecentBorrowerViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
-    queryset=RecentBorrowers.objects.all()[:3]
-    serializer_class=RecentBorrowerSerializer
+    queryset=Borrower.objects.all().order_by('-date')[:3]
+    recent_three_borrowers=reversed(queryset)
+    serializer_class=BorrowerSerializer
 
 class LenderViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
@@ -153,8 +154,9 @@ class LenderLogoView(generics.ListCreateAPIView):
 
 class RecentLeadsViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
-    queryset=RecentLeads.objects.all()[:3]
-    serializer_class=RecentLeadsSerializer
+    queryset=Lead.objects.all().order_by('-date')[:3]
+    recent_three_leads=reversed(queryset)
+    serializer_class=LeadSerializer
 
 class AnnoucementsViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
