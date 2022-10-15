@@ -15,11 +15,11 @@ from rest_framework import routers
 ##  Which will grab the output from the endpoint. 
 
 router=routers.DefaultRouter()
-router.register(r'leads',views.LeadViewSet)
-router.register(r'borrowers',views.BorrowerViewSet)
-router.register(r'recentBorrowers',views.RecentBorrowerViewSet)
-router.register(r'ImportantAnnoucements',views.ImportantAnnoucementsViewSet)
-router.register(r'recentLeads',views.RecentLeadsViewSet)
+router.register(r'leads',views.LeadViewSet) #shows all leads
+router.register(r'borrowers',views.BorrowerViewSet) #shows all borrowers
+router.register(r'recentBorrowers',views.RecentBorrowerViewSet) #shows only 3 recent borrowers
+router.register(r'ImportantAnnoucements',views.ImportantAnnoucementsViewSet) #shows most important Annoucements based on dates
+router.register(r'recentLeads',views.RecentLeadsViewSet) #shows only 3 recent leads
 router.register(r'lender',views.LenderViewSet)        
 router.register(r'lenderLogo', views.LenderLogoViewSet)  
 router.register(r'Annoucements',views.AnnoucementsViewSet)
@@ -33,8 +33,6 @@ urlpatterns = [
     path('get-lender', LenderView.as_view()),
     path('get-lenderLogo', LenderLogoView.as_view()),
     path('recent_leads',ClientView.as_view()),
-    # path('Annoucements',ClientView.as_view()),
-    # path('',views.apiView, name='apiView'),le
     path('userList/',views.listAll, name='userList'),
     path('userDetails/<int:pk>/',views.userDetail, name='userDetail'),
     path('userCreate/',views.createUser, name='userCreate'),
