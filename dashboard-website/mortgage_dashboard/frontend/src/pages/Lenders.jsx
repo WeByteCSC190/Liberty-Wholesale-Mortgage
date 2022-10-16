@@ -169,7 +169,8 @@ const Lenders = () => {
               />
           <TableLenders data={dataTable} column={column} />
         <div className="Footer">
-         <Footer /></div>
+          <Footer />
+        </div>
         </div>
       } 
     </div>

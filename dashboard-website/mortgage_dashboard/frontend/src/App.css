@@ -51,8 +51,10 @@
 
 .Nav-Menu li a {
   color: inherit;
+  border-radius: 10px;
   text-decoration: none;
   display: block; 
+
 }
 
 
@@ -63,7 +65,9 @@
 }
 
 .Nav-Menu a:hover {
-  color: rgb(45, 208, 245);
+  background-color:#0d6efd; 
+  border-radius: 10px;
+  color: white; 
   font-weight: bold;
 }
 
@@ -71,80 +75,47 @@
   z-index: 4;
 }
 
-
 .Footer-Body {
-  width: 100%;
   margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  box-sizing: border-box; 
-  
+  box-sizing: border-box;
+  display: flex;
   width: 100%;
-  position: flex;
-  bottom: 0; 
-  background: #24262b;
-  color: #fff;
-  font-size: 13px;
-  line-height: 20px;
+  background: #181818;
+ /* background-color: rgba(13, 57, 122, 1); */
+  padding: 15px 100px 0 100px;
+  text-align: center;
+  color: white; 
 }
 
-.Footer-Style {
- 
-}
-
-.Footer-Row {
-  width: 100%;
-  margin: auto;
-  display: absolute;
-  flex-wrap: wrap;
-  align-items: flex-start; 
+.Footer-Links {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-.Footer-Col {
-  flex-basis: 25%;
-  margin-top: 0.5%; 
-  margin-bottom: 0.25%; 
-  padding: 1rem; 
-}
-
-.Footer-Logo {
-  height: 70px;
-  width: 150px; 
-  align-content: center;
-}
-
-.Footer-Col h3 {
-  width: fit-content;
-  margin-bottom: 15px;
-  font-size: 20px;
-  font-weight: bold; 
-  position: relative; 
-
-}
-
-.Footer-Email {
-  width: fit-content; 
-  border-bottom: 1px solid #ccc;
-  margin: 20px 0; 
-}
-
-.Footer-Col ul li {
-  list-style: none;
-  margin-bottom: 6px;
+.Footer-Links li {
+  width: auto; 
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
   
 }
 
-.Footer-Col ul li a {
+.Footer-Links a {
   text-decoration: none;
-  color: #fff;
+  color: white; 
 }
 
-.Footer-Col a:hover {
-  
+.Footer-Links a:hover {
+  color: white;
+  font-weight: bold; 
 }
 
-
+.Footer-Company{
+  text-align: right;
+  margin-right: 0.5%; 
+}
 
 .Page-Title {
     margin: 0;
@@ -423,8 +394,8 @@ h1 {
 /* For legal pages */ 
 .legal-body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #23abd4;
-  border: 1px red solid;
+  background-color: #23abd4; 
+  /*border: 1px red solid; */
 }
 
 .legal-section {
@@ -449,7 +420,7 @@ h1 {
   top: 0;
   bottom: 0;
   margin: auto;
-  border: 1px red solid
+  /*order: 1px red solid */
 }
 
 
@@ -507,4 +478,40 @@ h1 {
   text-align: center;
   line-height: 1.7142857;
   
+}
+
+
+
+/* Responsive Navbar and Footer */
+
+@media(max-width: 600px){
+  /* Navbar */ 
+
+  /* Footer */
+  .Footer-Body {
+    padding: 40px; 
+    flex-direction: column;
+  }
+
+  .Footer-Links {
+    flex-direction: column; 
+  }
+
+  .Footer-Icons  {
+     margin-right: 0;
+     margin-bottom: 40px;
+  }
+
+  .Footer-Container
+  .Footer-Content, 
+  .Footer-Contact, 
+  .Footer-Links 
+  {
+    width: 100%; 
+  }
+
+  .Footer-Company {
+    padding: 8px 40px; 
+  }
+
 }

@@ -20,7 +20,7 @@ export default class Template extends Component {
         <div class="legal-content">
           <h3>Heading 1</h3>
           <p>
-            Content of Heading 1
+           Content of Heading 1
           </p>
       </div>
     </div>
@@ -32,6 +32,28 @@ export default class Template extends Component {
           <h3>Heading 2</h3>
             <p>
             Content of heading 2
+            </p>
+      </div>
+    </div>
+    </section>
+
+    <section class="legal-section">
+      <div class="legal-container">
+        <div class="legal-content">
+          <h3>Heading 3</h3>
+            <p>
+            Content of heading 3
+            </p>
+      </div>
+    </div>
+    </section>
+
+    <section class="legal-section">
+      <div class="legal-container">
+        <div class="legal-content">
+          <h3>Heading 4</h3>
+            <p>
+            Content of heading 4
             </p>
       </div>
     </div>

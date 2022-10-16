@@ -1,65 +1,32 @@
 import React from 'react';
 import { Container, Row, Col,  } from 'react-bootstrap';
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
-import BlueLogo from './images/blue_logo.png';
 
 
 export default function Footer() {
     return (
     <>
-    <Container fluid className="Footer-Body">
-   
-        <Row className="Footer-Row">
-        <Col className="Footer-Col">
-            <h3>About</h3>
-            <p>MLO Support is provided by Liberty Wholesale Mortgage</p>
-        </Col>
-            <Col className="Footer-Col">
-                <h3>Office</h3>
-                <p>506 Drury Lane </p>
-                <p>Sacramento, California</p>
-                <p className="Footer-Email">support@lwm.com</p>
-                <h5>916-001-2930</h5>
-            </Col>
-
-            <Col className="Footer-Col">
-                <ul>
-                    <h3>Legal</h3>
-                    <SwitchLink href="/terms">Terms of Use</SwitchLink>
-                    <SwitchLink href="/privacy">Privacy Policy</SwitchLink>
-                </ul>
-            </Col>
-
-            <Col className="Footer-Col">
-                  <ul>
-                     <h3>Social Media</h3>
-                     <SwitchLink href="">Facebook</SwitchLink>
-                     <SwitchLink href="">Twitter</SwitchLink>
-                     <SwitchLink href="">Instagram</SwitchLink>
-                   
-                  </ul>
-            </Col>
-        
-        </Row>
-     
+    <Container className="Footer-Body" fluid>
+    <Col>
+        <ul className="Footer-Links">
+           <li><a href="/terms" 
+                  target="_blank" 
+                  rel="noopener noreferrer">Terms of Service
+                </a>
+            </li>
+           <li><a href="/privacy" 
+                  target="_blank" 
+                  rel="noopener noreferrer">Privacy Policy
+                </a>
+           </li>
+           <li><a>Legal Link 1</a></li>
+           <li><a>Legal Link 2</a></li>
+        </ul>
+    </Col>
+    <Col className="Footer-Company">
+        <p>Powered By Liberty Wholesale Mortgage</p>
+    </Col>
     </Container>
     </>
-        
-    )
-}
-
-function SwitchLink({href, children, ...props }){
-    const resolvedPath = useResolvedPath(href)
-    const isActive = useMatch( {path: resolvedPath.pathname, end:true} ) 
-
-    return(
-        <>
-        <li className={ isActive ? "active" : ""}> 
-          <Link href={href} {...props}>
-              {children}
-          </Link>
-      </li>
-        </>
     )
 }
 

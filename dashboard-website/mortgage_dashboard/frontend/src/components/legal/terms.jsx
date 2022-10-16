@@ -39,6 +39,28 @@ export default class Terms extends Component {
     </div>
     </section>
 
+    <section class="legal-section">
+      <div class="legal-container">
+        <div class="legal-content">
+          <h3>Heading 2</h3>
+            <p>
+            Content of heading 2
+            </p>
+      </div>
+    </div>
+    </section>
+
+    <section class="legal-section">
+      <div class="legal-container">
+        <div class="legal-content">
+          <h3>Heading 2</h3>
+            <p>
+            Content of heading 2
+            </p>
+      </div>
+    </div>
+    </section>
+
 
     <section class="legal-section">
       <div class="legal-container">
