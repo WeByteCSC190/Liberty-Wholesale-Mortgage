@@ -198,11 +198,6 @@ class Client(models.Model):
         return self.cID
 
 
-
-
-
-
-
 class Lender(models.Model):
     company = models.CharField('Company', max_length=200, null=True, blank=True)
     state = models.CharField('State', max_length=200, null=True, blank=True)
@@ -214,8 +209,8 @@ class Lender(models.Model):
     account_executive = models.CharField('Account Executive', max_length=20, null=True, blank=True)
     phone_num = models.CharField('Phone', max_length=30, null=True, blank=True)
     email = models.EmailField('Email', blank=True)
-    website = models.CharField('Website', max_length=200, null=True, blank=True)
-    #website = models.URLField('Website', null=True, blank=True)
+    #website = models.CharField('Website', max_length=200, null=True, blank=True)
+    website = models.URLField('Website', null=True, blank=True)
 
     def __str__(self):
         return f"{self.company},{self.state}"
@@ -226,3 +221,11 @@ class LenderLogo(models.Model):
 
     def __str__(self):
          return self.company
+
+class Bio(models.Model):
+    title = models.CharField('Title', max_length=200)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title
+        

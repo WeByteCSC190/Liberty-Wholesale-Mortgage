@@ -13,8 +13,8 @@ from rest_framework.decorators import api_view
 from rest_framework import permissions 
 
 
-from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer
-from .models import Client,   UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo
+from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer
+from .models import Client,   UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio
 
 # Create your views here.
 
@@ -222,6 +222,54 @@ class AddBorrower(APIView):
             borrower.save()
 
             return Response(BorrowerSerializer(Borrower).data, status=status.HTTP_200_OK)
+
+class BioViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
+    queryset=Bio.objects.all()
+    serializer_class=BioSerializer
+
+class BioView(generics.ListCreateAPIView):
+    permission_classes = (permissions.AllowAny, )
+    queryset = Bio.objects.all()
+    serializer_class= BioSerializer
+
+@api_view(['GET'])
+def bioList(request):
+    bio = Bio.objects.all()
+    serializer = BiographySerializer(bio, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def bioDetail(request, pk):
+    bio = Bio.objects.get(id=pk)
+    serializer = BiographySerializer(bio, many=False)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def bioCreate(request):
+    serializer = BiographySerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def bioUpdate(request, pk):
+    bio = Bio.objects.get(id=pk)
+    serializer = BiographySerializer(instance=bio, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def bioDelete(request, pk):
+    bio = Bio.objects.get(id=pk)
+    bio.delete()
+    
+    return Response("Successfully Deleted!")
 
 # def BorrowerSearch(request):
 #     if request.method =="POST":
