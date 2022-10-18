@@ -12,9 +12,7 @@ const Dashboard = () => {
     <>
       <div className="Header">
         <Navbar />
-        
       </div>
-      
       <div className="Content">
         <p className="Page-Title">Dashboard</p>
         <div className="Dashboard"> 

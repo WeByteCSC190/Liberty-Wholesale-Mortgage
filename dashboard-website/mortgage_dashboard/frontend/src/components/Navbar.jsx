@@ -46,13 +46,14 @@ const NavbarCustom = (isAuthenticated, logout) =>{
        </Col>
 
         <Navbar.Toggle 
+          variant="outline-primary"
           style={{
             color: 'white', 
-            marginBottom: 0,
-          }}
+            background: 'white',
+        }}
           aria-controls="navbarScroll" 
         />
-        <Navbar.Collapse variant="outline-primary" id="navbarScroll">
+        <Navbar.Collapse variant="primary" id="navbarScroll">
          
           <Nav
             className="me-auto my-2"
@@ -60,13 +61,17 @@ const NavbarCustom = (isAuthenticated, logout) =>{
             navbarScroll
             >
             
-           <Container className="Nav-Menu">
+           <Col>
+           
+            <ul className="Nav-Menu">
             <SwitchPage href="/">Dashboard</SwitchPage>
             <SwitchPage href="/leads">Leads</SwitchPage>
             <SwitchPage href="/borrowers">Borrowers</SwitchPage>
             <SwitchPage href="/lenders" >Lenders</SwitchPage>
             <SwitchPage href="/resources" >Resources</SwitchPage>
-           </Container>
+            </ul>
+           </Col>
+           
            
          </Nav>
           <NavDropButton />
