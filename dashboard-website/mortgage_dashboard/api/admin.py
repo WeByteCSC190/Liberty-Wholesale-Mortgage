@@ -21,6 +21,7 @@ admin.site.register(LoanOfficer)
 admin.site.register(LoanProcessor)
 
 admin.site.register(LenderLogo)
+admin.site.register(Bio)
 class LenderResources(resources.ModelResource):
     class Meta:
         model = Lender

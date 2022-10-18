@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.urls import path, include
-from .views import ClientView, AddClient, LeadView, AddLead, LenderView, LenderLogoView
+from .views import ClientView, AddClient, LeadView, AddLead, LenderView, LenderLogoView,BioView
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -23,6 +23,7 @@ router.register(r'recentLeads',views.RecentLeadsViewSet) #shows only 3 recent le
 router.register(r'lender',views.LenderViewSet)        
 router.register(r'lenderLogo', views.LenderLogoViewSet)  
 router.register(r'Annoucements',views.AnnoucementsViewSet)
+router.register(r'bio',views.BioViewSet)
 urlpatterns = [
     path('get-leads', LeadView.as_view() ),
 
@@ -32,12 +33,18 @@ urlpatterns = [
     path('recent_borrowers', ClientView.as_view()),
     path('get-lender', LenderView.as_view()),
     path('get-lenderLogo', LenderLogoView.as_view()),
+    path('get-bio', BioView.as_view()),
     path('recent_leads',ClientView.as_view()),
     path('userList/',views.listAll, name='userList'),
     path('userDetails/<int:pk>/',views.userDetail, name='userDetail'),
     path('userCreate/',views.createUser, name='userCreate'),
     path('userUpdate/<int:pk>/',views.updateUser, name='userUpdate'),
     path('userDelete/<int:pk>/',views.deleteUser, name='userDelete'),
+    path('bio-detail/<int:pk>/',views.bioDetail, name='bio-detail'),
+    path('bio-list/',views.bioList, name='bio-list'),
+    path('bio-create/',views.bioCreate, name='bio-create'),
+    path('bio-update/<int:pk>/',views.bioUpdate, name='bio-update'),
+    path('bio-delete/<int:pk>/',views.bioDelete, name='bio-delete'),
     
     #automatic URL routing
     path('',include(router.urls)),
