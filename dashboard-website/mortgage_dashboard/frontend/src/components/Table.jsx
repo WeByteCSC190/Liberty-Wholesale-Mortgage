@@ -16,7 +16,7 @@ const TableComponent = ({ page, data, column }) => {
         </tr>
       </thead>
       <tbody>
-         {data.map((item, index) => <TableRow item={item} column={column} />)}
+         {data.map((item, index) => <TableRow item={item} column={column} index={index}/>)}
       </tbody>
       <tr className="last-table-row">
         Showing {data.length} out of {data.length} results 
@@ -34,22 +34,22 @@ const TableHeadItem = ({ item }) =>
   }
 };
 
-const TableRow = ({ item, column }) => (
-  <tr>
-    {column.map((columnItem, index) => {
-
+const TableRow = ({ item, column, index }) => (
+  <tr id={index}>
+    {column.map((columnItem) => {
+    console.log(item.caseId)
       if(columnItem.value.includes('.')) {
         const itemSplit = columnItem.value.split('.') //['address', 'city']
         return <td>{item[itemSplit[0]][itemSplit[1]]}</td>
       }
       if (columnItem.heading === 'AddRow') {
-        return (<th><ActionBtn /></th>);
+        return (<th><ActionBtn rowData={item} index={index} /></th>);
       } else {
         return <td>{item[`${columnItem.value}`]}</td>
       }
       
     })}
-  </tr>
+    </tr>
 )
 
 export default TableComponent;

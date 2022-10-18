@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import Dropdown from 'react-bootstrap/Dropdown';
 import axios from 'axios';
-function AddRow() {
+function EditRow({ rowData }) {
   const [show, setShow] = useState(false);
   const [formValue, setformValue] = React.useState({
-      caseId:'',
-      fName: '',
-      lName: '',
-      email: '',
-      phone_num: '',
-      status: '',
-      creditScore: '',
-      date:'',
-      status_check:false
+      caseId: rowData.caseId,
+      fName: rowData.fName,
+      lName: rowData.lName,
+      email: rowData.email,
+      phone_num:rowData.phone_num,
+      status:rowData.status,
+      creditScore:rowData.creditScore,
+      date:rowData.date,
+      status_check:rowData.status_check
   });
 
   const handleSubmit = async() => {
@@ -55,41 +56,18 @@ function AddRow() {
 
   const handleClose = () => {
     setShow(false)
-    setformValue({
-      ...formValue,
-      caseId: '',
-      fName: '',
-      lName: '',
-      email: '',
-      phone_num: '',
-      status: '',
-      creditScore: '',
-      date: '',
-      status_check: false
-    });
   }
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Add a Row
-      </Button>
+      <Dropdown.Item onClick={handleShow}>Edit</Dropdown.Item>
 
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Add a Borrower</Modal.Title>
+        <Modal.Title>Case ID: {rowData.caseId} </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-      <Form.Group className="mb-3" controlId="">
-        <Form.Label>Case ID</Form.Label>
-        <Form.Control name="caseId" type="text" placeholder="Enter Case ID" value={formValue.caseId}
-        onChange={handleChange}/>
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
-      
       <Form.Group className="mb-3" controlId="">
         <Form.Label>First Name</Form.Label>
         <Form.Control name="fName" type="text" placeholder="First Name" value={formValue.fName}
@@ -147,7 +125,7 @@ function AddRow() {
             Close
           </Button>
           <Button variant="primary" onClick={handleSubmit}>
-            Add
+            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
@@ -155,4 +133,4 @@ function AddRow() {
   );
 }
 
-export default AddRow;
+export default EditRow;
