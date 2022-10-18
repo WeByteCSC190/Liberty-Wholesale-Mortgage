@@ -558,14 +558,7 @@ h1 {
     font-weight: bold;
   }
 
-  .hide-link {
-    display: flex; 
-    opacity: 1; 
-  }
   
-
-
-
   /* Footer */
   .Footer-Body {
     padding: 40px; 
@@ -574,6 +567,7 @@ h1 {
 
   .Footer-Links {
     flex-direction: column; 
+    gap: 0; 
   }
 
   .Footer-Icons  {
