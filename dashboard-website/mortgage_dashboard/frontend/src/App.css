@@ -13,8 +13,6 @@
   
 }
 
-
-
 /* CSS Code for Navbar */
 .Navbar {
     box-sizing: border-box;
@@ -29,33 +27,30 @@
     gap: 4rem;
     padding: 0 1rem; 
     
-    
 }
-
-.Navbar a {
-  height: 100%;
-  display: flex;
-  text-decoration: none;
-}
-
 
 .Nav-Menu {
-  display: inline-flex; 
-  justify-content: center;
-  padding: 1rem;
-  list-style: none;
-  gap: 5rem;
-  margin-left: 20%;
-  
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 2.5%; 
+  justify-content: space-between;
+  gap: 4rem; 
 }
 
-.Nav-Menu li a {
-  color: inherit;
+.Nav-Menu li {
+
+  align-items: center;
+  text-align: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+.Nav-Menu a {
+  color: white; 
   border-radius: 10px;
-  text-decoration: none;
-  display: block; 
-
 }
+
 
 
 .Nav-Menu li.active {
@@ -69,6 +64,51 @@
   border-radius: 10px;
   color: white; 
   font-weight: bold;
+}
+
+.Drop-Item a{
+  text-decoration: none;
+}
+
+.Nav-Toggle-Menu {
+  display: none; 
+  background-color: rgba(13, 57, 122, 1);
+}
+
+.Nav-Toggle {
+  display: none;
+  background-color: rgba(13, 57, 122, 1);
+  box-sizing: content-box;
+  text-align: center;
+  flex-direction: column;
+  gap: 0; 
+  width: 100%;
+  height: 100%; 
+  
+}
+
+.Nav-Toggle li {
+  align-items: center;
+  text-align: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+.Nav-Toggle a {
+  color: white;
+  text-decoration: none;
+}
+
+.Nav-Toggle a:hover {
+  background-color:#0d6efd; 
+  border-radius: 10px;
+  color: white; 
+  font-weight: bold;
+}
+
+.hide-link {
+  display: none; 
+  opacity: 0;
 }
 
 .Footer {
@@ -92,6 +132,7 @@
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 4rem; 
 }
 
 .Footer-Links li {
@@ -372,17 +413,17 @@ h1 {
 */
 
 .last-table-row {
-  font-family: Helvetica;
-  border-top: 3;
-  border-top-color: rgba(13, 57, 122, 1);
-  margin-top: 1%;
-  align-content: center;
-  margin-bottom: 2%; 
+ display: flex; 
+ text-align: left;
+ margin-top: 3%;
+ margin-bottom: 3%;
+ color: rgba(13, 57, 122, 1);
+ font-weight: bold;
 }
 
 .btn-filter {
-  background-color: rgb(169, 191, 225) !important;
-  border-color:rgb(169, 191, 225);
+  background-color: rgb(200, 220, 249) !important;
+  border-color:rgb(154, 166, 184);
 }
 
 .loader{
@@ -394,7 +435,7 @@ h1 {
 /* For legal pages */ 
 .legal-body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #23abd4; 
+  background-color: #f0f8fa; 
   /*border: 1px red solid; */
 }
 
@@ -466,12 +507,19 @@ h1 {
 
 }
 
+.legal-title {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: bold; 
+}
+
 .legal-intro p {
   font-weight: lighter;
 }
 
 .legal-ending h3 {
-  text-align: center;
+  text-align: left;
+  margin-top: 0.2%;
 }
 
 .legal-ending p {
@@ -484,8 +532,39 @@ h1 {
 
 /* Responsive Navbar and Footer */
 
-@media(max-width: 600px){
+@media(max-width: 1000px){
   /* Navbar */ 
+
+  .Nav-Menu{
+    background-color: rgba(13, 57, 122, 1);
+    box-sizing: content-box;
+    text-align: center;
+    flex-direction: column;
+    gap: 0; 
+    padding: 0 18px;
+  }
+
+  .Nav-Toggle{
+    display: flex; 
+  }
+
+  .Nav-Menu + .Nav-Toggle {
+    margin: 0;
+    padding: 0; 
+  }
+
+  .Nav-Menu li.active {
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .hide-link {
+    display: flex; 
+    opacity: 1; 
+  }
+  
+
+
 
   /* Footer */
   .Footer-Body {

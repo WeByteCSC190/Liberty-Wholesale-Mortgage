@@ -10,7 +10,7 @@ export default function Footer() {
         <ul className="Footer-Links">
            <li><a href="/terms" 
                   target="_blank" 
-                  rel="noopener noreferrer">Terms of Service
+                  rel="noopener noreferrer">Terms of Use
                 </a>
             </li>
            <li><a href="/privacy" 

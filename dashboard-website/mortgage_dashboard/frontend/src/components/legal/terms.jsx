@@ -1,15 +1,16 @@
 import React, { Component } from "react";
+import WhiteLogo from "../images/logo.jpg"; 
 
 export default class Terms extends Component {
     render() {
       return(
         <>
       <body class="legal-body">
-        <h3></h3>
        <section class="legal-section">
          <div class="legal-container">
           <div class="legal-intro">
-            <h1>Terms and Conditions</h1>
+          
+            <h1 className="legal-title">MLO SUPPORT TERMS OF USE</h1>
              <p>
                Last Updated: 
              </p>

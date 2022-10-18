@@ -3,15 +3,14 @@ import React, { Component } from "react";
 export default class Template extends Component {
     render() {
         <body class="legal-body">
-     <h3></h3>
     <section class="legal-section">
       <div class="legal-container">
         <div class="legal-intro">
-          <h1>[Put name of topic here]</h1>
-          <p>
-            Last Updated: 
-          </p>
-      </div>
+        <h1 className="legal-title">NAME OF TEMPLATE HERE</h1>
+             <p>
+               Last Updated: 
+             </p>
+         </div>
     </div>
     </section>
 
