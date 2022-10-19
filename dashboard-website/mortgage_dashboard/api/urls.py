@@ -24,6 +24,8 @@ router.register(r'lender',views.LenderViewSet)
 router.register(r'lenderLogo', views.LenderLogoViewSet)  
 router.register(r'Annoucements',views.AnnoucementsViewSet)
 router.register(r'bio',views.BioViewSet)
+router.register(r'resources',views.ResourceView)
+
 urlpatterns = [
     path('get-leads', LeadView.as_view() ),
 

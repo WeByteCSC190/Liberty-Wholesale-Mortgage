@@ -13,36 +13,8 @@ from rest_framework.decorators import api_view
 from rest_framework import permissions 
 
 
-from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer
-from .models import Client,   UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio
-
-# Create your views here.
-
-## These are a couple of bad samples of what 
-## the api endpoint functions should look like
-## The below listed github repo has better examples
-## https://github.com/techwithtim/Music-Controller-Web-App-Tutorial/blob/main/Tutorial%2017/api/views.py
-## I have Mock Data in this folder, I need someone to
-## populate our database with that, or perhaps it 
-## would be easier to just directly use that
-## After the Mock Data is in a useable format
-## Create the API endpoints for getting all 
-## entries in leads table and borrowers table 
-## They should return JSON data 
-## Afterwards think of any other endpoints that
-## can be made and add them or list them
-## as tasks on the Github
-
-# @api_view(['GET'])
-# def apiView(request):
-#     apiUrls = {
-#         'List': '/userList',
-#         'Detail View':'/userDetails/<int: id>',
-#         'Create': '/userCreate',
-#         'Update': '/userUpdate/<int: id>',
-#         'Delete': '/userDelete/<int: id>',
-#     }
-#     return Response(apiUrls)
+from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources
+from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources
 
 @api_view(['GET'])
 def listAll(request):
@@ -85,6 +57,32 @@ def deleteUser(request,pk):
 
     
 ########
+
+class ResourceView(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
+    queryset = Resources.objects.all()
+    serializer_class= ResourcesSerializer
+
+class AddResourceView(APIView):
+    serializer_class = AddResources
+    def post(self, request, format=None):
+        if not self.request.session.exists(self.request.session.session_key):
+            self.request.session.create()
+
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            media = serializer.data.get('media')
+            files = serializer.data.get('files')
+            announcements = serializer.data.get('announcements')
+            news = serializer.data.get('news')
+            id = serializer.data.get('id')
+            name = serializer.data.get('name')
+
+
+            resource = Resources(media=media,files=files,announcements=announcements,news=news,id=id,name=name)
+            resource.save()
+            
+            return Response(ResourcesSerializer(resource).data, status=status.HTTP_200_OK)
 
 class ClientView(generics.ListCreateAPIView):
     queryset = Client.objects.all()

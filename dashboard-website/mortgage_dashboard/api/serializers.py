@@ -36,7 +36,16 @@ class LoanProcessorSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
+class ResourcesSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Resources
+        fields = '__all__'
 
+class AddResources(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Resources
+        fields = '__all__'
+        
 class LoanOfficerSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
