@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import WhiteLogo from "../images/logo.jpg"; 
+// import WhiteLogo from "../images/logo.jpg"; 
 
 export default class Terms extends Component {
     render() {
