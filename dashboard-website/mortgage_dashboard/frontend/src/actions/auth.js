@@ -20,9 +20,9 @@ export const logout = () => async dispatch => {
     const body = JSON.stringify({'withCredentials': true});
 
     try{
-        const res = await axios.post(`${process.env.REACT_APP_API_URL}/accounts/logout`, body, config);
+        const rest = await axios.post(`${process.env.REACT_APP_API_URL}/accounts/logout`, body, config);
         
-        if(res.data.success){
+        if(rest.data.success){
             dispatch({
                 type: LOGOUT_SUCCESS,
             });
@@ -43,22 +43,20 @@ export const login = (username,password) => async dispatch => {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'X-CSRFToken': Cookies.get('csrftoken')
+            'X-CSRFToken': Cookies.get('csrftoken') 
         }
     }; 
 
     const body = JSON.stringify({username,password});
 
     try{
-        const res = await axios.post(`${process.env.REACT_APP_API_URL}/accounts/login`,body, config);
+        const rest = await axios.post(`${process.env.REACT_APP_API_URL}/accounts/login`, body, config);
         
-        if(res.data.success){
+        if(rest.data.success){
             dispatch({
                 type: LOGIN_SUCCESS,
-                payload: res.data.username
+                payload: rest.data.username
             });
-
-
         } else{
             dispatch({
                 type: LOGIN_FAIL

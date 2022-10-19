@@ -20,28 +20,30 @@ export default function(state = initialState, action){
     const {type, payload} = action;
 
     switch(type){
-        default:
-            return state            
-        case LOGIN_FAIL:
-        case LOGOUT_FAIL:
-        case REGISTER_FAIL:
-            return state
+
         case REGISTER_SUCCESS:
             return {
                 ...state,
                 isAuthenticatied: false
             }
-        case LOGOUT_SUCCESS:
-            return {
-                ...state,
-                isAuthenticatied: true,
-                username: payload
-            }
         case LOGIN_SUCCESS:
             return{
                 ...state,
+                isAuthenticatied: true,
+                username: payload
+            }          
+        case LOGOUT_SUCCESS:
+            return {
+                ...state,
                 isAuthenticatied: false,
                 username: ''
-            }            
+            }                        
+        
+        case REGISTER_FAIL:
+        case LOGIN_FAIL:
+        case LOGOUT_FAIL:
+            return state         
+        default:
+            return state                   
     };
 }

@@ -9,7 +9,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BlueLogo from './images/blue_logo.png';
 import NavIcon from './images/blue_icon.png'; 
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import { NavLink, Link, useMatch, useResolvedPath } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import * as Icons from "@fortawesome/free-solid-svg-icons"
 import React, { Fragment } from 'react';
@@ -20,13 +20,34 @@ import {connect} from 'react-redux';
 // export default function NavbarCustom() {
 const NavbarCustom = (isAuthenticated, logout) =>{    
 
-  // const authenticatedLinks = (
-  //   <Fragment>
-  //     <li className='Nav-Menu'>
-  //       <NavLink className = ''></NavLink>
-  //     </li>
-  //   </Fragment>
-  // );
+  const authenticatedLinks = (
+    // <Fragment>
+    //   <li className='Nav-Menu'>
+    //     <NavLink className = 'nav-link' to='/dashboard'>Dashboard</NavLink>
+    //   </li>
+    //   <li className='Nav-Menu'>
+    //     <NavLink className = 'nav-link' onClick={logout} href='#!'>Logout</NavLink>
+    //   </li>      
+    // </Fragment>
+    <Container className="Nav-Menu">
+      <SwitchPage href="/">Dashboard</SwitchPage>
+      <SwitchPage href="/leads">Leads</SwitchPage>
+      <SwitchPage href="/borrowers">Borrowers</SwitchPage>
+      <SwitchPage href="/lenders" >Lenders</SwitchPage>
+      <SwitchPage href="/resources" >Resources</SwitchPage>
+    </Container>
+  );
+
+  const guestLinks = (
+    <Fragment>
+      <li className='Nav-Menu'>
+        <NavLink className = 'nav-link' to='/sign-in'>Login</NavLink>
+      </li>
+      <li className='Nav-Menu'>
+        <NavLink className = 'nav-link' to='/register'>Register</NavLink>
+      </li>      
+    </Fragment>
+  );
 
   return (
     <>
@@ -59,16 +80,12 @@ const NavbarCustom = (isAuthenticated, logout) =>{
             style={{ maxHeight: '100px' }}
             navbarScroll
             >
-            
-           <Container className="Nav-Menu">
-            <SwitchPage href="/">Dashboard</SwitchPage>
-            <SwitchPage href="/leads">Leads</SwitchPage>
-            <SwitchPage href="/borrowers">Borrowers</SwitchPage>
-            <SwitchPage href="/lenders" >Lenders</SwitchPage>
-            <SwitchPage href="/resources" >Resources</SwitchPage>
-           </Container>
+
+           {/* <Container className="Nav-Menu"> */}
+          {isAuthenticated ? authenticatedLinks : guestLinks}         
+           {/* </Container> */}
            
-         </Nav>
+         </Nav>        
           <NavDropButton />
         </Navbar.Collapse>
         
@@ -91,7 +108,6 @@ const NavbarCustom = (isAuthenticated, logout) =>{
       
 //   )
 // }
-
 
 
 function SwitchPage( {href, children, ...props }) {

@@ -24,7 +24,7 @@ const CSRFToken = () => {
             try{
                 await axios.get(`${process.env.REACT_APP_API_URL}/accounts/csrf_cookie`);
             }catch(err){
-
+                
             }
         };
 
@@ -34,7 +34,7 @@ const CSRFToken = () => {
     }, []);
 
     return (
-        <input type='hidden' name='csrfmiddlewaretoken' value={csrftoken} />
+        <input type='hidden' name='csrfmiddlewaretoken' value={csrftoken}/>
     );
 };
 
