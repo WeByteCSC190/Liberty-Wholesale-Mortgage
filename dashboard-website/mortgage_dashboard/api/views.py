@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework import permissions 
-
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources
 from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources
@@ -123,14 +123,14 @@ class RecentBorrowerViewSet(viewsets.ModelViewSet):
     serializer_class=BorrowerSerializer
 
 class LenderViewSet(viewsets.ModelViewSet):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
     queryset=Lender.objects.all()
     serializer_class=LenderSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['company', 'state', 'programs']
 
 class LenderView(generics.ListCreateAPIView):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
     queryset = Lender.objects.all()
     serializer_class= LenderSerializer
     filter_backends = [filters.SearchFilter]
