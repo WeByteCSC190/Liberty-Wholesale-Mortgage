@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-function AddRow() {
+function AddRow({api, page}) {
   const [show, setShow] = useState(false);
   const [formValue, setformValue] = React.useState({
       caseId:'',
@@ -31,10 +31,9 @@ function AddRow() {
     formData.append("date", '2022-10-13T02:23:05Z')
     console.log(Object.fromEntries(formData))
   try {
-    const postBorrowers = "http://localhost:8000/api/borrowers/";
     const response = await axios({
       method: "post",
-      url: postBorrowers,
+      url: api,
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     });
@@ -77,7 +76,7 @@ function AddRow() {
 
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Add a Borrower</Modal.Title>
+          <Modal.Title>Add {page}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>

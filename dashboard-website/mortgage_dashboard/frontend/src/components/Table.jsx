@@ -4,7 +4,7 @@ import ActionBtn from "../components/buttons/Action";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-const TableComponent = ({ page, data, column }) => {
+const TableComponent = ({api, page, data, column }) => {
   let pageName = page
   // State variable to keep track of all the expanded rows
   const [expandedRows, setExpandedRows] = useState([]);
@@ -38,7 +38,7 @@ const TableComponent = ({ page, data, column }) => {
       <tr className="table-title">List of {pageName}</tr>
       <tr className="table-heading">
             {column.map((item, index) =>
-              <TableHeadItem item={item} />
+              <TableHeadItem item={item} api={api} page={page} />
             )}
         </tr>
       </thead>
@@ -53,11 +53,12 @@ const TableComponent = ({ page, data, column }) => {
       </div>
   );
 }
-const TableHeadItem = ({ item }) =>
+const TableHeadItem = ({ item, api, page }) =>
   {
   if (item.heading === 'AddRow') {
-    return (<th><AddRow /></th>);
-  } else {
+    return (<th><AddRow page={`${page}`} api={`${api}`} /></th>);
+  }
+ else {
     return (<th>{`${item.heading}`}</th>);
   }
 };
