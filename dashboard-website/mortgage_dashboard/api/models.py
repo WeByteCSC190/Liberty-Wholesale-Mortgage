@@ -72,7 +72,7 @@ class Resources(models.Model):
                              default=generate_random_number(), unique=True)
     name = models.CharField('Name', max_length=40, null=True, blank=True)
 
-    def __str__(self):
+    def __int__(self):
         return self.id
 
 
