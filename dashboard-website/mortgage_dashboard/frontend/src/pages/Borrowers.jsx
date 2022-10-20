@@ -77,6 +77,7 @@ const Borrowers = () => {
     { heading: 'Phone', value: 'phone_num' },
     { heading: 'Date', value: 'date' },
     { heading: 'status', value: 'status' },
+    {heading: 'Details', value:'Details'},
     {heading: 'AddRow', value:'Add a Row'}
   ]
 

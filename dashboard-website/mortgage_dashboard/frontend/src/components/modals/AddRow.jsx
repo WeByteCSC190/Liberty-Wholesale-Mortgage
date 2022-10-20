@@ -72,7 +72,7 @@ function AddRow() {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Add a Row
+        Add Row
       </Button>
 
       <Modal show={show} onHide={handleClose} animation={false}>
