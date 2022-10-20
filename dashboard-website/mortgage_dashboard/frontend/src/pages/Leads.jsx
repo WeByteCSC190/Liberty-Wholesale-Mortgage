@@ -1,105 +1,171 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
 import * as React from 'react';
-import "../components/Leads.css";
-import AddRowLeads from "../components/modals/AddRowLeads"
+import Moment from 'react-moment';
+import { useState, useEffect } from 'react';
 import Navbar from "../components/Navbar";
 import Search from "../components/Search";
-import { Button, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-
-export default function Leads() {
-  return (
-    <>
-      <div className="Leads-Header">
-        <Navbar />
-
-      </div>
-      <div className="Leads-Content">
-        <p className="Page-Title">Leads</p>
-        <LeadsTable />
-      </div>
-    </>
-  )
+import Table from "../components/Table";
+import Loader from "../components/spinner";
+import Footer from '../components/Footer';
+const Leads = () => {
+  const [dataTable, setDataTable] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+  const [filterType, setFilterType] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const getLeadsUrl = "http://localhost:8000/api/leads/";
+  let testData = []
+  
+  function getBorrowers() {
+  axios({
+      method: "GET",
+      url:getLeadsUrl,
+    }).then((response)=>{
+      const data = response.data;
+      setDataTable(data)
+      testData = data;
+      return data
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        }
+    })
 }
-const LeadsTable = () => {
-  const [leads, setLeads] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/leads/")
-      .then(response => setLeads(response.data))
-  }, [])
+    getBorrowers();
+    fetchData(searchValue, filterType).then((dataTable) => {
+      setDataTable(dataTable);
+      console.log(dataTable)
+    })
+    const filteredData = filterTable(searchValue, filterType);
+    setDataTable(filteredData);
+  }, [searchValue, filterType]);
 
-  // function createData(cid, date, fname, lname, fico, email, phone_num, lead_status) {
-  //   return { cid, date, fname, lname, fico, email, phone_num, lead_status };
-  // }
 
-  // const rows = [
-  //   createData('234234', '03/01/21', 'Claire', 'Winchester', 159, 'claire@hotmail.uk', '916-799-0111', 3),
-  //   createData('523449', '06/31/20', 'Dave', 'Crocker', 159, 'odd@hotmail.uk', '916-799-0111', 3),
-  //   createData('614133', '07/11/19', 'Batman', 'NotWayne', 159, 'notwayne@hotmail.uk', '916-799-0111', 3),
-  //   createData('902352', '01/01/18', 'Monsour', 'Friedman', 159, 'mfriedman@hotmail.uk', '916-799-0111', 3),
-  //   createData('206949', '04/18/17', 'Jessica', 'Casa', 159, 'casa@hotmail.uk', '916-799-0111', 3),
-  //   createData('490909', '09/21/16', 'Prenoit', 'Frenchman', 159, 'prenoitf@hotmail.uk', '916-799-0111', 3),
-  // ];
+  const column = [
+    { heading: 'CaseId ', value: 'caseId' },
+    { heading: 'First Name', value: 'fName' },
+    { heading: 'Last Name', value: 'lName' },
+    { heading: 'Credit Score', value: 'creditScore' },
+    { heading: 'Email', value: 'email' },
+    { heading: 'Phone', value: 'phone_num' },
+    { heading: 'Date', value: 'date' },
+    { heading: 'status', value: 'status' },
+    {heading: 'Details', value:'Details'},
+    {heading: 'AddRow', value:'AddLead'}
+  ]
+
+  const fetchData = (searchValue, filterType) => {
+    setIsLoading(true);
+    
+    return new Promise((resolve) => {
+         
+      setTimeout(() => {
+   
+        if (searchValue !== '') {
+          resolve(testData.filter(dataTable => dataTable.fName.toLowerCase().includes(searchValue.toLowerCase())
+          ));
+        }
+        if (filterType !== '') {
+          switch (filterType) {
+            case 'First Name':
+              // console.log("filter by first name")
+              resolve(handleSorting("fName", 'asc'))
+            case 'Last Name':
+              // console.log("filter by last name")
+              resolve(handleSorting("lName", 'asc'))
+            case 'Date':
+              // console.log("filter by date")
+              // resolve(handleSortingDate())
+             resolve(testData)
+            default:
+              resolve(testData)
+          }
+        } else if (searchValue === '' || filterType === '') {
+          resolve(testData)
+        }
+        setIsLoading(false);
+      }, 1000);
+    });
+  };
+const handleSorting = (sortField, sortOrder) => {
+ if (sortField) {
+  const sorted = [...dataTable].sort((a, b) => {
+    return (
+        a[sortField].localeCompare(b[sortField], "en", {
+        numeric: true,
+        }) * (sortOrder === "asc" ? 1 : -1)
+    );
+  });
+   return sorted;
+ }
+};
+const handleSortingDate = () => {
+  const sorted = [...dataTable].sort((a, b) => {
+    console.log((a.date))
+    return (
+        (new Moment(a.date)) - (new Moment(b.date))
+    );
+  });
+   return sorted;
+};
+  const filterTable = (searchValue, filterType) => {
+    setIsLoading(true);
+    console.log("filterTable function called")
+    if (filterType !== '') {
+      switch(filterType) {
+        case 'First Name':
+            // console.log("filter by first name")
+            return handleSorting("fName", 'asc')
+        case 'Last Name':
+            // console.log("filter by last name")
+            return handleSorting("lName", 'asc')
+        case 'Date':
+            // console.log("filter by date")
+            // return handleSortingDate()
+           
+        default:
+            return testData
+      }
+    } else if (searchValue === '' || filterType==='') {
+      return testData
+    }
+    if (searchValue !== '') {
+      console.log(testData.filter(dataTable => dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
+      ))
+      return testData.filter(dataTable => dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
+      );
+    }
+    setIsLoading(false);
+  };
   return (
     <>
-      <Search />
-      <br />
-      <div className="Leads-Table-Title">
+    <div className="Header">
+      <Navbar />
+    </div>
+     {/* <p className="Page-Title">Leads</p> */}
+     <div className="Content">
+     <div className="Leads">
+      
+      {isLoading ?
+        <Loader /> :   <div>    
+          <Search 
+              callback1={(searchValue)=> setSearchValue(searchValue)} 
+              callback2={(filterType)=> setFilterType(filterType)}
+              />
+          <Table api="http://localhost:8000/api/leads/" page={"Leads"} data={dataTable} column={column} />
 
+          <div className="Footer">
+             <Footer />
+          </div>
+         </div>
+      }
       </div>
-      <div style={{ paddingLeft: 90, paddingRight: 90 }}>
-        <tr className="table-title">List of Leads</tr>
-        <TableContainer component={Paper} className="Leads-Table">
-
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-
-            <TableHead sx={{ backgroundColor: "#0d397a", fontSize: "16px" }}>
-
-              <TableRow >
-                <TableCell sx={{ color: "white" }} align="right">Case ID</TableCell>
-                <TableCell sx={{ color: "white" }} align="right">Date</TableCell>
-                <TableCell sx={{ color: "white" }} align="right">First Name</TableCell>
-                <TableCell sx={{ color: "white" }} align="right">Last Name</TableCell>
-                <TableCell sx={{ color: "white" }} align="right">FICO</TableCell>
-                <TableCell sx={{ color: "white" }} align="right">Email Address</TableCell>
-                <TableCell sx={{ color: "white" }} align="right">Phone Number</TableCell>
-                <TableCell sx={{ color: "white" }} >Status</TableCell>
-                {/* <Button style={{ */}
-                {/*   backgroundColor: "white", color: "#2c81d5", borderColor: '#2c81d5', */}
-                {/*   borderTopLeftRadius: "25%", borderTopRightRadius: "25%", borderBottomRightRadius: "25%", */}
-                {/*   borderBottomLeftRadius: "25%", top: "20%", right: "50%" */}
-                {/* }} variant="contained" align="right" */}
-                {/*   href="http://localhost:8000/api/leads/" className="Leads-Add-Button">+ Add Row</Button> */}
-                <AddRowLeads />
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {leads.map((row) => (
-                <TableRow
-                  key={row.date}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  {/* <TableCell component="th" scope="row"> */}
-                  {/*   {row.name} */}
-                  {/* </TableCell> */}
-                  <TableCell align="right">{row.caseId}</TableCell>
-                  <TableCell align="right">{row.date}</TableCell>
-                  <TableCell align="right">{row.fName}</TableCell>
-                  <TableCell align="right">{row.lName}</TableCell>
-                  <TableCell align="right">{row.creditScore}</TableCell>
-                  <TableCell align="right">{row.email}</TableCell>
-                  <TableCell align="right">{row.phone_num}</TableCell>
-                  <Button variant="outlined" sx={{}}>{row.status}</Button>
-                  <Button variant="outlined" sx={{ left: "35%" }} className="Leads-Actions-Button">Actions</Button>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
       </div>
-    </>
+      </>
   );
 }
 
-
+export default Leads;
