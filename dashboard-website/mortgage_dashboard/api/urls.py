@@ -31,6 +31,7 @@ urlpatterns = [
 
     path('add_lead', AddLead),
     path('get-borrowers',ClientView.as_view() ),
+    path('borrowerview', views.BorrowerView.as_view()),
     path('add_client', AddClient),
     path('recent_borrowers', ClientView.as_view()),
     path('get-lender', LenderView.as_view()),
