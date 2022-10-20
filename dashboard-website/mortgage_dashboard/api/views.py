@@ -197,7 +197,9 @@ class addLeadView(APIView):
 class BorrowerView(generics.ListCreateAPIView):
     permission_classes = (permissions.AllowAny, )
     queryset = Borrower.objects.all()
-    serializer_class= ClientSerializer
+    serializer_class=BorrowerSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['Date', 'First Name', 'Last Name', 'Status']
 
 class AddBorrower(APIView):
     serializer_class = AddBorrower

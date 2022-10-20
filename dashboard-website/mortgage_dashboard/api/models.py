@@ -9,7 +9,7 @@ import random
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-
+from django.utils.translation import gettext_lazy as lazy
 # Create your models here.
 
 # Models.py gets converted into our database and
@@ -75,12 +75,25 @@ class Resources(models.Model):
     def __int__(self):
         return self.id
 
-
 class Status(models.Model):
     # 2lead = models.ForeignKey(Lead, blank=True, null = True)
     # borrower = models.ForeignKey(Lead, blank=True, null= True)
+    class Borrowerstatus(models.TextChoices):
+        Application_Complete = 'AppC', lazy('Application Complete')
+        AUS_Cleared = 'AusC', lazy('AUS Cleared')
+        Initial_Disclosure_Sent = 'IDS', lazy('Initial Disclosure Sent')
+        Title_Ordered = 'TO', lazy('Title Ordered')
+        Title_Recieved = 'TR', lazy('Title Recieved')
+        Appraisal_Ordered = 'AO', lazy('Appraisal Ordered')
+        Appraisal_Recieved = 'AR', lazy('Appraisal Recieved')
+        Initial_Disclosure_Recieved = 'IDR', lazy('Initial Disclosure Recieved')
+        UW_Submitted = 'UwS', lazy('UW Submitted')
+        UW_Response = 'UwR', lazy('UW Response')
+        Pending_Conditions = 'PC', lazy('Pending Conditions')
+        Cleared_To_Close = 'CTC', lazy('Cleared To Close')
+        Closing_Package_Sent = 'CPS', lazy('Closing Package Sent')
     status = models.CharField(
-        'Status', primary_key=True, max_length=50, null=False, blank=True)
+        choices = Borrowerstatus.choices, primary_key=True, max_length=12, null=False, blank=True)
     id = models.IntegerField(
         'ID', null=False, default=generate_random_number(), unique=True)
     name = models.CharField('Name', max_length=40, null=True, blank=True)
@@ -119,7 +132,7 @@ class Lead(models.Model):
 class Borrower(models.Model):
     caseId = models.IntegerField(
         'Case ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
-    date = models.DateTimeField('Date')
+    date = models.DateTimeField(auto_now_add = True)
     fName = models.CharField(max_length=40, null=True, blank=True)
     lName = models.CharField(max_length=40, null=True, blank=True)
     creditScore = models.IntegerField(
@@ -129,7 +142,7 @@ class Borrower(models.Model):
     status = models.ForeignKey(
        Status, blank=True, null=True, on_delete=models.CASCADE)
     
-    status_check = models.BooleanField('Approved', default = False)
+
     
     def __str__(self):
         return self.fName
