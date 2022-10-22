@@ -47,6 +47,7 @@ const Borrowers = () => {
       const data = response.data;
       setDataTable(data)
       testData = data;
+      console.log(data)
       return data
     }).catch((error) => {
       if (error.response) {
@@ -77,7 +78,8 @@ const Borrowers = () => {
     { heading: 'Phone', value: 'phone_num' },
     { heading: 'Date', value: 'date' },
     { heading: 'status', value: 'status' },
-    {heading: 'AddRow', value:'Add a Row'}
+    {heading: 'Details', value:'Details'},
+    {heading: 'AddRow', value:'AddBorrower'}
   ]
 
   const fetchData = (searchValue, filterType) => {
@@ -168,7 +170,7 @@ const handleSortingDate = () => {
     <div className="Header">
       <Navbar />
     </div>
-     <p className="Page-Title">Borrowers</p>
+     {/* <p className="Page-Title">Borrowers</p> */}
      <div className="Content">
      <div className="Borrowers">
       
@@ -178,7 +180,7 @@ const handleSortingDate = () => {
               callback1={(searchValue)=> setSearchValue(searchValue)} 
               callback2={(filterType)=> setFilterType(filterType)}
               />
-          <Table page={"Borrowers"} data={dataTable} column={column} />
+          <Table api="http://localhost:8000/api/borrowers/"  page={"Borrowers"} data={dataTable} column={column} />
 
           <div className="Footer">
              <Footer />

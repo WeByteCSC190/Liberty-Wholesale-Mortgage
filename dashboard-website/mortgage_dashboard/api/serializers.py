@@ -28,7 +28,7 @@ class AddBorrower(serializers.ModelSerializer):
 class BorrowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Borrower
-        fields = '__all__'
+        fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
 
 
 class LoanProcessorSerializer(serializers.ModelSerializer):

@@ -5,11 +5,11 @@ import Navbar from "../../components/NavbarAdmin";
 import Table from "../../components/Table";
 export default function Users() {
   const [dataTable, setDataTable] = useState([]);
-  const getBorrowersUrl = "http://localhost:8000/api/borrowers";
-  function getBorrowers() {
+  const getUsersUrl = "http://localhost:8000/api/borrowers/";
+  function getUsers() {
   axios({
       method: "GET",
-      url:getBorrowersUrl,
+      url:getUsersUrl,
     }).then((response)=>{
       const data = response.data;
       setDataTable(response.data)
@@ -22,11 +22,11 @@ export default function Users() {
         }
     })}
   useEffect(() => {
-    getBorrowers();
+    getUsers();
   }, []);
   const column = [
-    { heading: 'First Name', value: 'fname' },
-    { heading: 'Last Name', value: 'lname' },
+    { heading: 'First Name', value: 'fName' },
+    { heading: 'Last Name', value: 'lName' },
     { heading: 'Email', value: 'email' },
     { heading: 'Phone', value: 'phone_num' },
     { heading: 'Date', value: 'date' },
@@ -35,7 +35,7 @@ export default function Users() {
   return (
     <div className="Borrowers">
        <Navbar />
-       <Table data={dataTable} column={column}/>
+       <Table page="Users" data={dataTable} column={column} />
           </div>
   );
 }

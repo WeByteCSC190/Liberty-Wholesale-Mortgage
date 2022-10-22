@@ -3,6 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import axios from 'axios';
 function EditRow({ rowData }) {
   const [show, setShow] = useState(false);
@@ -68,56 +71,76 @@ function EditRow({ rowData }) {
         </Modal.Header>
         <Modal.Body>
           <Form>
-      <Form.Group className="mb-3" controlId="">
-        <Form.Label>First Name</Form.Label>
-        <Form.Control name="fName" type="text" placeholder="First Name" value={formValue.fName}
-        onChange={handleChange}/>
-        </Form.Group>
-            
-       <Form.Group className="mb-3" controlId="">
-        <Form.Label>Last Name</Form.Label>
-        <Form.Control name="lName" type="text" placeholder="Last Name" value={formValue.lName}
-        onChange={handleChange}/>
-        </Form.Group>
-            
-       <Form.Group className="mb-3" controlId="">
-        <Form.Label>Credit Score</Form.Label>
-        <Form.Control name="creditScore" type="text" placeholder="Credit Score" value={formValue.creditScore}
-        onChange={handleChange} />
-        </Form.Group>
+            <Container>
+              <Row>
+                <Col>
+                    <Form.Group className="mb-3" controlId="">
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control name="fName" type="text" placeholder="First Name" value={formValue.fName}
+                    onChange={handleChange}/>
+                    </Form.Group>
+                </Col>
+                <Col>
+                    <Form.Group className="mb-3" controlId="">
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control name="lName" type="text" placeholder="Last Name" value={formValue.lName}
+                    onChange={handleChange}/>
+                    </Form.Group>
+                </Col>
+              </Row>
       
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email</Form.Label>
-        <Form.Control name="email" type="email" placeholder="Enter Email" value={formValue.email}
-        onChange={handleChange}/>
-        </Form.Group>
+             <Row>
+                <Col>
+                    <Form.Group className="mb-3" controlId="">
+                    <Form.Label>Credit Score</Form.Label>
+                    <Form.Control name="creditScore" type="text" placeholder="Credit Score" value={formValue.creditScore}
+                    onChange={handleChange} />
+                    </Form.Group>
+                </Col>
+                <Col>
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Label>Email</Form.Label>
+                      <Form.Control name="email" type="email" placeholder="Enter Email" value={formValue.email}
+                      onChange={handleChange}/>
+                      </Form.Group>
+                </Col>
+              </Row>
 
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>Phone</Form.Label>
-        <Form.Control name="phone_num" type="text" placeholder="Enter Phone Number" value={formValue.phone_num}
-        onChange={handleChange} />
-        </Form.Group>
+              <Row>
+                <Col>
+                    <Form.Group className="mb-3" controlId="">
+                    <Form.Label>Phone</Form.Label>
+                    <Form.Control name="phone_num" type="text" placeholder="Enter Phone Number" value={formValue.phone_num}
+                    onChange={handleChange} />
+                    </Form.Group>
+                </Col>
+                <Col>
+                      <Form.Group controlId="date">
+                      <Form.Label>Date</Form.Label>
+                      <Form.Control name="date" type="date" placeholder="Creation Date" value={formValue.date}
+                    onChange={handleChange}/>
+                    </Form.Group>
+                </Col>
+              </Row>
         
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>Select Status</Form.Label>
-        <Form.Select name="status" aria-label="Default select example" value={formValue.status}
-        onChange={handleChange}>
-        <option>Open to select status</option>
-        <option value="Closed">Closed</option>
-        <option value="New">New</option>
-        <option value="In progress">In progress </option>
-        </Form.Select>
-            </Form.Group>
-            
-        <Form.Group controlId="date">
-          <Form.Label>Select Date</Form.Label>
-          <Form.Control name="date" type="date" placeholder="Creation Date" value={formValue.date}
-        onChange={handleChange}/>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="">
-        <Form.Check value={formValue.status_check}
-        onChange={handleChange} type="checkbox" label="The borrower is approved" />
-        </Form.Group>
+              <Row>
+                     <Form.Group className="mb-3" controlId="">
+                    <Form.Label>Select Status</Form.Label>
+                    <Form.Select name="status" aria-label="Default select example" value={formValue.status}
+                    onChange={handleChange}>
+                    <option>Open to select status</option>
+                    <option value="Closed">Closed</option>
+                    <option value="New">New</option>
+                    <option value="In progress">In progress </option>
+                    </Form.Select>
+                        </Form.Group>
+                
+                     <Form.Group className="mb-3" controlId="">
+                    <Form.Check value={formValue.status_check}
+                    onChange={handleChange} type="checkbox" label="The borrower is approved" />
+                    </Form.Group>
+              </Row>
+        </Container>
         </Form>
         </Modal.Body>
         <Modal.Footer>
