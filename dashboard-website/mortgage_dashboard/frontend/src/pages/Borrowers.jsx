@@ -142,13 +142,13 @@ const handleSortingDate = () => {
     if (filterType !== '') {
       switch(filterType) {
         case 'First Name':
-            // console.log("filter by first name")
+            console.log("filter by first name")
             return handleSorting("fName", 'asc')
         case 'Last Name':
-            // console.log("filter by last name")
+            console.log("filter by last name")
             return handleSorting("lName", 'asc')
         case 'Date':
-            // console.log("filter by date")
+            console.log("filter by date")
             // return handleSortingDate()
            
         default:
