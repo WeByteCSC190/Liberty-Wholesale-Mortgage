@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Icons from "@fortawesome/free-solid-svg-icons";
 
@@ -15,6 +17,7 @@ const Search=({callback1, callback2})=> {
   }
   const handleFilter = e => {
     e.preventDefault()
+    console.log(e.target)
     setFilterValue(e.target.value)
     var clicked = document.querySelectorAll(".btn-filter")
     for (var i = 0; i < clicked.length; i++) 
@@ -54,20 +57,28 @@ const Search=({callback1, callback2})=> {
             Filters:
         </Col>
         <Col>
-              <input value="Date" type="button"
-            onClick={handleFilter} className="btn btn-primary" />
+          <DropdownButton value="Date" id="date" title="Date">
+              <Dropdown.Item onClick={handleFilter}>Asc</Dropdown.Item>
+              <Dropdown.Item onClick={handleFilter}>Desc</Dropdown.Item>
+          </DropdownButton>
         </Col>
         <Col>
-             <input value="First Name" type="button"
-            onClick={handleFilter} className="btn btn-primary" />
+            <DropdownButton id="firstName" title="First Name">
+              <Dropdown.Item  value="First Name" onClick={handleFilter}>Asc</Dropdown.Item>
+              <Dropdown.Item onClick={handleFilter}>Desc</Dropdown.Item>
+          </DropdownButton>
         </Col>
         <Col>
-             <input value="Last Name" type="button"
-            onClick={handleFilter} className="btn btn-primary" />
+              <DropdownButton id="lastName" title="Last Name">
+                <Dropdown.Item value="Last Name"  onClick={handleFilter}>Asc</Dropdown.Item>
+                <Dropdown.Item onClick={handleFilter}>Desc</Dropdown.Item>
+            </DropdownButton>
         </Col>
         <Col>
-             <input value="Status" type="button"
-            onClick={handleFilter} className="btn btn-primary" />
+            <DropdownButton value="Status" id="status" title="Status">
+              <Dropdown.Item value="Status" onClick={handleFilter}>Asc</Dropdown.Item>
+              <Dropdown.Item onClick={handleFilter}>Desc</Dropdown.Item>
+            </DropdownButton>
         </Col>
         <Col>
              <input value="Reset" type="button"
