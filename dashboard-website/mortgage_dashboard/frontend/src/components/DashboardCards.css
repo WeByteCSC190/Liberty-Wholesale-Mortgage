@@ -1,43 +1,46 @@
-
 .DashboardCards{
   position: relative;
   display: flex;
   justify-content: space-between;
+  justify-self: center;
+  width: 90%;
+  overflow: hidden;
 }
-.card{
-   display: flex;
-   flex-wrap: wrap;
-   height: 100%;
-   width: 20%;
-   margin: 10px;
-   border: 3px solid lightblue;
-   font-size: 20px;
-}
-
-.CardTitle{
-  flex-grow: 1;
-  flex-basis: 50%;
-  font-size: .8vw;
-  display: inline-block;
-  padding: 5px;
-}
-
-.CardFilter{
-  position: absolute;
-  right: 10%;
-  flex-grow: 1;
-  flex-basis: 50%;
-  display: inline-block;
-  font-size: .5vw;
-  margin: 0;
+.dashboard-card{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-flow: row wrap;
+  /* justify-content: flex-start; */
+  column-gap: 30%;
+  /* height: 100%; */
+  width: 20%;
+  margin: 10px;
+  border: 3px solid lightblue;
+  font-size: 20px;
 }
 
-.CardValue{
-  position: absolute;
-  top: 30%;
-  right: 45%;
-  flex-basis: 100%;
-  font-size: 3vw;
+.card-title{
+  flex: 1 0;
+  width: 50%;
+}
+
+.card-filter{
+  flex: 1 0;
+  margin: 5px;
+  width: 30%;
+}
+
+
+.card-value{
+  flex: 1 0 100%;
+  color: blue;
+  font-size: 50px;
+  align-self: stretch;
+  align-content: center;
+  margin: auto;
+  font-weight: bold;
   text-align: center;
-  font-weight: bolder;
 }
+
+
