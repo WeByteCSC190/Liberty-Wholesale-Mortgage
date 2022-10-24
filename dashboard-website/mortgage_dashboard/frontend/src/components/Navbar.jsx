@@ -61,7 +61,7 @@ const NavbarCustom = (isAuthenticated, logout) =>{
             navbarScroll
             >
             
-           <Col>
+           <Container>
             <ul className="Nav-Menu">
             <SwitchPage href="/">Dashboard</SwitchPage>
             <SwitchPage href="/leads">Leads</SwitchPage>
@@ -69,7 +69,7 @@ const NavbarCustom = (isAuthenticated, logout) =>{
             <SwitchPage href="/lenders" >Lenders</SwitchPage>
             <SwitchPage href="/resources" >Resources</SwitchPage>
             </ul>
-           </Col>
+           </Container>
            
          </Nav>
           <NavDropButton />
