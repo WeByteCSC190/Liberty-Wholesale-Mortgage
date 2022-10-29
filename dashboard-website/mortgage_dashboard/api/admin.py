@@ -12,6 +12,7 @@ admin.site.register(Annoucements)
 admin.site.register(Files)
 
 admin.site.register(Media)
+admin.site.register(Video)
 admin.site.register(Resources)
 admin.site.register(Status)
 admin.site.register(Lead)

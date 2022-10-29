@@ -10,6 +10,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as lazy
+from django.core.validators import FileExtensionValidator
 # Create your models here.
 
 # Models.py gets converted into our database and
@@ -57,6 +58,11 @@ class Media(models.Model):
     def __str__(self):
         return self.link
 
+class Video(models.Model):
+    video = models.FileField(upload_to='videos_uploaded',null=True,
+        validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
+    date_uploaded = models.DateTimeField(default=timezone.now)
+    user = models.ForeignKey(User,on_delete= models.CASCADE)
 
 class Resources(models.Model):
     media = models.ForeignKey(
@@ -71,6 +77,7 @@ class Resources(models.Model):
     id = models.IntegerField('ID', primary_key=True, null=False,
                              default=generate_random_number(), unique=True)
     name = models.CharField('Name', max_length=40, null=True, blank=True)
+    video = models.ForeignKey(Video, blank=True, null=True, on_delete=models.CASCADE)
 
     def __int__(self):
         return self.id

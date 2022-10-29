@@ -77,9 +77,9 @@ class AddResourceView(APIView):
             news = serializer.data.get('news')
             id = serializer.data.get('id')
             name = serializer.data.get('name')
+            video = serializer.data.get('video')
 
-
-            resource = Resources(media=media,files=files,announcements=announcements,news=news,id=id,name=name)
+            resource = Resources(media=media,files=files,announcements=announcements,news=news,id=id,name=name,video=video)
             resource.save()
             
             return Response(ResourcesSerializer(resource).data, status=status.HTTP_200_OK)
