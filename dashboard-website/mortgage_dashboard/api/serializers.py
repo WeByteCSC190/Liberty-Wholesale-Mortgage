@@ -28,7 +28,7 @@ class AddBorrower(serializers.ModelSerializer):
 class BorrowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Borrower
-        fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
+        fields = '__all__'
 
 
 class LoanProcessorSerializer(serializers.ModelSerializer):
@@ -86,3 +86,7 @@ class BiographySerializer(serializers.ModelSerializer):
         model = Bio
         fields = '__all__'
 
+class RecycleBinSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RecyclingBin
+        fields = '__all__'

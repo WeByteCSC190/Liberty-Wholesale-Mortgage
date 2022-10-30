@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.urls import path, include
-from .views import ClientView, AddClient, LeadView, AddLead, LenderView, LenderLogoView,BioView
+from .views import ClientView, AddClient, LeadView, AddLead, LenderView, LenderLogoView,BioView,RecyclingBinView
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -25,6 +25,7 @@ router.register(r'lenderLogo', views.LenderLogoViewSet)
 router.register(r'Annoucements',views.AnnoucementsViewSet)
 router.register(r'bio',views.BioViewSet)
 router.register(r'resources',views.ResourceView)
+router.register(r'recyclingBin',views.RecyclingBinViewSet)
 
 urlpatterns = [
     path('get-leads', LeadView.as_view() ),
@@ -48,6 +49,12 @@ urlpatterns = [
     path('bio-create/',views.bioCreate, name='bio-create'),
     path('bio-update/<int:pk>/',views.bioUpdate, name='bio-update'),
     path('bio-delete/<int:pk>/',views.bioDelete, name='bio-delete'),
+    path('borrower-delete/<int:pk>/',views.borrowerDelete, name='borrower-delete'),
+    path('borrower-recover/<int:pk>/',views.borrowerRecover, name='borrower-recover'),
+    path('lead-delete/<int:pk>/',views.leadDelete, name='lead-delete'),
+    path('lead-recover/<int:pk>/',views.leadRecover, name='lead-recover'),
+    path('recyclingBin-delete/<int:pk>/',views.binDelete, name='recycleingBin-delete'),
+    path('get-recyclebin', RecyclingBinView.as_view()),
     
     #automatic URL routing
     path('',include(router.urls)),

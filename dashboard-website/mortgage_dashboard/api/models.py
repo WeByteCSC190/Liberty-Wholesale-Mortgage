@@ -154,6 +154,28 @@ class Borrower(models.Model):
     def __str__(self):
         return self.fName
 
+class RecyclingBin(models.Model):
+    dataName = models.CharField('Data Name', max_length=30, null=True, blank=True)
+    trashID = models.IntegerField(
+        'trash ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
+    resources = models.ForeignKey(
+        Resources, blank=True, null=True, on_delete=models.CASCADE)
+
+    caseId = models.IntegerField(
+        'Case ID', null=False, default=generate_random_number())
+    date = models.DateTimeField('Date')
+    fName = models.CharField(max_length=40, null=True, blank=True)
+    lName = models.CharField(max_length=40, null=True, blank=True)
+    creditScore = models.IntegerField(
+        'Credit Score', blank=True, null=True, unique=False)
+    email = models.EmailField('Email Address')
+    phone_num = models.CharField('Phone Number', max_length=16, null=True)
+    status = models.ForeignKey(
+        Status, blank=True, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.dataName + " " + f'caseId: {self.caseId}'
+
 
 class MileStone(models.Model):
     id = models.IntegerField('ID', primary_key=True, null=False,
