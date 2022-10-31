@@ -87,6 +87,7 @@ Enhanced entity-relationship (EER) modeling for conceptual data modeling.
 - python -m pip install -r requirements.txt or python3 -m pip install -r requirements.txt
 - On the Node.js side, you will need to install quite a few packages, navigate into the Docker file and you will see the installed Node dependencies.
 - You will need to run two processes at the same time, so either use "tmux" to run them in the same terminal window, run it in two terminals, or run them in the background by adding '&' to the end of the commands.
+- If you run into argon error in admin, run either python3 -m pip install argon2-cffi or python -m pip install argon2-cffi
 
 
 ### Docker Instructions
