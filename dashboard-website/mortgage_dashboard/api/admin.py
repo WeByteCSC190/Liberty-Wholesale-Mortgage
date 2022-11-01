@@ -24,6 +24,9 @@ admin.site.register(LoanProcessor)
 admin.site.register(LenderLogo)
 admin.site.register(Bio)
 admin.site.register(RecyclingBin)
+admin.site.register(BorrowerNote)
+#admin.site.register(LeadNote)
+
 class LenderResources(resources.ModelResource):
     class Meta:
         model = Lender

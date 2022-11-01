@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.urls import path, include
-from .views import ClientView, AddClient, LeadView, AddLead, LenderView, LenderLogoView,BioView,RecyclingBinView
+from .views import ClientView, AddClient, LeadView, AddLead, LenderView, LenderLogoView,BioView,RecyclingBinView,BorrowerNoteView,LeadNoteView
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -26,6 +26,8 @@ router.register(r'Annoucements',views.AnnoucementsViewSet)
 router.register(r'bio',views.BioViewSet)
 router.register(r'resources',views.ResourceView)
 router.register(r'recyclingBin',views.RecyclingBinViewSet)
+router.register(r'borrowernote',views.borrowerNoteViewSet)
+router.register(r'leadnote',views.LeadNoteViewSet)
 
 urlpatterns = [
     path('get-leads', LeadView.as_view() ),
@@ -55,7 +57,17 @@ urlpatterns = [
     path('lead-recover/<int:pk>/',views.leadRecover, name='lead-recover'),
     path('recyclingBin-delete/<int:pk>/',views.binDelete, name='recycleingBin-delete'),
     path('get-recyclebin', RecyclingBinView.as_view()),
-    
+    path('get-borrowernote', BorrowerNoteView.as_view()),
+    path('borrowernote-list/',views.borrowerNoteList, name='borrowernote-list'),
+    path('borrowerNote-create/',views.borrowerNoteCreate, name='borrowerNote-create'),
+    path('borrowerNote-update/<int:fk>/',views.borrowerNoteUpdate, name='borrowerNote-update'),
+    path('borrowerNote-delete/<int:fk>/',views.borrowerNoteDelete, name='borrowerNote-delete'),
+    path('get-leadnote', LeadNoteView.as_view()),
+    path('leadnote-list/',views.borrowerNoteList, name='borrowernote-list'),
+    path('leadNote-create/',views.LeadNoteCreate, name='borrowerNote-create'),
+    path('leadNote-update/<int:fk>/',views.LeadNoteUpdate, name='borrowerNote-update'),
+    path('leadNote-delete/<int:fk>/',views.LeadNoteDelete, name='borrowerNote-delete'),
+
     #automatic URL routing
     path('',include(router.urls)),
     path('api/', include('rest_framework.urls', namespace='rest_framework'))

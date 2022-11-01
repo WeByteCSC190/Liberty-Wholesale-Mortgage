@@ -270,4 +270,22 @@ class Bio(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class BorrowerNote(models.Model):
+   borrower=models.ForeignKey(Borrower,on_delete=models.CASCADE)
+   borrowernote=models.TextField('Note',blank=True)
+   created_on=models.DateTimeField(auto_now_add=True)
+
+   def __str__(self):
+        return self.note
+class LeadNote(models.Model):
+    lead=models.ForeignKey(Lead,on_delete=models.CASCADE)
+    leadnote = models.TextField('Note', max_length=200,null=True)
+    created_on=models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.note
+        
+
         

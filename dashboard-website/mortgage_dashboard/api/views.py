@@ -13,8 +13,8 @@ from rest_framework.decorators import api_view
 from rest_framework import permissions 
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
-from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer
-from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin
+from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer
+from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote
 
 @api_view(['GET'])
 def listAll(request):
@@ -386,3 +386,90 @@ class RecyclingBinView(generics.ListCreateAPIView):
 
 #         for x in status_list:
 #             Event.object.filter(pk=int(x)),update(Approved = True)
+
+
+
+
+@api_view(['GET'])
+def borrowerNoteList(request):
+    borrowernote = BorrowerNote.objects.all()
+    serializer = BorrowerNoteSerializer(borrowernote, many=True)
+    return Response(serializer.data)
+@api_view(['POST'])
+def borrowerNoteCreate(request):
+    serializer = BorrowerNoteSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def borrowerNoteUpdate(request, pk):
+    borrowernote = BorrowerNote.objects.get(id=pk)
+    serializer = BorrowerNoteSerializer(instance=borrowernote, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def borrowerNoteDelete(request, pk):
+    borrowernote = BorrowerNote.objects.get(id=pk)
+    borrowernote.delete()
+    
+    return Response("Successfully Deleted BorrowerNote!")
+class borrowerNoteViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
+    queryset=BorrowerNote.objects.all()
+    serializer_class=BorrowerNoteSerializer
+
+class BorrowerNoteView(generics.ListCreateAPIView):
+    permission_classes = (permissions.AllowAny, )
+    queryset = BorrowerNote.objects.all()
+    serializer_class= BorrowerNoteSerializer
+
+
+
+@api_view(['GET'])
+def LeadNoteList(request):
+    leadnote = LeadNote.objects.all()
+    serializer = LeadNoteSerializer(leadnote, many=True)
+    return Response(serializer.data)
+@api_view(['POST'])
+def LeadNoteCreate(request):
+    serializer = LeadNoteSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def LeadNoteUpdate(request, pk):
+    leadnote = LeadNote.objects.get(id=pk)
+    serializer = BorrowerNoteSerializer(instance=leadnote, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def LeadNoteDelete(request, pk):
+    leadnote = LeadNote.objects.get(id=pk)
+    leadnote.delete()
+    
+    return Response("Successfully Deleted BorrowerNote!")
+class LeadNoteViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
+    queryset=LeadNote.objects.all()
+    serializer_class=LeadNoteSerializer
+
+class LeadNoteView(generics.ListCreateAPIView):
+    permission_classes = (permissions.AllowAny, )
+    queryset = LeadNote.objects.all()
+    serializer_class= LeadNoteSerializer
+
+
