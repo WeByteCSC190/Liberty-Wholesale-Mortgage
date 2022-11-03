@@ -9,13 +9,15 @@ import Loader from "../components/spinner";
 import Footer from '../components/Footer';
 const Leads = () => {
   const [dataTable, setDataTable] = useState([]);
+   // Notes Data
+  const [dataNotes, setDataNotes] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const getLeadsUrl = "http://localhost:8000/api/leads/";
   let testData = []
   
-  function getBorrowers() {
+  function getLeads() {
   axios({
       method: "GET",
       url:getLeadsUrl,
@@ -31,10 +33,24 @@ const Leads = () => {
         console.log(error.response.headers);
         }
     })
+     const getLeadsNotes = "http://localhost:8000/api/get-leadnote";
+    axios({
+      method: "GET",
+      url:getLeadsNotes,
+    }).then((response)=>{
+      const notes = response.data;
+      setDataNotes(notes)
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        }
+    })
 }
 
   useEffect(() => {
-    getBorrowers();
+    getLeads();
     fetchData(searchValue, filterType).then((dataTable) => {
       setDataTable(dataTable);
       console.log(dataTable)
@@ -156,7 +172,7 @@ const handleSortingDate = () => {
               callback1={(searchValue)=> setSearchValue(searchValue)} 
               callback2={(filterType)=> setFilterType(filterType)}
               />
-          <Table api="http://localhost:8000/api/leads/" page={"Leads"} data={dataTable} column={column} />
+          <Table api="http://localhost:8000/api/leads/" page={"Leads"} data={dataTable} column={column} notes={dataNotes} />
 
           <div className="Footer">
              <Footer />

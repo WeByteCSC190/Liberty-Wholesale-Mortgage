@@ -68,90 +68,129 @@ function AddRow({api, page}) {
     });
   }
   const handleShow = () => setShow(true);
-  return (
-    <>
-      <Button variant="primary" onClick={handleShow}>
-        Add Row
-      </Button>
+  if (page === "Borrowers" || page === "Leads") {
+    return (
+      <>
+        <Button variant="primary" onClick={handleShow}>
+          Add Row
+        </Button>
 
-      <Modal show={show} onHide={handleClose} animation={false}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add {page}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-      <Form.Group className="mb-3" controlId="">
-        <Form.Label>Case ID</Form.Label>
-        <Form.Control name="caseId" type="text" placeholder="Enter Case ID" value={formValue.caseId}
-        onChange={handleChange}/>
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
+        <Modal show={show} onHide={handleClose} animation={false}>
+          <Modal.Header closeButton>
+            <Modal.Title>Add {page}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group className="mb-3" controlId="">
+                <Form.Label>Case ID</Form.Label>
+                <Form.Control name="caseId" type="text" placeholder="Enter Case ID" value={formValue.caseId}
+                  onChange={handleChange} />
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
       
-      <Form.Group className="mb-3" controlId="">
-        <Form.Label>First Name</Form.Label>
-        <Form.Control name="fName" type="text" placeholder="First Name" value={formValue.fName}
-        onChange={handleChange}/>
-        </Form.Group>
+              <Form.Group className="mb-3" controlId="">
+                <Form.Label>First Name</Form.Label>
+                <Form.Control name="fName" type="text" placeholder="First Name" value={formValue.fName}
+                  onChange={handleChange} />
+              </Form.Group>
             
-       <Form.Group className="mb-3" controlId="">
-        <Form.Label>Last Name</Form.Label>
-        <Form.Control name="lName" type="text" placeholder="Last Name" value={formValue.lName}
-        onChange={handleChange}/>
-        </Form.Group>
+              <Form.Group className="mb-3" controlId="">
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control name="lName" type="text" placeholder="Last Name" value={formValue.lName}
+                  onChange={handleChange} />
+              </Form.Group>
             
-       <Form.Group className="mb-3" controlId="">
-        <Form.Label>Credit Score</Form.Label>
-        <Form.Control name="creditScore" type="text" placeholder="Credit Score" value={formValue.creditScore}
-        onChange={handleChange} />
-        </Form.Group>
+              <Form.Group className="mb-3" controlId="">
+                <Form.Label>Credit Score</Form.Label>
+                <Form.Control name="creditScore" type="text" placeholder="Credit Score" value={formValue.creditScore}
+                  onChange={handleChange} />
+              </Form.Group>
       
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email</Form.Label>
-        <Form.Control name="email" type="email" placeholder="Enter Email" value={formValue.email}
-        onChange={handleChange}/>
-        </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email</Form.Label>
+                <Form.Control name="email" type="email" placeholder="Enter Email" value={formValue.email}
+                  onChange={handleChange} />
+              </Form.Group>
 
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>Phone</Form.Label>
-        <Form.Control name="phone_num" type="text" placeholder="Enter Phone Number" value={formValue.phone_num}
-        onChange={handleChange} />
-        </Form.Group>
+              <Form.Group className="mb-3" controlId="">
+                <Form.Label>Phone</Form.Label>
+                <Form.Control name="phone_num" type="text" placeholder="Enter Phone Number" value={formValue.phone_num}
+                  onChange={handleChange} />
+              </Form.Group>
         
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>Select Status</Form.Label>
-        <Form.Select name="status" aria-label="Default select example" value={formValue.status}
-        onChange={handleChange}>
-        <option>Open to select status</option>
-        <option value="Closed">Closed</option>
-        <option value="New">New</option>
-        <option value="In progress">In progress </option>
-        </Form.Select>
-            </Form.Group>
+              <Form.Group className="mb-3" controlId="">
+                <Form.Label>Select Status</Form.Label>
+                <Form.Select name="status" aria-label="Default select example" value={formValue.status}
+                  onChange={handleChange}>
+                  <option>Open to select status</option>
+                  <option value="Closed">Closed</option>
+                  <option value="New">New</option>
+                  <option value="In progress">In progress </option>
+                </Form.Select>
+              </Form.Group>
             
-        <Form.Group controlId="date">
-          <Form.Label>Select Date</Form.Label>
-          <Form.Control name="date" type="date" placeholder="Creation Date" value={formValue.date}
-        onChange={handleChange}/>
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="">
-        <Form.Check value={formValue.status_check}
-        onChange={handleChange} type="checkbox" label="The borrower is approved" />
-        </Form.Group>
-        </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleSubmit}>
-            Add
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  );
+              <Form.Group controlId="date">
+                <Form.Label>Select Date</Form.Label>
+                <Form.Control name="date" type="date" placeholder="Creation Date" value={formValue.date}
+                  onChange={handleChange} />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="">
+                <Form.Check value={formValue.status_check}
+                  onChange={handleChange} type="checkbox" label="The borrower is approved" />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleSubmit}>
+              Add
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
+  else if (page === "Files") {
+        return (
+      <>
+        <Button variant="primary" onClick={handleShow}>
+          Add Row
+        </Button>
+
+        <Modal show={show} onHide={handleClose} animation={false}>
+          <Modal.Header closeButton>
+            <Modal.Title>Add {page}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group className="mb-3" controlId="">
+                <Form.Label>File Name</Form.Label>
+                <Form.Control name="fName" type="text" placeholder="File Name" value={formValue.fName}
+                  onChange={handleChange} />
+              </Form.Group>
+            <Form.Group controlId="formFile" className="mb-3">
+            <Form.Label>Default file input example</Form.Label>
+            <Form.Control type="file" />
+          </Form.Group>
+              
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleSubmit}>
+              Add
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
 }
 
 export default AddRow;
