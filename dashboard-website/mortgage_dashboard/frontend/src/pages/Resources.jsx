@@ -15,7 +15,7 @@ const Resources = () => {
 // files start
   const [dataTable, setDataTable] = useState([]);
   const getFilesUrl = "http://localhost:8000/api/borrowers/";
-  function getBorrowers() {
+  function getFiles() {
   axios({
       method: "GET",
       url:getFilesUrl,
@@ -34,7 +34,7 @@ const Resources = () => {
 }
 
   useEffect(() => {
-    getBorrowers();
+    getFiles();
   });
 
 

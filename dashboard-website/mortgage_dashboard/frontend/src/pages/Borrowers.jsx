@@ -33,10 +33,13 @@ const Borrowers = () => {
   // ];
   // console.log(testData)
   const [dataTable, setDataTable] = useState([]);
+    // Notes Data
+   const [dataNotes, setDataNotes] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const getBorrowersUrl = "http://localhost:8000/api/borrowers/";
+
   let testData = []
   
   function getBorrowers() {
@@ -49,6 +52,27 @@ const Borrowers = () => {
       testData = data;
       console.log(data)
       return data
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        }
+    })
+    const getBorrowersNotes = "http://localhost:8000/api/get-borrowernote";
+    axios({
+      method: "GET",
+      url:getBorrowersNotes,
+    }).then((response)=>{
+      const notes = response.data;
+      setDataNotes(notes)
+      // notes.map((note) =>
+      // {if(note.borrower === caseId) {
+        
+      // }})
+      // testData = data;
+      
+      // return data
     }).catch((error) => {
       if (error.response) {
         console.log(error.response);
@@ -181,7 +205,7 @@ const handleSortingDate = () => {
               callback1={(searchValue)=> setSearchValue(searchValue)} 
               callback2={(filterType)=> setFilterType(filterType)}
               />
-          <Table api="http://localhost:8000/api/borrowers/"  page={"Borrowers"} data={dataTable} column={column} />
+          <Table api="http://localhost:8000/api/borrowers/"  page={"Borrowers"} data={dataTable} column={column} notes={dataNotes} />
 
           <div className="Footer">
              <Footer />
