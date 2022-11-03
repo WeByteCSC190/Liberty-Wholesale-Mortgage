@@ -287,5 +287,10 @@ class LeadNote(models.Model):
     def __str__(self):
         return self.note
         
+class AccountDetail(models.Model):
+    ssn = models.ForeignKey(UserProfile, blank = True, null = True, on_delete=models.CASCADE)
+    details = models.TextField('Account Information', blank = True, max_length = 200)
 
+    def __str__(self):
+        return self.ssn
         
