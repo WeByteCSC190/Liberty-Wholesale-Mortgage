@@ -373,24 +373,6 @@ class RecyclingBinView(generics.ListCreateAPIView):
     queryset = RecyclingBin.objects.all()
     serializer_class=  RecycleBinSerializer
     
-# def BorrowerSearch(request):
-#     if request.method =="POST":
-#         searched = request.POST('searched')
-#     borrower = Borrower.objects.filter(id__contains = searched)
-#     return render(request, ','{'searched':searched, borrower = Borrower})
-#     else:
-#         return render(request, ,{})
-
-# def BorrowerEditCheckBox(request):
-#     if request.method =="POST":
-#         status_list = request.POST.getlist('boxes')
-
-#         for x in status_list:
-#             Event.object.filter(pk=int(x)),update(Approved = True)
-
-
-
-
 @api_view(['GET'])
 def borrowerNoteList(request):
     borrowernote = BorrowerNote.objects.all()
@@ -474,3 +456,46 @@ class LeadNoteView(generics.ListCreateAPIView):
     serializer_class= LeadNoteSerializer
 
 
+@api_view(['POST'])
+def updateBorrower(request,pk):
+    borrower = Borrower.objects.get(id=pk)
+    serializer = BorrowerSerializer(instance = borrower, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def createBorrower(request):
+    serializer= BorrowerSerializer(data=request.data)
+    
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def updateAccountDetail(request,pk):
+    detail = AccountDetail.objects.get(id=pk)
+    serializer = AccountDetails(instance = detail, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def createAccountDetail(request):
+    serializer= AccountDetails(data=request.data)
+    
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def delAccountDetail(request,pk):
+    detail = AccountDetails.objects.get(id=pk)
+    detail.delete()
+    return Response('Account Details has been successfully deleted!')

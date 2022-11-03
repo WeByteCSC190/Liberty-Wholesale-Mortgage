@@ -98,3 +98,7 @@ class LeadNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model= LeadNote
         fields=('__all__')
+class AccountDetails(serializers.ModelSerializer):
+    class Meta:
+        model = AccountDetail
+        fields = ('__all__')
