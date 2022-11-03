@@ -7,21 +7,24 @@ function Confirmation({cID, title, message, apiUrl}) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-    const handleSubmit = () => {
-        // axios({
-        //   method: "POST",
-        //   url:{apiUrl},
-        // }).then((response)=>{
-        //   const data = response.data;
-          
-        // }).catch((error) => {
-        //   if (error.response) {
-        //     console.log(error.response);
-        //     console.log(error.response.status);
-        //     console.log(error.response.headers);
-        //     }
-        // })
-        window.location.reload(false);
+  const handleSubmit = () => {
+    
+     
+     console.log(apiUrl+"/"+cID+"/")
+        axios({
+          method: "DELETE",
+          url: apiUrl+cID+"/",
+        }).then((response)=>{
+          console.log("delete successfull for" +cID);
+          window.location.reload(false);
+        }).catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            }
+        })
+     
     }
   return (
     <>
