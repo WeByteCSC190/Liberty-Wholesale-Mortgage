@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.urls import path, include
-from .views import ClientView, AddClient, LeadView, AddLead, LenderView, LenderLogoView,BioView,RecyclingBinView,BorrowerNoteView,LeadNoteView
+from .views import ClientView, AddClient, LeadView, AddLead, LenderView, LenderLogoView,BioView,RecyclingBinView,BorrowerNoteView,LeadNoteView,BorrowerDelete,LeadDelete,BorrowerRecover,LeadRecover
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -51,10 +51,10 @@ urlpatterns = [
     path('bio-create/',views.bioCreate, name='bio-create'),
     path('bio-update/<int:pk>/',views.bioUpdate, name='bio-update'),
     path('bio-delete/<int:pk>/',views.bioDelete, name='bio-delete'),
-    path('borrower-delete/<int:pk>/',views.borrowerDelete, name='borrower-delete'),
-    path('borrower-recover/<int:pk>/',views.borrowerRecover, name='borrower-recover'),
-    path('lead-delete/<int:pk>/',views.leadDelete, name='lead-delete'),
-    path('lead-recover/<int:pk>/',views.leadRecover, name='lead-recover'),
+    path('borrower-delete/<int:pk>/',BorrowerDelete.as_view(), name='borrower-delete'),
+    path('borrower-recover/<int:pk>/',BorrowerRecover.as_view(), name='borrower-recover'),
+    path('lead-delete/<int:pk>/',LeadDelete.as_view(), name='lead-delete'),
+    path('lead-recover/<int:pk>/',LeadRecover.as_view(), name='lead-recover'),
     path('recyclingBin-delete/<int:pk>/',views.recyclingBinDelete, name='recycleingBin-delete'),
     path('get-recyclebin', RecyclingBinView.as_view(), name='recyclebin'),
     path('get-borrowernote', BorrowerNoteView.as_view()),

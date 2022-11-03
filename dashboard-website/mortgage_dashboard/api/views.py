@@ -1,7 +1,7 @@
 from datetime import date
 import re
 from urllib import response
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework import generics, status
 import random
 from rest_framework import viewsets
@@ -12,6 +12,7 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework import permissions 
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.http import HttpResponseRedirect
 
 from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer
 from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote
@@ -275,49 +276,12 @@ def generate_random_number():
     cID = random.randrange(1000000)
     return cID
 
-@api_view(['DELETE'])
-def borrowerDelete(request, pk):
-    borrower = Borrower.objects.get(caseId=pk)
-    name = "Borrower"
-    caseID = borrower.caseId
-    date = borrower.date
-    fname = borrower.fName
-    lname = borrower.lName
-    creditscore = borrower.creditScore
-    email = borrower.email
-    phone_num = borrower.phone_num
-    status = borrower.status
+class BorrowerDelete(APIView):
+    permission_classes = (permissions.AllowAny, )
 
-    borrowerBin = RecyclingBin(name,generate_random_number(),None,caseID,date,fname,lname,creditscore,email,phone_num,status)
-    borrowerBin.save()
-    borrower.delete()
-    
-    return Response("Moved to Bin!")
-
-@api_view(['DELETE'])
-def leadDelete(request, pk):
-    lead = Lead.objects.get(caseId=pk)
-    name = "Lead"
-    resources = lead.resources
-    caseID = lead.caseId
-    date = lead.date
-    fname = lead.fName
-    lname = lead.lName
-    creditscore = lead.creditScore
-    email = lead.email
-    phone_num = lead.phone_num
-    status = lead.status
-
-    leadBin = RecyclingBin(name,generate_random_number(),resources,caseID,date,fname,lname,creditscore,email,phone_num,status)
-    leadBin.save()
-    lead.delete()
-    
-    return Response("Moved to Bin!")
-
-@api_view(['POST'])
-def borrowerRecover(request, pk):
-    borrower = RecyclingBin.objects.get(trashID=pk)
-    if borrower.dataName == "Borrower":
+    def delete(self, request, pk):
+        borrower = Borrower.objects.get(caseId=pk)
+        name = "Borrower"
         caseID = borrower.caseId
         date = borrower.date
         fname = borrower.fName
@@ -327,17 +291,18 @@ def borrowerRecover(request, pk):
         phone_num = borrower.phone_num
         status = borrower.status
 
-        borrowerRestore = Borrower(caseID,date,fname,lname,creditscore,email,phone_num,status)
-        borrowerRestore.save()
+        borrowerBin = RecyclingBin(name,generate_random_number(),None,caseID,date,fname,lname,creditscore,email,phone_num,status)
+        borrowerBin.save()
         borrower.delete()
-        return Response("Borrower Data Recovered")
-    else:
-        return Response("Not a Borrower")
+        
+        return Response("Moved to Bin!")
 
-@api_view(['POST'])
-def leadRecover(request, pk):
-    lead = RecyclingBin.objects.get(trashID=pk)
-    if lead.dataName == "Lead":
+class LeadDelete(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def delete(self, request, pk):
+        lead = Lead.objects.get(caseId=pk)
+        name = "Lead"
         resources = lead.resources
         caseID = lead.caseId
         date = lead.date
@@ -348,16 +313,59 @@ def leadRecover(request, pk):
         phone_num = lead.phone_num
         status = lead.status
 
-        leadRestore = Lead(resources,caseID,date,fname,lname,creditscore,email,phone_num,status)
-        leadRestore.save()
+        leadBin = RecyclingBin(name,generate_random_number(),resources,caseID,date,fname,lname,creditscore,email,phone_num,status)
+        leadBin.save()
         lead.delete()
-        return Response("Lead Data Recovered")
-    else:
-        return Response("Not a Lead")
+        
+        return Response("Moved to Bin!")
+
+class BorrowerRecover(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, pk):
+        borrower = RecyclingBin.objects.get(trashID=pk)
+        if borrower.dataName == "Borrower":
+            caseID = borrower.caseId
+            date = borrower.date
+            fname = borrower.fName
+            lname = borrower.lName
+            creditscore = borrower.creditScore
+            email = borrower.email
+            phone_num = borrower.phone_num
+            status = borrower.status
+
+            borrowerRestore = Borrower(caseID,date,fname,lname,creditscore,email,phone_num,status)
+            borrowerRestore.save()
+            borrower.delete()
+            return Response("Borrower Data Recovered")
+        else:
+            return Response("Not a Borrower")
+
+class LeadRecover(APIView):
+    permission_classes = (permissions.AllowAny, )
+    
+    def post(self, request, pk):
+        lead = RecyclingBin.objects.get(trashID=pk)
+        if lead.dataName == "Lead":
+            resources = lead.resources
+            caseID = lead.caseId
+            date = lead.date
+            fname = lead.fName
+            lname = lead.lName
+            creditscore = lead.creditScore
+            email = lead.email
+            phone_num = lead.phone_num
+            status = lead.status
+
+            leadRestore = Lead(resources,caseID,date,fname,lname,creditscore,email,phone_num,status)
+            leadRestore.save()
+            lead.delete()
+            return Response("Lead Data Recovered")
+        else:
+            return Response("Not a Lead")
 
 @api_view(['DELETE'])
 def recyclingBinDelete(request, pk):
-    permission_classes = (permissions.IsAuthenticated, )
     dataBin = RecyclingBin.objects.get(trashID=pk)
     dataBin.delete()
     
