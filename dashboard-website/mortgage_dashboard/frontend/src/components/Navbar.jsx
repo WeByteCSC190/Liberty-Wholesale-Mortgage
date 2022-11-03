@@ -149,16 +149,12 @@ function NavDropButton(isAuthenticated, logout) {
   );
 }
 
+
+
+
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 export default connect(mapStateToProps,{logout})(NavbarCustom);
 
-/*
-/ <FontAwesomeIcon 
-         icon={Icons.faUser} 
-         size="2x" 
-         
-         />
 
-*/

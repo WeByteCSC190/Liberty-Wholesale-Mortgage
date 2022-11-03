@@ -2,47 +2,27 @@ import axios from 'axios';
 import * as React from 'react';
 import Moment from 'react-moment';
 import { useState, useEffect } from 'react';
-import Navbar from "../components/Navbar";
-import Search from "../components/Search";
-import Table from "../components/Table";
-import Loader from "../components/spinner";
-import Footer from '../components/Footer';
-const Borrowers = () => {
-  // const testData = [
-    // {
-  //   fname: "Alex",
-  //   lname: "Doe",
-  //   email: "Alextsf@gmail.com",
-  //   phone_num: "9124753123",
-  //   date: "11-02-2015"
-  // },
-  // {
-  //   fname: "Mia",
-  //   lname: "Lee",
-  //   email: "Mia-Lee@hotmail.com",
-  //   phone_num: "75200932456",
-  //   date: "11-20-2020"
-  //   },
-  // {
-  //   fname: "James",
-  //   lname: "Chu",
-  //   email: "James.Chu@gmail.com",
-  //   phone_num: "8883921789",
-  //   date: "01-01-2019"
-  // }
-  // ];
-  // console.log(testData)
+import Navbar from "../../components/NavbarAdmin";
+import Search from "../../components/SearchLenders";
+import Table from "../../components/TableLenders";
+import Loader from "../../components/spinner";
+import Footer from '../../components/Footer';
+
+
+const EditLenders = () => {
+
   const [dataTable, setDataTable] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const getBorrowersUrl = "http://localhost:8000/api/borrowers/";
+  const getLendersUrl = "http://localhost:8000/api/lender/";
+  const getLendersLogoUrl = "http://127.0.0.1:8000//api/lenderLogo/"; 
   let testData = []
   
-  function getBorrowers() {
+  function getLenders() {
   axios({
       method: "GET",
-      url:getBorrowersUrl,
+      url:getLendersUrl, getLendersLogoUrl
     }).then((response)=>{
       const data = response.data;
       setDataTable(data)
@@ -58,8 +38,28 @@ const Borrowers = () => {
     })
 }
 
+function getLogo() {
+  axios({
+    method: "GET",
+    url:getLendersLogoUrl
+  }).then((response)=>{
+    const data = response.data;
+    setDataTable(data)
+    testData = data;
+    console.log(data)
+    return data
+  }).catch((error) => {
+    if (error.response) {
+      console.log(error.response);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+      }
+  })
+}
+
+
   useEffect(() => {
-    getBorrowers();
+    getLenders();
     fetchData(searchValue, filterType).then((dataTable) => {
       setDataTable(dataTable);
       console.log(dataTable)
@@ -70,17 +70,23 @@ const Borrowers = () => {
 
 
   const column = [
-    { heading: 'Case ID', value: 'caseId' },
-    { heading: 'Date', value: 'date' },
-    { heading: 'First Name', value: 'fName' },
-    { heading: 'Last Name', value: 'lName' },
-    { heading: 'Credit Score', value: 'creditScore' },
-    { heading: 'Phone', value: 'phone_num' },
-    { heading: 'Email', value: 'email' },
-    { heading: 'Status', value: 'status' },
-    {heading: 'Details', value:'Details'},
-    {heading: 'AddRow', value:'AddBorrower'}
+    { heading: 'Company', value: 'company' },
+    { heading: 'Rating', value: 'rating' },
+    { heading: 'Programs', value: 'programs' },
+    { heading: 'Details', value: 'Details'},
+    { heading: 'Admin' , value: ''}
   ]
+
+  const columns = [
+    { heading: 'Logo', value: 'logo'},
+    { heading: 'FHA ID', value: 'lender_FHA_ID' },
+    { heading: 'VA ID', value: 'lender_VA_ID' },
+    { heading: 'Account Executive', value: 'account_executive' },
+    { heading: 'Phone Number', value: 'phone_num' },
+    { heading: 'Email', value: 'email' },
+  ] 
+
+
 
   const fetchData = (searchValue, filterType) => {
     setIsLoading(true);
@@ -95,15 +101,15 @@ const Borrowers = () => {
         }
         if (filterType !== '') {
           switch (filterType) {
-            case 'First Name':
+            case 'Company':
               // console.log("filter by first name")
-              resolve(handleSorting("fName", 'asc'))
-            case 'Last Name':
+              resolve(handleSorting("company", 'asc'))
+            case 'Rating':
               // console.log("filter by last name")
-              resolve(handleSorting("lName", 'asc'))
-            case 'Date':
+              resolve(handleSorting("rating", 'asc'))
+            case 'Programs':
               // console.log("filter by date")
-              // resolve(handleSortingDate())
+              resolve(handleSorting("programs", 'asc'))
              resolve(testData)
             default:
               resolve(testData)
@@ -170,10 +176,9 @@ const handleSortingDate = () => {
     <div className="Header">
       <Navbar />
     </div>
-     {/* <p className="Page-Title">Borrowers</p> */}
      <div className="Content">
-     <p className="Page-Title">Borrowers</p> 
-     <div className="Borrowers">
+     <p className="Page-Title">Edit Lenders</p> 
+     <div className="Lenders">
       
       {isLoading ?
         <Loader /> :   <div>    
@@ -181,7 +186,7 @@ const handleSortingDate = () => {
               callback1={(searchValue)=> setSearchValue(searchValue)} 
               callback2={(filterType)=> setFilterType(filterType)}
               />
-          <Table api="http://localhost:8000/api/borrowers/"  page={"Borrowers"} data={dataTable} column={column} />
+          <Table api="http://localhost:8000/api/lender/"  page={"Lenders"} data={dataTable} column={column} columns={columns} />
 
           <div className="Footer">
              <Footer />
@@ -194,4 +199,4 @@ const handleSortingDate = () => {
   );
 }
 
-export default Borrowers;
+export default EditLenders;

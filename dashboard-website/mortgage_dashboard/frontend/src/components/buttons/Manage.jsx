@@ -3,12 +3,11 @@ import Edit from '../modals/EditRow'
 import Delete from '../modals/Confirmation'
 import axios from 'axios';
 
-function ActionBtn({ rowData, index }){
+function ManageBtn({ nameButton, api, page, rowData, rowKey, index }){
     const handleDelete = (e) => { 
-       const api = "http://localhost:8000/api/borrowers/";
         axios({
           method: "POST",
-          url:api,
+          url: api,
         }).then((response)=>{
           const data = response.data;
           window.location.reload(false);
@@ -24,17 +23,19 @@ function ActionBtn({ rowData, index }){
   return (
     <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Action
+        {nameButton}
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
         <Edit rowData={rowData}/>
-        {/* <Dropdown.Item onClick={(e)=> handleDelete(e.target.value)}>Delete</Dropdown.Item> */}
-        <Delete title="Remove Borrower" cID={rowData.caseId} message="Are you sure you want to remove this borrower permanently?" apiUrl="http://localhost:8000/api/borrowers/"/>
-        <Dropdown.Item href="#/action-3">Move to leads</Dropdown.Item>
+        <Delete title= {"Remove" + {page}} 
+            cID={rowKey} 
+            message={"Are you sure you want to remove this " + {page} + " permanently?"} 
+            apiUrl={api}
+        />
       </Dropdown.Menu>
     </Dropdown>
   );
 }
 
-export default ActionBtn;
+export default ManageBtn;

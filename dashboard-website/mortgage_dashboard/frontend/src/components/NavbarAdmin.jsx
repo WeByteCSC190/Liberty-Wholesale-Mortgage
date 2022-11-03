@@ -7,7 +7,6 @@ import Col from 'react-bootstrap/Col';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BlueLogo from './images/blue_logo.png';
-import NavIcon from './images/blue_icon.png'; 
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import * as Icons from "@fortawesome/free-solid-svg-icons"
@@ -19,8 +18,9 @@ export default function NavbarCustom() {
   return (
     <>
       <Navbar className="Navbar" expand="lg">
+       
       <Container fluid>
-
+        <Col>
         <Navbar.Brand href="/">
         <img
           src={BlueLogo} //MLO Support Logo
@@ -28,9 +28,9 @@ export default function NavbarCustom() {
           height="70"
           className="Nav-Logo"
           alt="MLO Support"
-        />
+        /> 
         </Navbar.Brand>
-       
+      </Col>
 
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -41,11 +41,14 @@ export default function NavbarCustom() {
             navbarScroll
             >
             
-           <Container className="Nav-Menu">
-
+           <Container>
+            <ul className="Nav-Menu"> 
             <SwitchPage href="/Users">View Users</SwitchPage> 
             <SwitchPage href="/Add-User">Add User</SwitchPage>
+            <SwitchPage href="/Edit-Lenders">Edit Lenders</SwitchPage>
             <SwitchPage href="/Edit-Resources">Edit Resources</SwitchPage>
+            <SwitchPage href="/Deleted">Recently Deleted</SwitchPage>
+            </ul>
            </Container>
            
          </Nav> 

@@ -6,8 +6,8 @@ export default class EditResources extends Component {
       <>
         <div className="Header">
         <Navbar />
-         <div>
-          edit resources
+         <div className="Content">
+         <p className="Page-Title">Edit Resources</p> 
           </div>
       </div>
     </>);

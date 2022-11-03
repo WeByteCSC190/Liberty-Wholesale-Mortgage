@@ -4,8 +4,9 @@ import ActionBtn from "../components/buttons/Action";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+
+
 const TableComponent = ({api, page, data, column }) => {
-  let pageName = page
   // State variable to keep track of all the expanded rows
   const [expandedRows, setExpandedRows] = useState([]);
 
@@ -32,10 +33,10 @@ const TableComponent = ({api, page, data, column }) => {
     setExpandedRows(newExpandedRows);
   }
   return (
-    <div style={{ paddingBottom: 300,paddingLeft: 90, paddingRight: 90 }}>
+    <div style={{ paddingBottom: 10, paddingLeft: 90, paddingRight: 90 }}>
       <Table className="Table" responsive hover >
       <thead>
-      <tr className="table-title">List of {pageName}</tr>
+      <tr className="table-title">List of {page}</tr>
       <tr className="table-heading">
             {column.map((item, index) =>
               <TableHeadItem item={item} api={api} page={page} />
@@ -44,7 +45,9 @@ const TableComponent = ({api, page, data, column }) => {
       </thead>
       <tbody>
           {data.map((item, index) => <TableRow
-            item={item} column={column} index={index} expandedRows={expandedRows} handleEpandRow={handleEpandRow} expandState={expandState} />)}
+            item={item} column={column} index={index} 
+            expandedRows={expandedRows} handleEpandRow={handleEpandRow} 
+            expandState={expandState} />)}
       </tbody>
       <tr className="last-table-row">
         Showing {data.length} out of {data.length} results 

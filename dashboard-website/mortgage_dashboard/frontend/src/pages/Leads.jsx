@@ -52,7 +52,7 @@ const Leads = () => {
     { heading: 'Email', value: 'email' },
     { heading: 'Phone', value: 'phone_num' },
     { heading: 'Date', value: 'date' },
-    { heading: 'status', value: 'status' },
+    { heading: 'Status', value: 'status' },
     {heading: 'Details', value:'Details'},
     {heading: 'AddRow', value:'AddLead'}
   ]
@@ -147,6 +147,7 @@ const handleSortingDate = () => {
     </div>
      {/* <p className="Page-Title">Leads</p> */}
      <div className="Content">
+     <p className="Page-Title">Leads</p> 
      <div className="Leads">
       
       {isLoading ?

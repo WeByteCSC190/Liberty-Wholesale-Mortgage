@@ -13,7 +13,9 @@ import Privacy from "./components/legal/privacy.jsx";
 import Terms from "./components/legal/terms.jsx";
 import AddUser from "./pages/Admin/Add-Users.jsx";
 import Users from "./pages/Admin/Users.jsx";
+import EditLenders from "./pages/Admin/EditLenders";
 import EditResources from "./pages/Admin/EditResources";
+import Deleted from "./pages/Admin/Deleted";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {Provider } from 'react-redux';
@@ -39,8 +41,10 @@ const App = () => {
             <Route path="Terms" element={<Terms />} />
             <Route path="Users" element={<Users />} />
             <Route path="Add-User" element={<AddUser />} />
+            <Route path="Edit-Lenders" element={<EditLenders />} />
             <Route path="Edit-Resources" element={<EditResources />} />
             <Route path="Lenders" element={<Lenders />} />
+            <Route path="Deleted" element={<Deleted />} />
         </Routes>
         </div>
 
