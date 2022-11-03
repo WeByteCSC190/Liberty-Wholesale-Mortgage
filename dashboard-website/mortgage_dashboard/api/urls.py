@@ -55,7 +55,7 @@ urlpatterns = [
     path('borrower-recover/<int:pk>/',views.borrowerRecover, name='borrower-recover'),
     path('lead-delete/<int:pk>/',views.leadDelete, name='lead-delete'),
     path('lead-recover/<int:pk>/',views.leadRecover, name='lead-recover'),
-    path('recyclingBin-delete/<int:pk>/',views.binDelete, name='recycleingBin-delete'),
+    path('recyclingBin-delete/<int:pk>/',views.recyclingBinDelete, name='recycleingBin-delete'),
     path('get-recyclebin', RecyclingBinView.as_view(), name='recyclebin'),
     path('get-borrowernote', BorrowerNoteView.as_view()),
     path('borrowernote-list/',views.borrowerNoteList, name='borrowernote-list'),
