@@ -30,11 +30,11 @@ router.register(r'borrowernote',views.borrowerNoteViewSet)
 router.register(r'leadnote',views.LeadNoteViewSet)
 
 urlpatterns = [
-    path('get-leads', LeadView.as_view() ),
+    path('get-leads', LeadView.as_view(), name='lead' ),
 
     path('add_lead', AddLead),
     path('get-borrowers',ClientView.as_view() ),
-    path('borrowerview', views.BorrowerView.as_view()),
+    path('borrowerview', views.BorrowerView.as_view(), name='borrower'),
     path('add_client', AddClient),
     path('recent_borrowers', ClientView.as_view()),
     path('get-lender', LenderView.as_view()),
@@ -56,7 +56,7 @@ urlpatterns = [
     path('lead-delete/<int:pk>/',views.leadDelete, name='lead-delete'),
     path('lead-recover/<int:pk>/',views.leadRecover, name='lead-recover'),
     path('recyclingBin-delete/<int:pk>/',views.binDelete, name='recycleingBin-delete'),
-    path('get-recyclebin', RecyclingBinView.as_view()),
+    path('get-recyclebin', RecyclingBinView.as_view(), name='recyclebin'),
     path('get-borrowernote', BorrowerNoteView.as_view()),
     path('borrowernote-list/',views.borrowerNoteList, name='borrowernote-list'),
     path('borrowerNote-create/',views.borrowerNoteCreate, name='borrowerNote-create'),
