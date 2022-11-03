@@ -127,14 +127,14 @@ class LenderViewSet(viewsets.ModelViewSet):
     queryset=Lender.objects.all()
     serializer_class=LenderSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['company', 'state', 'programs']
+    search_fields = ['company', 'programs']
 
 class LenderView(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
     queryset = Lender.objects.all()
     serializer_class= LenderSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['company', 'state', 'programs']
+    search_fields = ['company', 'programs']
 
 class LenderLogoViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
@@ -372,6 +372,7 @@ class RecyclingBinView(generics.ListCreateAPIView):
     permission_classes = (permissions.AllowAny, )
     queryset = RecyclingBin.objects.all()
     serializer_class=  RecycleBinSerializer
+    
 # def BorrowerSearch(request):
 #     if request.method =="POST":
 #         searched = request.POST('searched')

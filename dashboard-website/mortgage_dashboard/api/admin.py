@@ -33,8 +33,8 @@ class LenderResources(resources.ModelResource):
 
 class LenderAdmin(ImportExportModelAdmin):
     resource_class = LenderResources
-    list_display = ("company", "state")
-    search_fields = ['company', 'state', 'programs']
+    list_display = ("company",)
+    search_fields = ['company', 'programs']
 
 admin.site.register(Lender, LenderAdmin)
 

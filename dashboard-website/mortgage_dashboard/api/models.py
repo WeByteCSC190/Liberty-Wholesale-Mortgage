@@ -242,7 +242,7 @@ class Client(models.Model):
 
 class Lender(models.Model):
     company = models.CharField('Company', max_length=200, null=True, blank=True)
-    state = models.CharField('State', max_length=200, null=True, blank=True)
+    #state = models.CharField('State', max_length=200, null=True, blank=True)
     rating = models.CharField('Rating', max_length=2, null=True, blank=True)
     programs = models.CharField('Programs', max_length=200, null=True, blank=True)
 
@@ -255,7 +255,7 @@ class Lender(models.Model):
     website = models.URLField('Website', null=True, blank=True)
 
     def __str__(self):
-        return f"{self.company},{self.state}"
+        return f"{self.company}"
 
 class LenderLogo(models.Model):
     company = models.CharField('Company', max_length=200, null=True, blank=True)

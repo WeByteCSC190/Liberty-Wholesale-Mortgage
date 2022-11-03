@@ -1,56 +1,36 @@
-company,state,rating,programs,lender_FHA_ID,lender_VA_ID,account_executive,phone_num,email,website
-UWM,California,A,"FHA, VA, Rehab Loans",7184500000,7460480000,Zach Carr,P 800.981.8898 Ext.4063,zcarr@uwm.com,uwm.com
-Flagstar,California,B+,,,,Emily Johnson,916-730-1282,emily.johnson@flagstar.com,http://tpo.flagstar.com/
-REMN Wholesale,California,B+,"FHA, USDA, VA, Manufactured Housing",,,Krista Donecker,530-304-4306,Krista.Donecker@REMN.com,https://www.remnwholesale.com/
-Sierra Pacific,California,B+,"FHA, VA, DPA",7056000000,,Kim Kirk,916-878-9993,kim.kirk@spmc.com,spmc.com
-SunWest Mortgage,California,B,"FHA, VA",6443809990,9060120000,Breanna Davis,951- 494-4040,breanna.davis@swmc.com,swmc.com
-Bluepoint (Royal Pacific),California,B,FHA,2579900006,9029470000,Pending,562-225-4144,Asamuel@bluepointmtg.com,https://bluepointmtg.com/
-Loanstream,California,B,"FHA, NON-QM, USDA",,,Tricia James,949-309-9005,tjames@lsmortgage.com,https://loanstreamwholesale.com/
-Homebridge,California,B,"FHA,  USDA, VA, Manufactured Housing",7811300883,5597800605,Justin Smith,714-585-7522,jusmith@homebridge.com,homebridge.com
-Carrington,California,B,"FHA, VA",2475100005,,Staci Goodman,949-517-6116,staci.goodman@carringtonms.com,https://www.carringtonwholesale.com/
-Caliber Home Loans,California,B,"FHA, VA",,,Karin Eneqvist,916-804-1503,Karin.Eneqvist@caliberhomeloans.com,caliberhomeloans.com
-Home Point Financial,California,B,"FHA, JUMBO, VA",2627300000,5500180000,Kim Mettler,704-906-7921,kmettler@homepointfinancial.com,homepointfinancial.com
-Sprout Wholesale,California,B,"FHA, NON-QM, JUMBO,",,,Michelle Rizzo,714-313-7369,michelle.rizzo@sproutmortgage.com,sproutwholesale.com
-AmWest,California,C,"FHA, NON-QM, VA",,,Brian Cerruti,707-338-3632,brian.cerruti@AmWestFunding.com,AmWestFunding.com
-Freedom Mortgage,California,C,VA,,,Jennifer C. Jarvis,408-782-7775,Jennifer.Jarvis@FreedomMortgage.com,https://www.freedomwholesale.com/
-Greenbox,California,C,"NON-QM, JUMBO, ITIN",,,Judy Recoy,213-235-4259,judyr@greenboxloans.com,www.greenboxloans.com
-Mountain West Financial,California,C,"FHA, VA, DPA",7426000177,,Candace Capella,408-761-9997,candace.capella@mwfinc.com,https://mwfwholesale.com/
-Athas Capital Group,California,C,"NON-QM, HARD",,,William Woodcock,818-431-5170,William@athascapital.com,athascapital.com
-NMSI Group - Jumbo - AAA paper only,California,C,JUMBO,,,Eric Kim,714-397- 2200,eric.kim@nmsigroup.com,
-Symetry Lending,California,U,,,,Joanne Fabiano,707-999-8330,joanne.fabiano@symmetrylending.com,http://symmetrylending.com/
-LendMe,California,U,HARD,,,Ahsan Karzi,1(818)-807-8057,ahsankarzi@gmail.com,www.lendmefinancial.com
-"Val-Chris Investments, Inc.",California,U,HARD,,,Chris L. Boulter,949-252-1907,Chris@val-chris.com,https://www.val-chris.com/
-Clear Edge,California,U,HARD,,,Chris DeCo,925-239-1824,cdeclouet@ClearEdgeLending.com,ClearEdgeLending.com
-PRMG,California,U,,,,Jim Ketchum,530-228-9300,jketchum@Prmg.net,http://prmg.net/
-A & D Mortgage ,California,U,,,,Jasvir Pardiwalla,916-956-9305,jasvir.pardiwalla@admortgage.com,https://admortgage.com/
-Plaza Home Mortgage,California,U,"VA, Rehab Loans",,,Kelly Brown,949-887-4399,kelly.brown@plazahomemortgage.com,www.plazahomemortgage.com
-TheLender,California,U,,,,Daniel Meyers,818-917-9522,dmeyers@thelender.com,https://www.thelender.com/
-Reverse Mortgage Funding,California,U,,,,Jaimee Lee Scott,916-835-7827,,
-Majestic Homeloan,California,U,"USDA, VA",,,Pedro Botello,916-834-1614,pedro.botello@majesticloan.com,majesticloan.com
-Longbridge Platinum - Reverse Mortgage,California,U,,,,Bruce Ramirez,916-220-3030,bramirez@longbridge-financial.com,
-Loan Depot,California,U,"FHA, VA",,,Rickey Juarez,925-321-0500,rjuarez@ldwholesale.com,
-Angel Oak,California,U,"NON-QM, JUMBO, Rehab Loans",,,Geoff Ogden,916-517-2355,geoff.ogden@angeloakms.com,
-One American,California,U,Manufactured Housing,,,,,,
-Jmac Lending,California,U,,,,Mike Lynch,916-317-2164,michael.lynch@jmaclending.com,
-Acra-Citadel Lending,California,U,ITIN,,,Greg Flores,951-314-5711,greg.flores@acralending.com,
-MeMortgage,California,U,,,,Pedro Botello,916-834 -1614,pbotello@memortgage.com,
-REMN Wholesale,Texas,B+,"FHA, USDA, VA, Manufactured Housing",,,Krista Donecker,530-304-4306,Krista.Donecker@REMN.com,https://www.remnwholesale.com/
-UWM,Texas,A,"FHA, VA, Rehab Loans",7184500000,7460480000,Zach Carr,P 800.981.8898 Ext.4063,zcarr@uwm.com,uwm.com
-SunWest Mortgage,Texas,B,"FHA, VA",6443809990,9060120000,Breanna Davis,951- 494-4040,breanna.davis@swmc.com,swmc.com
-Angel Oak,Texas,U,"NON-QM, JUMBO, Rehab Loans",,,Geoff Ogden,916-517-2355,geoff.ogden@angeloakms.com,
-Homebridge,Texas,B,"FHA, HARD, USDA, VA, Manufactured Housing",7811300883,5597800605,Justin Smith,714-585-7522,jusmith@homebridge.com,homebridge.com
-Flagstar,Texas,B+,,,,Emily Johnson,916-730-1282,emily.johnson@flagstar.com,http://tpo.flagstar.com/
-Sierra Pacific,Texas,B+,"FHA, VA, DPA",7056000000,,Kim Kirk,916-878-9993,kim.kirk@spmc.com,spmc.com
-PRMG,Texas,U,,,,Jim Ketchum,530-228-9300,jketchum@Prmg.net,http://prmg.net/
-Jmac Lending,Texas,U,,,,Mike Lynch,916-317-2164,michael.lynch@jmaclending.com,
-NMSI Group - Jumbo - AAA paper only,Texas,C,JUMBO,,,Eric Kim,714-397- 2200,eric.kim@nmsigroup.com,
-UWM,Colorado,A,"FHA, VA, Rehab Loans",7184500000,7460480000,Zach Carr,p 800.981.8898 Ext. 4063,briley@uwm.com,uwm.com
-Angel Oak,Colorado,U,"NON-QM, JUMBO, Rehab Loans",,,Geoff Ogden,916-517-2355,geoff.ogden@angeloakms.com,
-Homebridge,Colorado,B,"FHA, NON-QM, HARD, USDA, VA, Manufactured Housing",7811300883,5597800605,Justin Smith,714-585-7522,jusmith@homebridge.com,homebridge.com
-SunWest Mortgage,Colorado,B,"FHA, VA",6443809990,9060120000,Breanna Davis,951-494-4040,breanna.davis@swmc.com,swmc.com
-Flagstar,Colorado,B+,,,,Emily Johnson,916-730-1282,emily.johnson@flagstar.com,http://tpo.flagstar.com/
-Sierra Pacific,Colorado,B+,"FHA, VA, DPA",7056000000,,Kim Kirk,916-878-9993,kim.kirk@spmc.com,spmc.com
-Jmac Lending,Colorado,U,,,,Mike Lynch,916-317-2164,michael.lynch@jmaclending.com,
-NMSI Group - Jumbo - AAA paper only,Colorado,C,JUMBO,,,Eric Kim,714-397- 2200,eric.kim@nmsigroup.com,
-SunWest Mortgage,Colorado,B,"FHA, VA",6443809990,9060120000,Breanna Davis,951-494-4040,breanna.davis@swmc.com,swmc.com
-REMN Wholesale,Colorado,B+,"FHA, USDA, VA, Manufactured Housing",,,Krista Donecker,530-304-4306,Krista.Donecker@REMN.com,https://www.remnwholesale.com/
+company,rating,programs,lender_FHA_ID,lender_VA_ID,account_executive,phone_num,email,website
+UWM,A,"FHA, VA, Rehab Loans",7184500000,7460480000,Zach Carr,P 800.981.8898 Ext.4063,"zcarr@uwm.com, briley@uwm.com",https://uwm.com/
+Flagstar,B+,,,,Emily Johnson,916-730-1282,emily.johnson@flagstar.com,http://tpo.flagstar.com/
+REMN Wholesale,B+,"FHA, USDA, VA, Manufactured Housing",,,Krista Donecker,530-304-4306,Krista.Donecker@REMN.com,https://www.remnwholesale.com/
+Sierra Pacific,B+,"FHA, VA, DPA",7056000000,,Kim Kirk,916-878-9993,kim.kirk@spmc.com,https://www.sierrapacificmortgage.com/
+SunWest Mortgage,B,"FHA, VA",6443809990,9060120000,Breanna Davis,951- 494-4040,breanna.davis@swmc.com,https://swmc.com/
+Bluepoint (Royal Pacific),B,FHA,2579900006,9029470000,Pending,562-225-4144,Asamuel@bluepointmtg.com,https://bluepointmtg.com/
+Loanstream,B,"FHA, NON-QM, USDA",,,Tricia James,949-309-9005,tjames@lsmortgage.com,https://loanstreamwholesale.com/
+Homebridge,B,"FHA,  USDA, VA, Manufactured Housing, HARD, NON-QM",7811300883,5597800605,Justin Smith,714-585-7522,jusmith@homebridge.com,https://www.homebridge.com/
+Carrington,B,"FHA, VA",2475100005,,Staci Goodman,949-517-6116,staci.goodman@carringtonms.com,https://www.carringtonwholesale.com/
+Caliber Home Loans,B,"FHA, VA",,,Karin Eneqvist,916-804-1503,Karin.Eneqvist@caliberhomeloans.com,https://www.caliberhomeloans.com/
+Home Point Financial,B,"FHA, JUMBO, VA",2627300000,5500180000,Kim Mettler,704-906-7921,kmettler@homepointfinancial.com,https://www.homepointfinancial.com/
+Sprout Wholesale,B,"FHA, NON-QM, JUMBO,",,,Michelle Rizzo,714-313-7369,michelle.rizzo@sproutmortgage.com,https://sproutwholesale.com/
+AmWest,C,"FHA, NON-QM, VA",,,Brian Cerruti,707-338-3632,brian.cerruti@AmWestFunding.com,https://amwestfunding.com/
+Freedom Mortgage,C,VA,,,Jennifer C. Jarvis,408-782-7775,Jennifer.Jarvis@FreedomMortgage.com,https://www.freedomwholesale.com/
+Greenbox,C,"NON-QM, JUMBO, ITIN",,,Judy Recoy,213-235-4259,judyr@greenboxloans.com,https://greenboxloans.com/
+Mountain West Financial,C,"FHA, VA, DPA",7426000177,,Candace Capella,408-761-9997,candace.capella@mwfinc.com,https://mwfwholesale.com/
+Athas Capital Group,C,"NON-QM, HARD",,,William Woodcock,818-431-5170,William@athascapital.com,https://www.athascapital.com/
+NMSI Group - Jumbo - AAA paper only,C,JUMBO,,,Eric Kim,714-397- 2200,eric.kim@nmsigroup.com,
+Symetry Lending,U,,,,Joanne Fabiano,707-999-8330,joanne.fabiano@symmetrylending.com,http://symmetrylending.com/
+LendMe,U,HARD,,,Ahsan Karzi,1(818)-807-8057,ahsankarzi@gmail.com,http://lendmefinancial.com/
+"Val-Chris Investments, Inc.",U,HARD,,,Chris L. Boulter,949-252-1907,Chris@val-chris.com,https://www.val-chris.com/
+Clear Edge,U,HARD,,,Chris DeCo,925-239-1824,cdeclouet@ClearEdgeLending.com,https://clearedgelending.com/
+PRMG,U,,,,Jim Ketchum,530-228-9300,jketchum@Prmg.net,http://prmg.net/
+A & D Mortgage ,U,,,,Jasvir Pardiwalla,916-956-9305,jasvir.pardiwalla@admortgage.com,https://admortgage.com/
+Plaza Home Mortgage,U,"VA, Rehab Loans",,,Kelly Brown,949-887-4399,kelly.brown@plazahomemortgage.com,https://www.plazahomemortgage.com/
+TheLender,U,,,,Daniel Meyers,818-917-9522,dmeyers@thelender.com,https://www.thelender.com/
+Reverse Mortgage Funding,U,,,,Jaimee Lee Scott,916-835-7827,,
+Majestic Homeloan,U,"USDA, VA",,,Pedro Botello,916-834-1614,pedro.botello@majesticloan.com,
+Longbridge Platinum - Reverse Mortgage,U,,,,Bruce Ramirez,916-220-3030,bramirez@longbridge-financial.com,
+Loan Depot,U,"FHA, VA",,,Rickey Juarez,925-321-0500,rjuarez@ldwholesale.com,
+Angel Oak,U,"NON-QM, JUMBO, Rehab Loans",,,Geoff Ogden,916-517-2355,geoff.ogden@angeloakms.com,
+One American,U,Manufactured Housing,,,,,,
+Jmac Lending,U,,,,Mike Lynch,916-317-2164,michael.lynch@jmaclending.com,
+Acra-Citadel Lending,U,ITIN,,,Greg Flores,951-314-5711,greg.flores@acralending.com,
+MeMortgage,U,,,,Pedro Botello,916-834 -1614,pbotello@memortgage.com,
