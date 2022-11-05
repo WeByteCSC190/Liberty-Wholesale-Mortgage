@@ -9,8 +9,10 @@ import Resources from "./pages/Resources";
 import SignIn from "./pages/sign-in/sign-in.jsx";
 import Help from "./pages/sign-in/help.jsx";
 import Lenders from "./pages/Lenders";
-import Privacy from "./components/legal/privacy.jsx";
-import Terms from "./components/legal/terms.jsx";
+import Terms from "./components/legal/Terms.jsx";
+import Privacy from "./components/legal/Privacy.jsx";
+import LegalThree from "./components/legal/LegalThree";
+import LegalFour from "./components/legal/LegalFour.jsx";
 import AddUser from "./pages/Admin/Add-Users.jsx";
 import Users from "./pages/Admin/Users.jsx";
 import EditLenders from "./pages/Admin/EditLenders";
@@ -37,8 +39,10 @@ const App = () => {
             <Route path="Resources" element={<Resources />} />
             <Route path="Sign-In" element={<SignIn />} />
             <Route path="Help" element={<Help />} />
-            <Route path="Privacy" element={<Privacy />} />
             <Route path="Terms" element={<Terms />} />
+            <Route path="Privacy" element={<Privacy />} />
+            <Route path="LegalThree" element={<LegalThree />} />
+            <Route path="LegalFour" element={<LegalFour />} />
             <Route path="Users" element={<Users />} />
             <Route path="Add-User" element={<AddUser />} />
             <Route path="Edit-Lenders" element={<EditLenders />} />

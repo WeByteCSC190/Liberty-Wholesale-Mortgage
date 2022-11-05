@@ -18,8 +18,16 @@ export default function Footer() {
                   rel="noopener noreferrer">Privacy Policy
                 </a>
            </li>
-           <li><a>Legal Link 1</a></li>
-           <li><a>Legal Link 2</a></li>
+           <li><a href="/legalthree" 
+                  target="_blank" 
+                  rel="noopener noreferrer">Legal Link 3
+                </a>
+           </li>
+           <li><a href="/legalfour" 
+                  target="_blank" 
+                  rel="noopener noreferrer">Legal Link 4
+                </a>
+           </li>
         </ul>
     </Col>
     <Col className="Footer-Company">

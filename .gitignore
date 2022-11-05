@@ -391,3 +391,4 @@ thumb
 sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/django,python,react,node
+*.pyc

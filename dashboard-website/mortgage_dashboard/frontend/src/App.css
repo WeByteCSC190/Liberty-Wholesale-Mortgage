@@ -428,15 +428,21 @@ h1 {
 }
 
 /* For legal pages */
+
+.company-logo {
+  margin-top: 10%;
+  margin-bottom: 2%; 
+}
+
 .legal-body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f0f8fa;
   /*border: 1px red solid; */
+  border-color: #042baa;
 }
 
 .legal-section {
-  min-height: 20vh;
-  height: auto;
+  min-height: 30vh;
   position: relative;
 }
 
