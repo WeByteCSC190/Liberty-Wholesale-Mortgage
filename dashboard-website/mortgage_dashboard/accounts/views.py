@@ -36,7 +36,7 @@ class SignupView(APIView):
 
                         user = User.objects.get(id=user.id)
                                 
-                        UserProfile.objects.create(user = user, password = '',uID = 000000, fName= '', lName= '',nmlsID= 000000, ssn= 000000)
+                        UserProfile.objects.create(user = user, username = username, password = '',uID = 000000, fName= '', lName= '',nmlsID= 000000, ssn= 000000, is_superuser = 0, is_staff = 0, is_active = 1)
 
                     
                         return Response({ 'success': 'User created successfully'})

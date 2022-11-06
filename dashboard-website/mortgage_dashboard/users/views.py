@@ -24,15 +24,19 @@ class UpdateUserProfileView(APIView):
             user = self.request.user 
             username = user.username
 
-            data = self.request.data        
+            data = self.request.data
+            username = data['username']        
             password = data['password']
             uID = data['uID']
             fName = data['fName']
             lName = data['lName']
             nmlsID = data['nmlsID']
             ssn = data['ssn']
-            
-            UserProfile.objects.filter(user = user.id).update(password=password,uID=uID,fName=fName,lName=lName,nmlsID=nmlsID,ssn=ssn)
+            is_superuser = data['is_superuser']
+            is_staff = data['is_staff']
+            is_active = data['is_active']
+
+            UserProfile.objects.filter(user = user.id).update(username=username,password=password,uID=uID,fName=fName,lName=lName,nmlsID=nmlsID,ssn=ssn,is_superuser=is_superuser,is_staff=is_staff,is_active=is_active)
             
             user_profile = UserProfile.objects.get(user=user)
             user_profile = UserProfileSerializer(user_profile)
