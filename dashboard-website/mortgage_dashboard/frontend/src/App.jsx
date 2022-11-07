@@ -15,8 +15,8 @@ import LegalThree from "./components/legal/LegalThree";
 import LegalFour from "./components/legal/LegalFour.jsx";
 import AddUser from "./pages/Admin/Add-Users.jsx";
 import Users from "./pages/Admin/Users.jsx";
-import EditLenders from "./pages/Admin/EditLenders";
-import EditResources from "./pages/Admin/EditResources";
+import LendersAdmin from "./pages/Admin/EditLenders";
+import ResourcesAdmin from "./pages/Admin/EditResources";
 import Deleted from "./pages/Admin/Deleted";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -29,7 +29,6 @@ const App = () => {
   return (
     <Provider store = {store}>
       <div className="App">
-        <div className="Header"> 
         <Routes>
             <Route path="" element={<Dashboard />} />
             <Route path="/Dashboard" element={<Dashboard />} />
@@ -45,20 +44,11 @@ const App = () => {
             <Route path="LegalFour" element={<LegalFour />} />
             <Route path="Users" element={<Users />} />
             <Route path="Add-User" element={<AddUser />} />
-            <Route path="Edit-Lenders" element={<EditLenders />} />
-            <Route path="Edit-Resources" element={<EditResources />} />
+            <Route path="LendersAdmin" element={<LendersAdmin />} />
+            <Route path="ResourcesAdmin" element={<ResourcesAdmin />} />
             <Route path="Lenders" element={<Lenders />} />
             <Route path="Deleted" element={<Deleted />} />
         </Routes>
-        </div>
-
-        <div className="Content">
-          
-        </div>
-
-        {/* <div className="Footer">
-          <p>All Rights Reserved, Liberty Wholesale Mortgage</p>
-        </div> */}
       </div >      
     </Provider>
   )

@@ -178,7 +178,7 @@ const handleSortingDate = () => {
       <Navbar />
     </div>
      <div className="Content">
-     <p className="Page-Title">Lenders Admin</p> 
+     <p className="Page-Title">Lenders</p> 
      <div className="Lenders">
       
       {isLoading ?

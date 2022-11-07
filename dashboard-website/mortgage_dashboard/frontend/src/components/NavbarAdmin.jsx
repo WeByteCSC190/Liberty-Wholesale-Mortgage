@@ -45,8 +45,8 @@ export default function NavbarCustom() {
             <ul className="Nav-Menu"> 
             <SwitchPage href="/Users">View Users</SwitchPage> 
             <SwitchPage href="/Add-User">Add User</SwitchPage>
-            <SwitchPage href="/Edit-Lenders">Edit Lenders</SwitchPage>
-            <SwitchPage href="/Edit-Resources">Edit Resources</SwitchPage>
+            <SwitchPage href="/LendersAdmin">Edit Lenders</SwitchPage>
+            <SwitchPage href="/ResourcesAdmin">Edit Resources</SwitchPage>
             <SwitchPage href="/Deleted">Recently Deleted</SwitchPage>
             </ul>
            </Container>

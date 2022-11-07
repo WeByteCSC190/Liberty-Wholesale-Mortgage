@@ -5,11 +5,20 @@
   background: white;
 }
 
-.Header {}
+/* For Scrolling */ 
 
-.Content {}
+.Header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-bottom: 5%;
+  z-index: 4; 
+}
 
-.Header + .Content {}
+
+.Header + .Content {
+  padding-top: 80px;
+}
 
 /* CSS Code for Navbar */
 .Navbar {
@@ -100,8 +109,6 @@
   color: white;
   font-weight: bold;
 }
-
-
 
 
 .Footer {

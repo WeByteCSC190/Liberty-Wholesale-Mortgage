@@ -1,7 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/NavbarAdmin.jsx";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
