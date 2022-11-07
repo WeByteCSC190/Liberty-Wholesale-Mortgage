@@ -16,12 +16,12 @@ const Lenders = () => {
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const getLendersUrl = "http://localhost:8000/api/lender/";
-  const getLendersLogoUrl = "http://127.0.0.1:8000/api/lenderLogo/"; 
+  
   let testData = []
-  let sourceImg = []
+  let sourceImage = []
   
   function getLenders() {
+    const getLendersUrl = "http://localhost:8000/api/lender/";
   axios({
       method: "GET",
       url:getLendersUrl
@@ -38,31 +38,29 @@ const Lenders = () => {
         console.log(error.response.headers);
         }
     })
-}
 
-function getLogo() {
-  axios({
-    method: "GET",
-    url:getLendersLogoUrl
-  }).then((response)=>{
-    const data = response.data;
-    setLogoTable(data)
-    sourceImg = data;
-    console.log(data);
-    return data
-  }).catch((error) => {
-    if (error.response) {
-      console.log(error.response);
-      console.log(error.response.status);
-      console.log(error.response.headers);
-      }
-  })
+    const getLendersLogoUrl = "http://127.0.0.1:8000/api/lenderLogo/"; 
+    axios({
+      method: "GET",
+      url:getLendersLogoUrl,
+    }).then((response)=>{
+      const image = response.data;
+      setLogoTable(image)
+      sourceImage = image;
+      console.log(image)
+      return image
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        }
+    })
 }
 
 
   useEffect(() => {
     getLenders();
-    getLogo();
     fetchData(searchValue, filterType).then((dataTable) => {
       setDataTable(dataTable);
       console.log(dataTable)
@@ -73,7 +71,6 @@ function getLogo() {
 
 
   const column = [
-    
     { heading: 'Company', value: 'company' },
     { heading: 'Rating', value: 'rating' },
     { heading: 'Programs', value: 'programs' },
@@ -195,7 +192,7 @@ const handleSortingDate = () => {
           <Table api="http://localhost:8000/api/lender/"  
                  page={"Lenders"} data={dataTable} 
                  column={column} columns={columns} 
-                 source={sourceImg}/>
+                 image={logoTable}/>
 
           <div className="Footer">
              <Footer />

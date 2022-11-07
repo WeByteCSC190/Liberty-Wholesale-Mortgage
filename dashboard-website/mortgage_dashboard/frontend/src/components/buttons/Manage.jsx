@@ -1,13 +1,16 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import Edit from '../modals/EditRow'
-import Delete from '../modals/Confirmation'
+import Edit from '../modals/EditLenders'
+import Delete from '../modals/EditLenders'
 import axios from 'axios';
 
+/* For the Lender pages */
+
 function ManageBtn({ nameButton, api, page, rowData, rowKey, index }){
-    const handleDelete = (e) => { 
+
+  const handleDelete = (e) => { 
         axios({
           method: "POST",
-          url: api,
+          url: api
         }).then((response)=>{
           const data = response.data;
           window.location.reload(false);
@@ -20,6 +23,7 @@ function ManageBtn({ nameButton, api, page, rowData, rowKey, index }){
         })
       
     }
+  
   return (
     <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -27,10 +31,10 @@ function ManageBtn({ nameButton, api, page, rowData, rowKey, index }){
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Edit rowData={rowData}/>
-        <Delete title= {"Remove" + {page}} 
+        <Edit rowData={rowData.company}/>
+        <Delete title= {"Remove Company Info"} 
             cID={rowKey} 
-            message={"Are you sure you want to remove this " + {page} + " permanently?"} 
+            message={"Are you sure you want to remove this lender permanently?"} 
             apiUrl={api}
         />
       </Dropdown.Menu>

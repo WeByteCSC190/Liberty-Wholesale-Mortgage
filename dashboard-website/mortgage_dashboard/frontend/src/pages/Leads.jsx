@@ -61,13 +61,13 @@ const Leads = () => {
 
 
   const column = [
-    { heading: 'CaseId ', value: 'caseId' },
+    { heading: 'Case ID ', value: 'caseId' },
+    { heading: 'Date', value: 'date' },
     { heading: 'First Name', value: 'fName' },
     { heading: 'Last Name', value: 'lName' },
     { heading: 'Credit Score', value: 'creditScore' },
-    { heading: 'Email', value: 'email' },
     { heading: 'Phone', value: 'phone_num' },
-    { heading: 'Date', value: 'date' },
+    { heading: 'Email', value: 'email' },
     { heading: 'Status', value: 'status' },
     {heading: 'Details', value:'Details'},
     {heading: 'AddRow', value:'AddLead'}

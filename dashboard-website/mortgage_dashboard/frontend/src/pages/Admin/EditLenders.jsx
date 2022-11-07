@@ -9,7 +9,7 @@ import Loader from "../../components/spinner";
 import Footer from '../../components/Footer';
 
 
-const EditLenders = () => {
+const LendersAdmin = () => {
 
   const [dataTable, setDataTable] = useState([]);
   const [searchValue, setSearchValue] = useState("");
@@ -74,7 +74,8 @@ function getLogo() {
     { heading: 'Rating', value: 'rating' },
     { heading: 'Programs', value: 'programs' },
     { heading: 'Details', value: 'Details'},
-    { heading: 'Admin' , value: ''}
+    { heading: 'Website', value: 'website' },
+    { heading: 'Admin', value: 'AddLender'},
   ]
 
   const columns = [
@@ -177,7 +178,7 @@ const handleSortingDate = () => {
       <Navbar />
     </div>
      <div className="Content">
-     <p className="Page-Title">Edit Lenders</p> 
+     <p className="Page-Title">Lenders Admin</p> 
      <div className="Lenders">
       
       {isLoading ?
@@ -199,4 +200,4 @@ const handleSortingDate = () => {
   );
 }
 
-export default EditLenders;
+export default LendersAdmin;

@@ -4,8 +4,9 @@ import ManageBtn from "../components/buttons/Manage";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import BlueLogo from './images/blue_logo.png';
 
-const LendersTableComponent = ({api, page, data, column, columns, source }) => {
+const LendersTableComponent = ({api, page, data, column, columns, image }) => {
 
   // State variable to keep track of all the expanded rows
   const [expandedRows, setExpandedRows] = useState([]);
@@ -79,7 +80,7 @@ const toggle = (e) => {
 }
 
 // Creates and renders the information and/or buttons on each table
-const TableRow = ({ api, item, data, column, columns, source, index, expandedRows,handleEpandRow,expandState}) => (
+const TableRow = ({ api, item, data, column, columns, image, index, expandedRows,handleEpandRow,expandState}) => (
   <>
   <tr id={index}>
     {column.map((columnItem) => {
@@ -103,10 +104,7 @@ const TableRow = ({ api, item, data, column, columns, source, index, expandedRow
               expandState[item.company] ?
                 'Hide' : 'Show'
             }</Button> </th>);
-      } else if (columnItem.heading === 'Logo') {
-        return (<th><img className="Table-Logo" src={source}>{item.logo}</img>
-          </th>);
-      }
+      } 
       else {
         return <td>{item[`${columnItem.value}`]}</td>
       }
@@ -118,10 +116,10 @@ const TableRow = ({ api, item, data, column, columns, source, index, expandedRow
       expandedRows.includes(item.company) ?
       <tr>
         <td colspan="12" style={{backgroundColor: '#FFF', marginBottom: 0, }}>
-              <p> Here are some details about {item.company}. </p>
+              <p> Company Info </p>
               <Form>
                 <Form.Group className="mb-3" controlId="notesTextarea">
-                 <ExpandedRow api={api} item={item} columns={columns} source={source} index={index} expandState={expandState} />
+                 <ExpandedRow api={api} item={item} columns={columns} image={image} index={index} expandState={expandState} />
                  </Form.Group>
             </Form>
         </td>
@@ -132,7 +130,7 @@ const TableRow = ({ api, item, data, column, columns, source, index, expandedRow
 )
 
 // Expands the table row and renders the hidden infomation when "show" is clicked
-const ExpandedRow = ({ api, item, columns, source, index, expandState}) => {
+const ExpandedRow = ({ api, item, columns, image, index, expandState}) => {
   return(
     <>
     <div style={{ marginTop: 10 }}>
@@ -151,7 +149,14 @@ const ExpandedRow = ({ api, item, columns, source, index, expandState}) => {
         const itemSplit = columnItem.value.split('.')
         return <td>{item[itemSplit[0]][itemSplit[1]]}</td>
       } else if (columnItem.heading === 'Logo') {
-        return (<td><img className="Table-Logo" src={source}>{item.logo}</img>
+        return (<td>
+           <img
+              src={columns.logo} 
+              width="150"
+              height="70"
+              className="table-logo"
+              alt={item.company}
+        />
           </td>);
     }  else {
         return <td>{item[`${columnItem.value}`]}</td>
