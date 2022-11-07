@@ -17,7 +17,6 @@ const handleAddNote = async (caseId) => {
     var formData = new FormData();
    formData.append("borrowernote",noteText)
     formData.append("borrower", caseId)
-  console.log(Object.fromEntries(formData))
   api="http://localhost:8000/api/get-borrowernote"
     try {
       const response = await axios({
@@ -26,7 +25,6 @@ const handleAddNote = async (caseId) => {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      console.log(response)
       window.location.reload(false);
     
     } catch(error) {
@@ -36,7 +34,6 @@ const handleAddNote = async (caseId) => {
     var formData = new FormData();
    formData.append("leadnote",noteText)
     formData.append("lead", caseId)
-  console.log(Object.fromEntries(formData))
   api="http://localhost:8000/api/get-leadnote"
     try {
       const response = await axios({
@@ -45,9 +42,7 @@ const handleAddNote = async (caseId) => {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      console.log(response)
       window.location.reload(false);
-    
     } catch(error) {
       console.log(error)
     }
@@ -82,7 +77,7 @@ const handleAddNote = async (caseId) => {
   return (
     <div style={{ paddingBottom: 10, paddingLeft: 90, paddingRight: 90 }}>
       <Table className="Table" responsive hover >
-      <thead>
+        <thead>
       <tr className="table-title">List of {page}</tr>
       <tr className="table-heading">
             {column.map((item, index) =>
@@ -122,7 +117,7 @@ const TableRow = ({ page, item, column, notes, index, expandedRows, handleEpandR
   handleAddNote, setNoteText }) => (
   <>
   <tr id={index}>
-    {column.map((columnItem) => {
+      {column.map((columnItem) => {
       if(columnItem.value.includes('.')) {
         const itemSplit = columnItem.value.split('.')
         return <td>{item[itemSplit[0]][itemSplit[1]]}</td>
@@ -145,6 +140,9 @@ const TableRow = ({ page, item, column, notes, index, expandedRows, handleEpandR
         </Button> </td>);
       }
       else {
+        if(columnItem.heading==="Date") {
+          return <td>{item[`${columnItem.value}`].slice(0, 10)}</td>
+        }
         return <td>{item[`${columnItem.value}`]}</td>
       }
       
@@ -156,7 +154,6 @@ const TableRow = ({ page, item, column, notes, index, expandedRows, handleEpandR
           <tr id={index + "_note"}>
             <td colspan="12" style={{ backgroundColor: '#343A40', color: '#FFF' }}>
               {notes.map((note) => {
-                console.log(note)
                 if (page === "Borrowers"){
                   if (note.borrower === item.caseId) {
                     return <>

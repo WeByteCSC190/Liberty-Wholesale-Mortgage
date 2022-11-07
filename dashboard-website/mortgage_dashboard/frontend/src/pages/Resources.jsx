@@ -101,7 +101,12 @@ const Resources = () => {
       image:
         "https://www.oyorooms.com/travel-guide/wp-content/uploads/2019/02/summer-7.jpg",
       caption: "<div>Negin</div>",
-    },
+     },
+     {
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
+      caption: "The last one",
+    }
   ];
 
   const captionStyle = {

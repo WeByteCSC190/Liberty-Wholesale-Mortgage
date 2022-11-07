@@ -41,9 +41,44 @@ function ActionBtn({ page, rowData, index }) {
   }
   else if (page === "Files") {
     return (
-      <Button variant="danger">
-         <Delete title="Remove Borrower" cID={rowData.caseId} message="Are you sure you want to remove this file permanently?" apiUrl="http://localhost:8000/api/borrower-delete/"/>
-    </Button>
+     <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        Action
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Edit rowData={rowData}/>
+        <Delete title="Remove file" cID={rowData.caseId} message="Are you sure you want to remove this file permanently?" apiUrl="http://localhost:8000/api/lead-delete/"/>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+  }
+    else if (page === "EditResources-carousel") {
+    return (
+     <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        Action
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Edit rowData={rowData}/>
+        <Delete title="Remove image" cID={rowData.caseId} message="Are you sure you want to remove this image permanently?" apiUrl="http://localhost:8000/api/lead-delete/"/>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+  }
+   else if (page === "EditResources-video") {
+    return (
+     <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        Action
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Edit rowData={rowData}/>
+        <Delete title="Remove video" cID={rowData.caseId} message="Are you sure you want to remove this video permanently?" apiUrl="http://localhost:8000/api/lead-delete/"/>
+      </Dropdown.Menu>
+    </Dropdown>
   );
    }
   

@@ -25,7 +25,7 @@ function AddRow({api, page}) {
     formData.append("lName", formValue.lName)
     formData.append("email", formValue.email)
     formData.append("phone_num", formValue.phone_num)
-    formData.append("status", "")
+    formData.append("status", formValue.status)
     formData.append("creditScore", formValue.creditScore)
     formData.append("status_check", formValue.status_check)
     formData.append("date", '2022-10-13T02:23:05Z')
@@ -126,7 +126,7 @@ function AddRow({api, page}) {
                   onChange={handleChange}>
                   <option>Open to select status</option>
                   <option value="Closed">Closed</option>
-                  <option value="New">New</option>
+                  <option value="Application Complete">Application Complete</option>
                   <option value="In progress">In progress </option>
                 </Form.Select>
               </Form.Group>
@@ -175,6 +175,92 @@ function AddRow({api, page}) {
             <Form.Group controlId="formFile" className="mb-3">
             <Form.Label>Default file input example</Form.Label>
             <Form.Control type="file" />
+          </Form.Group>
+              
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleSubmit}>
+              Add
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
+   else if (page === "EditResources-carousel") {
+        return (
+      <>
+        <Button variant="primary" onClick={handleShow}>
+          Add Row
+        </Button>
+
+        <Modal show={show} onHide={handleClose} animation={false}>
+          <Modal.Header closeButton>
+            <Modal.Title>Add {page}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group className="mb-3" controlId="">
+                <Form.Label>Image Link</Form.Label>
+                <Form.Control name="fName" type="text" placeholder="Image Link" value={formValue.fName}
+                  onChange={handleChange} />
+              </Form.Group>
+            <Form.Group controlId="formFile" className="mb-3">
+            <Form.Label>Text</Form.Label>
+                <Form.Control name="fName" type="text" placeholder="Text" value={formValue.fName}
+                  onChange={handleChange} />
+          </Form.Group>
+              
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleSubmit}>
+              Add
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </>
+    );
+  }
+   else if (page === "EditResources-video") {
+        return (
+      <>
+        <Button variant="primary" onClick={handleShow}>
+          Add Row
+        </Button>
+
+        <Modal show={show} onHide={handleClose} animation={false}>
+          <Modal.Header closeButton>
+            <Modal.Title>Add {page}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Form.Group className="mb-3" controlId="">
+                <Form.Label>Image Link</Form.Label>
+                <Form.Control name="fName" type="text" placeholder="Image Link" value={formValue.fName}
+                  onChange={handleChange} />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="">
+                <Form.Label>Video Link</Form.Label>
+                <Form.Control name="fName" type="text" placeholder="Video Link" value={formValue.fName}
+                  onChange={handleChange} />
+                  </Form.Group>
+                   <Form.Group controlId="formFile" className="mb-3">
+            <Form.Label>Title</Form.Label>
+                <Form.Control name="fName" type="text" placeholder="Title" value={formValue.fName}
+                  onChange={handleChange} />
+          </Form.Group>
+            <Form.Group controlId="formFile" className="mb-3">
+            <Form.Label>Text</Form.Label>
+                <Form.Control name="fName" type="text" placeholder="Text" value={formValue.fName}
+                  onChange={handleChange} />
           </Form.Group>
               
             </Form>
