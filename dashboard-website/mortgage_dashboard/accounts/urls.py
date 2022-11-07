@@ -11,7 +11,4 @@ urlpatterns = [
     path('csrf_cookie',GetCSRFToken.as_view()), 
     path('getUsers', GetUsersView.as_view()),
           
-    # path('api-auth/', include('rest_framework.urls')),
-    # path('api/', include('api.urls')),
-    # path('accounts/', include('')) 
 ]

@@ -167,3 +167,5 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+
+TEST_RUNNER = 'my_project.runner.PytestTestRunner'
