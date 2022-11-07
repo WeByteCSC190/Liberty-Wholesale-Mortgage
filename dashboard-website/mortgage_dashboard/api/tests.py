@@ -99,7 +99,7 @@ class TestLead(TestCase):
        self.assertEqual(new_lead.caseId, int('3'))
 
 
-class BorrowerModelTest(TestCase):
+""" class BorrowerModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         Borrower.objects.create(fName='Test',lName='Case')
@@ -212,3 +212,4 @@ class TestBorrower(TestCase):
        new_borrower = serializer.save()
        new_borrower.refresh_from_db()
        self.assertEqual(new_borrower.caseId, int('3'))
+ """
