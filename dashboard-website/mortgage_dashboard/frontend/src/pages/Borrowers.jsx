@@ -50,7 +50,7 @@ const Borrowers = () => {
       const data = response.data;
       setDataTable(data)
       testData = data;
-      console.log(data)
+      // console.log(data)
       return data
     }).catch((error) => {
       if (error.response) {
@@ -86,7 +86,7 @@ const Borrowers = () => {
     getBorrowers();
     fetchData(searchValue, filterType).then((dataTable) => {
       setDataTable(dataTable);
-      console.log(dataTable)
+      // console.log(dataTable)
     })
     const filteredData = filterTable(searchValue, filterType);
     setDataTable(filteredData);
@@ -119,18 +119,33 @@ const Borrowers = () => {
         }
         if (filterType !== '') {
           switch (filterType) {
-            case 'First Name':
-              // console.log("filter by first name")
+            case 'First Name ASC':
               resolve(handleSorting("fName", 'asc'))
-            case 'Last Name':
-              // console.log("filter by last name")
+              break
+            case 'First Name Desc':
+              resolve(handleSorting("fName", 'desc'))
+              break
+            case 'Last Name ASC':
               resolve(handleSorting("lName", 'asc'))
-            case 'Date':
-              // console.log("filter by date")
-              // resolve(handleSortingDate())
-             resolve(testData)
+              break
+            case 'Last Name DESC':
+              resolve(handleSorting("lName", 'desc'))
+              break
+            case 'Status ASC':
+              resolve(handleSorting("status", 'asc'))
+              break
+            case 'Status DESC':
+              resolve(handleSorting("status", 'desc'))
+              break
+            case 'Date ASC':
+              resolve(handleSortingDate())
+              break
+            case 'Date DESC':
+              resolve(handleSortingDate())
+              break
             default:
-              resolve(testData)
+               window.location.reload(false);
+              break
           }
         } else if (searchValue === '' || filterType === '') {
           resolve(testData)
@@ -140,7 +155,8 @@ const Borrowers = () => {
     });
   };
 const handleSorting = (sortField, sortOrder) => {
- if (sortField) {
+   console.log("handlesort sort field = "+sortOrder)
+  if (sortField) {
   const sorted = [...dataTable].sort((a, b) => {
     return (
         a[sortField].localeCompare(b[sortField], "en", {
@@ -151,39 +167,45 @@ const handleSorting = (sortField, sortOrder) => {
    return sorted;
  }
 };
-const handleSortingDate = () => {
+  const handleSortingDate = () => {
   const sorted = [...dataTable].sort((a, b) => {
-    console.log((a.date))
+    console.log( (new Moment(a.date.slice(0, 10))) - (new Moment(b.date.slice(0, 10))))
     return (
-        (new Moment(a.date)) - (new Moment(b.date))
+        (new Moment(a.date.slice(0, 10))) - (new Moment(b.date.slice(0, 10)))
     );
   });
    return sorted;
 };
   const filterTable = (searchValue, filterType) => {
     setIsLoading(true);
-    console.log("filterTable function called")
     if (filterType !== '') {
-      switch(filterType) {
-        case 'First Name':
-            console.log("filter by first name")
-            return handleSorting("fName", 'asc')
-        case 'Last Name':
-            console.log("filter by last name")
-            return handleSorting("lName", 'asc')
-        case 'Date':
-            console.log("filter by date")
-            // return handleSortingDate()
-           
-        default:
-            return testData
-      }
+      switch (filterType) {
+            case 'First Name ASC':
+              return handleSorting("fName", 'asc')
+            case 'First Name Desc':
+              return handleSorting("fName", 'desc')
+            case 'Last Name ASC':
+              return handleSorting("lName", 'asc')
+            case 'Last Name DESC':
+              return handleSorting("lName", 'desc')
+            case 'Status ASC':
+              return handleSorting("status", 'asc')
+            case 'Status DESC':
+              return handleSorting("status", 'desc')
+            case 'Date ASC':
+              return handleSortingDate()
+            case 'Date DESC':
+              return handleSortingDate()
+            default:
+              window.location.reload(false);
+              
+          }
     } else if (searchValue === '' || filterType==='') {
       return testData
     }
     if (searchValue !== '') {
-      console.log(testData.filter(dataTable => dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
-      ))
+      // console.log(testData.filter(dataTable => dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
+      // ))
       return testData.filter(dataTable => dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
       );
     }

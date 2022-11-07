@@ -86,18 +86,32 @@ const Leads = () => {
         }
         if (filterType !== '') {
           switch (filterType) {
-            case 'First Name':
-              // console.log("filter by first name")
+            case 'First Name ASC':
               resolve(handleSorting("fName", 'asc'))
-            case 'Last Name':
-              // console.log("filter by last name")
+              break
+            case 'First Name Desc':
+              resolve(handleSorting("fName", 'desc'))
+              break
+            case 'Last Name ASC':
               resolve(handleSorting("lName", 'asc'))
+              break
+            case 'Last Name DESC':
+              resolve(handleSorting("lName", 'desc'))
+              break
+            case 'Status ASC':
+              resolve(handleSorting("status", 'asc'))
+              break
+            case 'Status DESC':
+              resolve(handleSorting("status", 'desc'))
+              break
             case 'Date':
               // console.log("filter by date")
               // resolve(handleSortingDate())
              resolve(testData)
+             break
             default:
-              resolve(testData)
+              window.location.reload(false);
+              break
           }
         } else if (searchValue === '' || filterType === '') {
           resolve(testData)
@@ -143,7 +157,7 @@ const handleSortingDate = () => {
             // return handleSortingDate()
            
         default:
-            return testData
+           window.location.reload(false);
       }
     } else if (searchValue === '' || filterType==='') {
       return testData
