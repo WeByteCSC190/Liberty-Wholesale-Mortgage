@@ -48,17 +48,17 @@
 }
 
 .Active{
-  border: 20px solid gray;
+  border: 1rem solid gray;
 }
 
 .Completed{
-  border: 20px solid green;
+  border: 1rem solid green;
 }
 
 
 
 #text{
-  position: relative;
+  /* position: aboslute; */
   color: white;
 }
 

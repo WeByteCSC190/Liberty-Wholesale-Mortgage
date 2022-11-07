@@ -1,7 +1,7 @@
 from datetime import date
 import re
 from urllib import response
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework import generics, status
 import random
 from rest_framework import viewsets
@@ -12,9 +12,10 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework import permissions 
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.http import HttpResponseRedirect
 
-from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer
-from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin
+from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer,AccountDetails
+from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote, AccountDetail
 
 @api_view(['GET'])
 def listAll(request):
@@ -127,14 +128,14 @@ class LenderViewSet(viewsets.ModelViewSet):
     queryset=Lender.objects.all()
     serializer_class=LenderSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['company', 'state', 'programs']
+    search_fields = ['company', 'programs']
 
 class LenderView(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
     queryset = Lender.objects.all()
     serializer_class= LenderSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['company', 'state', 'programs']
+    search_fields = ['company', 'programs']
 
 class LenderLogoViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
@@ -275,49 +276,12 @@ def generate_random_number():
     cID = random.randrange(1000000)
     return cID
 
-@api_view(['DELETE'])
-def borrowerDelete(request, pk):
-    borrower = Borrower.objects.get(caseId=pk)
-    name = "Borrower"
-    caseID = borrower.caseId
-    date = borrower.date
-    fname = borrower.fName
-    lname = borrower.lName
-    creditscore = borrower.creditScore
-    email = borrower.email
-    phone_num = borrower.phone_num
-    status = borrower.status
+class BorrowerDelete(APIView):
+    permission_classes = (permissions.AllowAny, )
 
-    borrowerBin = RecyclingBin(name,generate_random_number(),None,caseID,date,fname,lname,creditscore,email,phone_num,status)
-    borrowerBin.save()
-    borrower.delete()
-    
-    return Response("Moved to Bin!")
-
-@api_view(['DELETE'])
-def leadDelete(request, pk):
-    lead = Lead.objects.get(caseId=pk)
-    name = "Lead"
-    resources = lead.resources
-    caseID = lead.caseId
-    date = lead.date
-    fname = lead.fName
-    lname = lead.lName
-    creditscore = lead.creditScore
-    email = lead.email
-    phone_num = lead.phone_num
-    status = lead.status
-
-    leadBin = RecyclingBin(name,generate_random_number(),resources,caseID,date,fname,lname,creditscore,email,phone_num,status)
-    leadBin.save()
-    lead.delete()
-    
-    return Response("Moved to Bin!")
-
-@api_view(['POST'])
-def borrowerRecover(request, pk):
-    borrower = RecyclingBin.objects.get(trashID=pk)
-    if borrower.dataName == "Borrower":
+    def delete(self, request, pk):
+        borrower = Borrower.objects.get(caseId=pk)
+        name = "Borrower"
         caseID = borrower.caseId
         date = borrower.date
         fname = borrower.fName
@@ -327,17 +291,18 @@ def borrowerRecover(request, pk):
         phone_num = borrower.phone_num
         status = borrower.status
 
-        borrowerRestore = Borrower(caseID,date,fname,lname,creditscore,email,phone_num,status)
-        borrowerRestore.save()
+        borrowerBin = RecyclingBin(name,generate_random_number(),None,caseID,date,fname,lname,creditscore,email,phone_num,status)
+        borrowerBin.save()
         borrower.delete()
-        return Response("Borrower Data Recovered")
-    else:
-        return Response("Not a Borrower")
+        
+        return Response("Moved to Bin!")
 
-@api_view(['POST'])
-def leadRecover(request, pk):
-    lead = RecyclingBin.objects.get(trashID=pk)
-    if lead.dataName == "Lead":
+class LeadDelete(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def delete(self, request, pk):
+        lead = Lead.objects.get(caseId=pk)
+        name = "Lead"
         resources = lead.resources
         caseID = lead.caseId
         date = lead.date
@@ -348,16 +313,59 @@ def leadRecover(request, pk):
         phone_num = lead.phone_num
         status = lead.status
 
-        leadRestore = Lead(resources,caseID,date,fname,lname,creditscore,email,phone_num,status)
-        leadRestore.save()
+        leadBin = RecyclingBin(name,generate_random_number(),resources,caseID,date,fname,lname,creditscore,email,phone_num,status)
+        leadBin.save()
         lead.delete()
-        return Response("Lead Data Recovered")
-    else:
-        return Response("Not a Lead")
+        
+        return Response("Moved to Bin!")
+
+class BorrowerRecover(APIView):
+    permission_classes = (permissions.AllowAny, )
+
+    def post(self, request, pk):
+        borrower = RecyclingBin.objects.get(trashID=pk)
+        if borrower.dataName == "Borrower":
+            caseID = borrower.caseId
+            date = borrower.date
+            fname = borrower.fName
+            lname = borrower.lName
+            creditscore = borrower.creditScore
+            email = borrower.email
+            phone_num = borrower.phone_num
+            status = borrower.status
+
+            borrowerRestore = Borrower(caseID,date,fname,lname,creditscore,email,phone_num,status)
+            borrowerRestore.save()
+            borrower.delete()
+            return Response("Borrower Data Recovered")
+        else:
+            return Response("Not a Borrower")
+
+class LeadRecover(APIView):
+    permission_classes = (permissions.AllowAny, )
+    
+    def post(self, request, pk):
+        lead = RecyclingBin.objects.get(trashID=pk)
+        if lead.dataName == "Lead":
+            resources = lead.resources
+            caseID = lead.caseId
+            date = lead.date
+            fname = lead.fName
+            lname = lead.lName
+            creditscore = lead.creditScore
+            email = lead.email
+            phone_num = lead.phone_num
+            status = lead.status
+
+            leadRestore = Lead(resources,caseID,date,fname,lname,creditscore,email,phone_num,status)
+            leadRestore.save()
+            lead.delete()
+            return Response("Lead Data Recovered")
+        else:
+            return Response("Not a Lead")
 
 @api_view(['DELETE'])
-def binDelete(request, pk):
-    permission_classes = (permissions.IsAuthenticated, )
+def recyclingBinDelete(request, pk):
     dataBin = RecyclingBin.objects.get(trashID=pk)
     dataBin.delete()
     
@@ -372,17 +380,130 @@ class RecyclingBinView(generics.ListCreateAPIView):
     permission_classes = (permissions.AllowAny, )
     queryset = RecyclingBin.objects.all()
     serializer_class=  RecycleBinSerializer
-# def BorrowerSearch(request):
-#     if request.method =="POST":
-#         searched = request.POST('searched')
-#     borrower = Borrower.objects.filter(id__contains = searched)
-#     return render(request, ','{'searched':searched, borrower = Borrower})
-#     else:
-#         return render(request, ,{})
+    
+@api_view(['GET'])
+def borrowerNoteList(request):
+    borrowernote = BorrowerNote.objects.all()
+    serializer = BorrowerNoteSerializer(borrowernote, many=True)
+    return Response(serializer.data)
+@api_view(['POST'])
+def borrowerNoteCreate(request):
+    serializer = BorrowerNoteSerializer(data=request.data)
 
-# def BorrowerEditCheckBox(request):
-#     if request.method =="POST":
-#         status_list = request.POST.getlist('boxes')
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
 
-#         for x in status_list:
-#             Event.object.filter(pk=int(x)),update(Approved = True)
+@api_view(['POST'])
+def borrowerNoteUpdate(request, pk):
+    borrowernote = BorrowerNote.objects.get(id=pk)
+    serializer = BorrowerNoteSerializer(instance=borrowernote, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def borrowerNoteDelete(request, pk):
+    borrowernote = BorrowerNote.objects.get(id=pk)
+    borrowernote.delete()
+    
+    return Response("Successfully Deleted BorrowerNote!")
+class borrowerNoteViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
+    queryset=BorrowerNote.objects.all()
+    serializer_class=BorrowerNoteSerializer
+
+class BorrowerNoteView(generics.ListCreateAPIView):
+    permission_classes = (permissions.AllowAny, )
+    queryset = BorrowerNote.objects.all()
+    serializer_class= BorrowerNoteSerializer
+
+
+
+@api_view(['GET'])
+def LeadNoteList(request):
+    leadnote = LeadNote.objects.all()
+    serializer = LeadNoteSerializer(leadnote, many=True)
+    return Response(serializer.data)
+@api_view(['POST'])
+def LeadNoteCreate(request):
+    serializer = LeadNoteSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def LeadNoteUpdate(request, pk):
+    leadnote = LeadNote.objects.get(id=pk)
+    serializer = BorrowerNoteSerializer(instance=leadnote, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def LeadNoteDelete(request, pk):
+    leadnote = LeadNote.objects.get(id=pk)
+    leadnote.delete()
+    
+    return Response("Successfully Deleted BorrowerNote!")
+class LeadNoteViewSet(viewsets.ModelViewSet):
+    permission_classes = (permissions.AllowAny, )
+    queryset=LeadNote.objects.all()
+    serializer_class=LeadNoteSerializer
+
+class LeadNoteView(generics.ListCreateAPIView):
+    permission_classes = (permissions.AllowAny, )
+    queryset = LeadNote.objects.all()
+    serializer_class= LeadNoteSerializer
+
+
+@api_view(['POST'])
+def updateBorrower(request,pk):
+    borrower = Borrower.objects.get(id=pk)
+    serializer = BorrowerSerializer(instance = borrower, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def createBorrower(request):
+    serializer= BorrowerSerializer(data=request.data)
+    
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def updateAccountDetail(request,pk):
+    detail = AccountDetail.objects.get(id=pk)
+    serializer = AccountDetails(instance = detail, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def createAccountDetail(request):
+    serializer= AccountDetails(data=request.data)
+    
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def delAccountDetail(request,pk):
+    detail = AccountDetails.objects.get(id=pk)
+    detail.delete()
+    return Response('Account Details has been successfully deleted!')

@@ -10,22 +10,19 @@ import * as Icons from "@fortawesome/free-solid-svg-icons";
 
 const Search=({callback1, callback2})=> {  
   const [innerValue, setInnerValue] = useState("");
-  const [filterValue, setFilterValue]=useState("");
   const handleSubmit = e => {
     e.preventDefault()
     callback1(innerValue)
   }
   const handleFilter = e => {
     e.preventDefault()
-    console.log(e.target)
-    setFilterValue(e.target.value)
     var clicked = document.querySelectorAll(".btn-filter")
     for (var i = 0; i < clicked.length; i++) 
         clicked[i].classList.remove('btn-filter')
     e.target.className += ' btn-filter'
-    console.log(filterValue)
-    // setFilterValue(e.target.value)
-    callback2(filterValue)
+    // console.log(filterValue)
+    
+    callback2(e.target.id)
   }
     return (
       <div style={{ paddingLeft: 90, paddingRight: 90 }}>
@@ -57,32 +54,32 @@ const Search=({callback1, callback2})=> {
             Filters:
         </Col>
         <Col>
-          <DropdownButton value="Date" id="date" title="Date">
-              <Dropdown.Item onClick={handleFilter}>Asc</Dropdown.Item>
-              <Dropdown.Item onClick={handleFilter}>Desc</Dropdown.Item>
+          <DropdownButton title="Date">
+              <Dropdown.Item id="Date ASC" onClick={handleFilter}>Asc</Dropdown.Item>
+              <Dropdown.Item id="Date DESC" onClick={handleFilter}>Desc</Dropdown.Item>
           </DropdownButton>
         </Col>
         <Col>
-            <DropdownButton id="firstName" title="First Name">
-              <Dropdown.Item  value="First Name" onClick={handleFilter}>Asc</Dropdown.Item>
-              <Dropdown.Item onClick={handleFilter}>Desc</Dropdown.Item>
+            <DropdownButton title="First Name">
+              <Dropdown.Item id="First Name ASC" onClick={handleFilter}>Asc</Dropdown.Item>
+              <Dropdown.Item id="First Name Desc"  onClick={handleFilter}>Desc</Dropdown.Item>
           </DropdownButton>
         </Col>
         <Col>
-              <DropdownButton id="lastName" title="Last Name">
-                <Dropdown.Item value="Last Name"  onClick={handleFilter}>Asc</Dropdown.Item>
-                <Dropdown.Item onClick={handleFilter}>Desc</Dropdown.Item>
+              <DropdownButton title="Last Name">
+                <Dropdown.Item id="Last Name ASC"  onClick={handleFilter}>Asc</Dropdown.Item>
+                <Dropdown.Item id="Last Name DESC" onClick={handleFilter}>Desc</Dropdown.Item>
             </DropdownButton>
         </Col>
         <Col>
-            <DropdownButton value="Status" id="status" title="Status">
-              <Dropdown.Item value="Status" onClick={handleFilter}>Asc</Dropdown.Item>
-              <Dropdown.Item onClick={handleFilter}>Desc</Dropdown.Item>
+            <DropdownButton title="Status">
+              <Dropdown.Item id="Status ASC" onClick={handleFilter}>Asc</Dropdown.Item>
+              <Dropdown.Item id="Status DESC" onClick={handleFilter}>Desc</Dropdown.Item>
             </DropdownButton>
         </Col>
         <Col>
              <input value="Reset" type="button"
-            onClick={handleFilter} className="btn btn-primary" />
+            onClick={handleFilter} id="reset" className="btn btn-primary" />
         </Col>
     </Row>
     </Container>

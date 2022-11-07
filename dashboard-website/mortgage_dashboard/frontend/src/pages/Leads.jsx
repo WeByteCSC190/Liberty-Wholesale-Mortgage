@@ -9,13 +9,15 @@ import Loader from "../components/spinner";
 import Footer from '../components/Footer';
 const Leads = () => {
   const [dataTable, setDataTable] = useState([]);
+   // Notes Data
+  const [dataNotes, setDataNotes] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const getLeadsUrl = "http://localhost:8000/api/leads/";
   let testData = []
   
-  function getBorrowers() {
+  function getLeads() {
   axios({
       method: "GET",
       url:getLeadsUrl,
@@ -31,10 +33,24 @@ const Leads = () => {
         console.log(error.response.headers);
         }
     })
+     const getLeadsNotes = "http://localhost:8000/api/get-leadnote";
+    axios({
+      method: "GET",
+      url:getLeadsNotes,
+    }).then((response)=>{
+      const notes = response.data;
+      setDataNotes(notes)
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        }
+    })
 }
 
   useEffect(() => {
-    getBorrowers();
+    getLeads();
     fetchData(searchValue, filterType).then((dataTable) => {
       setDataTable(dataTable);
       console.log(dataTable)
@@ -45,14 +61,14 @@ const Leads = () => {
 
 
   const column = [
-    { heading: 'CaseId ', value: 'caseId' },
+    { heading: 'Case ID ', value: 'caseId' },
+    { heading: 'Date', value: 'date' },
     { heading: 'First Name', value: 'fName' },
     { heading: 'Last Name', value: 'lName' },
     { heading: 'Credit Score', value: 'creditScore' },
-    { heading: 'Email', value: 'email' },
     { heading: 'Phone', value: 'phone_num' },
-    { heading: 'Date', value: 'date' },
-    { heading: 'status', value: 'status' },
+    { heading: 'Email', value: 'email' },
+    { heading: 'Status', value: 'status' },
     {heading: 'Details', value:'Details'},
     {heading: 'AddRow', value:'AddLead'}
   ]
@@ -70,18 +86,32 @@ const Leads = () => {
         }
         if (filterType !== '') {
           switch (filterType) {
-            case 'First Name':
-              // console.log("filter by first name")
+            case 'First Name ASC':
               resolve(handleSorting("fName", 'asc'))
-            case 'Last Name':
-              // console.log("filter by last name")
+              break
+            case 'First Name Desc':
+              resolve(handleSorting("fName", 'desc'))
+              break
+            case 'Last Name ASC':
               resolve(handleSorting("lName", 'asc'))
+              break
+            case 'Last Name DESC':
+              resolve(handleSorting("lName", 'desc'))
+              break
+            case 'Status ASC':
+              resolve(handleSorting("status", 'asc'))
+              break
+            case 'Status DESC':
+              resolve(handleSorting("status", 'desc'))
+              break
             case 'Date':
               // console.log("filter by date")
               // resolve(handleSortingDate())
              resolve(testData)
+             break
             default:
-              resolve(testData)
+              window.location.reload(false);
+              break
           }
         } else if (searchValue === '' || filterType === '') {
           resolve(testData)
@@ -127,7 +157,7 @@ const handleSortingDate = () => {
             // return handleSortingDate()
            
         default:
-            return testData
+           window.location.reload(false);
       }
     } else if (searchValue === '' || filterType==='') {
       return testData
@@ -147,6 +177,7 @@ const handleSortingDate = () => {
     </div>
      {/* <p className="Page-Title">Leads</p> */}
      <div className="Content">
+     <p className="Page-Title">Leads</p> 
      <div className="Leads">
       
       {isLoading ?
@@ -155,7 +186,7 @@ const handleSortingDate = () => {
               callback1={(searchValue)=> setSearchValue(searchValue)} 
               callback2={(filterType)=> setFilterType(filterType)}
               />
-          <Table api="http://localhost:8000/api/leads/" page={"Leads"} data={dataTable} column={column} />
+          <Table api="http://localhost:8000/api/leads/" page={"Leads"} data={dataTable} column={column} notes={dataNotes} />
 
           <div className="Footer">
              <Footer />

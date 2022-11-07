@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as Icons from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect } from 'react';
 
-
-const Search=({callback1, callback2, button1, button2, button3, button4 }) => {  
+const SearchLenders = ({callback1, callback2, button1, button2, button3, limit }) => {  
   const [innerValue, setInnerValue] = useState("");
   const [filterValue, setFilterValue]=useState("");
   const handleSubmit = e => {
@@ -17,6 +17,7 @@ const Search=({callback1, callback2, button1, button2, button3, button4 }) => {
   }
   const handleFilter = e => {
     e.preventDefault()
+    console.log(e.target)
     setFilterValue(e.target.value)
     var clicked = document.querySelectorAll(".btn-filter")
     for (var i = 0; i < clicked.length; i++) 
@@ -27,9 +28,8 @@ const Search=({callback1, callback2, button1, button2, button3, button4 }) => {
     callback2(filterValue)
   }
     return (
-    <div style={{ paddingLeft: 90, paddingRight:90 }}>
+      <div style={{ paddingLeft: 90, paddingRight: 90 }}>
       <div className="container mt-5 search-container">
-        
         <Container className="mt-4">
           <form onSubmit={handleSubmit}>
         <Row>
@@ -46,7 +46,7 @@ const Search=({callback1, callback2, button1, button2, button3, button4 }) => {
         </Col>
         
         <Col sm={2}>
-            <button  className="btn btn-primary"><FontAwesomeIcon icon={Icons.faMagnifyingGlass}  /></button>
+            <button className="btn btn-primary"><FontAwesomeIcon icon={Icons.faMagnifyingGlass}  /></button>
         </Col>
             </Row>
             </form>
@@ -54,32 +54,45 @@ const Search=({callback1, callback2, button1, button2, button3, button4 }) => {
     <Container className="mt-4 mb-4">
     <Row  xs="auto" >
         <Col className="mt-2">
-            Filters:
+            Search By:
         </Col>
         <Col>
-              <input value={button1} type="button"
-            onClick={handleFilter} className="btn btn-primary" />
+          <DropdownButton value={button1} id={button1} title="Company">
+              <Dropdown.Item value="company" onClick={handleFilter}>A-Z</Dropdown.Item>
+              <Dropdown.Item value="company" onClick={handleFilter}>Z-A</Dropdown.Item>
+          </DropdownButton>
         </Col>
         <Col>
-             <input value={button2} type="button"
-            onClick={handleFilter} className="btn btn-primary" />
+            <DropdownButton id={button2} title="Rating">
+              <Dropdown.Item  value="rating" onClick={handleFilter}>A</Dropdown.Item>
+              <Dropdown.Item  value="rating" onClick={handleFilter}>A-</Dropdown.Item>
+              <Dropdown.Item  value="rating" onClick={handleFilter}>B+</Dropdown.Item>
+              <Dropdown.Item  value="rating" onClick={handleFilter}>B</Dropdown.Item>
+              <Dropdown.Item  value="rating" onClick={handleFilter}>C</Dropdown.Item>
+              <Dropdown.Item  value="rating" onClick={handleFilter}>U</Dropdown.Item>
+          </DropdownButton>
         </Col>
         <Col>
-             <input value={button3} type="button"
-            onClick={handleFilter} className="btn btn-primary" />
+              <DropdownButton id={button3} title="Programs">
+                <Dropdown.Item value="programs" onClick={handleFilter}>FHA</Dropdown.Item>
+                <Dropdown.Item value="programs" onClick={handleFilter}>VA</Dropdown.Item>
+            </DropdownButton>
         </Col>
         <Col>
-             <input value={button4} type="button"
-            onClick={handleFilter} className="btn btn-primary" />
+            <DropdownButton value={limit} id="page-limit" title="Page Limit">
+              <Dropdown.Item value="page_limit" onClick={handleFilter}>10</Dropdown.Item>
+              <Dropdown.Item value="page_limit" onClick={handleFilter}>20</Dropdown.Item>
+              <Dropdown.Item value="page_limit" onClick={handleFilter}>50</Dropdown.Item>
+            </DropdownButton>
         </Col>
         <Col>
              <input value="Reset" type="button"
-            onClick={handleFilter} className="btn btn-outline-dark" />
+            onClick={handleFilter} className="btn btn-primary" />
         </Col>
     </Row>
     </Container>
       </div>
-      </div> 
+      </div>
     )
 }
-export default Search;
+export default SearchLenders;

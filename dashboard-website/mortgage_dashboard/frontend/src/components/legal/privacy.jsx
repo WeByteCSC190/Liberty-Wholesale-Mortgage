@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import WhiteLogo from "../images/logo.jpg"; 
 
 export default class Privacy extends Component {
     render() {
@@ -7,6 +8,13 @@ export default class Privacy extends Component {
     <section class="legal-section">
       <div class="legal-container">
         <div class="legal-intro">
+        <img
+                src={WhiteLogo} //MLO Support Logo
+                width="200"
+                height="100"
+                className="company-logo"
+                alt="Logo"
+             />
         <h1 className="legal-title">MLO SUPPORT PRIVACY POLICY</h1>
              <p>
                Last Updated: 

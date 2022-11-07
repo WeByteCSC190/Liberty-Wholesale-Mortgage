@@ -247,7 +247,7 @@ class Client(models.Model):
 
 class Lender(models.Model):
     company = models.CharField('Company', max_length=200, null=True, blank=True)
-    state = models.CharField('State', max_length=200, null=True, blank=True)
+    #state = models.CharField('State', max_length=200, null=True, blank=True)
     rating = models.CharField('Rating', max_length=2, null=True, blank=True)
     programs = models.CharField('Programs', max_length=200, null=True, blank=True)
 
@@ -260,7 +260,7 @@ class Lender(models.Model):
     website = models.URLField('Website', null=True, blank=True)
 
     def __str__(self):
-        return f"{self.company},{self.state}"
+        return f"{self.company}"
 
 class LenderLogo(models.Model):
     company = models.CharField('Company', max_length=200, null=True, blank=True)
@@ -275,4 +275,27 @@ class Bio(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class BorrowerNote(models.Model):
+   borrower=models.ForeignKey(Borrower,on_delete=models.CASCADE)
+   borrowernote=models.TextField('Note',blank=True)
+   created_on=models.DateTimeField(auto_now_add=True)
+
+   def __str__(self):
+        return self.note
+class LeadNote(models.Model):
+    lead=models.ForeignKey(Lead,on_delete=models.CASCADE)
+    leadnote = models.TextField('Note', max_length=200,null=True)
+    created_on=models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.note
+        
+class AccountDetail(models.Model):
+    ssn = models.ForeignKey(UserProfile, blank = True, null = True, on_delete=models.CASCADE)
+    details = models.TextField('Account Information', blank = True, max_length = 200)
+
+    def __str__(self):
+        return self.ssn
         
