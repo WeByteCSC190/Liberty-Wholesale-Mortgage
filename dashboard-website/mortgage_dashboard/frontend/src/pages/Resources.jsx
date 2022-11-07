@@ -10,6 +10,8 @@ import Table from "../components/Table";
 import AnnouncementsWidget from "../components/AnnouncementsWidget";
 import Carousel from "../components/Carousel";
 import Card from "../components/Card";
+import Footer from '../components/Footer';
+
 const Resources = () => {
 
 // files start
@@ -122,8 +124,8 @@ const Resources = () => {
     <div className="Header">
       <Navbar />   
     </div>
+    <div className="Content">
     <p className="Page-Title">Resources</p>
-      {/* <div className="Content" >  */}
       <Container>
         <Row style={{ paddingBottom: "70px" }}>
            <h1>News and Articles</h1>
@@ -192,7 +194,10 @@ const Resources = () => {
         </Row>
       </Container>
           
-    {/* </div> */}
+    </div> 
+    <div className="Footer">
+       <Footer />
+    </div>
     </>
   )
 }

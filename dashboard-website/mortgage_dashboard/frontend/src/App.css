@@ -112,7 +112,8 @@
 
 
 .Footer {
-  z-index: 4;
+  margin-top: auto;
+  bottom: 0;
 }
 
 .Footer-Body {
@@ -125,6 +126,7 @@
   padding: 15px 100px 0 100px;
   text-align: center;
   color: white;
+ 
 }
 
 .Footer-Links {

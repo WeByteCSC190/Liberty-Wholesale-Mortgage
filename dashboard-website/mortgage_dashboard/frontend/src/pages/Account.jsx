@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import Footer from '../components/Footer';
 import "../components/Account.css";
 
 
@@ -13,9 +14,10 @@ const Account = () => {
     <>
     <div className="Header">
       <Navbar />
-      <p className="Page-Title">Account</p>
+      
     </div>
     <div className="Content">
+      <p className="Page-Title">Account</p>
         <div className="AccountPage-Content">
           <div className="user-info">
             <FloatingLabel
@@ -89,6 +91,10 @@ const Account = () => {
             </div>
           </div>
         </div>
+        
+    </div>
+   <div className="Footer">
+             <Footer />
     </div>
     </>
   )

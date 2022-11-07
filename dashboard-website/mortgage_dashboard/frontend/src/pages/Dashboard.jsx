@@ -1,11 +1,13 @@
 import * as React from 'react';
 import '../components/Dashboard.css';
 import Navbar from "../components/Navbar";
+import Container from 'react-bootstrap/Container';
 import Milestone from "../components/Milestone";
 import RecentLeads from "../components/RecentLeads";
 import RecentBorrowers from "../components/RecentBorrowers";
 import AnnouncementsWidget from "../components/AnnouncementsWidget";
-import DashboardCards from "../components/DashboardCards"
+import DashboardCards from "../components/DashboardCards";
+import Footer from '../components/Footer';
 
 const Dashboard = () => {
   return (
@@ -15,14 +17,15 @@ const Dashboard = () => {
       </div>
       <div className="Content">
         <p className="Page-Title">Dashboard</p>
-        <div className="Dashboard"> 
+        <Container className="Dashboard"> 
           <Milestone />
           <DashboardCards />
           <RecentLeads />
           <RecentBorrowers />
           <AnnouncementsWidget />
-        </div>
+        </Container>   
       </div>
+      
     </>
   )
 }
