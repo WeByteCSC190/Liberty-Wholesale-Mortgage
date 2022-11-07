@@ -1,8 +1,10 @@
 .Dashboard{
   display: grid;
+  right: 0%;
+  left: 0%;
   position:absolute;
   grid-template-columns: 45% 5% 1fr;
-  grid-template-rows: 1% 12% 18% 1% 28% 28% 1fr;
+  grid-template-rows: 1% 12% 1% 28% 28% 1fr;
   height: 100%;
   width: 100%;
   overflow-y:auto;
@@ -24,15 +26,15 @@
 }
 .RecentLeads{
   grid-column: 1/1;
-  grid-row: 5/5;
+  grid-row: 4/4;
 }
 .RecentBorrowers{
   grid-column: 1/1;
-  grid-row: 6/6;
+  grid-row: 5/5;
 }
 .AnnouncementsWidget{
   grid-column: 3/3;
-  grid-row: 5/7;
+  grid-row: 4/6;
 }
 
 

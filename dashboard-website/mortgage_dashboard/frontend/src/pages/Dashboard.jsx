@@ -6,7 +6,7 @@ import Milestone from "../components/Milestone";
 import RecentLeads from "../components/RecentLeads";
 import RecentBorrowers from "../components/RecentBorrowers";
 import AnnouncementsWidget from "../components/AnnouncementsWidget";
-import DashboardCards from "../components/DashboardCards";
+// import DashboardCards from "../components/DashboardCards";
 import Footer from '../components/Footer';
 
 const Dashboard = () => {
@@ -19,7 +19,7 @@ const Dashboard = () => {
         <p className="Page-Title">Dashboard</p>
         <Container className="Dashboard"> 
           <Milestone />
-          <DashboardCards />
+          {/* <DashboardCards /> */}
           <RecentLeads />
           <RecentBorrowers />
           <AnnouncementsWidget />

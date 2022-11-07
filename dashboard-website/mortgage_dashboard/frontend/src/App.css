@@ -5,6 +5,10 @@
   background: white;
 }
 
+.Content{
+  justify-content: center;
+}
+
 /* For Scrolling */ 
 
 .Header {
