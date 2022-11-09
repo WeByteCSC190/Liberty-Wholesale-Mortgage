@@ -16,7 +16,7 @@ const Account = () => {
       <Navbar />
       
     </div>
-    <div className="Content">
+    <div className="Content" style={{ paddingBottom: 40 }}>
       <p className="Page-Title">Account</p>
         <div className="AccountPage-Content">
           <div className="user-info">

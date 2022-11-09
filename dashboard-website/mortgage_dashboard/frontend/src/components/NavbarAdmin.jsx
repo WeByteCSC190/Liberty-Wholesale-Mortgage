@@ -17,9 +17,9 @@ import {logout} from '../actions/auth';
 export default function NavbarCustom() {
   return (
     <>
-      <Navbar className="Navbar" expand="lg">
-       
+       <Navbar className="Navbar" expand="lg">
       <Container fluid>
+        
         <Col>
         <Navbar.Brand href="/">
         <img
@@ -28,12 +28,19 @@ export default function NavbarCustom() {
           height="70"
           className="Nav-Logo"
           alt="MLO Support"
-        /> 
+        />
         </Navbar.Brand>
-      </Col>
+       </Col>
 
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
+        <Navbar.Toggle 
+          variant="outline-primary"
+          style={{
+            color: 'white', 
+            background: 'white',
+        }}
+          aria-controls="navbarScroll" 
+        />
+        <Navbar.Collapse variant="primary" id="navbarScroll">
          
           <Nav
             className="me-auto my-2"
@@ -42,19 +49,19 @@ export default function NavbarCustom() {
             >
             
            <Container>
-            <ul className="Nav-Menu"> 
-            <SwitchPage href="/Users">View Users</SwitchPage> 
-            <SwitchPage href="/Add-User">Add User</SwitchPage>
-            <SwitchPage href="/LendersAdmin">Edit Lenders</SwitchPage>
-            <SwitchPage href="/ResourcesAdmin">Edit Resources</SwitchPage>
-            <SwitchPage href="/Deleted">Recently Deleted</SwitchPage>
+            <ul className="Nav-Menu">
+            <SwitchPage href="/Add-User">Add TPO</SwitchPage>
+            <SwitchPage href="/Users">View TPO</SwitchPage>
+            <SwitchPage href="/lendersAdmin">Lenders</SwitchPage>
+            <SwitchPage href="/resourcesAdmin" >Resources</SwitchPage>
+            <SwitchPage href="/deleted" >Recovery Bin</SwitchPage>
             </ul>
            </Container>
            
-         </Nav> 
-         
-        </Navbar.Collapse>
+         </Nav>
           <NavDropButton />
+        </Navbar.Collapse>
+        
       </Container>
     </Navbar>
     </>
@@ -80,16 +87,24 @@ function NavDropButton(isAuthenticated, logout) {
   return (
     <>
     <Dropdown className="NavOptions">
-      <Dropdown.Toggle variant="success" id="NavDropDownButton">
+      <Dropdown.Toggle 
+         variant="outline-primary" 
+         style={{color: 'white', border: 0,}}
+         id="NavDropDownButton"
+      >
       <FontAwesomeIcon 
          icon={Icons.faUser} 
          size="2x" 
-         
-         />
+       />
+      
       </Dropdown.Toggle>
 
       <Dropdown.Menu className="NavDropMenu"
-        style={{ right: 0, left: 'auto' }}
+        style={{ 
+          right: 0, 
+          left: 'auto',
+          color: 'white',
+          border: 0,  }}
       >
         <Dropdown.Item className="Drop-Item">
         <Link to="/account">Account</Link>

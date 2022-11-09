@@ -46,7 +46,7 @@
   flex-direction: row;
   margin-top: 2.5%;
   justify-content: space-between;
-  gap: 4rem;
+  gap: 3rem;
 }
 
 .Nav-Menu li {
@@ -116,7 +116,6 @@
 
 
 .Footer {
-  margin-top: auto;
   bottom: 0;
 }
 
@@ -138,7 +137,7 @@
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 4rem;
+  gap: 3rem auto;
 }
 
 .Footer-Links li {

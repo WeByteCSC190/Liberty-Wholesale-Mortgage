@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 import Table from "../../components/Table";
 import Carousel from "../../components/Carousel";
 import Card from "../../components/Card";
+import Footer from '../../components/Footer';
+
 const EditResources = () => {
 
 // files start
@@ -126,6 +128,7 @@ const EditResources = () => {
     <div className="Header">
       <Navbar />   
     </div>
+    <div className="Content">
     <p className="Page-Title">Resources</p>
     
       <Container>
@@ -144,6 +147,10 @@ const EditResources = () => {
          
         </Row>
       </Container>
+      <div className="Footer">
+        <Footer />
+      </div>
+      </div>
     </>
   )
 }

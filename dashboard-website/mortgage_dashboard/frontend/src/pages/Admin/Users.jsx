@@ -33,9 +33,14 @@ export default function Users() {
   ]
 
   return (
-    <div className="Borrowers">
+    <>
+    <div className="Header">
        <Navbar />
+    </div>
+    <div className="Content">
+    <p className="Page-Title">View TPO</p>
        <Table page="Users" data={dataTable} column={column} />
-          </div>
+    </div>
+    </>
   );
 }

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import BlueLogo from './images/blue_logo.png';
+import ActionBtn from './buttons/Action';
 
 const LendersTableComponent = ({api, page, data, column, columns, image }) => {
 
@@ -64,10 +65,13 @@ const LendersTableComponent = ({api, page, data, column, columns, image }) => {
  } 
 
  // Renders information or buttons on the heading of the table
-const TableHeadItem = ({ item, api }) =>
+const TableHeadItem = ({ item, api, page }) =>
   {
   if (item.heading === 'TPOLogin') {
     return (<th><LinkBtn nameButton="Website" url={api.website}/></th>);
+  }
+  else if (item.heading === 'AddRow') {
+    return (<th><ActionBtn page={`${page}`} api={`${api}`} /></th>);
   }
  else {
     return (<th>{`${item.heading}`}</th>);
@@ -80,7 +84,7 @@ const toggle = (e) => {
 }
 
 // Creates and renders the information and/or buttons on each table
-const TableRow = ({ api, item, data, column, columns, image, index, expandedRows,handleEpandRow,expandState}) => (
+const TableRow = ({ api, item, data, page, column, columns, image, index, expandedRows,handleEpandRow,expandState}) => (
   <>
   <tr id={index}>
     {column.map((columnItem) => {
@@ -90,13 +94,7 @@ const TableRow = ({ api, item, data, column, columns, image, index, expandedRows
       }
       if (columnItem.heading === 'Website') {
         return (<th><LinkBtn nameBtn={"TPO Login"} color={"info"} url={item.website} /></th>);
-      } else if (columnItem.heading === 'Admin') {
-        return (<th><ManageBtn 
-          nameButton="Manage" 
-          api={api} page={"Lenders"} 
-          rowData={item} rowKey={item.company}/>
-          </th>);
-      }
+      } 
       else if (columnItem.heading === 'Details') {
         return (<th> <Button variant="link" 
           value={index}  onClick={event => handleEpandRow(event, item.company)}>

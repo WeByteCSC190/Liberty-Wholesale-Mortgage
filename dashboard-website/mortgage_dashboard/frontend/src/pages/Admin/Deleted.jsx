@@ -6,7 +6,7 @@ export default function RecentlyDeleted() {
         <>
         <div className="Header"><Navbar /></div>
         <div className="Content">
-        <p className="Page-Title">Recently Deleted</p>
+        <p className="Page-Title">Recovery Bin</p>
         </div>
          </>
     )

@@ -81,6 +81,19 @@ function ActionBtn({ page, rowData, index }) {
     </Dropdown>
   );
    }
+   else if(page === "Lenders"){
+    <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        Action
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Edit rowData={rowData}/>
+        <Delete title="Remove Lender" cID={rowData.company} message="Are you sure you want to remove this Lenders permanently?"/>
+      </Dropdown.Menu>
+    </Dropdown>
+
+   }
   
 }
 

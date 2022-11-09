@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {useNavigate, Navigate, Link } from 'react-router-dom';
 import CSRFToken from "../../components/CSRFToken";
 import Navbar from "../../components/NavbarAdmin";
+import Footer from "../../components/Footer";
+
 const AddUsers  = ({register, isAuthenticated}) => {
   const [formData, setFormData] = useState({
     username: '',
@@ -38,6 +40,8 @@ const AddUsers  = ({register, isAuthenticated}) => {
     <>
     <div className="Header">
       <Navbar />
+    </div>
+    <div className="Content">
     <div className='container mt-5'>
             <h1>Register for an Account</h1>
             <form onSubmit={e => onSubmit(e)}>
@@ -87,6 +91,7 @@ const AddUsers  = ({register, isAuthenticated}) => {
             </p>
         </div>  
         </div>
+       
     </>
   );
 };

@@ -75,7 +75,7 @@ function getLogo() {
     { heading: 'Programs', value: 'programs' },
     { heading: 'Details', value: 'Details'},
     { heading: 'Website', value: 'website' },
-    { heading: 'Admin', value: 'AddLender'},
+    
   ]
 
   const columns = [
