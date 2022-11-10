@@ -9,24 +9,38 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BlueLogo from './images/blue_logo.png';
 import NavIcon from './images/blue_icon.png'; 
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import { Link, NavLink, useMatch, useResolvedPath } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import * as Icons from "@fortawesome/free-solid-svg-icons"
 import React, { Fragment } from 'react';
 import {logout} from '../actions/auth';
 import {connect} from 'react-redux'; 
+
 /* Renders the Navbar */
 
 // export default function NavbarCustom() {
-const NavbarCustom = (isAuthenticated, logout) =>{    
+const NavbarCustom = (isAuthenticated) =>{    
 
-  // const authenticatedLinks = (
-  //   <Fragment>
-  //     <li className='Nav-Menu'>
-  //       <NavLink className = ''></NavLink>
-  //     </li>
-  //   </Fragment>
-  // );
+  const authenticatedLinks = (
+    <Container className="Nav-Menu">
+      <SwitchPage href="/">Dashboard</SwitchPage>
+      <SwitchPage href="/leads">Leads</SwitchPage>
+      <SwitchPage href="/borrowers">Borrowers</SwitchPage>
+      <SwitchPage href="/lenders" >Lenders</SwitchPage>
+      <SwitchPage href="/resources" >Resources</SwitchPage>
+    </Container>
+  );
+
+  const nonAuthLinks = (
+    <Fragment>
+      <li className='Nav-Menu'>
+        <NavLink className = 'nav-link' to='/sign-in'>Login</NavLink>
+      </li>
+      <li className='Nav-Menu'>
+        <NavLink className = 'nav-link' to='/register'>Register</NavLink>
+      </li>      
+    </Fragment>
+  );
 
   return (
     <>
@@ -70,6 +84,10 @@ const NavbarCustom = (isAuthenticated, logout) =>{
             <SwitchPage href="/resources" >Resources</SwitchPage>
             </ul>
            </Container>
+
+           {/* <Container className="Nav-Menu"> */}
+           {/* {isAuthenticated ? authenticatedLinks : nonAuthLinks}          */}
+           {/* </Container> */}           
            
          </Nav>
           <NavDropButton />
@@ -80,21 +98,6 @@ const NavbarCustom = (isAuthenticated, logout) =>{
     </>
   );
 }
-
-// function Authenticated( {href, children, ...props }) {
-//   const resolvedPath = useResolvedPath(href)
-//   const isActive = useMatch( {path: resolvedPath.pathname, end:true} ) 
-//   return (
-//     // Checks the current page uses css to underline/bold the link on Navbar Menu
-//       <li className={ isActive ? "active" : ""}> 
-//           <Nav.Link href={href} {...props}>
-//               {children}
-//           </Nav.Link>
-//       </li>
-      
-//   )
-// }
-
 
 
 function SwitchPage( {href, children, ...props }) {
@@ -111,8 +114,7 @@ function SwitchPage( {href, children, ...props }) {
   )
 }
 
-
-function NavDropButton(isAuthenticated, logout) {
+function NavDropButton(logout) {
   return (
     <>
     <Dropdown className="NavOptions">
