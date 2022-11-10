@@ -24,6 +24,7 @@ export default function(state = initialState, action){
             return state            
         case LOGIN_FAIL:
         case LOGOUT_FAIL:
+        case LOGOUT_SUCCESS:
         case REGISTER_FAIL:
             return state
         case REGISTER_SUCCESS:
@@ -31,16 +32,10 @@ export default function(state = initialState, action){
                 ...state,
                 isAuthenticatied: false
             }
-        case LOGOUT_SUCCESS:
-            return {
-                ...state,
-                isAuthenticatied: true,
-                username: payload
-            }
         case LOGIN_SUCCESS:
             return{
                 ...state,
-                isAuthenticatied: false,
+                isAuthenticatied: true,
                 username: ''
             }            
     };

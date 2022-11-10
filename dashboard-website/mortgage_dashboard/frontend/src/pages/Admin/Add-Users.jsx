@@ -5,6 +5,9 @@ import {useNavigate, Navigate, Link } from 'react-router-dom';
 import CSRFToken from "../../components/CSRFToken";
 import Navbar from "../../components/NavbarAdmin";
 import Footer from "../../components/Footer";
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 const AddUsers  = ({register, isAuthenticated}) => {
   const [formData, setFormData] = useState({
@@ -27,10 +30,9 @@ const AddUsers  = ({register, isAuthenticated}) => {
       setAccountCreated(true);
     }
   };
-  const navigate = useNavigate();
 
   if( isAuthenticated ){
-    navigate("/dashboard");
+    return <Navigate to ="/dashboard" />;
   }
   else if(accountCreated)
     return <Navigate to='/sign-in' />;
