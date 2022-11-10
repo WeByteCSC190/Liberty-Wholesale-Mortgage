@@ -21,7 +21,7 @@ export default function NavbarCustom() {
       <Container fluid>
         
         <Col>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/Users">
         <img
           src={BlueLogo} //MLO Support Logo
           width="150"
