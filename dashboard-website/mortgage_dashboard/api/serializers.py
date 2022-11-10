@@ -66,7 +66,7 @@ class AddClient(serializers.HyperlinkedModelSerializer):
         model = Client
         fields = ('fName', 'lName', 'email', 'phone_num')
 
-class LenderSerializer(serializers.HyperlinkedModelSerializer):
+class LenderSerializer(serializers.ModelSerializer):
     class Meta:
         model= Lender
         fields = '__all__'

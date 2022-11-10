@@ -21,7 +21,6 @@ admin.site.register(MileStone)
 admin.site.register(LoanOfficer)
 admin.site.register(LoanProcessor)
 
-admin.site.register(LenderLogo)
 admin.site.register(Bio)
 admin.site.register(RecyclingBin)
 admin.site.register(BorrowerNote)
@@ -37,6 +36,11 @@ class LenderAdmin(ImportExportModelAdmin):
     search_fields = ['company', 'programs']
 
 admin.site.register(Lender, LenderAdmin)
+
+class LenderLogoAdmin(admin.ModelAdmin):
+    list_display = ['company', 'logo']
+
+admin.site.register(LenderLogo, LenderLogoAdmin)
 
 
 

@@ -67,6 +67,11 @@ urlpatterns = [
     path('leadNote-create/',views.LeadNoteCreate, name='borrowerNote-create'),
     path('leadNote-update/<int:fk>/',views.LeadNoteUpdate, name='borrowerNote-update'),
     path('leadNote-delete/<int:fk>/',views.LeadNoteDelete, name='borrowerNote-delete'),
+    path('lender-detail/<int:pk>/',views.lenderDetail, name='lender-detail'),
+    path('lender-list/',views.lenderList, name='lender-list'),
+    path('lender-create/',views.lenderCreate, name='lender-create'),
+    path('lender-update/<int:pk>/',views.lenderUpdate, name='lender-update'),
+    path('lender-delete/<int:pk>/',views.lenderDelete, name='lender-delete'),
 
     #automatic URL routing
     path('',include(router.urls)),

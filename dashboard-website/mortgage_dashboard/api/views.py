@@ -137,6 +137,44 @@ class LenderView(generics.ListCreateAPIView):
     filter_backends = [filters.SearchFilter]
     search_fields = ['company', 'programs']
 
+@api_view(['GET'])
+def lenderList(request):
+    lender = Lender.objects.all()
+    serializer = LenderSerializer(lender, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def lenderDetail(request, pk):
+    lender = Lender.objects.get(id=pk)
+    serializer = LenderSerializer(lender, many=False)
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def lenderCreate(request):
+    serializer = LenderSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def lenderUpdate(request, pk):
+    lender = Lender.objects.get(id=pk)
+    serializer = LenderSerializer(instance=lender, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def lenderDelete(request, pk):
+    lender = Lender.objects.get(id=pk)
+    lender.delete()
+    
+    return Response("Successfully Deleted!")
+
 class LenderLogoViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
     queryset=LenderLogo.objects.all()
