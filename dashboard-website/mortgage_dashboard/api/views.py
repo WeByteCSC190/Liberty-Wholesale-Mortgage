@@ -13,10 +13,10 @@ from rest_framework.decorators import api_view
 from rest_framework import permissions 
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponseRedirect
-
+from django.views.decorators.csrf import csrf_exempt
 from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, StatusSerializer, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer,AccountDetails
 from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote, AccountDetail,Status
-
+from rest_framework.parsers import JSONParser
 @api_view(['GET'])
 def listAll(request):
     users = UserProfile.objects.all()
@@ -511,7 +511,7 @@ class LeadNoteView(generics.ListCreateAPIView):
     serializer_class= LeadNoteSerializer
 
 #updating existing borrower?
-@api_view(['POST'])
+@api_view(['PUT'])
 def updateExistingBorrower(request,pk):
     borrower = Borrower.objects.get(id=pk)
     serializer = BorrowerSerializer(instance = borrower, data=request.data)
@@ -521,7 +521,7 @@ def updateExistingBorrower(request,pk):
 
     return Response(serializer.data)
 #updating existing lead?
-@api_view(['POST'])
+@api_view(['PUT'])
 def updateExistingLead(request,pk):
     lead = Lead.objects.get(id=pk)
     serializer = LeadSerializer(instance = lead, data=request.data)
@@ -568,7 +568,12 @@ def delAccountDetail(request,pk):
 
 
 ##################################
-@api_view(['POST'])
+@api_view(['GET'])
+def ResourceList(request):
+    resource = Resources.objects.all()
+    serializer = ResourcesSerializer(resource, many=True)
+    return Response(serializer.data)
+@api_view(['GET','POST'])
 def ResourceInsert(request):
     serializer = ResourcesSerializer(data=request.data)
 
@@ -577,7 +582,7 @@ def ResourceInsert(request):
     
     return Response(serializer.data)
 
-@api_view(['POST'])
+@api_view(['GET','PUT'])
 def ResourceUpdate(request, pk):
     resourceupdate = Resources.objects.get(id=pk)
     serializer = ResourcesSerializer(instance=resourceupdate, data=request.data)
@@ -587,9 +592,11 @@ def ResourceUpdate(request, pk):
     
     return Response(serializer.data)
 
-@api_view(['DELETE'])
+@api_view(['GET','DELETE'])
 def ResourceDelete(request, pk):
     resourcesdelete = Resources.objects.get(id=pk)
     resourcesdelete.delete()
     
     return Response("Successfully Deleted Resource!")
+
+

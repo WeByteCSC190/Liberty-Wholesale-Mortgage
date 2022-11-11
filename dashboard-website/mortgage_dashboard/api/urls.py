@@ -72,12 +72,12 @@ urlpatterns = [
     path('lender-create/',views.lenderCreate, name='lender-create'),
     path('lender-update/<int:pk>/',views.lenderUpdate, name='lender-update'),
     path('lender-delete/<int:pk>/',views.lenderDelete, name='lender-delete'),
-
+     path('resource-list/',views.ResourceList, name='Resource-list'),
     path('resource-insert/',views.ResourceInsert, name='Resource-create'),
-    path('resource-update/',views.ResourceUpdate, name='Resource-update'),
-    path('resource-delete',views.ResourceDelete, name='Resource-delete'),
-    path('existingborrowers-update/',views.updateExistingBorrower, name='updateborrower'),
-    path('existingleads-update',views.updateExistingLead, name='updatelead'),
+    path('resource-update/<int:pk>/',views.ResourceUpdate, name='Resource-update'),
+    path('resource-delete/<int:pk>/',views.ResourceDelete, name='Resource-delete'),
+    path('existingborrowers-update/<int:pk>',views.updateExistingBorrower, name='updateborrower'),
+    path('existingleads-update<int:pk>',views.updateExistingLead, name='updatelead'),
     #automatic URL routing
     path('',include(router.urls)),
     path('api/', include('rest_framework.urls', namespace='rest_framework'))

@@ -63,6 +63,8 @@ class Video(models.Model):
         validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
     date_uploaded = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User,on_delete= models.CASCADE)
+   
+   
 
 class Resources(models.Model):
     media = models.ForeignKey(
