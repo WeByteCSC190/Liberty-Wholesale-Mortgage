@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.urls import path, include
-from .views import ClientView, AddClient, LeadView, AddLead, LenderView, LenderLogoView,BioView,RecyclingBinView,BorrowerNoteView,LeadNoteView,BorrowerDelete,LeadDelete,BorrowerRecover,LeadRecover
+from .views import ClientView, AddClient, LeadView, AddLead, LenderView, LenderLogoView,BioView,RecyclingBinView,BorrowerNoteView,LeadNoteView,BorrowerDelete,LeadDelete,BorrowerRecover,LeadRecover, StatusView
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -28,10 +28,10 @@ router.register(r'resources',views.ResourceView)
 router.register(r'recyclingBin',views.RecyclingBinViewSet)
 router.register(r'borrowernote',views.borrowerNoteViewSet)
 router.register(r'leadnote',views.LeadNoteViewSet)
-
+router.register(r'status',views.StatusViewSet)
 urlpatterns = [
     path('get-leads', LeadView.as_view(), name='lead' ),
-
+    path('statusview',StatusView.as_view(),name='statusview'),
     path('add_lead', AddLead),
     path('get-borrowers',ClientView.as_view() ),
     path('borrowerview', views.BorrowerView.as_view(), name='borrower'),
@@ -73,6 +73,11 @@ urlpatterns = [
     path('lender-update/<int:pk>/',views.lenderUpdate, name='lender-update'),
     path('lender-delete/<int:pk>/',views.lenderDelete, name='lender-delete'),
 
+    path('resource-insert/',views.ResourceInsert, name='Resource-create'),
+    path('resource-update/',views.ResourceUpdate, name='Resource-update'),
+    path('resource-delete',views.ResourceDelete, name='Resource-delete'),
+    path('existingborrowers-update/',views.updateExistingBorrower, name='updateborrower'),
+    path('existingleads-update',views.updateExistingLead, name='updatelead'),
     #automatic URL routing
     path('',include(router.urls)),
     path('api/', include('rest_framework.urls', namespace='rest_framework'))

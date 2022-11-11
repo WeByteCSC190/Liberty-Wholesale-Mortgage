@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "file-saver": "^2.0.5",
     "moment": "^2.29.4",
     "react-moment": "^1.1.2"
   }

@@ -36,7 +36,7 @@ class LoanProcessorSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
-class ResourcesSerializer(serializers.HyperlinkedModelSerializer):
+class ResourcesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Resources
         fields = '__all__'
@@ -102,3 +102,7 @@ class AccountDetails(serializers.ModelSerializer):
     class Meta:
         model = AccountDetail
         fields = ('__all__')
+class StatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Status
+        fields=('__all__')

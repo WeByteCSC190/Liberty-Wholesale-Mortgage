@@ -14,8 +14,8 @@ from rest_framework import permissions
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponseRedirect
 
-from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer,AccountDetails
-from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote, AccountDetail
+from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, StatusSerializer, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer,AccountDetails
+from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote, AccountDetail,Status
 
 @api_view(['GET'])
 def listAll(request):
@@ -112,6 +112,15 @@ class LeadViewSet(viewsets.ModelViewSet):
     queryset=Lead.objects.all()
     serializer_class=LeadSerializer
 
+class StatusViewSet(viewsets.ModelViewSet):
+    permission_classes=(permissions.AllowAny, )
+    queryset=Status.objects.all()
+    serializer_class=StatusSerializer
+
+class StatusView(generics.ListCreateAPIView):
+    permission_classes=(permissions.AllowAny, )
+    queryset=Status.objects.all()
+    serializer_class=StatusSerializer
 class BorrowerViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
     queryset=Borrower.objects.all()
@@ -501,14 +510,24 @@ class LeadNoteView(generics.ListCreateAPIView):
     queryset = LeadNote.objects.all()
     serializer_class= LeadNoteSerializer
 
-
+#updating existing borrower?
 @api_view(['POST'])
-def updateBorrower(request,pk):
+def updateExistingBorrower(request,pk):
     borrower = Borrower.objects.get(id=pk)
     serializer = BorrowerSerializer(instance = borrower, data=request.data)
 
     if serializer.is_valid():
-        serializer.save()
+        serializer.save(update_fields=['caseId','date','fName','lName','creditScore','email','phone_num','status'])
+
+    return Response(serializer.data)
+#updating existing lead?
+@api_view(['POST'])
+def updateExistingLead(request,pk):
+    lead = Lead.objects.get(id=pk)
+    serializer = LeadSerializer(instance = lead, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save(update_fields=['resources','caseId','date','fName','lName','creditScore','email','phone_num','status'])
 
     return Response(serializer.data)
 
@@ -545,3 +564,32 @@ def delAccountDetail(request,pk):
     detail = AccountDetails.objects.get(id=pk)
     detail.delete()
     return Response('Account Details has been successfully deleted!')
+
+
+
+##################################
+@api_view(['POST'])
+def ResourceInsert(request):
+    serializer = ResourcesSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
+
+@api_view(['POST'])
+def ResourceUpdate(request, pk):
+    resourceupdate = Resources.objects.get(id=pk)
+    serializer = ResourcesSerializer(instance=resourceupdate, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+    
+    return Response(serializer.data)
+
+@api_view(['DELETE'])
+def ResourceDelete(request, pk):
+    resourcesdelete = Resources.objects.get(id=pk)
+    resourcesdelete.delete()
+    
+    return Response("Successfully Deleted Resource!")
