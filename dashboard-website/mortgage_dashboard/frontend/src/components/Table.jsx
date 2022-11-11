@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
+import { saveAs } from 'file-saver'
 
 const TableComponent = ({api, page, data, column, notes}) => {
   const [noteText, setNoteText] = useState("");
@@ -81,22 +82,23 @@ const handleAddNote = async (caseId) => {
       <tr className="table-title">List of {page}</tr>
       <tr className="table-heading">
             {column.map((item, index) =>
-              <TableHeadItem item={item} api={api} page={page} />
+              <TableHeadItem key={"heading"+index} item={item} api={api} page={page} />
             )}
         </tr>
       </thead>
       <tbody>
-          {data.map((item, index) => <TableRow
+          {data.map((item, index) => <TableRow key={"tableRow"+index}
             page={page} item={item} column={column} notes={notes} index={index} 
             expandedRows={expandedRows} handleEpandRow={handleEpandRow} 
             expandState={expandState}
             handleAddNote={handleAddNote}
             setNoteText ={setNoteText}
           />)}
-      </tbody>
+      
       <tr className="last-table-row">
         Showing {data.length} out of {data.length} results 
-        </tr>
+      </tr>
+      </tbody>
       </Table>
       </div>
   );
@@ -110,9 +112,7 @@ const TableHeadItem = ({ item, api, page }) =>
     return (<th>{`${item.heading}`}</th>);
   }
 };
-
-
-
+    
 const TableRow = ({ page, item, column, notes, index, expandedRows, handleEpandRow, expandState,
   handleAddNote, setNoteText }) => (
   <>
@@ -120,30 +120,37 @@ const TableRow = ({ page, item, column, notes, index, expandedRows, handleEpandR
       {column.map((columnItem) => {
       if(columnItem.value.includes('.')) {
         const itemSplit = columnItem.value.split('.')
-        return <td>{item[itemSplit[0]][itemSplit[1]]}</td>
+        return <td key={index}>{item[itemSplit[0]][itemSplit[1]]}</td>
       }
       if (columnItem.heading === 'AddRow') {
-        return (<th><ActionBtn page={`${page}`} rowData={item} index={index} /></th>);
+        return (<th key={"addRow"+index}><ActionBtn page={`${page}`} rowData={item} index={index} /></th>);
       }
       else if (columnItem.heading === 'Details') {
-        return (<th> <Button variant="link" 
+        return (<th key={"detail"+index}> <Button variant="link" 
           value={index}  onClick={event => handleEpandRow(event, item.caseId)}>
             {
               expandState[item.caseId] ?
                 'Hide' : 'Show'
             }</Button> </th>);
       }
-      else if (columnItem.heading === 'Link') {
-        return (<td> <Button variant="link" 
-            onClick="#">
-           download
-        </Button> </td>);
+      else if (columnItem.heading === 'Link' ||
+      columnItem.heading === 'Image Link' || columnItem.heading === 'Video Link') {
+        return (<td key={columnItem.heading+index}> <Button variant="link"
+          onClick={(e) => window.open( item[`${columnItem.value}`], "_blank")}
+         >
+           Open
+        </Button>
+        <Button variant="link" 
+            onClick={(e) =>saveAs(item[`${columnItem.value}`], 'image.jpg')}>
+            Download
+          </Button>
+        </td>);
       }
       else {
         if(columnItem.heading==="Date") {
-          return <td>{item[`${columnItem.value}`].slice(0, 10)}</td>
+          return <td key={"date"+index}>{item[`${columnItem.value}`].slice(0, 10)}</td>
         }
-        return <td>{item[`${columnItem.value}`]}</td>
+        return <td key={"row"+index}>{item[`${columnItem.value}`]}</td>
       }
       
     })}
@@ -153,11 +160,11 @@ const TableRow = ({ page, item, column, notes, index, expandedRows, handleEpandR
       expandedRows.includes(item.caseId) ?
           <tr id={index + "_note"}>
             <td colspan="12" style={{ backgroundColor: '#343A40', color: '#FFF' }}>
-              {notes.map((note) => {
+              {notes.map((note, index) => {
                 if (page === "Borrowers"){
                   if (note.borrower === item.caseId) {
                     return <>
-                      <li>{note.borrowernote}<small> ({note.created_on})</small>
+                      <li key={note+index}>{note.borrowernote}<small> ({note.created_on})</small>
                       </li>
                     </>
                   }
