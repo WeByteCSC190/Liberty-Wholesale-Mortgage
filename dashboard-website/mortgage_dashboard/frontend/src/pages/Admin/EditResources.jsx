@@ -44,6 +44,11 @@ const EditResources = () => {
     { heading: 'Text', value: 'caption' },
     {heading: 'AddRow', value:'EditResources'}
   ]
+  const column2 = [
+    { heading: 'Image Link', value: 'image' },
+    { heading: 'File Name', value: 'caption' },
+    {heading: 'AddRow', value:'EditResources'}
+  ]
   const column1 = [
     { heading: 'Video Link', value: 'image' },
     { heading: 'Image Link', value: 'image' },
@@ -143,7 +148,7 @@ const EditResources = () => {
        
         <Row style={{ paddingBottom: "20px" }}>
           <h1>Files</h1>
-         <Table api="http://localhost:8000/api/borrowers/"  page={"Files"} data={dataTable} column={column} />
+         <Table api="http://localhost:8000/api/borrowers/"  page={"Files"} data={data} column={column2} />
          
         </Row>
       </Container>
