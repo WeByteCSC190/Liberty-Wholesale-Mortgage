@@ -110,3 +110,7 @@ class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model=Video
         fields=('__all__')
+class FilesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Files
+        fields=('__all__')

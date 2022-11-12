@@ -45,11 +45,14 @@ class Anouncements(models.Model):
 
 
 class Files(models.Model):
-    fileType = models.URLField('File type')
-    filePath = models.URLField('File path')
-
-    def __str__(self):
-        return self.fileType
+    file = models.FileField(upload_to='files_uploaded',null=True,
+        validators=[FileExtensionValidator(allowed_extensions=['doc','pdf','docx','txt'])])
+    date_uploaded = models.DateTimeField(default=timezone.now)
+    id = models.IntegerField('ID', primary_key=True, null=False,
+                             default=generate_random_number(), unique=True)
+    def __int__(self):
+        return self.id
+   
 
 
 class Media(models.Model):

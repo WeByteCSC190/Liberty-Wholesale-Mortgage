@@ -14,8 +14,8 @@ from rest_framework import permissions
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, StatusSerializer, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer,AccountDetails,VideoSerializer
-from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote, AccountDetail,Status, Video
+from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, StatusSerializer, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer,AccountDetails,VideoSerializer,FilesSerializer
+from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote, AccountDetail,Status, Video,Files
 from rest_framework.parsers import JSONParser
 @api_view(['GET'])
 def listAll(request):
@@ -609,3 +609,12 @@ class VideoListView(generics.ListCreateAPIView):
 class VideoDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset= Video
     serializer_class=VideoSerializer
+
+
+#### Files API
+class FilesListView(generics.ListCreateAPIView):
+    queryset=Files.objects.all()
+    serializer_class=FilesSerializer
+class FilesDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset= Files
+    serializer_class=FilesSerializer
