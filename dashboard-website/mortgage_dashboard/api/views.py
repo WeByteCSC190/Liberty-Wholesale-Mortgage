@@ -1,5 +1,6 @@
 from datetime import date
 import re
+from tkinter import Image
 from urllib import response
 from django.shortcuts import render, redirect
 from rest_framework import generics, status
@@ -14,8 +15,8 @@ from rest_framework import permissions
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, StatusSerializer, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer,AccountDetails,VideoSerializer,FilesSerializer
-from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote, AccountDetail,Status, Video,Files
+from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, ImagesSerializer, StatusSerializer, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer,AccountDetails,VideoSerializer,FilesSerializer
+from .models import Client, Images, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote, AccountDetail,Status, Video,Files
 from rest_framework.parsers import JSONParser
 @api_view(['GET'])
 def listAll(request):
@@ -618,3 +619,11 @@ class FilesListView(generics.ListCreateAPIView):
 class FilesDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset= Files
     serializer_class=FilesSerializer
+
+#### Images API
+class ImageListView(generics.ListCreateAPIView):
+    queryset=Images.objects.all()
+    serializer_class=ImagesSerializer
+class ImageDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset= Files
+    serializer_class=ImagesSerializer

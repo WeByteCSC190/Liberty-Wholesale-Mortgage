@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.urls import path, include
-from .views import ClientView, AddClient, LeadView, AddLead, LenderView, LenderLogoView,BioView,RecyclingBinView,BorrowerNoteView,LeadNoteView,BorrowerDelete,LeadDelete,BorrowerRecover,LeadRecover, StatusView,VideoListView,VideoDetail,FilesListView,FilesDetail
+from .views import ClientView, AddClient, ImageDetail, ImageListView, LeadView, AddLead, LenderView, LenderLogoView,BioView,RecyclingBinView,BorrowerNoteView,LeadNoteView,BorrowerDelete,LeadDelete,BorrowerRecover,LeadRecover, StatusView,VideoListView,VideoDetail,FilesListView,FilesDetail
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -82,7 +82,8 @@ urlpatterns = [
     path('videolist/<int:pk>/',VideoDetail.as_view(), ),
     path('fileslist/',FilesListView.as_view(), ),
     path('fileslist/<int:pk>/',FilesDetail.as_view(), ),
-
+    path('imagelist/',ImageListView.as_view(), ),
+    path('imagelist/<int:pk>/',ImageDetail.as_view(), ),
     #automatic URL routing
     path('',include(router.urls)),
     path('api/', include('rest_framework.urls', namespace='rest_framework'))

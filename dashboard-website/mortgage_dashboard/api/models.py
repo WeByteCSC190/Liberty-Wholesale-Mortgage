@@ -52,7 +52,15 @@ class Files(models.Model):
                              default=generate_random_number(), unique=True)
     def __int__(self):
         return self.id
+class Images(models.Model):
+    images = models.FileField(upload_to='images_uploaded',null=True,
+        validators=[FileExtensionValidator(allowed_extensions=['JPEG','GIF','PNG','JPG'])])
+    date_uploaded = models.DateTimeField(default=timezone.now)
    
+    id = models.IntegerField('ID', primary_key=True, null=False,
+                             default=generate_random_number(), unique=True)
+    def __int__(self):
+        return self.id
 
 
 class Media(models.Model):
