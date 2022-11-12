@@ -1,4 +1,5 @@
 from datetime import date
+from pickle import FALSE
 import re
 from tkinter import Image
 from urllib import response
@@ -511,26 +512,6 @@ class LeadNoteView(generics.ListCreateAPIView):
     queryset = LeadNote.objects.all()
     serializer_class= LeadNoteSerializer
 
-#updating existing borrower?
-@api_view(['PUT'])
-def updateExistingBorrower(request,pk):
-    borrower = Borrower.objects.get(id=pk)
-    serializer = BorrowerSerializer(instance = borrower, data=request.data)
-
-    if serializer.is_valid():
-        serializer.save(update_fields=['caseId','date','fName','lName','creditScore','email','phone_num','status'])
-
-    return Response(serializer.data)
-#updating existing lead?
-@api_view(['PUT'])
-def updateExistingLead(request,pk):
-    lead = Lead.objects.get(id=pk)
-    serializer = LeadSerializer(instance = lead, data=request.data)
-
-    if serializer.is_valid():
-        serializer.save(update_fields=['resources','caseId','date','fName','lName','creditScore','email','phone_num','status'])
-
-    return Response(serializer.data)
 
 @api_view(['POST'])
 def createBorrower(request):
@@ -568,41 +549,6 @@ def delAccountDetail(request,pk):
 
 
 
-################################## RESOURCE API
-@api_view(['GET'])
-def ResourceList(request):
-    resource = Resources.objects.all()
-    serializer = ResourcesSerializer(resource, many=True)
-    return Response(serializer.data)
-@api_view(['GET','POST'])
-def ResourceInsert(request):
-    serializer = ResourcesSerializer(data=request.data)
-
-    if serializer.is_valid():
-        serializer.save()
-    
-    return Response(serializer.data)
-
-@api_view(['GET','PUT'])
-def ResourceUpdate(request, pk):
-    resourceupdate = Resources.objects.get(id=pk)
-    serializer = ResourcesSerializer(instance=resourceupdate, data=request.data)
-
-    if serializer.is_valid():
-        serializer.save()
-    
-    return Response(serializer.data)
-
-@api_view(['GET','DELETE'])
-def ResourceDelete(request, pk):
-    resourcesdelete = Resources.objects.get(id=pk)
-    resourcesdelete.delete()
-    
-    return Response("Successfully Deleted Resource!")
-
-
-
-
 ####  Video API
 class VideoListView(generics.ListCreateAPIView):
     queryset=Video.objects.all()
@@ -627,3 +573,100 @@ class ImageListView(generics.ListCreateAPIView):
 class ImageDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset= Files
     serializer_class=ImagesSerializer
+
+
+#Alternative resource Api 
+@api_view(['GET', 'POST', 'DELETE'])
+def resource_list(request):
+    if request.method == 'GET':
+        resources = Resources.objects.all()
+        
+        name = request.query_params.get('name', None)
+        if name is not None:
+            resources = Resources.filter(name__icontains=name)
+        
+        resources_serializer = ResourcesSerializer(resources, many=True)
+        return Response(resources_serializer.data)
+       
+ 
+    elif request.method == 'POST':
+        resources_serializer = ResourcesSerializer(data=request.data)
+        if resources_serializer.is_valid():
+            resources_serializer.save()
+            return Response(resources_serializer.data, status=status.HTTP_201_CREATED) 
+        return Response(resources_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        count = Resources.objects.all().delete()
+        return Response({'message': '{} Resources were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def resource_detail(request, pk):
+    try: 
+        resources = Resources.objects.get(pk=pk) 
+    except Resources.DoesNotExist: 
+        return Response({'message': 'The tutorial does not exist'}, status=status.HTTP_404_NOT_FOUND) 
+ 
+    if request.method == 'GET': 
+        resources_serializer = ResourcesSerializer(resources) 
+        return Response(resources_serializer.data) 
+ 
+    elif request.method == 'PUT': 
+        resources = Resources.objects.get(pk=pk) 
+        resources_serializer = ResourcesSerializer(instance=resources, data=request.data) 
+        if resources_serializer.is_valid(): 
+            resources_serializer.save() 
+            return Response(resources_serializer.data) 
+        return Response(resources_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+ 
+    elif request.method == 'DELETE': 
+        resources.delete() 
+        return Response({'message': 'Resources was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def borrowers_detail(request, pk):
+    try: 
+        borrower = Borrower.objects.get(pk=pk) 
+    except Borrower.DoesNotExist: 
+        return Response({'message': 'The borrower does not exist'}, status=status.HTTP_404_NOT_FOUND) 
+ 
+    if request.method == 'GET': 
+        borrower_serializer = BorrowerSerializer(borrower) 
+        return Response(borrower_serializer.data) 
+ 
+    elif request.method == 'PUT': 
+        borrower = Borrower.objects.get(pk=pk)
+        borrower_serializer = BorrowerSerializer(instance=borrower, data=request.data) 
+        if borrower_serializer.is_valid(): 
+            borrower_serializer.save() 
+            return Response(borrower_serializer.data) 
+        return Response(borrower_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+ 
+    elif request.method == 'DELETE': 
+        borrower.delete() 
+        return Response({'message': 'Resources was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def leads_detail(request, pk):
+    try: 
+        lead = Lead.objects.get(pk=pk) 
+    except Lead.DoesNotExist: 
+        return Response({'message': 'The lead does not exist'}, status=status.HTTP_404_NOT_FOUND) 
+ 
+    if request.method == 'GET': 
+        lead_serializer = LeadSerializer(lead) 
+        return Response(lead_serializer.data) 
+ 
+    elif request.method == 'PUT': 
+        lead = Lead.objects.get(pk=pk)
+        lead_serializer = LeadSerializer(instance=lead, data=request.data) 
+        if lead_serializer.is_valid(): 
+            lead_serializer.save() 
+            return Response(lead_serializer.data) 
+        return Response(lead_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+ 
+    elif request.method == 'DELETE': 
+        lead.delete() 
+        return Response({'message': 'Lead was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
