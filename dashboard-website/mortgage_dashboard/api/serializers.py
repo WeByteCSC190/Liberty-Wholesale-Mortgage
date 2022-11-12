@@ -106,3 +106,7 @@ class StatusSerializer(serializers.ModelSerializer):
     class Meta:
         model=Status
         fields=('__all__')
+class VideoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Video
+        fields=('__all__')

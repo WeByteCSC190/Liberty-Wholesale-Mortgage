@@ -14,8 +14,8 @@ from rest_framework import permissions
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, StatusSerializer, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer,AccountDetails
-from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote, AccountDetail,Status
+from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, StatusSerializer, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer,AccountDetails,VideoSerializer
+from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote, AccountDetail,Status, Video
 from rest_framework.parsers import JSONParser
 @api_view(['GET'])
 def listAll(request):
@@ -567,7 +567,7 @@ def delAccountDetail(request,pk):
 
 
 
-##################################
+################################## RESOURCE API
 @api_view(['GET'])
 def ResourceList(request):
     resource = Resources.objects.all()
@@ -600,3 +600,12 @@ def ResourceDelete(request, pk):
     return Response("Successfully Deleted Resource!")
 
 
+
+
+####  Video API
+class VideoListView(generics.ListCreateAPIView):
+    queryset=Video.objects.all()
+    serializer_class=VideoSerializer
+class VideoDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset= Video
+    serializer_class=VideoSerializer
