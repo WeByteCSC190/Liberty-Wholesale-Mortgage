@@ -14,48 +14,48 @@ from rest_framework import permissions
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponseRedirect
 
-from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer,AccountDetails
-from .models import Client, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote, AccountDetail
+from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer
+from .models import Client, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote
 
-@api_view(['GET'])
-def listAll(request):
-    users = UserProfile.objects.all()
-    serializer = UserProfileSerializer(users, many = True)
-    
-    return Response(serializer.data)
-
-@api_view(['GET'])
-def userDetail(request,pk):
-    user = UserProfile.objects.get(id = pk)
-    serializer = UserProfileSerializer(user, many = False)
-    return Response(serializer.data)
-
-@api_view(['POST'])
-def createUser(request):
-    serializer = UserProfileSerializer(data = request.data)
-    
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-@api_view(['POST'])
-def updateUser(request,pk):
-    user = UserProfile.objects.get(id = pk)
-    serializer = UserProfileSerializer(instance=user, data=request.data)
-    
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-@api_view(['DELETE'])
-def deleteUser(request,pk):
-    user = UserProfile.objects.get(id = pk)
-    user.delete()
-    return Response('Item deleted')
-
-
+# @api_view(['GET'])
+# def listAll(request):
+#     users = UserProfile.objects.all()
+#     serializer = UserProfileSerializer(users, many = True)
+#     
+#     return Response(serializer.data)
+#
+# @api_view(['GET'])
+# def userDetail(request,pk):
+#     user = UserProfile.objects.get(id = pk)
+#     serializer = UserProfileSerializer(user, many = False)
+#     return Response(serializer.data)
+#
+# @api_view(['POST'])
+# def createUser(request):
+#     serializer = UserProfileSerializer(data = request.data)
+#     
+#     if serializer.is_valid():
+#         serializer.save()
+#
+#     return Response(serializer.data)
+#
+# @api_view(['POST'])
+# def updateUser(request,pk):
+#     user = UserProfile.objects.get(id = pk)
+#     serializer = UserProfileSerializer(instance=user, data=request.data)
+#     
+#     if serializer.is_valid():
+#         serializer.save()
+#
+#     return Response(serializer.data)
+#
+# @api_view(['DELETE'])
+# def deleteUser(request,pk):
+#     user = UserProfile.objects.get(id = pk)
+#     user.delete()
+#     return Response('Item deleted')
+#
+#
     
 ########
 
@@ -521,27 +521,27 @@ def createBorrower(request):
 
     return Response(serializer.data)
 
-@api_view(['POST'])
-def updateAccountDetail(request,pk):
-    detail = AccountDetail.objects.get(id=pk)
-    serializer = AccountDetails(instance = detail, data=request.data)
-
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-@api_view(['POST'])
-def createAccountDetail(request):
-    serializer= AccountDetails(data=request.data)
-    
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response(serializer.data)
-
-@api_view(['DELETE'])
-def delAccountDetail(request,pk):
-    detail = AccountDetails.objects.get(id=pk)
-    detail.delete()
-    return Response('Account Details has been successfully deleted!')
+# @api_view(['POST'])
+# def updateAccountDetail(request,pk):
+#     detail = AccountDetail.objects.get(id=pk)
+#     serializer = AccountDetails(instance = detail, data=request.data)
+#
+#     if serializer.is_valid():
+#         serializer.save()
+#
+#     return Response(serializer.data)
+#
+# @api_view(['POST'])
+# def createAccountDetail(request):
+#     serializer= AccountDetails(data=request.data)
+#     
+#     if serializer.is_valid():
+#         serializer.save()
+#
+#     return Response(serializer.data)
+#
+# @api_view(['DELETE'])
+# def delAccountDetail(request,pk):
+#     detail = AccountDetails.objects.get(id=pk)
+#     detail.delete()
+#     return Response('Account Details has been successfully deleted!')

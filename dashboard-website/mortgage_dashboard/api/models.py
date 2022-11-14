@@ -58,11 +58,11 @@ class Media(models.Model):
     def __str__(self):
         return self.link
 
-class Video(models.Model):
-    video = models.FileField(upload_to='videos_uploaded',null=True,
-        validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
-    date_uploaded = models.DateTimeField(default=timezone.now)
-    user = models.ForeignKey(User,on_delete= models.CASCADE)
+# class Video(models.Model):
+#     video = models.FileField(upload_to='videos_uploaded',null=True,
+#         validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
+#     date_uploaded = models.DateTimeField(default=timezone.now)
+#     user = models.ForeignKey(User,on_delete= models.CASCADE)
 
 class Resources(models.Model):
     media = models.ForeignKey(
@@ -77,7 +77,7 @@ class Resources(models.Model):
     id = models.IntegerField('ID', primary_key=True, null=False,
                              default=generate_random_number(), unique=True)
     name = models.CharField('Name', max_length=40, null=True, blank=True)
-    video = models.ForeignKey(Video, blank=True, null=True, on_delete=models.CASCADE)
+    # video = models.ForeignKey(Video, blank=True, null=True, on_delete=models.CASCADE)
 
     def __int__(self):
         return self.id
@@ -206,26 +206,26 @@ class LoanOfficer(models.Model):
         return self.mileStone
 
 
-class UserProfile(models.Model):
-    # resources = models.ForeignKey(
-    #     Resources, blank=True, null=True, on_delete=models.CASCADE)
-
-    # userName = models.CharField(max_length=40, null=True, blank=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    username = models.CharField(max_length=20, default='')
-    password = models.CharField(max_length=20, default='')
-    uID = models.IntegerField(default=000000)
-    fName = models.CharField(max_length=40, default='') 
-    lName = models.CharField(max_length=40, default='')
-    nmlsID = models.IntegerField(default=000000)  # could not tell what the variable name is supposed to be
-    ssn = models.IntegerField(default=000000)
-    is_superuser = models.IntegerField(default =0)
-    is_staff = models.IntegerField(default =0)
-    is_active = models.IntegerField(default =1)
-
-
-    def __str__(self):
-        return str(self.fName)
+# class UserProfile(models.Model):
+#     # resources = models.ForeignKey(
+#     #     Resources, blank=True, null=True, on_delete=models.CASCADE)
+#
+#     # userName = models.CharField(max_length=40, null=True, blank=True)
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     username = models.CharField(max_length=20, default='')
+#     password = models.CharField(max_length=20, default='')
+#     uID = models.IntegerField(default=000000)
+#     fName = models.CharField(max_length=40, default='') 
+#     lName = models.CharField(max_length=40, default='')
+#     nmlsID = models.IntegerField(default=000000)  # could not tell what the variable name is supposed to be
+#     ssn = models.IntegerField(default=000000)
+#     is_superuser = models.IntegerField(default =0)
+#     is_staff = models.IntegerField(default =0)
+#     is_active = models.IntegerField(default =1)
+#
+#
+#     def __str__(self):
+#         return str(self.fName)
 
 
 class Client(models.Model):
@@ -292,10 +292,10 @@ class LeadNote(models.Model):
     def __str__(self):
         return self.note
         
-class AccountDetail(models.Model):
-    ssn = models.ForeignKey(UserProfile, blank = True, null = True, on_delete=models.CASCADE)
-    details = models.TextField('Account Information', blank = True, max_length = 200)
-
-    def __str__(self):
-        return self.ssn
-        
+# class AccountDetail(models.Model):
+#     ssn = models.ForeignKey(UserProfile, blank = True, null = True, on_delete=models.CASCADE)
+#     details = models.TextField('Account Information', blank = True, max_length = 200)
+#
+#     def __str__(self):
+#         return self.ssn
+#         

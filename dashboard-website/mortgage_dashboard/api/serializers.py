@@ -51,10 +51,10 @@ class LoanOfficerSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
-class UserProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = '__all__'
+# class UserProfileSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = UserProfile
+#         fields = '__all__'
 
 class ClientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -98,7 +98,7 @@ class LeadNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model= LeadNote
         fields=('__all__')
-class AccountDetails(serializers.ModelSerializer):
-    class Meta:
-        model = AccountDetail
-        fields = ('__all__')
+# class AccountDetails(serializers.ModelSerializer):
+#     class Meta:
+#         model = AccountDetail
+#         fields = ('__all__')
