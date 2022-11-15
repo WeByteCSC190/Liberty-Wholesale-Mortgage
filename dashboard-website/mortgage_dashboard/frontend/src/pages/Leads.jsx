@@ -33,7 +33,7 @@ const Leads = () => {
         console.log(error.response.headers);
         }
     })
-     const getLeadsNotes = "http://localhost:8000/api/get-leadnote";
+     const getLeadsNotes = "http://localhost:8000/api/leadnote-list/";
     axios({
       method: "GET",
       url:getLeadsNotes,

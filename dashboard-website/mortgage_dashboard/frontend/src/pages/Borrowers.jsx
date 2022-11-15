@@ -59,20 +59,14 @@ const Borrowers = () => {
         console.log(error.response.headers);
         }
     })
-    const getBorrowersNotes = "http://localhost:8000/api/get-borrowernote";
+    const getBorrowersNotes = "http://localhost:8000/api/borrowernote-list/";
     axios({
       method: "GET",
       url:getBorrowersNotes,
     }).then((response)=>{
       const notes = response.data;
       setDataNotes(notes)
-      // notes.map((note) =>
-      // {if(note.borrower === caseId) {
-        
-      // }})
-      // testData = data;
-      
-      // return data
+      console.log("borrower notes are: ")
     }).catch((error) => {
       if (error.response) {
         console.log(error.response);
