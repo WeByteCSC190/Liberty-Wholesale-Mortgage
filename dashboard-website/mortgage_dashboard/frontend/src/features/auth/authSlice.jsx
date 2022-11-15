@@ -3,6 +3,45 @@ import jwt_decode from "jwt-decode";
 // import { AccountResponse } from "../../actions/types";
 import axios from "axios";
 
+export const Logout = () =>{
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
+    localStorage.removeItem('username');
+}
+
+export const verify = createAsyncThunk(
+  "accounts/token/verify",
+  async (thunkAPI) => {
+    const options = {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      url: "/accounts/token/verify",
+      data: {
+        token: localStorage.getItem('refresh'), 
+      },
+    };
+    try {
+      const res = await axios(options);
+      const data = await res.data;
+      if (res.status === 201 || res.status === 200) {
+        localStorage.setItem('isAuthenticated', true);
+        return true;
+      } else {
+        localStorage.setItem('isAuthenticated', true);
+        return false;
+      }
+    } catch (err) {
+      localStorage.setItem('isAuthenticated', true);
+      console.log(err);
+      return false;
+    }
+  }
+);
+
 export const login = createAsyncThunk(
   "accounts/token",
   async ({ username, password }, thunkAPI) => {
@@ -54,28 +93,31 @@ const initialState = {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    // setAuthTokens: (state, action) => {
-    //   state.refreshToken = action.payload["refreshToken"];
-    //   state.access = action.payload["access"];
-    // },
-    logout: (state) => {
-      // state.refreshToken = null;
-      state.access = null;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
         state.loading = true;
       })
-      .addCase(login.fulfilled, (state, actions) => {
+      .addCase(login.fulfilled, (state) => {
         state.loading = false;
         state.isAuthenticated = true;
       })
       .addCase(login.rejected, (state) => {
         state.loading = false;
-      });
+        state.isAuthenticated = false;
+      })
+      .addCase(verify.pending, (state) =>{
+          state.loading = true;
+      })
+      .addCase(verify.fulfilled, (state) => {
+          state.isAuthenticated = true;
+          state.loading =false;
+      })
+      .addCase(verify.rejected, (state) =>{
+          state.isAuthenticated = false;
+          state.loading = false;
+      })
   },
 });
 

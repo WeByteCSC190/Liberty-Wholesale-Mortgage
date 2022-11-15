@@ -11,7 +11,11 @@ axios.defaults.withCredentials = true;
 
 const SignIn = () => {
   const dispatch = useDispatch();
-  const { loading, isAuthenticated } = useSelector((state) => state.auth);
+  // const { loading, isAuthenticated } = useSelector((state) => state.auth);
+
+  const isAuthenticated = useSelector((state) =>state.auth.isAuthenticated);
+  const isLoading = useSelector((state) => state.auth.loading);
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -26,7 +30,12 @@ const SignIn = () => {
     dispatch(login(formData));
   };
 
-  if (isAuthenticated) return <Navigate to="/" />;
+  if (isLoading === true) {
+    return (<h1>"Loading..."</h1>)
+  }else{
+  if (isAuthenticated === true) {
+      return <Navigate to="/" replace/>;
+  }
   return (
     <div className="SignIn">
       <div
@@ -86,6 +95,7 @@ const SignIn = () => {
     </div>
   );
   // }
+    } //isLoading
 };
 
 // const mapStateToProps = (state) => ({

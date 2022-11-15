@@ -19,9 +19,9 @@ import LendersAdmin from "./pages/Admin/EditLenders";
 import ResourcesAdmin from "./pages/Admin/EditResources";
 import Deleted from "./pages/Admin/Deleted";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import store from "./app/store.js";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 // import Layout from "./hocs/layout";
 
 const App = () => {
@@ -29,23 +29,25 @@ const App = () => {
     <Provider store={store}>
       <div className="App">
         <Routes>
-          <Route path="" element={<Dashboard />} />
-          <Route path="/Dashboard" element={<Dashboard />} />
-          <Route path="Account" element={<Account />} />
-          <Route path="Leads" element={<Leads />} />
-          <Route path="Borrowers" element={<Borrowers />} />
-          <Route path="Resources" element={<Resources />} />
           <Route path="Sign-In" element={<SignIn />} />
-          <Route path="Help" element={<Help />} />
-          <Route path="Terms" element={<Terms />} />
-          <Route path="Privacy" element={<Privacy />} />
-          <Route path="LegalThree" element={<LegalThree />} />
-          <Route path="LegalFour" element={<LegalFour />} />
-          <Route path="Users" element={<Users />} />
-          <Route path="LendersAdmin" element={<LendersAdmin />} />
-          <Route path="ResourcesAdmin" element={<ResourcesAdmin />} />
-          <Route path="Lenders" element={<Lenders />} />
-          <Route path="Deleted" element={<Deleted />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="" element={<Dashboard />} />
+            <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="Account" element={<Account />} />
+            <Route path="Leads" element={<Leads />} />
+            <Route path="Borrowers" element={<Borrowers />} />
+            <Route path="Resources" element={<Resources />} />
+            <Route path="Help" element={<Help />} />
+            <Route path="Terms" element={<Terms />} />
+            <Route path="Privacy" element={<Privacy />} />
+            <Route path="LegalThree" element={<LegalThree />} />
+            <Route path="LegalFour" element={<LegalFour />} />
+            <Route path="Users" element={<Users />} />
+            <Route path="LendersAdmin" element={<LendersAdmin />} />
+            <Route path="ResourcesAdmin" element={<ResourcesAdmin />} />
+            <Route path="Lenders" element={<Lenders />} />
+            <Route path="Deleted" element={<Deleted />} />
+          </Route>
         </Routes>
       </div>
     </Provider>
