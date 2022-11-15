@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.urls import path, include
-from .views import ClientView, AddClient, ImageDetail, ImageListView, LeadView, AddLead, LenderView, LenderLogoView,BioView,RecyclingBinView,BorrowerNoteView,LeadNoteView,BorrowerDelete,LeadDelete,BorrowerRecover,LeadRecover, StatusView,VideoListView,VideoDetail,FilesListView,FilesDetail
+from .views import ClientView, AddClient, ImageDetail, ImageListView, LeadView, AddLead, LenderView, LenderLogoView,BioView,RecyclingBinView,BorrowerNoteView,LeadNoteView,BorrowerDelete,LeadDelete,BorrowerRecover,LeadRecover, StatusView,VideoListView,VideoDetail,FilesListView,FilesDetail, borrowernote_list
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -57,16 +57,12 @@ urlpatterns = [
     path('lead-recover/<int:pk>/',LeadRecover.as_view(), name='lead-recover'),
     path('recyclingBin-delete/<int:pk>/',views.recyclingBinDelete, name='recycleingBin-delete'),
     path('get-recyclebin', RecyclingBinView.as_view(), name='recyclebin'),
-    path('get-borrowernote', BorrowerNoteView.as_view()),
-    path('borrowernote-list/',views.borrowerNoteList, name='borrowernote-list'),
-    path('borrowerNote-create/',views.borrowerNoteCreate, name='borrowerNote-create'),
-    path('borrowerNote-update/<int:fk>/',views.borrowerNoteUpdate, name='borrowerNote-update'),
-    path('borrowerNote-delete/<int:fk>/',views.borrowerNoteDelete, name='borrowerNote-delete'),
-    path('get-leadnote', LeadNoteView.as_view()),
-    path('leadnote-list/',views.borrowerNoteList, name='borrowernote-list'),
-    path('leadNote-create/',views.LeadNoteCreate, name='borrowerNote-create'),
-    path('leadNote-update/<int:fk>/',views.LeadNoteUpdate, name='borrowerNote-update'),
-    path('leadNote-delete/<int:fk>/',views.LeadNoteDelete, name='borrowerNote-delete'),
+
+    path('borrowernote-list/',views.borrowernote_list, name='borrowernote-list'),
+    path('borrowernote-list/<int:pk>/',views.borrowernote_detail, name='borrowerNote-create'),
+    path('leadnote-list/',views.leadnote_list, name='leadnote-list'),
+    path('leadNote-list/<int:pk>/',views.leadnote_detail, name='leadNote-create'),
+
     path('lender-detail/<int:pk>/',views.lenderDetail, name='lender-detail'),
     path('lender-list/',views.lenderList, name='lender-list'),
     path('lender-create/',views.lenderCreate, name='lender-create'),
