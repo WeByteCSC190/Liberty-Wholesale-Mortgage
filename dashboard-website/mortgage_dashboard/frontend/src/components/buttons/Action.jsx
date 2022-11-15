@@ -12,7 +12,7 @@ function ActionBtn({ page, rowData, index }) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Edit rowData={rowData}/>
+        <Edit page={page} rowData={rowData} />
         {/* <Dropdown.Item onClick={(e)=> handleDelete(e.target.value)}>Delete</Dropdown.Item> */}
 
         <Delete title="Remove Borrower" cID={rowData.caseId} message="Are you sure you want to remove this borrower permanently?" apiUrl="http://localhost:8000/api/borrower-delete/"/>
@@ -30,7 +30,7 @@ function ActionBtn({ page, rowData, index }) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Edit rowData={rowData}/>
+        <Edit  page={page} rowData={rowData}/>
         {/* <Dropdown.Item onClick={(e)=> handleDelete(e.target.value)}>Delete</Dropdown.Item> */}
 
         <Delete title="Remove Borrower" cID={rowData.caseId} message="Are you sure you want to remove this lead permanently?" apiUrl="http://localhost:8000/api/lead-delete/"/>

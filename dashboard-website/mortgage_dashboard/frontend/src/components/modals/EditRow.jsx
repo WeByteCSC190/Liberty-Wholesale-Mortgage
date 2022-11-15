@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
-function EditRow({ rowData }) {
+function EditRow({page, rowData }) {
   const [show, setShow] = useState(false);
   const [status, setStatus] = useState([]);
   const [formValue, setformValue] = React.useState({
@@ -55,13 +55,16 @@ function EditRow({ rowData }) {
     formData.append("status", formValue.status)
     formData.append("creditScore", formValue.creditScore)
     formData.append("status_check", formValue.status_check)
-    
     console.log(Object.fromEntries(formData))
-  try {
-    const postBorrowers = "http://localhost:8000/api/borrowers/";
+    try {
+      const api = "";
+    if (page==="Borrowers") 
+      api = "http://localhost:8000/api/borrowerupdate/";
+    else if (page === "Leads") 
+      api = "http://localhost:8000/api/leadupdate/";
     const response = await axios({
-      method: "post",
-      url: postBorrowers,
+      method: "PUT",
+      url: api,
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     });
@@ -144,15 +147,17 @@ function EditRow({ rowData }) {
                 <Form.Label>Select Status</Form.Label>
                 <Form.Select name="status" aria-label="Default select example" value={formValue.status}
                   onChange={handleChange}>
-                  <option key="0" value="">
-                      
+                  <option key="0" disabled value={formValue.status}>
+                      {formValue.status}
                     </option>
-                  {status.map((option) => {
-                  return (
-                    <option key={option.id} value={option.id}>
-                      {option.status}
-                    </option>
-                  );
+                    {status.map((option) => {
+                      while (option.status !== formValue.status) {
+                        return (
+                          <option key={option.id} value={option.id}>
+                            {option.status}
+                          </option>
+                        );
+                      }
                 })}  
                 </Form.Select>
               </Form.Group>                
