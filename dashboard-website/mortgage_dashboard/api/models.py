@@ -128,9 +128,9 @@ class Status(models.Model):
     ]
     
     status = models.CharField(
-        choices = STATUS_CHOICES, primary_key=True, max_length=40, null=False, blank=True)
+        choices = STATUS_CHOICES, max_length=40, null=False, blank=True)
     id = models.IntegerField(
-        'ID', null=False, default=generate_random_number(), unique=True)
+        'ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
     name = models.CharField('Name', max_length=40, null=True, blank=True)
     desc = models.TextField('Description', blank=True)
 

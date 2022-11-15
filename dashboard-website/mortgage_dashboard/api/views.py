@@ -19,6 +19,7 @@ from django.views.decorators.csrf import csrf_exempt
 from .serializers import AddLead, ClientSerializer, AddClient, AddBorrower, ImagesSerializer, StatusSerializer, UserProfileSerializer,LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnoucementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, AddResources, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer,AccountDetails,VideoSerializer,FilesSerializer
 from .models import Client, Images, UserProfile, Lead, Borrower, Lender,Annoucements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote, AccountDetail,Status, Video,Files
 from rest_framework.parsers import JSONParser
+
 @api_view(['GET'])
 def listAll(request):
     users = UserProfile.objects.all()
@@ -123,6 +124,7 @@ class StatusView(generics.ListCreateAPIView):
     permission_classes=(permissions.AllowAny, )
     queryset=Status.objects.all()
     serializer_class=StatusSerializer
+    
 class BorrowerViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
     queryset=Borrower.objects.all()
@@ -460,6 +462,7 @@ def borrowerNoteDelete(request, pk):
     borrowernote.delete()
     
     return Response("Successfully Deleted BorrowerNote!")
+
 class borrowerNoteViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
     queryset=BorrowerNote.objects.all()
@@ -469,8 +472,6 @@ class BorrowerNoteView(generics.ListCreateAPIView):
     permission_classes = (permissions.AllowAny, )
     queryset = BorrowerNote.objects.all()
     serializer_class= BorrowerNoteSerializer
-
-
 
 @api_view(['GET'])
 def LeadNoteList(request):
@@ -557,7 +558,6 @@ class VideoDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset= Video
     serializer_class=VideoSerializer
 
-
 #### Files API
 class FilesListView(generics.ListCreateAPIView):
     queryset=Files.objects.all()
@@ -573,7 +573,6 @@ class ImageListView(generics.ListCreateAPIView):
 class ImageDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset= Files
     serializer_class=ImagesSerializer
-
 
 #Alternative resource Api 
 @api_view(['GET', 'POST', 'DELETE'])
@@ -670,9 +669,6 @@ def leads_detail(request, pk):
     elif request.method == 'DELETE': 
         lead.delete() 
         return Response({'message': 'Lead was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
-
-
-
 #BorrowerNote API
 
 @api_view(['GET', 'POST', 'DELETE'])
@@ -771,3 +767,28 @@ def leadnote_detail(request, pk):
     elif request.method == 'DELETE': 
         leadnote.delete() 
         return Response({'message': 'LeadNote was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+    
+# Status API
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def status(request, pk):
+    try: 
+        status = Lead.objects.get(pk=pk) 
+    except Status.DoesNotExist: 
+        return Response({'message': 'Status does not exist'}, status=status.HTTP_404_NOT_FOUND) 
+ 
+    if request.method == 'GET': 
+        status_serializer = StatusSerializer(status) 
+        return Response(status_serializer.data) 
+ 
+    elif request.method == 'PUT': 
+        status = status.objects.get(pk=pk)
+        status_serializer = StatusSerializer(instance=status, data=request.data) 
+        if status_serializer.is_valid(): 
+            status_serializer.save() 
+            return Response(status_serializer.data) 
+        return Response(status_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+ 
+    elif request.method == 'DELETE': 
+        status.delete() 
+        return Response({'message': 'Status was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)

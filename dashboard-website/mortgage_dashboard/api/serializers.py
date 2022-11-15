@@ -10,6 +10,7 @@ class AnnoucementsSerializer(serializers.HyperlinkedModelSerializer):
       class Meta:
           model= Annoucements
           fields=('date','content')
+          
 class LeadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lead
@@ -29,7 +30,6 @@ class BorrowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Borrower
         fields = '__all__'
-
 
 class LoanProcessorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -90,30 +90,37 @@ class RecycleBinSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecyclingBin
         fields = '__all__'
+        
 class BorrowerNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model=BorrowerNote
         fields=('__all__')
+        
 class LeadNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model= LeadNote
         fields=('__all__')
+        
 class AccountDetails(serializers.ModelSerializer):
     class Meta:
         model = AccountDetail
         fields = ('__all__')
+        
 class StatusSerializer(serializers.ModelSerializer):
     class Meta:
         model=Status
         fields=('__all__')
+        
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model=Video
         fields=('__all__')
+        
 class FilesSerializer(serializers.ModelSerializer):
     class Meta:
         model=Files
         fields=('__all__')
+        
 class ImagesSerializer(serializers.ModelSerializer):
     class Meta:
         model=Images
