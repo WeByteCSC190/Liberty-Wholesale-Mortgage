@@ -99,24 +99,36 @@ class Resources(models.Model):
         return self.id
 
 class Status(models.Model):
-    # 2lead = models.ForeignKey(Lead, blank=True, null = True)
-    # borrower = models.ForeignKey(Lead, blank=True, null= True)
-    class Borrowerstatus(models.TextChoices):
-        Application_Complete = 'AppC', lazy('Application Complete')
-        AUS_Cleared = 'AusC', lazy('AUS Cleared')
-        Initial_Disclosure_Sent = 'IDS', lazy('Initial Disclosure Sent')
-        Title_Ordered = 'TO', lazy('Title Ordered')
-        Title_Recieved = 'TR', lazy('Title Recieved')
-        Appraisal_Ordered = 'AO', lazy('Appraisal Ordered')
-        Appraisal_Recieved = 'AR', lazy('Appraisal Recieved')
-        Initial_Disclosure_Recieved = 'IDR', lazy('Initial Disclosure Recieved')
-        UW_Submitted = 'UwS', lazy('UW Submitted')
-        UW_Response = 'UwR', lazy('UW Response')
-        Pending_Conditions = 'PC', lazy('Pending Conditions')
-        Cleared_To_Close = 'CTC', lazy('Cleared To Close')
-        Closing_Package_Sent = 'CPS', lazy('Closing Package Sent')
+
+    STATUS_CHOICES = [
+        ('Lead', (
+            ('Application_Complete', lazy('Application Complete')),
+            ('Recently_Added', lazy('Recently Added')),
+            ('Contacted', lazy('Contacted')),
+            ('Declined', lazy('Declined')),
+            ('In_Progress', lazy('In Progress')),
+            ('Missing_Paperwork', lazy('Missing Paperwork')),
+            ('Move_to_Borrower', lazy('Move to Borrower')),),
+        ),
+        ('Borrower', (
+            ('Application_Complete', lazy('Application Complete')),
+            ('AUS_Cleared', lazy('AUS Cleared')),
+            ('Initial_Disclosure_Sent', lazy('Initial Disclosure Sent')),
+            ('Title_Ordered', lazy('Title Ordered')),
+            ('Title_Recieved', lazy('Title Recieved')),
+            ('Appraisal_Ordered', lazy('Appraisal Ordered')),
+            ('Appraisal_Recieved', lazy('Appraisal Recieved')),
+            ('Initial_Disclosure_Recieved', lazy('Initial Disclosure Recieved')),
+            ('UW_Submitted', lazy('UW Submitted')),
+            ('UW_Response', lazy('UW Response')),
+            ('Pending_Conditions', lazy('Pending Conditions')),
+            ('Cleared_To_Close', lazy('Cleared To Close')),
+            ('Closing_Package_Sent', lazy('Closing Package Sent')),),
+        )
+    ]
+    
     status = models.CharField(
-        choices = Borrowerstatus.choices, primary_key=True, max_length=12, null=False, blank=True)
+        choices = STATUS_CHOICES, primary_key=True, max_length=40, null=False, blank=True)
     id = models.IntegerField(
         'ID', null=False, default=generate_random_number(), unique=True)
     name = models.CharField('Name', max_length=40, null=True, blank=True)
@@ -138,7 +150,7 @@ class Lead(models.Model):
 
     caseId = models.IntegerField(
         'Case ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
-    date = models.DateTimeField('Date')
+    date = models.DateTimeField(auto_now_add = True)
     fName = models.CharField(max_length=40, null=True, blank=True)
     lName = models.CharField(max_length=40, null=True, blank=True)
     creditScore = models.IntegerField(
