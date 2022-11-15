@@ -670,3 +670,104 @@ def leads_detail(request, pk):
     elif request.method == 'DELETE': 
         lead.delete() 
         return Response({'message': 'Lead was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+
+
+#BorrowerNote API
+
+@api_view(['GET', 'POST', 'DELETE'])
+def borrowernote_list(request):
+    if request.method == 'GET':
+        borrowernote = BorrowerNote.objects.all()
+        
+        name = request.query_params.get('name', None)
+        if name is not None:
+            borrowernote = BorrowerNote.filter(name__icontains=name)
+        
+        borrowernote_serializer = BorrowerNoteSerializer(borrowernote, many=True)
+        return Response(borrowernote_serializer.data)
+       
+ 
+    elif request.method == 'POST':
+        borrowernote_serializer = BorrowerSerializer(data=request.data)
+        if borrowernote_serializer.is_valid():
+            borrowernote_serializer.save()
+            return Response(borrowernote_serializer.data, status=status.HTTP_201_CREATED) 
+        return Response(borrowernote_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        count = BorrowerNote.objects.all().delete()
+        return Response({'message': '{} BorrowerNote were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def borrowernote_detail(request, pk):
+    try: 
+        borrowernote = BorrowerNote.objects.get(pk=pk) 
+    except BorrowerNote.DoesNotExist: 
+        return Response({'message': 'The tutorial does not exist'}, status=status.HTTP_404_NOT_FOUND) 
+ 
+    if request.method == 'GET': 
+        borrowernote_serializer = BorrowerNoteSerializer(borrowernote) 
+        return Response(borrowernote_serializer.data) 
+ 
+    elif request.method == 'PUT': 
+        borrowernote = BorrowerNote.objects.get(pk=pk) 
+        borrowernote_serializer = BorrowerNoteSerializer(instance=borrowernote, data=request.data) 
+        if borrowernote_serializer.is_valid(): 
+            borrowernote_serializer.save() 
+            return Response(borrowernote_serializer.data) 
+        return Response(borrowernote_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+ 
+    elif request.method == 'DELETE': 
+        borrowernote.delete() 
+        return Response({'message': 'BorrowerNote was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+
+
+# LeadNote API
+
+@api_view(['GET', 'POST', 'DELETE'])
+def leadnote_list(request):
+    if request.method == 'GET':
+        leadnote = LeadNote.objects.all()
+        
+        name = request.query_params.get('name', None)
+        if name is not None:
+            leadnote = LeadNote.filter(name__icontains=name)
+        
+        leadnote_serializer = LeadNoteSerializer(leadnote, many=True)
+        return Response(leadnote_serializer.data)
+       
+ 
+    elif request.method == 'POST':
+        leadnote_serializer = LeadNoteSerializer(data=request.data)
+        if leadnote_serializer.is_valid():
+            leadnote_serializer.save()
+            return Response(leadnote_serializer.data, status=status.HTTP_201_CREATED) 
+        return Response(leadnote_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    elif request.method == 'DELETE':
+        count = LeadNote.objects.all().delete()
+        return Response({'message': '{} LeadNote were deleted successfully!'.format(count[0])}, status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def leadnote_detail(request, pk):
+    try: 
+        leadnote = LeadNote.objects.get(pk=pk) 
+    except LeadNote.DoesNotExist: 
+        return Response({'message': 'The tutorial does not exist'}, status=status.HTTP_404_NOT_FOUND) 
+ 
+    if request.method == 'GET': 
+        leadnote_serializer = BorrowerNoteSerializer(leadnote) 
+        return Response(leadnote_serializer.data) 
+ 
+    elif request.method == 'PUT': 
+        leadnote = LeadNote.objects.get(pk=pk) 
+        leadnote_serializer = LeadNoteSerializer(instance=leadnote, data=request.data) 
+        if leadnote_serializer.is_valid(): 
+            leadnote_serializer.save() 
+            return Response(leadnote_serializer.data) 
+        return Response(leadnote_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+ 
+    elif request.method == 'DELETE': 
+        leadnote.delete() 
+        return Response({'message': 'LeadNote was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)

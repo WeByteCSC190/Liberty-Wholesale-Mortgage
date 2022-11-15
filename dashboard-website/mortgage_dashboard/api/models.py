@@ -311,14 +311,14 @@ class BorrowerNote(models.Model):
    created_on=models.DateTimeField(auto_now_add=True)
 
    def __str__(self):
-        return self.note
+        return self.borrowernote
 class LeadNote(models.Model):
     lead=models.ForeignKey(Lead,on_delete=models.CASCADE)
     leadnote = models.TextField('Note', max_length=200,null=True)
     created_on=models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.note
+        return self.leadnote
         
 class AccountDetail(models.Model):
     ssn = models.ForeignKey(UserProfile, blank = True, null = True, on_delete=models.CASCADE)
