@@ -75,27 +75,6 @@ def test_get_users(user):
 
 
 @pytest.mark.django_db  
-def test_user_update(user):
-    response = client.post("/accounts/login", dict(username="Ranch",password="webyte123("), format='json')
-    csrftoken = response.cookies['csrftoken'] 
-
-    response = client.put("/profile/update",json={
-    "username": "Ranch",
-    "password": "webyte123(!",
-    "uID": 12,
-    "fName": "Pollo",
-    "lName": "Loco",
-    "nmlsID": 3412231,
-    "ssn": 999999,
-    "is_superuser": 0,
-    "is_staff": 0,
-    "is_active": 1
-
-    }, headers={'X-CSRFToken': csrftoken, 'Content-Type': 'application/json'})
-
-    assert response.status_code == 200
-
-@pytest.mark.django_db  
 def test_user_delete(user):
     response = client.post("/accounts/login", dict(username="Ranch",password="webyte123("), format='json')
     csrftoken = response.cookies['csrftoken'] 
