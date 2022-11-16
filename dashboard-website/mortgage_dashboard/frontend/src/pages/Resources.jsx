@@ -16,7 +16,7 @@ const Resources = () => {
 
 // files start
   const [dataTable, setDataTable] = useState([]);
-  const getFilesUrl = "http://localhost:8000/api/borrowers/";
+  const getFilesUrl = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
   function getFiles() {
   axios({
       method: "GET",

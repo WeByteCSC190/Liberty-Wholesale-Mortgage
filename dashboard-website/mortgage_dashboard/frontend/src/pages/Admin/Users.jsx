@@ -5,7 +5,7 @@ import Navbar from "../../components/NavbarAdmin";
 import Table from "../../components/Table";
 export default function Users() {
   const [dataTable, setDataTable] = useState([]);
-  const getUsersUrl = "http://localhost:8000/api/borrowers/";
+  const getUsersUrl = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
   function getUsers() {
   axios({
       method: "GET",

@@ -1,2 +1,3 @@
-frontend
-frontend-bk
+node_modules
+.gitignore
+README.md

@@ -75,7 +75,7 @@ const NavbarCustom = (isAuthenticated) =>{
             navbarScroll
             >
             
-           <Container>
+           {/* <Container>
             <ul className="Nav-Menu">
             <SwitchPage href="/">Dashboard</SwitchPage>
             <SwitchPage href="/leads">Leads</SwitchPage>
@@ -83,10 +83,10 @@ const NavbarCustom = (isAuthenticated) =>{
             <SwitchPage href="/lenders" >Lenders</SwitchPage>
             <SwitchPage href="/resources" >Resources</SwitchPage>
             </ul>
-           </Container>
+           </Container> */}
 
            {/* <Container className="Nav-Menu"> */}
-           {/* {isAuthenticated ? authenticatedLinks : nonAuthLinks}          */}
+           {isAuthenticated ? authenticatedLinks : nonAuthLinks}         
            {/* </Container> */}           
            
          </Nav>

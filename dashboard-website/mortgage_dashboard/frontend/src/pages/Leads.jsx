@@ -14,7 +14,7 @@ const Leads = () => {
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const getLeadsUrl = "http://localhost:8000/api/leads/";
+  const getLeadsUrl = `${process.env.REACT_APP_API_URL}/api/leads/`;
   let testData = []
   
   function getLeads() {
@@ -33,7 +33,7 @@ const Leads = () => {
         console.log(error.response.headers);
         }
     })
-     const getLeadsNotes = "http://localhost:8000/api/get-leadnote";
+     const getLeadsNotes = `${process.env.REACT_APP_API_URL}/api/get-leadnote`;
     axios({
       method: "GET",
       url:getLeadsNotes,

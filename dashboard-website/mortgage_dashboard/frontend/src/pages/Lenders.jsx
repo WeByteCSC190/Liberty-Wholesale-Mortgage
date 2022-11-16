@@ -21,7 +21,7 @@ const Lenders = () => {
   let sourceImage = []
   
   function getLenders() {
-    const getLendersUrl = "http://localhost:8000/api/lender/";
+    const getLendersUrl = `${process.env.REACT_APP_API_URL}/api/lender/`;
   axios({
       method: "GET",
       url:getLendersUrl
@@ -39,7 +39,7 @@ const Lenders = () => {
         }
     })
 
-    const getLendersLogoUrl = "http://127.0.0.1:8000/api/lenderLogo/"; 
+    const getLendersLogoUrl = `${process.env.REACT_APP_API_URL}/api/lenderLogo/`; 
     axios({
       method: "GET",
       url:getLendersLogoUrl,

@@ -1,12 +1,16 @@
-FROM node:16.15.0-alpine
-WORKDIR /app/frontend
+# FROM node:16.15.0-alpine
+# WORKDIR /app/frontend
 # COPY ./package.json ./
 # COPY ./package-lock.json ./
-# RUN npm ci --silent
-COPY . ./
-RUN npm install -g npm@latest
-RUN rm -rf node_modules
-RUN rm package-lock.json
+# RUN npm install
+# COPY . ./
+# CMD npm run build
+
+FROM node:16.15.0-alpine as build
+# FROM node:13.12.0-alpine as build
+WORKDIR /app/frontend
+COPY ./package.json ./
+COPY ./package-lock.json ./
 RUN npm install
-RUN npm install --save react@latest
-CMD npm run build
+COPY . ./
+RUN npm run build
