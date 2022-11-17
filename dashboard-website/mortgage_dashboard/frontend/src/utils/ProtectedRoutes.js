@@ -14,13 +14,11 @@ const ProtectedRoutes = () => {
     //         <h1>Loading</h1>
     //     )
     // }
-    // else{
-        return(
-            user
-                ? <Outlet />
-                : <Navigate to='/sign-in' state={{from: location}} replace />
-        )
-    // }
+    return(
+        user
+            ? <Outlet />
+            : <Navigate to='/sign-in' state={{from: location}} replace />
+    )
 }
 
 export default ProtectedRoutes;

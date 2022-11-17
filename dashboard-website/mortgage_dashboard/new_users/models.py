@@ -44,6 +44,10 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
   password = models.CharField(max_length=20, default='')
   fName = models.CharField(max_length=40, default='') 
   lName = models.CharField(max_length=40, default='')
+  uID = models.IntegerField(default=000000)
+  nmlsID = models.IntegerField(default=000000)
+  ssn = models.IntegerField(default=000000)
+  is_superuser = models.IntegerField(default=0)
   is_staff = models.IntegerField(default=False)
   is_active = models.IntegerField(default=True)
 
@@ -53,4 +57,4 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
   objects = UserAccountManager()
 
   def __str__(self):
-    return self.username
+    return self.fName
