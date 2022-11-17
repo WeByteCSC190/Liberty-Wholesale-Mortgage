@@ -7,13 +7,12 @@ services:
             context: .
             dockerfile: ./frontend/Dockerfile
         ports:
-            - 80:8080
+            - 80:80
         volumes:
             - static_volume:/mortgage_dashboard/static
             - ./nginx:/etc/nginx/conf.d
         depends_on: 
             - backend
-            - frontend
     backend:
         restart: unless-stopped
         build:
