@@ -189,7 +189,7 @@ const handleSortingDate = () => {
               button2={"Rating"}
               button3={"Programs"}
               />
-          <Table api="http://localhost/api/lender/"  
+          <Table api="http://localhost:8000/api/lender/"  
                  page={"Lenders"} data={dataTable} 
                  column={column} columns={columns} 
                  image={logoTable}/>

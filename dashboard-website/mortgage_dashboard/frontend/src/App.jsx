@@ -23,7 +23,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Provider } from 'react-redux';
 import store from './store';
 import Layout from './hocs/layout';
+import axios from "axios";
 
+if (window.location.origin === "http://localhost:3000") {
+  axios.defaults.baseURL = "http://localhost:8000";
+} else {
+  axios.defaults.baseURL = window.location.origin;
+}
 
 const App = () => {
   return (

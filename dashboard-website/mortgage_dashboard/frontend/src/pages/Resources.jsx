@@ -189,7 +189,7 @@ const Resources = () => {
         
         <Row style={{ paddingBottom: "20px" }}>
           <h1>Files</h1>
-         <Table api="http://localhost/api/borrowers/"  page={"Files"} data={dataTable} column={column} />
+         <Table api="http://localhost:8000/api/borrowers/"  page={"Files"} data={dataTable} column={column} />
          
         </Row>
       </Container>

@@ -227,7 +227,7 @@ const handleSorting = (sortField, sortOrder) => {
               callback1={(searchValue)=> setSearchValue(searchValue)} 
               callback2={(filterType)=> setFilterType(filterType)}
               />
-          <Table api="http://localhost/api/borrowers/"  page={"Borrowers"} data={dataTable} column={column} notes={dataNotes} />
+          <Table api="http://localhost:8000/api/borrowers/"  page={"Borrowers"} data={dataTable} column={column} notes={dataNotes} />
 
           <div className="Footer">
              <Footer />
