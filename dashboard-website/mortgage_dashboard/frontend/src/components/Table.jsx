@@ -17,13 +17,15 @@ const handleAddNote = async (caseId) => {
     var formData = new FormData();
    formData.append("borrowernote",noteText)
     formData.append("borrower", caseId)
-  api="http://localhost:8000/api/get-borrowernote"
+  api="http://localhost:8000/api/borrowernote/"
     try {
       const response = await axios({
         method: "post",
         url: api,
         data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
+   headers: { "Content-Type": "multipart/form-data",
+      "Authorization": "Bearer" +localStorage.getItem('access')
+      },
       });
       window.location.reload(false);
     
@@ -34,13 +36,15 @@ const handleAddNote = async (caseId) => {
     var formData = new FormData();
    formData.append("leadnote",noteText)
     formData.append("lead", caseId)
-  api="http://localhost:8000/api/get-leadnote"
+  api="http://localhost:8000/api/leadnote/"
     try {
       const response = await axios({
         method: "post",
         url: api,
         data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
+   headers: { "Content-Type": "multipart/form-data",
+      "Authorization": "Bearer" +localStorage.getItem('access')
+      },
       });
       window.location.reload(false);
     } catch(error) {

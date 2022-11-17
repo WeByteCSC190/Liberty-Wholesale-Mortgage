@@ -11,6 +11,8 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as lazy
 from django.core.validators import FileExtensionValidator
+from django.forms import ModelForm
+from new_users.models import CustomUser
 # Create your models here.
 
 # Models.py gets converted into our database and
@@ -58,11 +60,16 @@ class Media(models.Model):
     def __str__(self):
         return self.link
 
-# class Video(models.Model):
-#     video = models.FileField(upload_to='videos_uploaded',null=True,
-#         validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
-#     date_uploaded = models.DateTimeField(default=timezone.now)
-#     user = models.ForeignKey(User,on_delete= models.CASCADE)
+class Video(models.Model):
+    video = models.FileField(upload_to='videos_uploaded',null=True,
+        validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
+    date_uploaded = models.DateTimeField(default=timezone.now)
+    # user = models.ForeignKey(CustomUser,on_delete= models.CASCADE)
+    id = models.IntegerField('ID', primary_key=True, null=False,
+                             default=generate_random_number(), unique=True)
+    def __int__(self):
+        return self.id
+
 
 class Resources(models.Model):
     media = models.ForeignKey(
@@ -82,34 +89,7 @@ class Resources(models.Model):
     def __int__(self):
         return self.id
 
-class Status(models.Model):
-    # 2lead = models.ForeignKey(Lead, blank=True, null = True)
-    # borrower = models.ForeignKey(Lead, blank=True, null= True)
-    class Borrowerstatus(models.TextChoices):
-        Application_Complete = 'AppC', lazy('Application Complete')
-        AUS_Cleared = 'AusC', lazy('AUS Cleared')
-        Initial_Disclosure_Sent = 'IDS', lazy('Initial Disclosure Sent')
-        Title_Ordered = 'TO', lazy('Title Ordered')
-        Title_Recieved = 'TR', lazy('Title Recieved')
-        Appraisal_Ordered = 'AO', lazy('Appraisal Ordered')
-        Appraisal_Recieved = 'AR', lazy('Appraisal Recieved')
-        Initial_Disclosure_Recieved = 'IDR', lazy('Initial Disclosure Recieved')
-        UW_Submitted = 'UwS', lazy('UW Submitted')
-        UW_Response = 'UwR', lazy('UW Response')
-        Pending_Conditions = 'PC', lazy('Pending Conditions')
-        Cleared_To_Close = 'CTC', lazy('Cleared To Close')
-        Closing_Package_Sent = 'CPS', lazy('Closing Package Sent')
-    status = models.CharField(
-        choices = Borrowerstatus.choices, primary_key=True, max_length=12, null=False, blank=True)
-    id = models.IntegerField(
-        'ID', null=False, default=generate_random_number(), unique=True)
-    name = models.CharField('Name', max_length=40, null=True, blank=True)
-    desc = models.TextField('Description', blank=True)
-
-    def __str__(self):
-        return str(self.id)
-
-class Annoucements(models.Model):
+class Announcements(models.Model):
      date=models.DateTimeField('Date')
      content=models.TextField('Content',blank=True)
 
@@ -117,40 +97,63 @@ class Annoucements(models.Model):
          return str(self.date)+" "+str(self.content)
 
 class Lead(models.Model):
-    resources = models.ForeignKey(
-        Resources, blank=True, null=True, on_delete=models.CASCADE)
+    STATUS_CHOICES = [
+        ('Application_Complete', 'Application Complete'),
+        ('Recently_Added', 'Recently Added'),
+        ('Contacted', 'Contacted'),
+        ('Closed', 'Closed'),
+        ('Declined', 'Declined'),
+        ('In_Progress', 'In Progress'),
+        ('Missing_Paperwork', 'Missing Paperwork'),
+    ]
 
     caseId = models.IntegerField(
         'Case ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
-    date = models.DateTimeField('Date')
+    date = models.DateTimeField(auto_now_add=True, null=True)
     fName = models.CharField(max_length=40, null=True, blank=True)
     lName = models.CharField(max_length=40, null=True, blank=True)
     creditScore = models.IntegerField(
         'Credit Score', blank=True, null=True, unique=False)
     email = models.EmailField('Email Address')
     phone_num = models.CharField('Phone Number', max_length=16, null=True)
-    status = models.ForeignKey(
-        Status, blank=True, null=True, on_delete=models.CASCADE)
+    status = models.CharField(max_length=40, choices=STATUS_CHOICES)
+
+    # def delete(self):
 
     def __str__(self):
-        return f'caseId: {self.caseId}'
-
+        return self.fName
 
 class Borrower(models.Model):
+    STATUS_CHOICES = [
+        ('Application_Complete', lazy('Application Complete')),
+        ('AUS_Cleared', lazy('AUS Cleared')),
+        ('Initial_Disclosure_Sent', lazy('Initial Disclosure Sent')),
+        ('Title_Ordered', lazy('Title Ordered')),
+        ('Title_Recieved', lazy('Title Recieved')),
+        ('Appraisal_Ordered', lazy('Appraisal Ordered')),
+        ('Appraisal_Recieved', lazy('Appraisal Recieved')),
+        ('Initial_Disclosure_Recieved', lazy('Initial Disclosure Recieved')),
+        ('UW_Submitted', lazy('UW Submitted')),
+        ('UW_Response', lazy('UW Response')),
+        ('Pending_Conditions', lazy('Pending Conditions')),
+        ('Cleared_To_Close', lazy('Cleared To Close')),
+        ('Closing_Package_Sent', lazy('Closing Package Sent')),
+        ('New', lazy('New')),
+        ('Closed', lazy('Closed')),
+        ('In_Progress', lazy('In Progress')),
+    ]
+
     caseId = models.IntegerField(
         'Case ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
     date = models.DateTimeField(auto_now_add = True)
     fName = models.CharField(max_length=40, null=True, blank=True)
     lName = models.CharField(max_length=40, null=True, blank=True)
     creditScore = models.IntegerField(
-        'Credit Score', null=False, default=generate_random_number(), unique=True)
+        'Credit Score', null=True)
     email = models.EmailField('Email Address')
     phone_num = models.CharField('Phone Number', max_length=16, null=True)
-    status = models.ForeignKey(
-       Status, blank=True, null=True, on_delete=models.CASCADE)
-    
+    status = models.CharField(max_length=40, choices=STATUS_CHOICES)
 
-    
     def __str__(self):
         return self.fName
 
@@ -170,9 +173,6 @@ class RecyclingBin(models.Model):
         'Credit Score', blank=True, null=True, unique=False)
     email = models.EmailField('Email Address')
     phone_num = models.CharField('Phone Number', max_length=16, null=True)
-    status = models.ForeignKey(
-        Status, blank=True, null=True, on_delete=models.CASCADE)
-
     def __str__(self):
         return self.dataName + " " + f'caseId: {self.caseId}'
 
@@ -245,6 +245,7 @@ class Client(models.Model):
         return self.cID
 
 
+
 class Lender(models.Model):
     company = models.CharField('Company', max_length=200, null=True, blank=True)
     #state = models.CharField('State', max_length=200, null=True, blank=True)
@@ -261,6 +262,23 @@ class Lender(models.Model):
 
     def __str__(self):
         return f"{self.company}"
+
+# class Lender(models.Model):
+#     company = models.CharField('Company', max_length=200, null=True, blank=True)
+#     #state = models.CharField('State', max_length=200, null=True, blank=True)
+#     rating = models.CharField('Rating', max_length=2, null=True, blank=True)
+#     programs = models.CharField('Programs', max_length=200, null=True, blank=True)
+#
+#     lender_FHA_ID = models.CharField('Lender FHA ID', max_length=20, null=True, blank=True)
+#     lender_VA_ID = models.CharField('Lender VA ID', max_length=20, null=True, blank=True)
+#     account_executive = models.CharField('Account Executive', max_length=20, null=True, blank=True)
+#     phone_num = models.CharField('Phone', max_length=30, null=True, blank=True)
+#     email = models.EmailField('Email', blank=True)
+#     #website = models.CharField('Website', max_length=200, null=True, blank=True)
+#     website = models.URLField('Website', null=True, blank=True)
+#
+#     def __str__(self):
+#         return f"{self.company}"
 
 class LenderLogo(models.Model):
     company = models.CharField('Company', max_length=200, null=True, blank=True)
@@ -279,23 +297,22 @@ class Bio(models.Model):
 
 class BorrowerNote(models.Model):
    borrower=models.ForeignKey(Borrower,on_delete=models.CASCADE)
-   borrowernote=models.TextField('Note',blank=True)
+   borrowernote=models.TextField('Note',blank=True, max_length=200)
    created_on=models.DateTimeField(auto_now_add=True)
 
    def __str__(self):
         return self.note
 class LeadNote(models.Model):
     lead=models.ForeignKey(Lead,on_delete=models.CASCADE)
-    leadnote = models.TextField('Note', max_length=200,null=True)
+    leadnote = models.TextField('Note', max_length=200,blank=True)
     created_on=models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.note
+        return self.leadnote
         
 # class AccountDetail(models.Model):
-#     ssn = models.ForeignKey(UserProfile, blank = True, null = True, on_delete=models.CASCADE)
+#     ssn = models.ForeignKey(CustomUser, blank = True, null = True, on_delete=models.CASCADE)
 #     details = models.TextField('Account Information', blank = True, max_length = 200)
 #
 #     def __str__(self):
 #         return self.ssn
-#         

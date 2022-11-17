@@ -24,6 +24,9 @@ const Lenders = () => {
     const getLendersUrl = "http://localhost:8000/api/lender/";
   axios({
       method: "GET",
+   headers: { "Content-Type": "multipart/form-data",
+      "Authorization": "Bearer" +localStorage.getItem('access')
+      },
       url:getLendersUrl
     }).then((response)=>{
       const data = response.data;
@@ -42,6 +45,9 @@ const Lenders = () => {
     const getLendersLogoUrl = "http://127.0.0.1:8000/api/lenderLogo/"; 
     axios({
       method: "GET",
+   headers: { "Content-Type": "multipart/form-data",
+      "Authorization": "Bearer" +localStorage.getItem('access')
+      },
       url:getLendersLogoUrl,
     }).then((response)=>{
       const image = response.data;

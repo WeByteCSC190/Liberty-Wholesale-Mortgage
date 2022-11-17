@@ -19,6 +19,9 @@ const EditResources = () => {
   function getFiles() {
   axios({
       method: "GET",
+headers: { "Content-Type": "multipart/form-data",
+      "Authorization": "Bearer" +localStorage.getItem('access')
+      },
       url:getFilesUrl,
     }).then((response)=>{
       const data = response.data;
@@ -42,6 +45,11 @@ const EditResources = () => {
   const column = [
     { heading: 'Image Link', value: 'image' },
     { heading: 'Text', value: 'caption' },
+    {heading: 'AddRow', value:'EditResources'}
+  ]
+  const column2 = [
+    { heading: 'Image Link', value: 'image' },
+    { heading: 'File Name', value: 'caption' },
     {heading: 'AddRow', value:'EditResources'}
   ]
   const column1 = [
@@ -143,7 +151,7 @@ const EditResources = () => {
        
         <Row style={{ paddingBottom: "20px" }}>
           <h1>Files</h1>
-         <Table api="http://localhost:8000/api/borrowers/"  page={"Files"} data={dataTable} column={column} />
+         <Table api="http://localhost:8000/api/borrowers/"  page={"Files"} data={data} column={column2} />
          
         </Row>
       </Container>

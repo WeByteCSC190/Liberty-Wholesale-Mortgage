@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
-function EditRow({ rowData }) {
+function EditRow({ page, rowData }) {
   const [show, setShow] = useState(false);
   const [formValue, setformValue] = React.useState({
       caseId: rowData.caseId,
@@ -15,39 +15,55 @@ function EditRow({ rowData }) {
       lName: rowData.lName,
       email: rowData.email,
       phone_num:rowData.phone_num,
-      status:rowData.status,
+      status: rowData.status,
       creditScore:rowData.creditScore,
       date:rowData.date,
-      status_check:rowData.status_check
   });
 
   const handleSubmit = async() => {
   // store the states in the form data
   var formData = new FormData();
-    formData.append("caseId", formValue.caseId)
-    formData.append("fName", formValue.fName)
-    formData.append("lName", formValue.lName)
-    formData.append("email", formValue.email)
-    formData.append("phone_num", formValue.phone_num)
-    formData.append("status", "")
-    formData.append("creditScore", formValue.creditScore)
-    formData.append("status_check", formValue.status_check)
-    formData.append("date", '2022-10-13T02:23:05Z')
-    console.log(Object.fromEntries(formData))
-  try {
-    const postBorrowers = "http://localhost:8000/api/borrowers/";
-    const response = await axios({
-      method: "post",
-      url: postBorrowers,
-      data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    window.location.reload(false);
-    handleClose();
-  } catch(error) {
-    console.log(error)
+  formData.append("caseId", formValue.caseId)
+  formData.append("fName", formValue.fName)
+  formData.append("lName", formValue.lName)
+  formData.append("email", formValue.email)
+  formData.append("phone_num", formValue.phone_num)
+  formData.append("status", formValue.status)
+  formData.append("creditScore", formValue.creditScore)
+  console.log(page)
+  if (page === "Borrowers"){
+    try {
+      const postBorrowers = 'http://localhost:8000/api/borrowers/' + formValue.caseId + '/';
+      const response = await axios({
+        method: "PUT",
+        url: postBorrowers,
+        data: formData,
+   headers: { "Content-Type": "multipart/form-data",
+      "Authorization": "Bearer" +localStorage.getItem('access')
+      },
+      });
+      window.location.reload(false);
+      handleClose();
+    } catch(error) {
+      console.log(error)
+    }
+  } else if(page === "Leads"){
+      try{
+          const postLeads = 'http://localhost:8000/api/leads/' + formValue.caseId +'/';
+          const response = await axios({
+            method: "PUT",
+            url: postLeads,
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+          });
+          window.location.reload(false);
+          handleClose();
+        } catch(error) {
+          console.log(error)
+        }
+          }
   }
-}
+
 
   const handleChange = (event) => {
     
@@ -124,20 +140,28 @@ function EditRow({ rowData }) {
               </Row>
         
               <Row>
-                     <Form.Group className="mb-3" controlId="">
-                    <Form.Label>Select Status</Form.Label>
-                    <Form.Select name="status" aria-label="Default select example" value={formValue.status}
-                    onChange={handleChange}>
-                    <option>Open to select status</option>
-                    <option value="Closed">Closed</option>
-                    <option value="New">New</option>
-                    <option value="In progress">In progress </option>
-                    </Form.Select>
-                        </Form.Group>
-                
-                     <Form.Group className="mb-3" controlId="">
-                    <Form.Check value={formValue.status_check}
-                    onChange={handleChange} type="checkbox" label="The borrower is approved" />
+                    <Form.Group className="mb-3" controlId="">
+                        <Form.Label>Select Status</Form.Label>
+                        <Form.Select name="status" aria-label="Default select example" value={formValue.status}
+                        onChange={handleChange}>
+                        <option>Open to select status</option>
+                        <option value='Closed'>Closed</option>
+                        <option value='New'>New</option>
+                        <option value='In_Progress'>In Progress</option>
+                        <option value='Application_Complete'>Application Complete</option>
+                        <option value='AUS_Cleared'>AUS Cleared</option>
+                        <option value='Initial_Disclosure_Sent'>Initial Disclosure Sent</option>
+                        <option value='Title_Ordered'>Title Ordered</option>
+                        <option value='Title_Recieved'>Title Recieved</option>
+                        <option value='Appraisal_Ordered'>Appraisal Ordered</option>
+                        <option value='Appraisal_Recieved'>Appraisal Recieved</option>
+                        <option value='Initial_Disclosure_Recieved'>Initial Disclosure Recieved</option>
+                        <option value='UW_Submitted'>UW Submitted</option>
+                        <option value='UW_Response'>UW Response</option>
+                        <option value='Pending_Conditions'>Pending Conditions</option>
+                        <option value='Cleared_To_Close'>Cleared To Close</option>
+                        <option value='Closing_Package_Sent'>Closing Package Sent</option>
+                        </Form.Select>
                     </Form.Group>
               </Row>
         </Container>

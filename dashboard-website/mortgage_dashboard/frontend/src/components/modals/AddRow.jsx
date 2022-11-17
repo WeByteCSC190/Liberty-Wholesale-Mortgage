@@ -14,7 +14,6 @@ function AddRow({api, page}) {
       status: '',
       creditScore: '',
       date:'',
-      status_check:false
   });
 
   const handleSubmit = async() => {
@@ -27,7 +26,6 @@ function AddRow({api, page}) {
     formData.append("phone_num", formValue.phone_num)
     formData.append("status", formValue.status)
     formData.append("creditScore", formValue.creditScore)
-    formData.append("status_check", formValue.status_check)
     formData.append("date", '2022-10-13T02:23:05Z')
     console.log(Object.fromEntries(formData))
   try {
@@ -57,14 +55,13 @@ function AddRow({api, page}) {
     setformValue({
       ...formValue,
       caseId: '',
-      fName: '',
       lName: '',
+      fName: '',
       email: '',
       phone_num: '',
       status: '',
       creditScore: '',
       date: '',
-      status_check: false
     });
   }
   const handleShow = () => setShow(true);
@@ -126,8 +123,8 @@ function AddRow({api, page}) {
                   onChange={handleChange}>
                   <option>Open to select status</option>
                   <option value="Closed">Closed</option>
-                  <option value="Application Complete">Application Complete</option>
-                  <option value="In progress">In progress </option>
+                  <option value="Application_Complete">Application Complete</option>
+                  <option value="In_Progress">In Progress</option>
                 </Form.Select>
               </Form.Group>
             
@@ -135,10 +132,6 @@ function AddRow({api, page}) {
                 <Form.Label>Select Date</Form.Label>
                 <Form.Control name="date" type="date" placeholder="Creation Date" value={formValue.date}
                   onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="">
-                <Form.Check value={formValue.status_check}
-                  onChange={handleChange} type="checkbox" label="The borrower is approved" />
               </Form.Group>
             </Form>
           </Modal.Body>
@@ -333,8 +326,8 @@ function AddRow({api, page}) {
             onChange={handleChange}>
             <option>Open to select status</option>
             <option value="Closed">Closed</option>
-            <option value="Application Complete">Application Complete</option>
-            <option value="In progress">In progress </option>
+            <option value="Application_Complete">Application Complete</option>
+            <option value="In_Progress">In progress</option>
           </Form.Select>
         </Form.Group>
       
@@ -342,10 +335,6 @@ function AddRow({api, page}) {
           <Form.Label>Select Date</Form.Label>
           <Form.Control name="date" type="date" placeholder="Creation Date" value={formValue.date}
             onChange={handleChange} />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="">
-          <Form.Check value={formValue.status_check}
-            onChange={handleChange} type="checkbox" label="The borrower is approved" />
         </Form.Group>
       </Form>
     </Modal.Body>

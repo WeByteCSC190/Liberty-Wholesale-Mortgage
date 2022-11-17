@@ -43,7 +43,9 @@ function ManageRow({ api, rowData }) {
       method: "post",
       url: postLink,
       data: formData,
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: { "Content-Type": "multipart/form-data",
+      "Authorization": "Bearer" +localStorage.getItem('access')
+      },
     });
     window.location.reload(false);
     handleClose();

@@ -10,7 +10,11 @@ function ManageBtn({ nameButton, api, page, rowData, rowKey, index }){
   const handleDelete = (e) => { 
         axios({
           method: "POST",
-          url: api
+          url: api,
+headers: { "Content-Type": "multipart/form-data",
+      "Authorization": "Bearer" +localStorage.getItem('access')
+      },
+
         }).then((response)=>{
           const data = response.data;
           window.location.reload(false);

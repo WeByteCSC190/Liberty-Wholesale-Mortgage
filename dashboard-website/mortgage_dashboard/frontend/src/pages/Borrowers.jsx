@@ -34,7 +34,7 @@ const Borrowers = () => {
   // console.log(testData)
   const [dataTable, setDataTable] = useState([]);
     // Notes Data
-   const [dataNotes, setDataNotes] = useState([]);
+  const [dataNotes, setDataNotes] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -45,6 +45,9 @@ const Borrowers = () => {
   function getBorrowers() {
   axios({
       method: "GET",
+        headers: { "Content-Type": "multipart/form-data",
+      "Authorization": "Bearer" +localStorage.getItem('access')
+      },
       url:getBorrowersUrl,
     }).then((response)=>{
       const data = response.data;
@@ -59,9 +62,12 @@ const Borrowers = () => {
         console.log(error.response.headers);
         }
     })
-    const getBorrowersNotes = "http://localhost:8000/api/get-borrowernote";
+    const getBorrowersNotes = "http://localhost:8000/api/borrowernote/";
     axios({
       method: "GET",
+        headers: { "Content-Type": "multipart/form-data",
+      "Authorization": "Bearer" +localStorage.getItem('access')
+      },
       url:getBorrowersNotes,
     }).then((response)=>{
       const notes = response.data;
@@ -102,8 +108,8 @@ const Borrowers = () => {
     { heading: 'Phone', value: 'phone_num' },
     { heading: 'Email', value: 'email' },
     { heading: 'Status', value: 'status' },
-    {heading: 'Details', value:'Details'},
-    {heading: 'AddRow', value:'AddBorrower'}
+    { heading: 'Details', value:'Details'},
+    { heading: 'AddRow', value:'AddBorrower'}
   ]
 
   const fetchData = (searchValue, filterType) => {

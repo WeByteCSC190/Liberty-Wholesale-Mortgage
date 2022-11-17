@@ -12,10 +12,10 @@ function ActionBtn({ page, rowData, index }) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Edit rowData={rowData}/>
+        <Edit page={`${page}`} rowData={rowData}/>
         {/* <Dropdown.Item onClick={(e)=> handleDelete(e.target.value)}>Delete</Dropdown.Item> */}
 
-        <Delete title="Remove Borrower" cID={rowData.caseId} message="Are you sure you want to remove this borrower permanently?" apiUrl="http://localhost:8000/api/borrower-delete/"/>
+        <Delete title="Remove Borrower" cID={rowData.caseId} message="Are you sure you want to remove this borrower permanently?" apiUrl="http://localhost:8000/api/borrowers/"/>
         <Dropdown.Item href="#/action-3">Move to leads</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
@@ -30,10 +30,10 @@ function ActionBtn({ page, rowData, index }) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Edit rowData={rowData}/>
+        <Edit page={`${page}`} rowData={rowData}/>
         {/* <Dropdown.Item onClick={(e)=> handleDelete(e.target.value)}>Delete</Dropdown.Item> */}
 
-        <Delete title="Remove Borrower" cID={rowData.caseId} message="Are you sure you want to remove this lead permanently?" apiUrl="http://localhost:8000/api/lead-delete/"/>
+        <Delete title="Remove Borrower" cID={rowData.caseId} message="Are you sure you want to remove this lead permanently?" apiUrl="http://localhost:8000/api/leads/"/>
         <Dropdown.Item href="#/action-3">Move to borrowers</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
@@ -47,8 +47,8 @@ function ActionBtn({ page, rowData, index }) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Edit rowData={rowData}/>
-        <Delete title="Remove file" cID={rowData.caseId} message="Are you sure you want to remove this file permanently?" apiUrl="http://localhost:8000/api/lead-delete/"/>
+        <Edit page={`${page}`} rowData={rowData}/>
+        <Delete title="Remove file" cID={rowData.caseId} message="Are you sure you want to remove this file permanently?" apiUrl="http://localhost:8000/api/leads/"/>
       </Dropdown.Menu>
     </Dropdown>
   );
@@ -61,8 +61,8 @@ function ActionBtn({ page, rowData, index }) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Edit rowData={rowData}/>
-        <Delete title="Remove image" cID={rowData.caseId} message="Are you sure you want to remove this image permanently?" apiUrl="http://localhost:8000/api/lead-delete/"/>
+        <Edit page={`${page}`} rowData={rowData}/>
+        <Delete title="Remove image" cID={rowData.caseId} message="Are you sure you want to remove this image permanently?" apiUrl="http://localhost:8000/api/leads/"/>
       </Dropdown.Menu>
     </Dropdown>
   );
@@ -75,8 +75,8 @@ function ActionBtn({ page, rowData, index }) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Edit rowData={rowData}/>
-        <Delete title="Remove video" cID={rowData.caseId} message="Are you sure you want to remove this video permanently?" apiUrl="http://localhost:8000/api/lead-delete/"/>
+        <Edit page={`${page}`} rowData={rowData}/>
+        <Delete title="Remove video" cID={rowData.caseId} message="Are you sure you want to remove this video permanently?" apiUrl="http://localhost:8000/api/leads/"/>
       </Dropdown.Menu>
     </Dropdown>
   );
@@ -88,7 +88,7 @@ function ActionBtn({ page, rowData, index }) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Edit rowData={rowData}/>
+        <Edit page={`${page}`} rowData={rowData}/>
         <Delete title="Remove Lender" cID={rowData.company} message="Are you sure you want to remove this Lenders permanently?"/>
       </Dropdown.Menu>
     </Dropdown>

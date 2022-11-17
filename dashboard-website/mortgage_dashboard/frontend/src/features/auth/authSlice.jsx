@@ -1,12 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode";
-// import { AccountResponse } from "../../actions/types";
 import axios from "axios";
 
 export const Logout = () =>{
     localStorage.removeItem('access');
     localStorage.removeItem('refresh');
-    localStorage.removeItem('username');
 }
 
 export const verify = createAsyncThunk(
@@ -66,7 +64,6 @@ export const login = createAsyncThunk(
         const user = jwt_decode(access);
         localStorage.setItem("access", access);
         localStorage.setItem("refresh", data.refresh);
-        localStorage.setItem("username", user.username);
         return data;
       } else {
         return thunkAPI.rejectWithValue(data);
@@ -80,7 +77,6 @@ export const login = createAsyncThunk(
 // type SliceState = {
 //   isAuthenticated: boolean,
 //   loading: boolean,
-//   username: string | null,
 //   access: string | null,
 //   refreshToken: string | null,
 // };
@@ -121,6 +117,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;

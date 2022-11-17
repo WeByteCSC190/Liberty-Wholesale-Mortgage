@@ -15,14 +15,21 @@ const Leads = () => {
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const getLeadsUrl = "http://localhost:8000/api/leads/";
+  const dict = {
+      "Application_Closed": "Application Closed",
+      "Closed": "Closed",
+  }
   let testData = []
   
   function getLeads() {
   axios({
       method: "GET",
+        headers: { "Content-Type": "multipart/form-data",
+      "Authorization": "Bearer" +localStorage.getItem('access')
+      },
       url:getLeadsUrl,
     }).then((response)=>{
-      const data = response.data;
+      let data = response.data;
       setDataTable(data)
       testData = data;
       return data
@@ -33,9 +40,12 @@ const Leads = () => {
         console.log(error.response.headers);
         }
     })
-     const getLeadsNotes = "http://localhost:8000/api/get-leadnote";
+     const getLeadsNotes = "http://localhost:8000/api/leadnote/";
     axios({
       method: "GET",
+        headers: { "Content-Type": "multipart/form-data",
+      "Authorization": "Bearer" +localStorage.getItem('access')
+      },
       url:getLeadsNotes,
     }).then((response)=>{
       const notes = response.data;

@@ -78,18 +78,6 @@ const Account = () => {
               <option value="Loan Approver">Loan Approver</option>
             </Form.Select>
           </div>
-          <div className="user-photo">
-            <div className="picture">
-            </div>
-            <div className="picture-buttons">
-             <Button variant="primary" size="sm">
-               Edit
-             </Button>
-             <Button variant="light" size="sm">
-               Change Photo
-             </Button>
-            </div>
-          </div>
         </div>
         
     </div>
