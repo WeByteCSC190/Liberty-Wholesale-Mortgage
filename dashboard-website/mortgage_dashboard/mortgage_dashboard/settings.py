@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
     'import_export',
-    # 'frontend.apps.FrontendConfig'
     'corsheaders',
     'accounts', 
     'users'
@@ -65,8 +64,8 @@ ROOT_URLCONF = 'mortgage_dashboard.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'build')],
-        # 'DIRS': [],
+        # 'DIRS': [os.path.join(BASE_DIR, 'build')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,10 +140,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR, 'build/static')
-]
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# STATICFILES_DIRS=[
+#     os.path.join(BASE_DIR, 'build/static')
+# ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 

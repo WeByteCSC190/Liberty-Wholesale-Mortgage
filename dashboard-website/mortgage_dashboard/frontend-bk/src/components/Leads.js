@@ -30,7 +30,7 @@ const divStyle = {
 const Leads = () => {
   const [leadsData, setLeadsData] = useState([]);
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/leads-list/')
+    fetch('http://localhost/api/leads-list/')
       .then(response => response.json())
       .then(data => {
         setLeadsData(data);

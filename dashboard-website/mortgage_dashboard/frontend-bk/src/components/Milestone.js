@@ -82,7 +82,7 @@ const theme = createTheme({
 });
 
 const conditional = () => {
-  fetch('http://127.0.0.1:8000/api/user?token='
+  fetch('http://localhost/api/user?token='
     + document.getElementByID('auth_token')
     + '?username=' + document.getElementByID('user_name'))
     ;
@@ -92,7 +92,7 @@ const conditional = () => {
 const Milestone = () => {
   const [state] = useState([]);
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/user?token='
+    fetch('http://localhost/api/user?token='
       + document.getElementByID('auth_token')
       + '?username=' + document.getElementByID('user_name'))
       .then(response => response.json())

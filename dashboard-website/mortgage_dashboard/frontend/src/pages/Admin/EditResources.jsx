@@ -134,16 +134,16 @@ const EditResources = () => {
       <Container>
         <Row style={{ paddingBottom: "70px" }}>
            <h1>News and Articles</h1>
-            <Table api="http://localhost:8000/api/borrowers/"  page={"EditResources-carousel"} data={data} column={column} />
+            <Table api="http://localhost/api/borrowers/"  page={"EditResources-carousel"} data={data} column={column} />
         </Row>
         <Row style={{ paddingBottom: "20px" }}>
            <h1>Videos</h1>
-           <Table api="http://localhost:8000/api/borrowers/"  page={"EditResources-video"} data={data} column={column1} />
+           <Table api="http://localhost/api/borrowers/"  page={"EditResources-video"} data={data} column={column1} />
         </Row>
        
         <Row style={{ paddingBottom: "20px" }}>
           <h1>Files</h1>
-         <Table api="http://localhost:8000/api/borrowers/"  page={"Files"} data={dataTable} column={column} />
+         <Table api="http://localhost/api/borrowers/"  page={"Files"} data={dataTable} column={column} />
          
         </Row>
       </Container>

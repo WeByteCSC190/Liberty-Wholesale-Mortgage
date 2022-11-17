@@ -186,7 +186,7 @@ const handleSortingDate = () => {
               callback1={(searchValue)=> setSearchValue(searchValue)} 
               callback2={(filterType)=> setFilterType(filterType)}
               />
-          <Table api="http://localhost:8000/api/leads/" page={"Leads"} data={dataTable} column={column} notes={dataNotes} />
+          <Table api="http://localhost/api/leads/" page={"Leads"} data={dataTable} column={column} notes={dataNotes} />
 
           <div className="Footer">
              <Footer />
