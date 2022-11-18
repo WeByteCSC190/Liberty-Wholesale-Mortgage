@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 function AddRow({api, page}) {
   const [show, setShow] = useState(false);
+  const [status, setStatus] = useState([]);
+  
   const [formValue, setformValue] = React.useState({
       caseId:'',
       fName: '',
@@ -13,10 +15,31 @@ function AddRow({api, page}) {
       phone_num: '',
       status: '',
       creditScore: '',
-      date:'',
       status_check:false
   });
-
+   useEffect(() => {
+      const getStatus = "http://localhost:8000/api/status/"
+    async function fetchData() {
+      // Fetch data
+      axios({
+      method: "GET",
+      url:getStatus,
+    }).then((response)=>{
+      const data = response.data;
+      setStatus(data)
+      // testData = data;
+      console.log(data)
+      // return data
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+        }
+    })
+    }
+       fetchData();
+  }, []);
   const handleSubmit = async() => {
   // store the states in the form data
   var formData = new FormData();
@@ -28,7 +51,7 @@ function AddRow({api, page}) {
     formData.append("status", formValue.status)
     formData.append("creditScore", formValue.creditScore)
     formData.append("status_check", formValue.status_check)
-    formData.append("date", '2022-10-13T02:23:05Z')
+   
     console.log(Object.fromEntries(formData))
   try {
     const response = await axios({
@@ -63,12 +86,13 @@ function AddRow({api, page}) {
       phone_num: '',
       status: '',
       creditScore: '',
-      date: '',
       status_check: false
     });
   }
   const handleShow = () => setShow(true);
   if (page === "Borrowers" || page === "Leads") {
+    
+   
     return (
       <>
         <Button variant="primary" onClick={handleShow}>
@@ -124,18 +148,21 @@ function AddRow({api, page}) {
                 <Form.Label>Select Status</Form.Label>
                 <Form.Select name="status" aria-label="Default select example" value={formValue.status}
                   onChange={handleChange}>
-                  <option>Open to select status</option>
-                  <option value="Closed">Closed</option>
-                  <option value="Application Complete">Application Complete</option>
-                  <option value="In progress">In progress </option>
+                  <option key="0" value="">
+                      
+                    </option>
+                  {status.map((option) => {
+                  return (
+                    <option key={option.id} value={option.id}>
+                      {option.status}
+                    </option>
+                  );
+                })}
+                  
                 </Form.Select>
               </Form.Group>
             
-              <Form.Group controlId="date">
-                <Form.Label>Select Date</Form.Label>
-                <Form.Control name="date" type="date" placeholder="Creation Date" value={formValue.date}
-                  onChange={handleChange} />
-              </Form.Group>
+              
               <Form.Group className="mb-3" controlId="">
                 <Form.Check value={formValue.status_check}
                   onChange={handleChange} type="checkbox" label="The borrower is approved" />
@@ -338,11 +365,7 @@ function AddRow({api, page}) {
           </Form.Select>
         </Form.Group>
       
-        <Form.Group controlId="date">
-          <Form.Label>Select Date</Form.Label>
-          <Form.Control name="date" type="date" placeholder="Creation Date" value={formValue.date}
-            onChange={handleChange} />
-        </Form.Group>
+        
         <Form.Group className="mb-3" controlId="">
           <Form.Check value={formValue.status_check}
             onChange={handleChange} type="checkbox" label="The borrower is approved" />

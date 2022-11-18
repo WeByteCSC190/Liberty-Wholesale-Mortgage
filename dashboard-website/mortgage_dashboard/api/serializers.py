@@ -10,6 +10,7 @@ class AnnoucementsSerializer(serializers.HyperlinkedModelSerializer):
       class Meta:
           model= Annoucements
           fields=('date','content')
+          
 class LeadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lead
@@ -30,13 +31,12 @@ class BorrowerSerializer(serializers.ModelSerializer):
         model = Borrower
         fields = '__all__'
 
-
 class LoanProcessorSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
 
-class ResourcesSerializer(serializers.HyperlinkedModelSerializer):
+class ResourcesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Resources
         fields = '__all__'
@@ -66,7 +66,7 @@ class AddClient(serializers.HyperlinkedModelSerializer):
         model = Client
         fields = ('fName', 'lName', 'email', 'phone_num')
 
-class LenderSerializer(serializers.HyperlinkedModelSerializer):
+class LenderSerializer(serializers.ModelSerializer):
     class Meta:
         model= Lender
         fields = '__all__'
@@ -90,15 +90,38 @@ class RecycleBinSerializer(serializers.ModelSerializer):
     class Meta:
         model = RecyclingBin
         fields = '__all__'
+        
 class BorrowerNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model=BorrowerNote
         fields=('__all__')
+        
 class LeadNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model= LeadNote
         fields=('__all__')
+        
 class AccountDetails(serializers.ModelSerializer):
     class Meta:
         model = AccountDetail
         fields = ('__all__')
+        
+class StatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Status
+        fields=('__all__')
+        
+class VideoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Video
+        fields=('__all__')
+        
+class FilesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Files
+        fields=('__all__')
+        
+class ImagesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Images
+        fields=('__all__')

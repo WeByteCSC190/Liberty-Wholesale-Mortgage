@@ -33,7 +33,7 @@ const Leads = () => {
         console.log(error.response.headers);
         }
     })
-     const getLeadsNotes = `${process.env.REACT_APP_API_URL}/api/get-leadnote`;
+     const getLeadsNotes = `${process.env.REACT_APP_API_URL}/api/leadnote-list/`;
     axios({
       method: "GET",
       url:getLeadsNotes,

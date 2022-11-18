@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.urls import path, include
-from .views import ClientView, AddClient, LeadView, AddLead, LenderView, LenderLogoView,BioView,RecyclingBinView,BorrowerNoteView,LeadNoteView,BorrowerDelete,LeadDelete,BorrowerRecover,LeadRecover
+from .views import *
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -28,10 +28,12 @@ router.register(r'resources',views.ResourceView)
 router.register(r'recyclingBin',views.RecyclingBinViewSet)
 router.register(r'borrowernote',views.borrowerNoteViewSet)
 router.register(r'leadnote',views.LeadNoteViewSet)
-
+router.register(r'status',views.StatusViewSet)
+router.register(r'files',views.FilesViewSet)
+router.register(r'media',views.VideoViewSet)
 urlpatterns = [
     path('get-leads', LeadView.as_view(), name='lead' ),
-
+    path('statusview',StatusView.as_view(),name='statusview'),
     path('add_lead', AddLead),
     path('get-borrowers',ClientView.as_view() ),
     path('borrowerview', views.BorrowerView.as_view(), name='borrower'),
@@ -57,17 +59,28 @@ urlpatterns = [
     path('lead-recover/<int:pk>/',LeadRecover.as_view(), name='lead-recover'),
     path('recyclingBin-delete/<int:pk>/',views.recyclingBinDelete, name='recycleingBin-delete'),
     path('get-recyclebin', RecyclingBinView.as_view(), name='recyclebin'),
-    path('get-borrowernote', BorrowerNoteView.as_view()),
-    path('borrowernote-list/',views.borrowerNoteList, name='borrowernote-list'),
-    path('borrowerNote-create/',views.borrowerNoteCreate, name='borrowerNote-create'),
-    path('borrowerNote-update/<int:fk>/',views.borrowerNoteUpdate, name='borrowerNote-update'),
-    path('borrowerNote-delete/<int:fk>/',views.borrowerNoteDelete, name='borrowerNote-delete'),
-    path('get-leadnote', LeadNoteView.as_view()),
-    path('leadnote-list/',views.borrowerNoteList, name='borrowernote-list'),
-    path('leadNote-create/',views.LeadNoteCreate, name='borrowerNote-create'),
-    path('leadNote-update/<int:fk>/',views.LeadNoteUpdate, name='borrowerNote-update'),
-    path('leadNote-delete/<int:fk>/',views.LeadNoteDelete, name='borrowerNote-delete'),
 
+    path('borrowernote-list/',views.borrowernote_list, name='borrowernote-list'),
+    path('borrowernote-list/<int:pk>/',views.borrowernote_detail, name='borrowerNote-create'),
+    path('leadnote-list/',views.leadnote_list, name='leadnote-list'),
+    path('leadNote-list/<int:pk>/',views.leadnote_detail, name='leadNote-create'),
+
+    path('lender-detail/<int:pk>/',views.lenderDetail, name='lender-detail'),
+    path('lender-list/',views.lenderList, name='lender-list'),
+    path('lender-create/',views.lenderCreate, name='lender-create'),
+    path('lender-update/<int:pk>/',views.lenderUpdate, name='lender-update'),
+    path('lender-delete/<int:pk>/',views.lenderDelete, name='lender-delete'),
+
+    path('resource-list/',views.resource_list, name='Resource-list'),
+    path('resource-list/<int:pk>/',views.resource_detail, name='Resource-create'),
+    path('borrowerupdate/<int:pk>/',views.borrowers_detail, name='updateborrower'),
+    path('leadupdate/<int:pk>/',views.leads_detail, name='updatelead'),
+    path('videolist/',VideoListView.as_view(), ),
+    path('videolist/<int:pk>/',VideoDetail.as_view(), ),
+    path('fileslist/',FilesListView.as_view(), ),
+    path('fileslist/<int:pk>/',FilesDetail.as_view(), ),
+    path('imagelist/',ImageListView.as_view(), ),
+    path('imagelist/<int:pk>/',ImageDetail.as_view(), ),
     #automatic URL routing
     path('',include(router.urls)),
     path('api/', include('rest_framework.urls', namespace='rest_framework'))

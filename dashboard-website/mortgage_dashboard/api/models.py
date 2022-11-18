@@ -45,11 +45,22 @@ class Anouncements(models.Model):
 
 
 class Files(models.Model):
-    fileType = models.URLField('File type')
-    filePath = models.URLField('File path')
-
-    def __str__(self):
-        return self.fileType
+    file = models.FileField(upload_to='files_uploaded',null=True,
+        validators=[FileExtensionValidator(allowed_extensions=['doc','pdf','docx','txt'])])
+    date_uploaded = models.DateTimeField(default=timezone.now)
+    id = models.IntegerField('ID', primary_key=True, null=False,
+                             default=generate_random_number(), unique=True)
+    def __int__(self):
+        return self.id
+class Images(models.Model):
+    images = models.FileField(upload_to='images_uploaded',null=True,
+        validators=[FileExtensionValidator(allowed_extensions=['JPEG','GIF','PNG','JPG'])])
+    date_uploaded = models.DateTimeField(default=timezone.now)
+   
+    id = models.IntegerField('ID', primary_key=True, null=False,
+                             default=generate_random_number(), unique=True)
+    def __int__(self):
+        return self.id
 
 
 class Media(models.Model):
@@ -63,6 +74,11 @@ class Video(models.Model):
         validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
     date_uploaded = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User,on_delete= models.CASCADE)
+    id = models.IntegerField('ID', primary_key=True, null=False,
+                             default=generate_random_number(), unique=True)
+    def __int__(self):
+        return self.id
+   
 
 class Resources(models.Model):
     media = models.ForeignKey(
@@ -83,26 +99,38 @@ class Resources(models.Model):
         return self.id
 
 class Status(models.Model):
-    # 2lead = models.ForeignKey(Lead, blank=True, null = True)
-    # borrower = models.ForeignKey(Lead, blank=True, null= True)
-    class Borrowerstatus(models.TextChoices):
-        Application_Complete = 'AppC', lazy('Application Complete')
-        AUS_Cleared = 'AusC', lazy('AUS Cleared')
-        Initial_Disclosure_Sent = 'IDS', lazy('Initial Disclosure Sent')
-        Title_Ordered = 'TO', lazy('Title Ordered')
-        Title_Recieved = 'TR', lazy('Title Recieved')
-        Appraisal_Ordered = 'AO', lazy('Appraisal Ordered')
-        Appraisal_Recieved = 'AR', lazy('Appraisal Recieved')
-        Initial_Disclosure_Recieved = 'IDR', lazy('Initial Disclosure Recieved')
-        UW_Submitted = 'UwS', lazy('UW Submitted')
-        UW_Response = 'UwR', lazy('UW Response')
-        Pending_Conditions = 'PC', lazy('Pending Conditions')
-        Cleared_To_Close = 'CTC', lazy('Cleared To Close')
-        Closing_Package_Sent = 'CPS', lazy('Closing Package Sent')
+
+    STATUS_CHOICES = [
+        ('Lead', (
+            ('Application_Complete', lazy('Application Complete')),
+            ('Recently_Added', lazy('Recently Added')),
+            ('Contacted', lazy('Contacted')),
+            ('Declined', lazy('Declined')),
+            ('In_Progress', lazy('In Progress')),
+            ('Missing_Paperwork', lazy('Missing Paperwork')),
+            ('Move_to_Borrower', lazy('Move to Borrower')),),
+        ),
+        ('Borrower', (
+            ('Application_Complete', lazy('Application Complete')),
+            ('AUS_Cleared', lazy('AUS Cleared')),
+            ('Initial_Disclosure_Sent', lazy('Initial Disclosure Sent')),
+            ('Title_Ordered', lazy('Title Ordered')),
+            ('Title_Recieved', lazy('Title Recieved')),
+            ('Appraisal_Ordered', lazy('Appraisal Ordered')),
+            ('Appraisal_Recieved', lazy('Appraisal Recieved')),
+            ('Initial_Disclosure_Recieved', lazy('Initial Disclosure Recieved')),
+            ('UW_Submitted', lazy('UW Submitted')),
+            ('UW_Response', lazy('UW Response')),
+            ('Pending_Conditions', lazy('Pending Conditions')),
+            ('Cleared_To_Close', lazy('Cleared To Close')),
+            ('Closing_Package_Sent', lazy('Closing Package Sent')),),
+        )
+    ]
+    
     status = models.CharField(
-        choices = Borrowerstatus.choices, primary_key=True, max_length=12, null=False, blank=True)
+        choices = STATUS_CHOICES, max_length=40, null=False, blank=True)
     id = models.IntegerField(
-        'ID', null=False, default=generate_random_number(), unique=True)
+        'ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
     name = models.CharField('Name', max_length=40, null=True, blank=True)
     desc = models.TextField('Description', blank=True)
 
@@ -122,7 +150,7 @@ class Lead(models.Model):
 
     caseId = models.IntegerField(
         'Case ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
-    date = models.DateTimeField('Date')
+    date = models.DateTimeField(auto_now_add = True)
     fName = models.CharField(max_length=40, null=True, blank=True)
     lName = models.CharField(max_length=40, null=True, blank=True)
     creditScore = models.IntegerField(
@@ -283,14 +311,14 @@ class BorrowerNote(models.Model):
    created_on=models.DateTimeField(auto_now_add=True)
 
    def __str__(self):
-        return self.note
+        return self.borrowernote
 class LeadNote(models.Model):
     lead=models.ForeignKey(Lead,on_delete=models.CASCADE)
     leadnote = models.TextField('Note', max_length=200,null=True)
     created_on=models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.note
+        return self.leadnote
         
 class AccountDetail(models.Model):
     ssn = models.ForeignKey(UserProfile, blank = True, null = True, on_delete=models.CASCADE)
