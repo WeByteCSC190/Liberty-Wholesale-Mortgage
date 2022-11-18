@@ -15,7 +15,6 @@
   position: fixed;
   top: 0;
   width: 100%;
-  margin-bottom: 5%;
   z-index: 4; 
 }
 
@@ -25,93 +24,48 @@
 }
 
 /* CSS Code for Navbar */
-.Navbar {
-  box-sizing: border-box;
-  margin: 0;
-  height: 10vh;
-  min-height: 10vh;
-  background-color: rgba(13, 57, 122, 1); 
-  color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 4rem;
-  padding: 0 1rem;
 
+.Navbar {
+  margin: 0;
+  padding: 0 !important; 
+  background-color: rgba(13, 57, 122, 1); 
 }
 
-.Nav-Menu {
+.Navbar a {
+  color: white; 
+  border-radius: 10px;
+}
+
+.m-auto {
+  gap: 3rem; 
+}
+
+.nav-menu {
   display: flex;
+  color: white !important; 
   flex-wrap: wrap;
   flex-direction: row;
-  margin-top: 2.5%;
   justify-content: space-between;
   gap: 3rem;
 }
 
-.Nav-Menu li {
-  align-items: center;
-  text-align: center;
-  list-style-type: none;
-  padding: 0;
-}
 
-.Nav-Menu a {
-  color: white;
-  border-radius: 10px;
-}
-
-.Nav-Menu li.active {
+.nav-menu li.active {
   text-decoration: underline;
   text-underline-offset: 1rem;
   font-weight: bold;
 }
 
-.Nav-Menu a:hover {
+.nav-menu a:hover {
   background-color: #0d6efd;
   border-radius: 10px;
   color: white;
   font-weight: bold;
 }
 
-.Drop-Item a {
+.nav-drop-link a{
+  color: black; 
   text-decoration: none;
-}
-
-.Nav-Toggle-Menu {
-  display: none;
-  background-color: rgba(13, 57, 122, 1); 
-}
-
-.Nav-Toggle {
-  display: none;
-  background-color: rgba(13, 57, 122, 1); 
-  box-sizing: content-box;
-  text-align: center;
-  flex-direction: column;
-  gap: 0;
-  width: 100%;
-  height: 100%;
-
-}
-
-.Nav-Toggle li {
-  align-items: center;
-  text-align: center;
-  list-style-type: none;
-  padding: 0;
-}
-
-.Nav-Toggle a {
-  color: white;
-  text-decoration: none;
-}
-
-.Nav-Toggle a:hover {
-  background-color: #0d6efd;
-  border-radius: 10px;
-  color: white;
-  font-weight: bold;
 }
 
 
@@ -545,17 +499,27 @@ h1 {
 
 /* Responsive Navbar and Footer */
 
-@media(max-width: 1000px) {
+@media(max-width: 992px) {
   /* Navbar */
 
+  .m-auto {
+    border-radius: 0;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+
+  /*
   .Nav-Menu {
     background-color: rgba(13, 57, 122, 1);
     border: 0;
     box-sizing: content-box;
     text-align: center;
-    flex-direction: column;
-    gap: 0;
-    padding: 0;
+    
   }
 
   .Nav-Toggle {
@@ -572,7 +536,7 @@ h1 {
     text-decoration: none;
     font-weight: bold;
     border-radius: 0;
-  }
+  }*/
 
 
   /* Footer */
