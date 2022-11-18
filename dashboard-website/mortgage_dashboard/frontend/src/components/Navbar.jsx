@@ -103,7 +103,7 @@ function SwitchPage( {href, children, ...props }) {
 function SwitchIcon(logout){
 
   //temp code
-  const isMobile = true
+  const isMobile = false
   //end of temp code
 
   /*
