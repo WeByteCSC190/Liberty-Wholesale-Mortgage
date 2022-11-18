@@ -3,15 +3,19 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BlueLogo from './images/blue_logo.png';
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import NavIcon from './images/blue_icon.png'; 
+import { Link, NavLink, useMatch, useResolvedPath } from "react-router-dom";
+import {useLayoutEffect, useRef, useState} from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import * as Icons from "@fortawesome/free-solid-svg-icons"
 import React, { Fragment } from 'react';
 import {logout} from '../actions/auth';
+import {connect} from 'react-redux'; 
 
 
 /* Renders the Navbar */
@@ -113,7 +117,7 @@ import {logout} from '../actions/auth';
     }, []); */
   
     // compare width of web broswer 
-    if(isMobile == false) {
+    if(isMobile === false) {
       return (
         <>
         <Dropdown>

@@ -116,7 +116,7 @@ function SwitchIcon(logout){
   }, []); */
 
   // compare width of web broswer 
-  if(isMobile == false) {
+  if(isMobile === false) {
     return (
       <>
       <Dropdown>
