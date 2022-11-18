@@ -13,7 +13,7 @@ function Confirmation({cID, title, message, apiUrl}) {
      console.log(apiUrl+"/"+cID+"/")
         axios({
 headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
           method: "DELETE",
           url: apiUrl+cID+"/",

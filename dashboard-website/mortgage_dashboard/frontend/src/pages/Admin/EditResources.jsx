@@ -20,7 +20,7 @@ const EditResources = () => {
   axios({
       method: "GET",
 headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
       url:getFilesUrl,
     }).then((response)=>{

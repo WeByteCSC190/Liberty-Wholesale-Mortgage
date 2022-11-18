@@ -25,7 +25,7 @@ const Lenders = () => {
   axios({
       method: "GET",
    headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
       url:getLendersUrl
     }).then((response)=>{
@@ -46,7 +46,7 @@ const Lenders = () => {
     axios({
       method: "GET",
    headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
       url:getLendersLogoUrl,
     }).then((response)=>{

@@ -37,7 +37,7 @@ def userDetail(request,pk):
     return Response(serializer.data)
 
 class ResourceView(viewsets.ModelViewSet):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Resources.objects.all()
     serializer_class= ResourcesSerializer
 
@@ -66,7 +66,6 @@ class ClientView(viewsets.ModelViewSet):
 
 class LenderView(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
-    # permission_classes = (permissions.AllowAny, )
     queryset = Lender.objects.all()
     serializer_class= LenderSerializer
     filter_backends = [filters.SearchFilter]
@@ -80,13 +79,13 @@ class LenderLogoView(viewsets.ModelViewSet):
     search_fields = ['company']
 
 class AnnouncementsView(viewsets.ModelViewSet):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Announcements.objects.all()
     serializer_class=AnnouncementsSerializer
 
 
 class LeadView(viewsets.ModelViewSet):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Lead.objects.all()
     serializer_class= LeadSerializer
     
@@ -104,7 +103,7 @@ class LeadView(viewsets.ModelViewSet):
 
 
 class BorrowerView(viewsets.ModelViewSet):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Borrower.objects.all()
     serializer_class=BorrowerSerializer
     filter_backends = [filters.SearchFilter]
@@ -118,7 +117,7 @@ class BorrowerView(viewsets.ModelViewSet):
         return HttpResponse(data, content_type="application/json")
 
 class BioView(viewsets.ModelViewSet):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = Bio.objects.all()
     serializer_class= BioSerializer
 
@@ -133,17 +132,17 @@ def bioUpdate(request, pk):
     return Response(serializer.data)
 
 class RecyclingBinView(generics.ListCreateAPIView):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = RecyclingBin.objects.all()
     serializer_class=  RecycleBinSerializer
 
 class BorrowerNoteView(viewsets.ModelViewSet):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = BorrowerNote.objects.all()
     serializer_class= BorrowerNoteSerializer
 
 class LeadNoteView(viewsets.ModelViewSet):
-    permission_classes = (permissions.AllowAny, )
+    permission_classes = (permissions.IsAuthenticated, )
     queryset = LeadNote.objects.all()
     serializer_class = LeadNoteSerializer
 

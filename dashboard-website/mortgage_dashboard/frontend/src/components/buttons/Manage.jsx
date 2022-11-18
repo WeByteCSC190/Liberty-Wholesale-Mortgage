@@ -12,7 +12,7 @@ function ManageBtn({ nameButton, api, page, rowData, rowKey, index }){
           method: "POST",
           url: api,
 headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
 
         }).then((response)=>{

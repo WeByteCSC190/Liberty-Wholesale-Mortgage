@@ -20,12 +20,12 @@ const Leads = () => {
       "Closed": "Closed",
   }
   let testData = []
-  
+   
   function getLeads() {
   axios({
       method: "GET",
         headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
       url:getLeadsUrl,
     }).then((response)=>{
@@ -44,7 +44,7 @@ const Leads = () => {
     axios({
       method: "GET",
         headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
       url:getLeadsNotes,
     }).then((response)=>{

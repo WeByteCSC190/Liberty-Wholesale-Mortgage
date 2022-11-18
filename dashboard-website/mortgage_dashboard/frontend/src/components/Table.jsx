@@ -24,7 +24,7 @@ const handleAddNote = async (caseId) => {
         url: api,
         data: formData,
    headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
       });
       window.location.reload(false);
@@ -43,7 +43,7 @@ const handleAddNote = async (caseId) => {
         url: api,
         data: formData,
    headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
       });
       window.location.reload(false);

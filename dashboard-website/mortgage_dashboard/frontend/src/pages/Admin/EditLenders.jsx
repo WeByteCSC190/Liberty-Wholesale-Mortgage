@@ -23,7 +23,7 @@ const LendersAdmin = () => {
   axios({
       method: "GET",
 headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
 
 
@@ -47,7 +47,7 @@ function getLogo() {
   axios({
     method: "GET",
 headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
 
     url:getLendersLogoUrl

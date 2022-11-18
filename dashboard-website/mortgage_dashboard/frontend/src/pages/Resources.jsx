@@ -20,12 +20,12 @@ const Resources = () => {
   const getResourceUrl = "http://localhost:8000/api/resources/";
   const getFileUrl = "http://127.0.0.1:8000/api/files/";
   const getVideoUrl = "http://127.0.0.1:8000/api/video/";
-  const getAnnouncementsUrl = "http://127.0.0.1:8000/api/Announcement/";
+  const getAnnouncementsUrl = "http://127.0.0.1:8000/api/Announcements/";
   function getResource() {
   axios({
       method: "GET",
 headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
 
       url:getResourceUrl,
@@ -46,7 +46,7 @@ headers: { "Content-Type": "multipart/form-data",
     axios({
         method: "GET",
 headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
 
         url:getFileUrl,
@@ -66,7 +66,7 @@ headers: { "Content-Type": "multipart/form-data",
     function getVideo() {
       axios({
 headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
 
           method: "GET",
@@ -87,7 +87,7 @@ headers: { "Content-Type": "multipart/form-data",
       function getAnnouncements() {
         axios({
 headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer" +localStorage.getItem('access')
+      "Authorization": "Bearer " +localStorage.getItem('access')
       },
 
             method: "GET",
