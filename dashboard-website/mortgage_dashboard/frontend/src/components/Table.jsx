@@ -21,7 +21,7 @@ const handleAddNote = async (caseId) => {
     var formData = new FormData();
    formData.append("borrowernote",noteText)
     formData.append("borrower", caseId)
-  api="http://localhost:8000/api/borrowernote-list/"
+  api=`${process.env.REACT_APP_API_URL}/api/borrowernote-list/`
     try {
       const response = await axios({
         method: "post",
@@ -38,7 +38,7 @@ const handleAddNote = async (caseId) => {
     var formData = new FormData();
    formData.append("leadnote",noteText)
     formData.append("lead", caseId)
-  api="http://localhost:8000/api/leadnote-list/"
+  api=`${process.env.REACT_APP_API_URL}/api/leadnote-list/`
     try {
       const response = await axios({
         method: "post",

@@ -51,7 +51,7 @@ class CheckAuthenticatedView(APIView):
         user = self.request.user
         try:
             isAuthenticated = user.is_authenticated
-        
+            
             if isAuthenticated:
                 return Response({'isAuthenticated': 'success'})
             else:
@@ -69,23 +69,17 @@ class LoginView(APIView):
         
         try:
             if request.method == "POST":
-                userName = data['username']
+                username = data['username']
                 password = data['password']
 
-                user = auth.authenticate(request, username=userName, password=password) 
+                user = auth.authenticate(request, username=username, password=password) 
 
                 if user is not None:
                     auth.login(request, user)
-                    # return redirect('dashboard')
-                    return Response({'success': 'User authenticated', 'username': userName})
+                    return Response({'success': 'User authenticated', 'username': username})
 
                 else:
                     return Response({'error': 'Error Authenticating' })
-                    # messages.success(request, ("There was in issue when logging in. Please try again."))
-                    # return redirect('login')
-                    
-            # else:
-            #     return render(request, '../frontend/src/pages/sign-in.jsx', {})
         except:
             return Response({'error': 'Something went wrong when logging in' })
 
@@ -97,6 +91,7 @@ class DeleteAccountView(APIView):
         
         try: 
             user = User.objects.filter(id=user.id).delete()
+            user = UserProfile.objects.filter(id=user.id).delete()
             return Response({'success': 'User deleted successfully'})
         except:
             return Response({'error': 'Something went wrong when deleting user' })
@@ -106,8 +101,8 @@ class GetUsersView(APIView):
     permission_classes = (permissions.AllowAny, )
 
     def get(self, request, format=None):
-        users = User.objects.all()
-        users = UserSerializer(users, many= True)
+        users = UserProfile.objects.all()
+        users = UserProfileSerializer(users, many= True)
         return Response(users.data)
 
 

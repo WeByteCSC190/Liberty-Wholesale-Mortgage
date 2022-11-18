@@ -15,8 +15,8 @@ const LendersAdmin = () => {
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const getLendersUrl = "http://localhost:8000/api/lender/";
-  const getLendersLogoUrl = "http://127.0.0.1:8000//api/lenderLogo/"; 
+  const getLendersUrl = `${process.env.REACT_APP_API_URL}/api/lender/`;
+  const getLendersLogoUrl = `${process.env.REACT_APP_API_URL}/api/lenderLogo/`; 
   let testData = []
   
   function getLenders() {

@@ -1,12 +1,12 @@
-FROM node:16.15.0-alpine
-WORKDIR /app/frontend
-# COPY ./package.json ./
-# COPY ./package-lock.json ./
-# RUN npm ci --silent
-COPY . ./
-RUN npm install -g npm@latest
-RUN rm -rf node_modules
-RUN rm package-lock.json
-RUN npm install
-RUN npm install --save react@latest
-CMD npm run build
+FROM node:16.15.0-alpine as build
+WORKDIR /frontend
+COPY ./frontend/package.json ./
+COPY ./frontend/package-lock.json ./
+RUN npm ci --silent
+COPY ./frontend ./
+RUN npm run build
+
+
+FROM nginx:stable-alpine
+COPY --from=build /frontend/build /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]

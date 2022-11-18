@@ -9,8 +9,8 @@ import Resources from "./pages/Resources";
 import SignIn from "./pages/sign-in/sign-in.jsx";
 import Help from "./pages/sign-in/help.jsx";
 import Lenders from "./pages/Lenders";
-import Terms from "./components/legal/terms.jsx";
-import Privacy from "./components/legal/privacy.jsx";
+import Terms from "./components/legal/Terms.jsx";
+import Privacy from "./components/legal/Privacy.jsx";
 import LegalThree from "./components/legal/LegalThree";
 import LegalFour from "./components/legal/LegalFour.jsx";
 import AddUser from "./pages/Admin/Add-Users.jsx";
@@ -23,7 +23,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Provider } from 'react-redux';
 import store from './store';
 import Layout from './hocs/layout';
+import axios from "axios";
 
+if (window.location.origin === "http://localhost:3000") {
+  axios.defaults.baseURL = "http://localhost:8000";
+} else {
+  axios.defaults.baseURL = window.location.origin;
+}
 
 const App = () => {
   return (

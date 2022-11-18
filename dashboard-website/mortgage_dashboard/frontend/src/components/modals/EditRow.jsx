@@ -58,7 +58,7 @@ function EditRow({ rowData }) {
     
     console.log(Object.fromEntries(formData))
   try {
-    const postBorrowers = "http://localhost:8000/api/borrowers/";
+    const postBorrowers = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
     const response = await axios({
       method: "post",
       url: postBorrowers,

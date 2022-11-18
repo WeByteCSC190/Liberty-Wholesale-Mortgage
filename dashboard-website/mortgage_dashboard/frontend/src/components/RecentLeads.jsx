@@ -7,7 +7,7 @@ const RecentLeads = () => {
   const [leads, setLeads] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/recentLeads/")
+    axios.get(`${process.env.REACT_APP_API_URL}/api/recentLeads/`)
       .then(response => setLeads(response.data))
   }, [])
 

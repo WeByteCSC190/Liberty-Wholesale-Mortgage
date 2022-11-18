@@ -38,7 +38,7 @@ const Borrowers = () => {
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const getBorrowersUrl = "http://localhost:8000/api/borrowers/";
+  const getBorrowersUrl = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
 
   let testData = []
   
@@ -59,7 +59,7 @@ const Borrowers = () => {
         console.log(error.response.headers);
         }
     })
-    const getBorrowersNotes = "http://localhost:8000/api/borrowernote-list/";
+    const getBorrowersNotes = `${process.env.REACT_APP_API_URL}/api/borrowernote-list/`;
     axios({
       method: "GET",
       url:getBorrowersNotes,

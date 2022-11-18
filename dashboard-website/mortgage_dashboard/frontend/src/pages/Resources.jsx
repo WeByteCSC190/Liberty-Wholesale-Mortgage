@@ -17,10 +17,10 @@ const Resources = () => {
   const [FileDataTable, setFileDataTable] = useState([]);
   const [VideoDataTable, setVideoDataTable] = useState([]);
   const [AnnoucementsDataTable, setAnnoucementsDataTable] = useState([]);
-  const getResoucreUrl = "http://localhost:8000/api/resources/";
-  const getFileUrl = "http://127.0.0.1:8000/api/files/";
-  const getVideoUrl = "http://127.0.0.1:8000/api/video/";
-  const getAnnoucementsUrl = "http://127.0.0.1:8000/api/Annoucements/";
+  const getResoucreUrl = `${process.env.REACT_APP_API_URL}/api/resources/`;
+  const getFileUrl = `${process.env.REACT_APP_API_URL}/api/files/`;
+  const getVideoUrl = `${process.env.REACT_APP_API_URL}/api/video/`;
+  const getAnnoucementsUrl = `${process.env.REACT_APP_API_URL}/api/Annoucements/`;
   function getResource() {
   axios({
       method: "GET",
