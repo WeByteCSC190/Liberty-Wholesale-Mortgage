@@ -1,16 +1,12 @@
-import Button from 'react-bootstrap/Button';
+
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BlueLogo from './images/blue_logo.png';
-import NavIcon from './images/blue_icon.png'; 
 import { Link, NavLink, useMatch, useResolvedPath } from "react-router-dom";
-import {useLayoutEffect, useRef, useState} from 'react';
+import {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import * as Icons from "@fortawesome/free-solid-svg-icons"
 import React, { Fragment } from 'react';
@@ -103,66 +99,64 @@ import {connect} from 'react-redux';
   // Checks if the navbar is mobile, swaps the icon, and add 2 links to nav-menu
   function SwitchIcon(logout){
   
-    //temp code
-    const isMobile = false
-    //end of temp code
-  
-    /*
-    const ref = useRef(null);
-    const [width, setWidth] = useState(0);
-  
-    useLayoutEffect(() => {
-      setWidth(ref.current.offsetWidth);
-      console.log(width);
-    }, []); */
-  
-    // compare width of web broswer 
-    if(isMobile === false) {
-      return (
-        <>
-        <Dropdown>
-          <Dropdown.Toggle 
-             variant="outline-primary" 
-             style={{color: 'white', border: 0,}}
-             id="NavDropDownButton"
-          >
-          <FontAwesomeIcon 
-             icon={Icons.faUser} 
-             size="2x" 
-           />
-          
-          </Dropdown.Toggle>
-    
-          <Dropdown.Menu 
-            style={{ 
-              right: 0, 
-              left: 'auto',
-              color: 'black',
-              border: 0,  }}
-          >
-            <Dropdown.Item className="nav-drop-link">
-            <Link to="/account">Account</Link>
-           </Dropdown.Item>
-    
-          <Dropdown.Item className="nav-drop-link">
-            <a className='nav-item' onClick={logout} href='#!'> Sign Out</a>
-            {/* <Link onClick={logout} href='#!'>Sign Out</Link> */}
-          </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-        </>
-      );
-    } else {
-      return(
-        <>
-        <Container className="nav-menu">
-        <Nav.Link href="/account">Account</Nav.Link>
-        <Nav.Link className='nav-item' onClick={logout} href='#!' >Sign Out</Nav.Link>
-        </Container>
-        </>
-  
-      )
+    // Gets width of web browser
+  const [windowDimension, detectWidth] = useState({
+    windowWidth: window.innerWidth})
+
+    const detectSize = () => {
+      detectWidth({
+        windowWidth: window.innerWidth, 
+      })
     }
+      useEffect(() => {
+        window.addEventListener('resize', detectSize)
+        return() => {
+          window.removeEventListener('resize', detectSize)
+          
+        }
+      }, [windowDimension])
+    
+  
+  
+  // Compare width of web broswer and performs action
+  if( windowDimension.windowWidth < 1000) {
+    return (
+      <Container className="nav-menu">
+      <Nav.Link href="/account">Account</Nav.Link>
+      <Nav.Link className='nav-item' onClick={logout} href='#!' >Sign Out</Nav.Link>
+      </Container>
+      
+    );
+  } else {
+    return(
+      <Dropdown>
+        <Dropdown.Toggle 
+           variant="outline-primary" 
+           style={{color: 'white', border: 0,}}
+           id="NavDropDownButton"
+        >
+        <FontAwesomeIcon 
+           icon={Icons.faUser} 
+           size="2x" 
+         />
+        
+        </Dropdown.Toggle>
+  
+        <Dropdown.Menu 
+          
+        >
+          <NavDropdown.Item className="nav-drop-link">
+          <Link to="/account">Account</Link>
+         </NavDropdown.Item>
+  
+        <NavDropdown.Item className="nav-drop-link">
+          <a className='nav-item' onClick={logout} href='#!'> Sign Out</a>
+          {/* <Link onClick={logout} href='#!'>Sign Out</Link> */}
+        </NavDropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    )
+  }
   }
   
   
