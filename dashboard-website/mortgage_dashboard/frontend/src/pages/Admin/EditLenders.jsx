@@ -7,6 +7,7 @@ import Search from "../../components/SearchLenders";
 import Table from "../../components/TableLenders";
 import Loader from "../../components/spinner";
 import Footer from '../../components/Footer';
+import Container from 'react-bootstrap/Container';
 
 
 const LendersAdmin = () => {
@@ -178,6 +179,7 @@ const handleSortingDate = () => {
       <Navbar />
     </div>
      <div className="Content">
+     <Container className="page-format"> 
      <p className="Page-Title">Lenders</p> 
      <div className="Lenders">
       
@@ -188,15 +190,19 @@ const handleSortingDate = () => {
               callback2={(filterType)=> setFilterType(filterType)}
               />
           <Table api="http://localhost:8000/api/lender/"  page={"Lenders"} data={dataTable} column={column} columns={columns} />
-
-          <div className="Footer">
-             <Footer />
-          </div>
          </div>
       }
       </div>
+      </Container>
       </div>
-      </>
+      <div className="Footer">
+        {isLoading ? 
+        <Loader />: <div>
+             <Footer />
+        </div>
+        }
+        </div>
+        </>
   );
 }
 

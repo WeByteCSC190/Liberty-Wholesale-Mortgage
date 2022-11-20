@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Navbar from "../../components/NavbarAdmin";
 import Table from "../../components/Table";
+import Footer from "../../components/Footer";
+import Container from 'react-bootstrap/Container';
+
 export default function Users() {
   const [dataTable, setDataTable] = useState([]);
   const getUsersUrl = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
@@ -38,9 +41,14 @@ export default function Users() {
        <Navbar />
     </div>
     <div className="Content">
+     <Container className="page-format">
     <p className="Page-Title">View TPO</p>
        <Table page="Users" data={dataTable} column={column} />
+       </Container>
     </div>
+    <div className="Footer">
+        {/*<Footer />*/}
+        </div>
     </>
   );
 }

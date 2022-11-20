@@ -11,6 +11,7 @@ import Carousel from "../../components/Carousel";
 import Card from "../../components/Card";
 import Footer from '../../components/Footer';
 
+
 const EditResources = () => {
 
 // files start
@@ -134,6 +135,7 @@ const EditResources = () => {
       <Navbar />   
     </div>
     <div className="Content">
+    <Container className="page-format">
     <p className="Page-Title">Resources</p>
     
       <Container>
@@ -152,9 +154,10 @@ const EditResources = () => {
          
         </Row>
       </Container>
+      </Container>
+      </div>
       <div className="Footer">
         <Footer />
-      </div>
       </div>
     </>
   )

@@ -25,7 +25,8 @@
 }
 
 .Footer {
-  bottom: 0 !important; 
+  margin-top: auto; 
+  bottom: 0; 
 }
 
 /* CSS Code for Navbar */
@@ -97,7 +98,6 @@
   color: black;
   display: flex;
   align-items: center;
-  margin-left: 2%;
   margin-top: 1%;
 
 }
