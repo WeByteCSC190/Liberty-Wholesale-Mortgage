@@ -7,7 +7,7 @@ import Search from "../components/SearchLenders";
 import Table from "../components/TableLenders";
 import Loader from "../components/spinner";
 import Footer from '../components/Footer';
-
+import Container from 'react-bootstrap/Container';
 
 const Lenders = () => {
 
@@ -177,9 +177,9 @@ const handleSortingDate = () => {
       <Navbar />
     </div>
      <div className="Content">
-     <p className="Page-Title">Lenders</p> 
-     <div className="Lenders">
-      
+     
+     <Container class="page-format">
+      <p className="Page-Title">Lenders</p> 
       {isLoading ?
         <Loader /> :   <div>    
           <Search 
@@ -194,13 +194,17 @@ const handleSortingDate = () => {
                  column={column} columns={columns} 
                  image={logoTable}/>
 
-          <div className="Footer">
-             <Footer />
-          </div>
          </div>
       }
+      </Container>
       </div>
-      </div>
+      <div className="Footer">
+        {isLoading ? 
+        <Loader />: <div>
+             <Footer />
+        </div>
+        }
+        </div>
       </>
   );
 }

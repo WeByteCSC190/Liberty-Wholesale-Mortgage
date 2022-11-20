@@ -36,7 +36,7 @@ const LendersTableComponent = ({api, page, data, column, columns, image }) => {
   }
 
   return (
-    <div style={{ paddingBottom: 10, paddingLeft: 90, paddingRight: 90 }}>
+    
       <Table className="Table" responsive hover >
       <thead>
       <tr className="table-title">List of {page}</tr>
@@ -60,7 +60,7 @@ const LendersTableComponent = ({api, page, data, column, columns, image }) => {
         Showing {data.length} out of {data.length} results 
         </tr>
       </Table>
-      </div>
+      
   );
  } 
 

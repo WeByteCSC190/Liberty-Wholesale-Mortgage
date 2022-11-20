@@ -28,7 +28,7 @@ const SearchLenders = ({callback1, callback2, button1, button2, button3, limit }
     callback2(filterValue)
   }
     return (
-      <div style={{ paddingLeft: 90, paddingRight: 90 }}>
+     
       <div className="container mt-5 search-container">
         <Container className="mt-4">
           <form onSubmit={handleSubmit}>
@@ -92,7 +92,7 @@ const SearchLenders = ({callback1, callback2, button1, button2, button3, limit }
     </Row>
     </Container>
       </div>
-      </div>
+      
     )
 }
 export default SearchLenders;

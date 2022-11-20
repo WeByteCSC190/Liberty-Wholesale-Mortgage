@@ -119,7 +119,7 @@ import {connect} from 'react-redux';
   
   
   // Compare width of web broswer and performs action
-  if( windowDimension.windowWidth < 1000) {
+  if( windowDimension.windowWidth < 992) {
     return (
       <Container className="nav-menu">
       <Nav.Link href="/account">Account</Nav.Link>

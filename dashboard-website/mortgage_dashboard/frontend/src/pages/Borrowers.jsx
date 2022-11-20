@@ -7,6 +7,8 @@ import Search from "../components/Search";
 import Table from "../components/Table";
 import Loader from "../components/spinner";
 import Footer from '../components/Footer';
+import Container from 'react-bootstrap/Container';
+
 const Borrowers = () => {
   // const testData = [
     // {
@@ -212,9 +214,9 @@ const handleSorting = (sortField, sortOrder) => {
     </div>
      {/* <p className="Page-Title">Borrowers</p> */}
      <div className="Content">
-     <p className="Page-Title">Borrowers</p> 
-     <div className="Borrowers">
-      
+     
+     <Container class="page-format">
+      <p className="Page-Title">Borrowers</p> 
       {isLoading ?
         <Loader /> :   <div>    
           <Search 
@@ -222,14 +224,17 @@ const handleSorting = (sortField, sortOrder) => {
               callback2={(filterType)=> setFilterType(filterType)}
               />
           <Table api="http://localhost:8000/api/borrowers/"  page={"Borrowers"} data={dataTable} column={column} notes={dataNotes} />
-
-          <div className="Footer">
-             <Footer />
-          </div>
          </div>
       }
+      </Container>
       </div>
-      </div>
+      <div className="Footer">
+        {isLoading ? 
+        <Loader />: <div>
+             <Footer />
+        </div>
+        }
+        </div>
       </>
   );
 }

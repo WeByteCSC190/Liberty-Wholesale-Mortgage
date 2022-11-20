@@ -25,7 +25,7 @@ const Search=({callback1, callback2})=> {
     callback2(e.target.id)
   }
     return (
-      <div style={{ paddingLeft: 90, paddingRight: 90 }}>
+      
       <div className="container mt-5 search-container">
         <Container className="mt-4">
           <form onSubmit={handleSubmit}>
@@ -83,7 +83,6 @@ const Search=({callback1, callback2})=> {
         </Col>
     </Row>
     </Container>
-      </div>
       </div>
     )
 }

@@ -16,6 +16,7 @@ const Dashboard = () => {
         <Navbar />
       </div>
       <div className="Content">
+        <Container className="page-style">
         <p className="Page-Title">Dashboard</p>
         <Container className="Dashboard"> 
           <Milestone />
@@ -24,6 +25,10 @@ const Dashboard = () => {
           <RecentBorrowers />
           <AnnouncementsWidget />
         </Container>   
+        </Container>
+      </div>
+      <div className="Footer">
+        {/* <Footer /> */}
       </div>
       
     </>

@@ -202,8 +202,8 @@ const data = [
       <Navbar />   
     </div>
     <div className="Content">
-    <p className="Page-Title">Resources</p>
-      <Container>
+      <Container className="page-style">
+        <p className="Page-Title">Resources</p>
         <Row style={{ paddingBottom: "70px" }}>
            <h1>News and Articles</h1>
               <Carousel
