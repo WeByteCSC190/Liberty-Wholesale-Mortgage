@@ -110,7 +110,9 @@ const Borrowers = () => {
       setTimeout(() => {
    
         if (searchValue !== '') {
-          resolve(testData.filter(dataTable => dataTable.fName.toLowerCase().includes(searchValue.toLowerCase())
+          resolve(testData.filter(dataTable =>
+            dataTable.fName.toLowerCase().includes(searchValue.toLowerCase()) ||
+            dataTable.lName.toLowerCase().includes(searchValue.toLowerCase())
           ));
         }
         if (filterType !== '') {
@@ -202,7 +204,9 @@ const handleSorting = (sortField, sortOrder) => {
     if (searchValue !== '') {
       // console.log(testData.filter(dataTable => dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
       // ))
-      return testData.filter(dataTable => dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
+      return testData.filter(dataTable =>
+        dataTable.fName.toLowerCase().includes(searchValue.toLowerCase()) ||
+        dataTable.lName.toLowerCase().includes(searchValue.toLowerCase())
       );
     }
     setIsLoading(false);
