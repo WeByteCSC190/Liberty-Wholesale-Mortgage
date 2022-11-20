@@ -95,7 +95,7 @@ function SwitchPage( {href, children, ...props }) {
   )
 }
 
-// Checks if the navbar is mobile, swaps the icon, and add 2 links to nav-menu
+// Checks if the navbar is mobile, swaps the icon, and add 2 links to Mobile Menu
 function SwitchIcon(logout){
 
   // Gets width of web browser
