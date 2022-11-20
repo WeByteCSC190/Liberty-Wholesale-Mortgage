@@ -18,7 +18,7 @@ function EditRow({page, rowData }) {
       phone_num:rowData.phone_num,
       status:rowData.status,
       creditScore:rowData.creditScore,
-      status_check:rowData.status_check
+      // status_check:rowData.status_check
   });
 
    useEffect(() => {
@@ -31,9 +31,9 @@ function EditRow({page, rowData }) {
     }).then((response)=>{
       const data = response.data;
       setStatus(data)
-      // testData = data;
-      console.log(data)
-      // return data
+
+      // console.log(data)
+
     }).catch((error) => {
       if (error.response) {
         console.log(error.response);
@@ -54,20 +54,22 @@ function EditRow({page, rowData }) {
     formData.append("phone_num", formValue.phone_num)
     formData.append("status", formValue.status)
     formData.append("creditScore", formValue.creditScore)
-    formData.append("status_check", formValue.status_check)
-    console.log(Object.fromEntries(formData))
+    // formData.append("status_check", formValue.status_check)
+    console.log("status num is: "+formValue.status)
     try {
-      const api = "";
+      var api = "";
     if (page==="Borrowers") 
       api = "http://localhost:8000/api/borrowerupdate/";
     else if (page === "Leads") 
       api = "http://localhost:8000/api/leadupdate/";
+    console.log("before axios called")
     const response = await axios({
       method: "PUT",
       url: api,
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     });
+      console.log(response)
     window.location.reload(false);
     handleClose();
   } catch(error) {
@@ -76,7 +78,7 @@ function EditRow({page, rowData }) {
 }
 
   const handleChange = (event) => {
-    
+    console.log("handle change is called")
     setformValue({
       ...formValue,
       [event.target.name]: event.target.value
@@ -147,24 +149,37 @@ function EditRow({page, rowData }) {
                 <Form.Label>Select Status</Form.Label>
                 <Form.Select name="status" aria-label="Default select example" value={formValue.status}
                   onChange={handleChange}>
-                  <option key="0" disabled value={formValue.status}>
-                      {formValue.status}
-                    </option>
                     {status.map((option) => {
-                      while (option.status !== formValue.status) {
+                      if (option.status !== null && formValue.status !== null) {
+                        if (option.status === formValue.status) {
+                          return (
+                            <option selected key={option.id} value={option.id}>
+                              {option.status}
+                            </option>);
+                        }
+                        else {
+                          while (option.status !== formValue.status) {
+                            return (
+                              <option key={option.id} value={option.id}>
+                                {option.status}
+                              </option>
+                            );
+                          }
+                        }
+                      } else {
                         return (
-                          <option key={option.id} value={option.id}>
-                            {option.status}
-                          </option>
-                        );
+                            <option selected key="0" value="">
+                             
+                            </option>);
                       }
+                      
                 })}  
                 </Form.Select>
               </Form.Group>                
-                     <Form.Group className="mb-3" controlId="">
+                     {/* <Form.Group className="mb-3" controlId="">
                     <Form.Check value={formValue.status_check}
                     onChange={handleChange} type="checkbox" label="The borrower is approved" />
-                    </Form.Group>
+                    </Form.Group> */}
               </Row>
         </Container>
         </Form>
