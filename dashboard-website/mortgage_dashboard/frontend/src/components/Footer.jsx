@@ -5,7 +5,6 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 export default function Footer() {
     return (
     <>
-    <br></br>
     <Navbar className="footer-body" bg="dark" variant="dark">
         <Container className="footer-menu">
           <Nav>

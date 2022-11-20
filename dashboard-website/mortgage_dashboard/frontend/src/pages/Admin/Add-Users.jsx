@@ -41,6 +41,7 @@ const AddUsers  = ({register, isAuthenticated}) => {
 
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
       <Navbar />
     </div>
@@ -97,9 +98,9 @@ const AddUsers  = ({register, isAuthenticated}) => {
         </Container>
         </div>
         <div className="Footer">
-        {/*<Footer /> */}
+        <Footer />
       </div>
-        
+      </div>
     </>
   );
 };

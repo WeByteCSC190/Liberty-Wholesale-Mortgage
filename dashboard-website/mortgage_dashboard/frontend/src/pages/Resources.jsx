@@ -198,6 +198,7 @@ const data = [
   };
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
       <Navbar />   
     </div>
@@ -274,6 +275,7 @@ const data = [
     </div> 
     <div className="Footer">
        <Footer />
+    </div>
     </div>
     </>
   )

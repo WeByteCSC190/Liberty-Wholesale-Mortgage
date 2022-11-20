@@ -209,6 +209,7 @@ const handleSorting = (sortField, sortOrder) => {
   };
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
       <Navbar />
     </div>
@@ -234,6 +235,7 @@ const handleSorting = (sortField, sortOrder) => {
              <Footer />
         </div>
         }
+        </div>
         </div>
       </>
   );

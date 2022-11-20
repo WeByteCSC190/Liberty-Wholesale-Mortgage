@@ -5,11 +5,17 @@
   background: white;
 }
 
-.Content{
-  justify-content: center;
+
+
+/* For Scrolling and Page Format */ 
+
+.page-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-/* For Scrolling */ 
 
 .Header {
   position: fixed;
@@ -19,6 +25,9 @@
   margin-bottom: 2%; 
 }
 
+.Content{
+  justify-content: center;
+}
 
 .Header + .Content {
   padding-top: 80px;
@@ -26,7 +35,6 @@
 
 .Footer {
   margin-top: auto; 
-  bottom: 0; 
 }
 
 /* CSS Code for Navbar */

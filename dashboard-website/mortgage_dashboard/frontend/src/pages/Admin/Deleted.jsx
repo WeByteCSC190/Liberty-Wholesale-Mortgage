@@ -6,6 +6,7 @@ import Footer from '../../components/Footer';
 export default function RecentlyDeleted() {
     return(
         <>
+        <div className="page-wrapper">
         <div className="Header"><Navbar /></div>
         <div className="Content">
         <Container className="page-format">
@@ -13,7 +14,8 @@ export default function RecentlyDeleted() {
          </Container>
         </div>
         <div className="Footer">
-        {/*<Footer />*/}
+           <Footer />
+        </div>
         </div>
          </>
     )

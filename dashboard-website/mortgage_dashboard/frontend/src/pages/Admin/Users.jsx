@@ -37,6 +37,7 @@ export default function Users() {
 
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
        <Navbar />
     </div>
@@ -47,7 +48,8 @@ export default function Users() {
        </Container>
     </div>
     <div className="Footer">
-        {/*<Footer />*/}
+        <Footer />
+        </div>
         </div>
     </>
   );

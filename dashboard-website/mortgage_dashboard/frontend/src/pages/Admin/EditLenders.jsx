@@ -175,6 +175,7 @@ const handleSortingDate = () => {
   };
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
       <Navbar />
     </div>
@@ -201,6 +202,7 @@ const handleSortingDate = () => {
              <Footer />
         </div>
         }
+        </div>
         </div>
         </>
   );

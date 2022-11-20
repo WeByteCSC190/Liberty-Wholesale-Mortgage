@@ -175,12 +175,11 @@ const handleSortingDate = () => {
   };
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
       <Navbar />
     </div>
-     {/* <p className="Page-Title">Leads</p> */}
      <div className="Content">
-    
      <Container class="page-format">
        <p className="Page-Title">Leads</p> 
       {isLoading ?
@@ -200,6 +199,7 @@ const handleSortingDate = () => {
              <Footer />
         </div>
         }
+        </div>
         </div>
       </>
   );

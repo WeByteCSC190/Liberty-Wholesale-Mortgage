@@ -131,6 +131,7 @@ const EditResources = () => {
   };
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
       <Navbar />   
     </div>
@@ -158,6 +159,7 @@ const EditResources = () => {
       </div>
       <div className="Footer">
         <Footer />
+      </div>
       </div>
     </>
   )

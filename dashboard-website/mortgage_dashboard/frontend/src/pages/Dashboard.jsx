@@ -12,6 +12,7 @@ import Footer from '../components/Footer';
 const Dashboard = () => {
   return (
     <>
+    <div className="page-wrapper">
       <div className="Header">
         <Navbar />
       </div>
@@ -28,9 +29,9 @@ const Dashboard = () => {
         </Container>
       </div>
       <div className="Footer">
-        {/*<Footer /> */}
+        <Footer /> 
       </div>
-      
+      </div>
     </>
   )
 }
