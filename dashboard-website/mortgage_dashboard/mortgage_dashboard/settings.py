@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-@hl=tlfhmkvi22$x!#6j!p*x@=t4l2gx0i__#mbd2prnul26ru
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0','127.0.0.1','localhost']
 
 
 # Application definition
@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
     'import_export',
-    # 'frontend.apps.FrontendConfig'
     'corsheaders',
     'accounts', 
     'users'
@@ -65,8 +64,8 @@ ROOT_URLCONF = 'mortgage_dashboard.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'build')],
-        # 'DIRS': [],
+        # 'DIRS': [os.path.join(BASE_DIR, 'build')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,12 +138,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = '/media/'
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR, 'build/static')
-]
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# STATICFILES_DIRS=[
+#     os.path.join(BASE_DIR, 'build/static')
+# ]
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
@@ -163,10 +164,10 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000'
+    'http://localhost:3000','http://127.0.0.1:3000'
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://127.0.0.1:3000']
 
 CORS_ALLOW_ALL_ORIGINS = True  
 CORS_ALLOW_CREDENTIALS = True

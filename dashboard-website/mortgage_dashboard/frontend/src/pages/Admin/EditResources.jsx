@@ -11,11 +11,12 @@ import Carousel from "../../components/Carousel";
 import Card from "../../components/Card";
 import Footer from '../../components/Footer';
 
+
 const EditResources = () => {
 
 // files start
   const [dataTable, setDataTable] = useState([]);
-  const getFilesUrl = "http://localhost:8000/api/borrowers/";
+  const getFilesUrl = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
   function getFiles() {
   axios({
       method: "GET",
@@ -130,10 +131,12 @@ const EditResources = () => {
   };
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
       <Navbar />   
     </div>
     <div className="Content">
+    <Container className="page-format">
     <p className="Page-Title">Resources</p>
     
       <Container>
@@ -152,6 +155,8 @@ const EditResources = () => {
          
         </Row>
       </Container>
+      </Container>
+      </div>
       <div className="Footer">
         <Footer />
       </div>

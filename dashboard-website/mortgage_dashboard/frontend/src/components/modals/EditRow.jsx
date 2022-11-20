@@ -54,7 +54,6 @@ function EditRow({page, rowData }) {
     formData.append("phone_num", formValue.phone_num)
     formData.append("status", formValue.status)
     formData.append("creditScore", formValue.creditScore)
-    // formData.append("status_check", formValue.status_check)
     console.log("status num is: "+formValue.status)
     try {
       var api = "";
@@ -63,6 +62,7 @@ function EditRow({page, rowData }) {
     else if (page === "Leads") 
       api = `${process.env.REACT_APP_API_URL}/api/leadupdate/`;
     console.log("before axios called")
+
     const response = await axios({
       method: "PUT",
       url: api,

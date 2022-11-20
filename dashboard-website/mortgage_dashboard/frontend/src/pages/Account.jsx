@@ -6,17 +6,20 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import Footer from '../components/Footer';
+import Container from 'react-bootstrap/Container';
 import "../components/Account.css";
 
 
 const Account = () => {
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
       <Navbar />
       
     </div>
-    <div className="Content" style={{ paddingBottom: 40 }}>
+    <div className="Content">
+      <Container className="page-format">
       <p className="Page-Title">Account</p>
         <div className="AccountPage-Content">
           <div className="user-info">
@@ -91,10 +94,11 @@ const Account = () => {
             </div>
           </div>
         </div>
-        
+        </Container>
     </div>
    <div className="Footer">
              <Footer />
+    </div>
     </div>
     </>
   )

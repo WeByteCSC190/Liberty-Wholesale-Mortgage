@@ -9,7 +9,7 @@ const AnnouncementsWidget = () => {
   const [news, setNews] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/ImportantAnnoucements/')
+    axios.get(`${process.env.REACT_APP_API_URL}/api/ImportantAnnoucements/`)
       .then(response => setNews(response.data));
   }, [])
 

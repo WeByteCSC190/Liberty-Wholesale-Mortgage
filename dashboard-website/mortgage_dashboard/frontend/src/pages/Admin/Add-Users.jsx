@@ -5,6 +5,7 @@ import {useNavigate, Navigate, Link } from 'react-router-dom';
 import CSRFToken from "../../components/CSRFToken";
 import Navbar from "../../components/NavbarAdmin";
 import Footer from "../../components/Footer";
+import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
@@ -40,10 +41,12 @@ const AddUsers  = ({register, isAuthenticated}) => {
 
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
       <Navbar />
     </div>
     <div className="Content">
+    <Container className="page-format">
     <div className='container mt-5'>
             <h1>Register for an Account</h1>
             <form onSubmit={e => onSubmit(e)}>
@@ -92,8 +95,12 @@ const AddUsers  = ({register, isAuthenticated}) => {
                 Already have an Account? <Link to='/sign-in'>Sign In</Link>
             </p>
         </div>  
+        </Container>
         </div>
-       
+        <div className="Footer">
+        <Footer />
+      </div>
+      </div>
     </>
   );
 };

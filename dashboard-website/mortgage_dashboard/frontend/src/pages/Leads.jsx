@@ -7,6 +7,9 @@ import Search from "../components/Search";
 import Table from "../components/Table";
 import Loader from "../components/spinner";
 import Footer from '../components/Footer';
+import Container from 'react-bootstrap/Container';
+
+
 const Leads = () => {
   const [dataTable, setDataTable] = useState([]);
    // Notes Data
@@ -14,7 +17,7 @@ const Leads = () => {
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const getLeadsUrl = "http://localhost:8000/api/leads/";
+  const getLeadsUrl = `${process.env.REACT_APP_API_URL}/api/leads/`;
   let testData = []
   
   function getLeads() {
@@ -33,7 +36,7 @@ const Leads = () => {
         console.log(error.response.headers);
         }
     })
-     const getLeadsNotes = "http://localhost:8000/api/leadnote-list/";
+     const getLeadsNotes = `${process.env.REACT_APP_API_URL}/api/leadnote-list/`;
     axios({
       method: "GET",
       url:getLeadsNotes,
@@ -172,14 +175,13 @@ const handleSortingDate = () => {
   };
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
       <Navbar />
     </div>
-     {/* <p className="Page-Title">Leads</p> */}
      <div className="Content">
-     <p className="Page-Title">Leads</p> 
-     <div className="Leads">
-      
+     <Container class="page-format">
+       <p className="Page-Title">Leads</p> 
       {isLoading ?
         <Loader /> :   <div>    
           <Search 
@@ -187,14 +189,18 @@ const handleSortingDate = () => {
               callback2={(filterType)=> setFilterType(filterType)}
               />
           <Table api="http://localhost:8000/api/leads/" page={"Leads"} data={dataTable} column={column} notes={dataNotes} />
-
-          <div className="Footer">
-             <Footer />
-          </div>
          </div>
       }
-      </div>
-      </div>
+      </Container>
+      </div> 
+      <div className="Footer">
+        {isLoading ? 
+        <Loader />: <div>
+             <Footer />
+        </div>
+        }
+        </div>
+        </div>
       </>
   );
 }

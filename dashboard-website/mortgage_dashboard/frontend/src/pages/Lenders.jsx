@@ -7,7 +7,7 @@ import Search from "../components/SearchLenders";
 import Table from "../components/TableLenders";
 import Loader from "../components/spinner";
 import Footer from '../components/Footer';
-
+import Container from 'react-bootstrap/Container';
 
 const Lenders = () => {
 
@@ -21,7 +21,7 @@ const Lenders = () => {
   let sourceImage = []
   
   function getLenders() {
-    const getLendersUrl = "http://localhost:8000/api/lender/";
+    const getLendersUrl = `${process.env.REACT_APP_API_URL}/api/lender/`;
   axios({
       method: "GET",
       url:getLendersUrl
@@ -39,7 +39,7 @@ const Lenders = () => {
         }
     })
 
-    const getLendersLogoUrl = "http://127.0.0.1:8000/api/lenderLogo/"; 
+    const getLendersLogoUrl = `${process.env.REACT_APP_API_URL}/api/lenderLogo/`; 
     axios({
       method: "GET",
       url:getLendersLogoUrl,
@@ -173,13 +173,14 @@ const handleSortingDate = () => {
   };
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
       <Navbar />
     </div>
      <div className="Content">
-     <p className="Page-Title">Lenders</p> 
-     <div className="Lenders">
-      
+     
+     <Container class="page-format">
+      <p className="Page-Title">Lenders</p> 
       {isLoading ?
         <Loader /> :   <div>    
           <Search 
@@ -194,13 +195,18 @@ const handleSortingDate = () => {
                  column={column} columns={columns} 
                  image={logoTable}/>
 
-          <div className="Footer">
-             <Footer />
-          </div>
          </div>
       }
+      </Container>
       </div>
-      </div>
+      <div className="Footer">
+        {isLoading ? 
+        <Loader />: <div>
+             <Footer />
+        </div>
+        }
+        </div>
+        </div>
       </>
   );
 }

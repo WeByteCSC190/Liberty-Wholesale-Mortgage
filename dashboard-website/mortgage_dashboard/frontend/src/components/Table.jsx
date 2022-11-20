@@ -5,11 +5,12 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
-import { saveAs } from 'file-saver'
+import { saveAs } from 'file-saver';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
 const TableComponent = ({api, page, data, column, notes}) => {
   const [noteText, setNoteText] = useState("");
  /**
@@ -21,7 +22,7 @@ const handleAddNote = async (caseId) => {
     var formData = new FormData();
    formData.append("borrowernote",noteText)
     formData.append("borrower", caseId)
-  api="http://localhost:8000/api/borrowernote-list/"
+  api=`${process.env.REACT_APP_API_URL}/api/borrowernote-list/`
     try {
       const response = await axios({
         method: "post",
@@ -38,7 +39,7 @@ const handleAddNote = async (caseId) => {
     var formData = new FormData();
    formData.append("leadnote",noteText)
     formData.append("lead", caseId)
-  api="http://localhost:8000/api/leadnote-list/"
+  api=`${process.env.REACT_APP_API_URL}/api/leadnote-list/`
     try {
       const response = await axios({
         method: "post",
@@ -115,7 +116,7 @@ const handleDeleteNote = async (caseId) => {
     setExpandedRows(newExpandedRows);
   }
   return (
-    <div style={{ paddingBottom: 10, paddingLeft: 90, paddingRight: 90 }}>
+    
       <Table className="Table" responsive hover >
         <thead>
       <tr className="table-title">List of {page}</tr>
@@ -140,7 +141,7 @@ const handleDeleteNote = async (caseId) => {
       </tr>
       </tbody>
       </Table>
-      </div>
+      
   );
 }
 const TableHeadItem = ({ item, api, page }) =>

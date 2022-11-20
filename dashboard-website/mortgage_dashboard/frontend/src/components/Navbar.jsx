@@ -1,15 +1,12 @@
-import Button from 'react-bootstrap/Button';
+
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import BlueLogo from './images/blue_logo.png';
-import NavIcon from './images/blue_icon.png'; 
 import { Link, NavLink, useMatch, useResolvedPath } from "react-router-dom";
+import {useEffect, useLayoutEffect, useRef, useState} from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import * as Icons from "@fortawesome/free-solid-svg-icons"
 import React, { Fragment } from 'react';
@@ -22,7 +19,7 @@ import {connect} from 'react-redux';
 const NavbarCustom = (isAuthenticated) =>{    
 
   const authenticatedLinks = (
-    <Container className="Nav-Menu">
+    <Container className="nav-menu">
       <SwitchPage href="/">Dashboard</SwitchPage>
       <SwitchPage href="/leads">Leads</SwitchPage>
       <SwitchPage href="/borrowers">Borrowers</SwitchPage>
@@ -33,78 +30,62 @@ const NavbarCustom = (isAuthenticated) =>{
 
   const nonAuthLinks = (
     <Fragment>
-      <li className='Nav-Menu'>
+      <li className='nav-menu'>
         <NavLink className = 'nav-link' to='/sign-in'>Login</NavLink>
       </li>
-      <li className='Nav-Menu'>
+      <li className='nav-menu'>
         <NavLink className = 'nav-link' to='/register'>Register</NavLink>
       </li>      
     </Fragment>
   );
 
   return (
-    <>
-      <Navbar className="Navbar" expand="lg">
-      <Container fluid>
-        
-        <Col>
-        <Navbar.Brand href="/">
-        <img
-          src={BlueLogo} //MLO Support Logo
-          width="150"
-          height="70"
-          className="Nav-Logo"
-          alt="MLO Support"
-        />
-        </Navbar.Brand>
-       </Col>
-
-        <Navbar.Toggle 
-          variant="outline-primary"
-          style={{
-            color: 'white', 
-            background: 'white',
-        }}
-          aria-controls="navbarScroll" 
-        />
-        <Navbar.Collapse variant="primary" id="navbarScroll">
-         
-          <Nav
-            className="me-auto my-2"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-            >
-            
-           <Container>
-            <ul className="Nav-Menu">
+    <Navbar collapseOnSelect expand="lg" variant="dark" className="Navbar">
+    <Container>
+    <Navbar.Brand href="/">
+      <img
+        src={BlueLogo} //MLO Support Logo
+        width="150"
+        height="70"
+        className="Nav-Logo"
+        alt="MLO Support"
+      />
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className='m-auto'>
+          {/* <Container>
+            <ul className="nav-menu">
             <SwitchPage href="/">Dashboard</SwitchPage>
             <SwitchPage href="/leads">Leads</SwitchPage>
             <SwitchPage href="/borrowers">Borrowers</SwitchPage>
             <SwitchPage href="/lenders" >Lenders</SwitchPage>
             <SwitchPage href="/resources" >Resources</SwitchPage>
             </ul>
-           </Container>
+           </Container> */}
 
-           {/* <Container className="Nav-Menu"> */}
-           {/* {isAuthenticated ? authenticatedLinks : nonAuthLinks}          */}
-           {/* </Container> */}           
-           
-         </Nav>
-          <NavDropButton />
-        </Navbar.Collapse>
+           {/* <Container className="nav-menu"> */}
+           {isAuthenticated ? authenticatedLinks : nonAuthLinks}         
+           {/* </Container> */}   
+        </Nav>
         
-      </Container>
-    </Navbar>
-    </>
+        <Nav>
+          <SwitchIcon />
+        </Nav>
+        
+      </Navbar.Collapse>
+    </Container>
+  </Navbar>
+      
   );
 }
 
-
+// Checks the current page uses css to underline/bold the link on Navbar Menu
 function SwitchPage( {href, children, ...props }) {
   const resolvedPath = useResolvedPath(href)
   const isActive = useMatch( {path: resolvedPath.pathname, end:true} ) 
   return (
-    // Checks the current page uses css to underline/bold the link on Navbar Menu
+    
       <li className={ isActive ? "active" : ""}> 
           <Nav.Link href={href} {...props}>
               {children}
@@ -114,44 +95,68 @@ function SwitchPage( {href, children, ...props }) {
   )
 }
 
-function NavDropButton(logout) {
-  return (
-    <>
-    <Dropdown className="NavOptions">
-      <Dropdown.Toggle 
-         variant="outline-primary" 
-         style={{color: 'white', border: 0,}}
-         id="NavDropDownButton"
-      >
-      <FontAwesomeIcon 
-         icon={Icons.faUser} 
-         size="2x" 
-       />
+// Checks if the navbar is mobile, swaps the icon, and add 2 links to Mobile Menu
+function SwitchIcon(logout){
+
+  // Gets width of web browser
+  const [windowDimension, detectWidth] = useState({
+    windowWidth: window.innerWidth})
+
+    const detectSize = () => {
+      detectWidth({
+        windowWidth: window.innerWidth, 
+      })
+    }
+      useEffect(() => {
+        window.addEventListener('resize', detectSize)
+        return() => {
+          window.removeEventListener('resize', detectSize)
+          
+        }
+      }, [windowDimension])
+    
+  
+  
+  // Compare width of web broswer and performs action
+  if( windowDimension.windowWidth < 992) {
+    return (
+      <Container className="nav-menu">
+      <Nav.Link href="/account">Account</Nav.Link>
+      <Nav.Link className='nav-item' onClick={logout} href='#!' >Sign Out</Nav.Link>
+      </Container>
       
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu className="NavDropMenu"
-        style={{ 
-          right: 0, 
-          left: 'auto',
-          color: 'white',
-          border: 0,  }}
-      >
-        <Dropdown.Item className="Drop-Item">
-        <Link to="/account">Account</Link>
-       </Dropdown.Item>
-
-      <Dropdown.Item className="Drop-Item">
-        <a className='nav-item' onClick={logout} href='#!' >Sign Out</a>
-        {/* <Link onClick={logout} href='#!'>Sign Out</Link> */}
-      </Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
-    </>
-  );
+    );
+  } else {
+    return(
+      <Dropdown>
+        <Dropdown.Toggle 
+           variant="outline-primary" 
+           style={{color: 'white', border: 0,}}
+           id="NavDropDownButton"
+        >
+        <FontAwesomeIcon 
+           icon={Icons.faUser} 
+           size="2x" 
+         />
+        
+        </Dropdown.Toggle>
+  
+        <Dropdown.Menu 
+          
+        >
+          <NavDropdown.Item className="nav-drop-link">
+          <Link to="/account">Account</Link>
+         </NavDropdown.Item>
+  
+        <NavDropdown.Item className="nav-drop-link">
+          <a className='nav-item' onClick={logout} href='#!'> Sign Out</a>
+          {/* <Link onClick={logout} href='#!'>Sign Out</Link> */}
+        </NavDropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    )
+  }
 }
-
-
 
 
 const mapStateToProps = state => ({

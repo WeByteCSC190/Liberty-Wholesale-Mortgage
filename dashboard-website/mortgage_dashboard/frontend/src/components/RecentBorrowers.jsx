@@ -7,7 +7,7 @@ const RecentBorrowers = () => {
   const [borrowers, setBorrowers] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/recentBorrowers/")
+    axios.get(`${process.env.REACT_APP_API_URL}/api/recentBorrowers/`)
       .then(response => setBorrowers(response.data))
   }, [])
 

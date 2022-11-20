@@ -7,6 +7,7 @@ import Search from "../../components/SearchLenders";
 import Table from "../../components/TableLenders";
 import Loader from "../../components/spinner";
 import Footer from '../../components/Footer';
+import Container from 'react-bootstrap/Container';
 
 
 const LendersAdmin = () => {
@@ -15,8 +16,8 @@ const LendersAdmin = () => {
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const getLendersUrl = "http://localhost:8000/api/lender/";
-  const getLendersLogoUrl = "http://127.0.0.1:8000//api/lenderLogo/"; 
+  const getLendersUrl = `${process.env.REACT_APP_API_URL}/api/lender/`;
+  const getLendersLogoUrl = `${process.env.REACT_APP_API_URL}/api/lenderLogo/`; 
   let testData = []
   
   function getLenders() {
@@ -174,10 +175,12 @@ const handleSortingDate = () => {
   };
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
       <Navbar />
     </div>
      <div className="Content">
+     <Container className="page-format"> 
      <p className="Page-Title">Lenders</p> 
      <div className="Lenders">
       
@@ -188,15 +191,20 @@ const handleSortingDate = () => {
               callback2={(filterType)=> setFilterType(filterType)}
               />
           <Table api="http://localhost:8000/api/lender/"  page={"Lenders"} data={dataTable} column={column} columns={columns} />
-
-          <div className="Footer">
-             <Footer />
-          </div>
          </div>
       }
       </div>
+      </Container>
       </div>
-      </>
+      <div className="Footer">
+        {isLoading ? 
+        <Loader />: <div>
+             <Footer />
+        </div>
+        }
+        </div>
+        </div>
+        </>
   );
 }
 

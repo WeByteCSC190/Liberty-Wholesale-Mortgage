@@ -3,9 +3,12 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Navbar from "../../components/NavbarAdmin";
 import Table from "../../components/Table";
+import Footer from "../../components/Footer";
+import Container from 'react-bootstrap/Container';
+
 export default function Users() {
   const [dataTable, setDataTable] = useState([]);
-  const getUsersUrl = "http://localhost:8000/api/borrowers/";
+  const getUsersUrl = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
   function getUsers() {
   axios({
       method: "GET",
@@ -34,13 +37,20 @@ export default function Users() {
 
   return (
     <>
+    <div className="page-wrapper">
     <div className="Header">
        <Navbar />
     </div>
     <div className="Content">
+     <Container className="page-format">
     <p className="Page-Title">View TPO</p>
        <Table page="Users" data={dataTable} column={column} />
+       </Container>
     </div>
+    <div className="Footer">
+        <Footer />
+        </div>
+        </div>
     </>
   );
 }
