@@ -23,13 +23,13 @@ from new_users.serializers import UserSerializer
 from .models import Client, Lead, Borrower, Lender,Announcements,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote
 from .serializers import ClientSerializer, LeadSerializer, BorrowerSerializer,  LenderSerializer, AnnouncementsSerializer,LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer
 
-@api_view(['GET'])
-def listAll(request):
-    serializer = UserSerializer(users, many = True)
-    return Response(serializer.data)
-
-    users = CustomUser.objects.all()
-
+# @api_view(['GET'])
+# def listAll(request):
+#     serializer = UserSerializer(users, many = True)
+#     return Response(serializer.data)
+#
+#     users = CustomUser.objects.all()
+#
 @api_view(['GET'])
 def userDetail(request,pk):
     user = CustomUser.objects.get(id = pk)
@@ -88,19 +88,13 @@ class LeadView(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )
     queryset = Lead.objects.all()
     serializer_class= LeadSerializer
-    
-    @action(methods=['GET'], detail=False,url_name='recent_leads')
+
+    @action(methods=['GET'], detail=False, url_path='recent')
     def recent_leads(self, request):
-        queryset=Lead.objects.all().order_by('-date')[:3]
-        recent_leads = reversed(queryset)
-        data = serializers.serialize('json', recent_leads)
-        return HttpResponse(data, content_type="application/json")
-
-
-    # @action(method=['GET'], detail=False, url_name='list')
-    # def list(self):
-    #     queryset=Lead.objects.all()
-
+        queryset=Lead.objects.all().order_by('-date')[:3];
+        recent_three = reversed(queryset)
+        serializer = LeadSerializer(recent_three, many=True)
+        return HttpResponse(serializer.data, content_type="application/json")
 
 class BorrowerView(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )
@@ -109,12 +103,12 @@ class BorrowerView(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['Date', 'First Name', 'Last Name', 'Status']
 
-    @action(methods=['GET'], detail=False,url_name='recent_borrowers')
+    @action(methods=['GET'], detail=False, url_path='recent')
     def recent_borrowers(self, request):
-        queryset=Lead.objects.all().order_by('-date')[:3]
-        recent_leads = reversed(queryset)
-        data = serializers.serialize('json', recent_leads)
-        return HttpResponse(data, content_type="application/json")
+        queryset=Borrower.objects.all().order_by('-date')[:3];
+        recent_three = reversed(queryset)
+        serializer = BorrowerSerializer(recent_three, many=True)
+        return HttpResponse(serializer.data, content_type="application/json")
 
 class BioView(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )
