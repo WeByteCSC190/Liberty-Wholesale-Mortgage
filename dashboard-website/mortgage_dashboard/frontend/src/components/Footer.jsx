@@ -5,7 +5,7 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 export default function Footer() {
     return (
     <>
-    <Navbar className="footer-body" bg="dark" variant="dark">
+    <Navbar className="footer-body" variant="dark">
         <Container className="footer-menu">
           <Nav>
             <Nav.Link href="/terms" target="_blank" 
