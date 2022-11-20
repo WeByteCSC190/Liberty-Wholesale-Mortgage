@@ -59,9 +59,9 @@ function EditRow({page, rowData }) {
     try {
       var api = "";
     if (page==="Borrowers") 
-      api = "http://localhost:8000/api/borrowerupdate/";
+      api = `${process.env.REACT_APP_API_URL}/api/borrowerupdate/`;
     else if (page === "Leads") 
-      api = "http://localhost:8000/api/leadupdate/";
+      api = `${process.env.REACT_APP_API_URL}/api/leadupdate/`;
     console.log("before axios called")
     const response = await axios({
       method: "PUT",
