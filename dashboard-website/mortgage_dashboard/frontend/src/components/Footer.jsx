@@ -13,9 +13,9 @@ export default function Footer() {
                   rel="noopener noreferrer">Terms of Use</Nav.Link>
             <Nav.Link href="/privacy" target="_blank" 
                   rel="noopener noreferrer">Privacy Policy</Nav.Link>
-            <Nav.Link href="/" target="_blank" 
+            <Nav.Link href="/legalthree" target="_blank" 
                   rel="noopener noreferrer">Legal Link 3</Nav.Link>
-            <Nav.Link href="/privacy" target="_blank" 
+            <Nav.Link href="/legalfour" target="_blank" 
                   rel="noopener noreferrer">Legal Link 4</Nav.Link>
           </Nav>
           <Navbar.Brand className="footer-brand" href="#home">Powered by Liberty Wholesale Mortgage</Navbar.Brand>
