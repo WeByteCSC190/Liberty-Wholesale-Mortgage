@@ -4,16 +4,16 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector, connect } from "react-redux";
-import axios from "axios";
+import api from "../../services/api";
 import { login } from "../../features/auth/authSlice";
 
-axios.defaults.withCredentials = true;
+api.defaults.withCredentials = true;
 
 const SignIn = () => {
   const dispatch = useDispatch();
   // const { loading, isAuthenticated } = useSelector((state) => state.auth);
 
-  const isAuthenticated = useSelector((state) =>state.auth.isAuthenticated);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const isLoading = useSelector((state) => state.auth.loading);
 
   const [formData, setFormData] = useState({
@@ -31,71 +31,71 @@ const SignIn = () => {
   };
 
   if (isLoading === true) {
-    return (<h1>"Loading..."</h1>)
-  }else{
-  if (isAuthenticated === true) {
-      return <Navigate to="/" replace/>;
-  }
-  return (
-    <div className="SignIn">
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <form onSubmit={(e) => onSubmit(e)}>
-          <img src={logo} alt="logo" />
-          <p>Sign In with a MLO Support Account</p>
-          <div className="center">
-            <input
-              type="text"
-              placeholder="Username"
-              name="username"
-              onChange={(e) => onChange(e)}
-              value={username}
-              required
-            />
-          </div>
-          <div className="center">
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={(e) => onChange(e)}
-              value={password}
-              minLength="6"
-              required
-            />
-          </div>
-          <button className="btn btn-primary" type="submit">
-            Sign In
-          </button>
-          <Row>
-            <a href="sign-up">Forgot Username or Password</a>
-          </Row>
-        </form>
+    return <h1>"Loading..."</h1>;
+  } else {
+    if (isAuthenticated === true) {
+      return <Navigate to="/" replace />;
+    }
+    return (
+      <div className="SignIn">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <form onSubmit={(e) => onSubmit(e)}>
+            <img src={logo} alt="logo" />
+            <p>Sign In with a MLO Support Account</p>
+            <div className="center">
+              <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                onChange={(e) => onChange(e)}
+                value={username}
+                required
+              />
+            </div>
+            <div className="center">
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                onChange={(e) => onChange(e)}
+                value={password}
+                minLength="6"
+                required
+              />
+            </div>
+            <button className="btn btn-primary" type="submit">
+              Sign In
+            </button>
+            <Row>
+              <a href="sign-up">Forgot Username or Password</a>
+            </Row>
+          </form>
+        </div>
+        <Row style={{ position: "relative", margin: "50px 0 0 0" }}>
+          <Col style={{ padding: "0 2%" }}>
+            <Link to="/terms" style={{ float: "left" }} className="info">
+              Terms of Use
+            </Link>
+            <Link to="/privacy" style={{ float: "left" }} className="info">
+              Privacy Policy
+            </Link>
+          </Col>
+          <Col style={{ padding: "0 2%" }}>
+            <Link to="/Help" className="info" style={{ float: "right" }}>
+              Help
+            </Link>
+          </Col>
+        </Row>
       </div>
-      <Row style={{ position: "relative", margin: "50px 0 0 0" }}>
-        <Col style={{ padding: "0 2%" }}>
-          <Link to="/terms" style={{ float: "left" }} className="info">
-            Terms of Use
-          </Link>
-          <Link to="/privacy" style={{ float: "left" }} className="info">
-            Privacy Policy
-          </Link>
-        </Col>
-        <Col style={{ padding: "0 2%" }}>
-          <Link to="/Help" className="info" style={{ float: "right" }}>
-            Help
-          </Link>
-        </Col>
-      </Row>
-    </div>
-  );
-  // }
-    } //isLoading
+    );
+    // }
+  } //isLoading
 };
 
 // const mapStateToProps = (state) => ({

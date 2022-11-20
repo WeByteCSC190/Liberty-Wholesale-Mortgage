@@ -1,4 +1,4 @@
-.AnnouncementsWidget{
+.AnnouncementsWidget {
   display: flex;
   flex-direction: column;
   border: 2px solid darkblue;
@@ -9,7 +9,7 @@
   padding: 10px;
 }
 
-.news-item{
+.news-item {
   gap: 3rem;
   border-bottom: 1px solid gray;
   width: 90%;
@@ -19,12 +19,12 @@
   display: flex;
   justify-content: center;
   border-bottom: 1px solid gray;
-  width:90%;
+  width: 90%;
 }
 
 #news-date {
   color: #8bc2f6;
-  font-size: .7rem;
+  font-size: 0.7rem;
 }
 
 #news-content {
@@ -32,5 +32,3 @@
   padding: 15px;
   font-size: 1rem;
 }
-
-

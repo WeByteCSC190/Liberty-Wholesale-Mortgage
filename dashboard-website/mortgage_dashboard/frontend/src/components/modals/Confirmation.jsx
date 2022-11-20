@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import api from '../../services/api';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -11,9 +11,8 @@ function Confirmation({cID, title, message, apiUrl}) {
     
      
      console.log(apiUrl+"/"+cID+"/")
-        axios({
+        api({
 headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer " +localStorage.getItem('access')
       },
           method: "DELETE",
           url: apiUrl+cID+"/",

@@ -1,23 +1,21 @@
-import * as React from 'react';
+import * as React from "react";
 import Navbar from "../components/Navbar";
-import FloatingLabel from 'react-bootstrap/FloatingLabel'
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
-import Footer from '../components/Footer';
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
+import Footer from "../components/Footer";
 import "../components/Account.css";
-
 
 const Account = () => {
   return (
     <>
-    <div className="Header">
-      <Navbar />
-      
-    </div>
-    <div className="Content" style={{ paddingBottom: 40 }}>
-      <p className="Page-Title">Account</p>
+      <div className="Header">
+        <Navbar />
+      </div>
+      <div className="Content" style={{ paddingBottom: 40 }}>
+        <p className="Page-Title">Account</p>
         <div className="AccountPage-Content">
           <div className="user-info">
             <FloatingLabel
@@ -25,7 +23,7 @@ const Account = () => {
               label="Full Name, Middle Name, Last Name"
               className="mb-3"
             >
-            <Form.Control placeholder="John Doe" />
+              <Form.Control placeholder="John Doe" />
             </FloatingLabel>
             <FloatingLabel
               controlId="floatingInput"
@@ -42,7 +40,6 @@ const Account = () => {
                 <Form.Control placeholder="Postal Code" />
               </Col>
             </Row>
-
 
             <FloatingLabel
               controlId="floatingInput"
@@ -79,13 +76,12 @@ const Account = () => {
             </Form.Select>
           </div>
         </div>
-        
-    </div>
-   <div className="Footer">
-             <Footer />
-    </div>
+      </div>
+      <div className="Footer">
+        <Footer />
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default Account;

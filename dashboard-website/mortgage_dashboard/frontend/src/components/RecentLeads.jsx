@@ -1,20 +1,23 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import * as React from 'react';
-import './RecentLeads.css';
+import api from "../services/api";
+import { useState, useEffect } from "react";
+import * as React from "react";
+import "./RecentLeads.css";
 
 const RecentLeads = () => {
   const [leads, setLeads] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/recentLeads/")
-      .then(response => setLeads(response.data))
-  }, [])
+    api
+      .get("http://localhost:8000/api/recentLeads/")
+      .then((response) => setLeads(response.data));
+  }, []);
 
   return (
     <div className="RecentLeads">
-      <div className='RecentLeadsTitle'><p>Recently Added Leads</p></div>
-      <ol className='RecentLeadsColumnNames'>
+      <div className="RecentLeadsTitle">
+        <p>Recently Added Leads</p>
+      </div>
+      <ol className="RecentLeadsColumnNames">
         <li>Case ID</li>
         <li>Date</li>
         <li>First Name</li>
@@ -23,9 +26,9 @@ const RecentLeads = () => {
       </ol>
       <div className="RecentLeadsTable">
         {leads.map((row) => (
-          <ol className='RecentLeadsData'>
+          <ol className="RecentLeadsData">
             <li>{row.caseId}</li>
-            <li>{(row.date).slice(0,10)}</li>
+            <li>{row.date.slice(0, 10)}</li>
             <li>{row.fName}</li>
             <li>{row.lName}</li>
             <li>{row.phone_num}</li>
@@ -34,6 +37,6 @@ const RecentLeads = () => {
       </div>
     </div>
   );
-}
+};
 
 export default RecentLeads;

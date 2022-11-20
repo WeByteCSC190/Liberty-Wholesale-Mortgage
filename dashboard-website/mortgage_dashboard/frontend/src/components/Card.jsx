@@ -1,10 +1,13 @@
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 function CardVideo() {
   return (
-    <Card style={{ }}>
-      <Card.Img variant="top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Palace_of_Fine_Arts_%2816794p%29.jpg/1200px-Palace_of_Fine_Arts_%2816794p%29.jpg" />
+    <Card style={{}}>
+      <Card.Img
+        variant="top"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Palace_of_Fine_Arts_%2816794p%29.jpg/1200px-Palace_of_Fine_Arts_%2816794p%29.jpg"
+      />
       <Card.Body>
         <Card.Title>Title</Card.Title>
         <Card.Text>

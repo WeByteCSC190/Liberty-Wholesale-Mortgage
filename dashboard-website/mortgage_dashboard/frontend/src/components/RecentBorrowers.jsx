@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../services/api";
 import { useState, useEffect } from "react";
 import * as React from "react";
 import "./RecentBorrowers.css";
@@ -7,7 +7,7 @@ const RecentBorrowers = () => {
   const [borrowers, setBorrowers] = useState([]);
 
   useEffect(() => {
-    axios
+    api
       .get("http://localhost:8000/api/recentBorrowers/")
       .then((response) => setBorrowers(response.data));
   }, []);

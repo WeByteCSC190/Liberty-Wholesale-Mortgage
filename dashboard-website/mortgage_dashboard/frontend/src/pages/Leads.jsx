@@ -1,212 +1,225 @@
-import axios from 'axios';
-import * as React from 'react';
-import Moment from 'react-moment';
-import { useState, useEffect } from 'react';
+import * as React from "react";
+import Moment from "react-moment";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Search from "../components/Search";
 import Table from "../components/Table";
 import Loader from "../components/spinner";
-import Footer from '../components/Footer';
+import Footer from "../components/Footer";
+import api from "../services/api";
 const Leads = () => {
   const [dataTable, setDataTable] = useState([]);
-   // Notes Data
+  // Notes Data
   const [dataNotes, setDataNotes] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const getLeadsUrl = "http://localhost:8000/api/leads/";
   const dict = {
-      "Application_Closed": "Application Closed",
-      "Closed": "Closed",
-  }
-  let testData = []
-   
+    Application_Closed: "Application Closed",
+    Closed: "Closed",
+  };
+  let testData = [];
+
   function getLeads() {
-  axios({
+    api({
       method: "GET",
-        headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer " +localStorage.getItem('access')
+      headers: {
+        "Content-Type": "multipart/form-data",
       },
-      url:getLeadsUrl,
-    }).then((response)=>{
-      let data = response.data;
-      setDataTable(data)
-      testData = data;
-      return data
-    }).catch((error) => {
-      if (error.response) {
-        console.log(error.response);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-        }
+      url: getLeadsUrl,
     })
-     const getLeadsNotes = "http://localhost:8000/api/leadnote/";
-    axios({
+      .then((response) => {
+        let data = response.data;
+        setDataTable(data);
+        testData = data;
+        return data;
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+    const getLeadsNotes = "http://localhost:8000/api/leadnote/";
+    api({
       method: "GET",
-        headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer " +localStorage.getItem('access')
+      headers: {
+        "Content-Type": "multipart/form-data",
       },
-      url:getLeadsNotes,
-    }).then((response)=>{
-      const notes = response.data;
-      setDataNotes(notes)
-    }).catch((error) => {
-      if (error.response) {
-        console.log(error.response);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-        }
+      url: getLeadsNotes,
     })
-}
+      .then((response) => {
+        const notes = response.data;
+        setDataNotes(notes);
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+  }
 
   useEffect(() => {
     getLeads();
     fetchData(searchValue, filterType).then((dataTable) => {
       setDataTable(dataTable);
-      console.log(dataTable)
-    })
+      console.log(dataTable);
+    });
     const filteredData = filterTable(searchValue, filterType);
     setDataTable(filteredData);
   }, [searchValue, filterType]);
 
-
   const column = [
-    { heading: 'Case ID ', value: 'caseId' },
-    { heading: 'Date', value: 'date' },
-    { heading: 'First Name', value: 'fName' },
-    { heading: 'Last Name', value: 'lName' },
-    { heading: 'Credit Score', value: 'creditScore' },
-    { heading: 'Phone', value: 'phone_num' },
-    { heading: 'Email', value: 'email' },
-    { heading: 'Status', value: 'status' },
-    {heading: 'Details', value:'Details'},
-    {heading: 'AddRow', value:'AddLead'}
-  ]
+    { heading: "Case ID ", value: "caseId" },
+    { heading: "Date", value: "date" },
+    { heading: "First Name", value: "fName" },
+    { heading: "Last Name", value: "lName" },
+    { heading: "Credit Score", value: "creditScore" },
+    { heading: "Phone", value: "phone_num" },
+    { heading: "Email", value: "email" },
+    { heading: "Status", value: "status" },
+    { heading: "Details", value: "Details" },
+    { heading: "AddRow", value: "AddLead" },
+  ];
 
   const fetchData = (searchValue, filterType) => {
     setIsLoading(true);
-    
+
     return new Promise((resolve) => {
-         
       setTimeout(() => {
-   
-        if (searchValue !== '') {
-          resolve(testData.filter(dataTable => dataTable.fName.toLowerCase().includes(searchValue.toLowerCase())
-          ));
+        if (searchValue !== "") {
+          resolve(
+            testData.filter((dataTable) =>
+              dataTable.fName.toLowerCase().includes(searchValue.toLowerCase())
+            )
+          );
         }
-        if (filterType !== '') {
+        if (filterType !== "") {
           switch (filterType) {
-            case 'First Name ASC':
-              resolve(handleSorting("fName", 'asc'))
-              break
-            case 'First Name Desc':
-              resolve(handleSorting("fName", 'desc'))
-              break
-            case 'Last Name ASC':
-              resolve(handleSorting("lName", 'asc'))
-              break
-            case 'Last Name DESC':
-              resolve(handleSorting("lName", 'desc'))
-              break
-            case 'Status ASC':
-              resolve(handleSorting("status", 'asc'))
-              break
-            case 'Status DESC':
-              resolve(handleSorting("status", 'desc'))
-              break
-            case 'Date':
+            case "First Name ASC":
+              resolve(handleSorting("fName", "asc"));
+              break;
+            case "First Name Desc":
+              resolve(handleSorting("fName", "desc"));
+              break;
+            case "Last Name ASC":
+              resolve(handleSorting("lName", "asc"));
+              break;
+            case "Last Name DESC":
+              resolve(handleSorting("lName", "desc"));
+              break;
+            case "Status ASC":
+              resolve(handleSorting("status", "asc"));
+              break;
+            case "Status DESC":
+              resolve(handleSorting("status", "desc"));
+              break;
+            case "Date":
               // console.log("filter by date")
               // resolve(handleSortingDate())
-             resolve(testData)
-             break
+              resolve(testData);
+              break;
             default:
               window.location.reload(false);
-              break
+              break;
           }
-        } else if (searchValue === '' || filterType === '') {
-          resolve(testData)
+        } else if (searchValue === "" || filterType === "") {
+          resolve(testData);
         }
         setIsLoading(false);
       }, 1000);
     });
   };
-const handleSorting = (sortField, sortOrder) => {
- if (sortField) {
-  const sorted = [...dataTable].sort((a, b) => {
-    return (
-        a[sortField].localeCompare(b[sortField], "en", {
-        numeric: true,
-        }) * (sortOrder === "asc" ? 1 : -1)
-    );
-  });
-   return sorted;
- }
-};
-const handleSortingDate = () => {
-  const sorted = [...dataTable].sort((a, b) => {
-    console.log((a.date))
-    return (
-        (new Moment(a.date)) - (new Moment(b.date))
-    );
-  });
-   return sorted;
-};
+  const handleSorting = (sortField, sortOrder) => {
+    if (sortField) {
+      const sorted = [...dataTable].sort((a, b) => {
+        return (
+          a[sortField].localeCompare(b[sortField], "en", {
+            numeric: true,
+          }) * (sortOrder === "asc" ? 1 : -1)
+        );
+      });
+      return sorted;
+    }
+  };
+  const handleSortingDate = () => {
+    const sorted = [...dataTable].sort((a, b) => {
+      console.log(a.date);
+      return new Moment(a.date) - new Moment(b.date);
+    });
+    return sorted;
+  };
   const filterTable = (searchValue, filterType) => {
     setIsLoading(true);
-    console.log("filterTable function called")
-    if (filterType !== '') {
-      switch(filterType) {
-        case 'First Name':
-            // console.log("filter by first name")
-            return handleSorting("fName", 'asc')
-        case 'Last Name':
-            // console.log("filter by last name")
-            return handleSorting("lName", 'asc')
-        case 'Date':
-            // console.log("filter by date")
-            // return handleSortingDate()
-           
+    console.log("filterTable function called");
+    if (filterType !== "") {
+      switch (filterType) {
+        case "First Name":
+          // console.log("filter by first name")
+          return handleSorting("fName", "asc");
+        case "Last Name":
+          // console.log("filter by last name")
+          return handleSorting("lName", "asc");
+        case "Date":
+        // console.log("filter by date")
+        // return handleSortingDate()
+
         default:
-           window.location.reload(false);
+          window.location.reload(false);
       }
-    } else if (searchValue === '' || filterType==='') {
-      return testData
+    } else if (searchValue === "" || filterType === "") {
+      return testData;
     }
-    if (searchValue !== '') {
-      console.log(testData.filter(dataTable => dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
-      ))
-      return testData.filter(dataTable => dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
+    if (searchValue !== "") {
+      console.log(
+        testData.filter((dataTable) =>
+          dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
+        )
+      );
+      return testData.filter((dataTable) =>
+        dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
       );
     }
     setIsLoading(false);
   };
   return (
     <>
-    <div className="Header">
-      <Navbar />
-    </div>
-     {/* <p className="Page-Title">Leads</p> */}
-     <div className="Content">
-     <p className="Page-Title">Leads</p> 
-     <div className="Leads">
-      
-      {isLoading ?
-        <Loader /> :   <div>    
-          <Search 
-              callback1={(searchValue)=> setSearchValue(searchValue)} 
-              callback2={(filterType)=> setFilterType(filterType)}
+      <div className="Header">
+        <Navbar />
+      </div>
+      {/* <p className="Page-Title">Leads</p> */}
+      <div className="Content">
+        <p className="Page-Title">Leads</p>
+        <div className="Leads">
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <div>
+              <Search
+                callback1={(searchValue) => setSearchValue(searchValue)}
+                callback2={(filterType) => setFilterType(filterType)}
               />
-          <Table api="http://localhost:8000/api/leads/" page={"Leads"} data={dataTable} column={column} notes={dataNotes} />
+              <Table
+                api="http://localhost:8000/api/leads/"
+                page={"Leads"}
+                data={dataTable}
+                column={column}
+                notes={dataNotes}
+              />
 
-          <div className="Footer">
-             <Footer />
-          </div>
-         </div>
-      }
+              <div className="Footer">
+                <Footer />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-      </div>
-      </>
+    </>
   );
-}
+};
 
 export default Leads;

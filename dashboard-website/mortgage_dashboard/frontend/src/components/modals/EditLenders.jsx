@@ -6,7 +6,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import axios from 'axios';
+import api from '../../services/api'
 
 /* For the Lender pages */ 
 
@@ -39,12 +39,11 @@ function ManageRow({ api, rowData }) {
     console.log(Object.fromEntries(formData))
   try {
     const postLink = api;
-    const response = await axios({
+    const response = await api({
       method: "post",
       url: postLink,
       data: formData,
       headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer "  +localStorage.getItem('access')
       },
     });
     window.location.reload(false);

@@ -38,7 +38,7 @@ function Carousel({
 
   //Start the automatic change of slide
   useEffect(() => {
-    console.log("useeffect called")
+    console.log("useeffect called");
     if (automatic) {
       var index = slide;
       const interval = setInterval(
@@ -59,7 +59,7 @@ function Carousel({
   }, [isPaused, change]);
 
   function scrollTo(el) {
-    console.log("scrollTo called")
+    console.log("scrollTo called");
     const elLeft = el.offsetLeft + el.offsetWidth;
     const elParentLeft = el.parentNode.offsetLeft + el.parentNode.offsetWidth;
 
@@ -76,7 +76,7 @@ function Carousel({
 
   //Listens to slide state changes
   useEffect(() => {
-    console.log("another useeffect called")
+    console.log("another useeffect called");
     var slides = document.getElementsByClassName("carousel-item");
     var dots = document.getElementsByClassName("dot");
 
@@ -147,8 +147,7 @@ function Carousel({
                   onMouseDown={(e) => {
                     automatic && setIsPaused(true);
                   }}
-                      onMouseUp={(e) => {
-                      
+                  onMouseUp={(e) => {
                     automatic && setIsPaused(true);
                   }}
                   onMouseLeave={(e) => {

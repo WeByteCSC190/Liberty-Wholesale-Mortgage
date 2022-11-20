@@ -1,16 +1,16 @@
-import * as React from 'react';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import * as React from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 import Table from "../components/Table";
 import AnnouncementsWidget from "../components/AnnouncementsWidget";
 import Carousel from "../components/Carousel";
 import Card from "../components/Card";
-import Footer from '../components/Footer';
+import Footer from "../components/Footer";
+import api from "../services/api";
 
 const Resources = () => {
   const [ResourceDataTable, setResourceDataTable] = useState([]);
@@ -22,131 +22,138 @@ const Resources = () => {
   const getVideoUrl = "http://127.0.0.1:8000/api/video/";
   const getAnnouncementsUrl = "http://127.0.0.1:8000/api/Announcements/";
   function getResource() {
-  axios({
+    api({
       method: "GET",
-headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer " +localStorage.getItem('access')
+      headers: {
+        "Content-Type": "multipart/form-data",
       },
 
-      url:getResourceUrl,
-    }).then((response)=>{
-      const data = response.data;
-      setResourceDataTable(data)
-      console.log(data)
-      return data
-    }).catch((error) => {
-      if (error.response) {
-        console.log(error.response);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-        }
+      url: getResourceUrl,
     })
-  }
-  function getFile() {
-    axios({
-        method: "GET",
-headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer " +localStorage.getItem('access')
-      },
-
-        url:getFileUrl,
-      }).then((response)=>{
+      .then((response) => {
         const data = response.data;
-        setFileDataTable(data)
-        console.log(data)
-        return data
-      }).catch((error) => {
+        setResourceDataTable(data);
+        console.log(data);
+        return data;
+      })
+      .catch((error) => {
         if (error.response) {
           console.log(error.response);
           console.log(error.response.status);
           console.log(error.response.headers);
-          }
-      })
-    }
-    function getVideo() {
-      axios({
-headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer " +localStorage.getItem('access')
-      },
-
-          method: "GET",
-          url:getVideoUrl,
-        }).then((response)=>{
-          const data = response.data;
-          setVideoDataTable(data)
-          console.log(data)
-          return data
-        }).catch((error) => {
-          if (error.response) {
-            console.log(error.response);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-            }
-        })
-      }
-      function getAnnouncements() {
-        axios({
-headers: { "Content-Type": "multipart/form-data",
-      "Authorization": "Bearer " +localStorage.getItem('access')
-      },
-
-            method: "GET",
-            url:getAnnouncementsUrl,
-          }).then((response)=>{
-            const data = response.data;
-            setAnnouncementsDataTable(data)
-            console.log(data)
-            return data
-          }).catch((error) => {
-            if (error.response) {
-              console.log(error.response);
-              console.log(error.response.status);
-              console.log(error.response.headers);
-              }
-          })
         }
-useEffect(() => {
-  getResource();
-  getFile();
-  getVideo();
-  getAnnouncements();
-}, []);
+      });
+  }
+  function getFile() {
+    api({
+      method: "GET",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
 
+      url: getFileUrl,
+    })
+      .then((response) => {
+        const data = response.data;
+        setFileDataTable(data);
+        console.log(data);
+        return data;
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+  }
+  function getVideo() {
+    api({
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+
+      method: "GET",
+      url: getVideoUrl,
+    })
+      .then((response) => {
+        const data = response.data;
+        setVideoDataTable(data);
+        console.log(data);
+        return data;
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+  }
+  function getAnnouncements() {
+    api({
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+
+      method: "GET",
+      url: getAnnouncementsUrl,
+    })
+      .then((response) => {
+        const data = response.data;
+        setAnnouncementsDataTable(data);
+        console.log(data);
+        return data;
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+  }
+  useEffect(() => {
+    getResource();
+    getFile();
+    getVideo();
+    getAnnouncements();
+  }, []);
 
   // files column
   const annoucementsColumn = [
-    { heading: 'Date', value: 'date' },
-    { heading: 'Announcements', value: 'content' }
-  ]
+    { heading: "Date", value: "date" },
+    { heading: "Announcements", value: "content" },
+  ];
   const fileColumn = [
-    { heading: 'File id', value: 'id' },
-    { heading: 'File', value: 'file' },
-    { heading: 'date', value:'date'}
-  ]
+    { heading: "File id", value: "id" },
+    { heading: "File", value: "file" },
+    { heading: "date", value: "date" },
+  ];
 
   const videoColumn = [
-    { heading: 'Video id', value: 'id' },
-    { heading: 'Video', value: 'video' },
-    { heading: 'date', value:'date'},
-    { heading: 'User', value:'user'}
-  ]
+    { heading: "Video id", value: "id" },
+    { heading: "Video", value: "video" },
+    { heading: "date", value: "date" },
+    { heading: "User", value: "user" },
+  ];
   const resourcesColumn = [
-    { heading: 'id', value: 'id' },
-    { heading: 'name', value: 'name' },
-    { heading: 'media', value:'media'},
-    { heading: 'files', value:'files'},
-    { heading: 'announcements', value:'announcements'},
-    { heading: 'news', value:'news'},
-    { heading: 'video', value:'video'}
-  ]
+    { heading: "id", value: "id" },
+    { heading: "name", value: "name" },
+    { heading: "media", value: "media" },
+    { heading: "files", value: "files" },
+    { heading: "announcements", value: "announcements" },
+    { heading: "news", value: "news" },
+    { heading: "video", value: "video" },
+  ];
   // files end
-  const [showResults, setShowResults] = React.useState(false)
+  const [showResults, setShowResults] = React.useState(false);
   const showCards = () => {
-    showResults ? setShowResults(false) : setShowResults(true)
-  }
+    showResults ? setShowResults(false) : setShowResults(true);
+  };
 
-// Carousel data
-const data = [
+  // Carousel data
+  const data = [
     {
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
@@ -191,17 +198,17 @@ const data = [
       image:
         "https://www.oyorooms.com/travel-guide/wp-content/uploads/2019/02/summer-7.jpg",
       filename: "summer-7.jpg",
-     },
+    },
     {
       image:
         "https://www.oyorooms.com/travel-guide/wp-content/uploads/2019/02/summer-7.jpg",
       filename: "summer-8.jpg",
-     },
-     {
+    },
+    {
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
       filename: "GoldenGateBridge-001.jpg",
-    }
+    },
   ];
 
   const filenameStyle = {
@@ -214,86 +221,93 @@ const data = [
   };
   return (
     <>
-    <div className="Header">
-      <Navbar />   
-    </div>
-    <div className="Content">
-    <p className="Page-Title">Resources</p>
-      <Container>
-        <Row style={{ paddingBottom: "70px" }}>
-           <h1>News and Articles</h1>
-              <Carousel
-            data={data}
-            time={6000}
-            width="900px"
-            height="500px"
-            filenameStyle={filenameStyle}
-            radius="10px"
-            slideNumber={true}
-            slideNumberStyle={slideNumberStyle}
-            filenamePosition="bottom"
-            automatic={false}
-            dots={true}
-            pauseIconColor="white"
-            pauseIconSize="40px"
-            slideBackgroundColor="transparent"
-            slideImageFit="cover"
-            thumbnails={true}
-            thumbnailWidth="100px"
-            showNavBtn={true}
-            style={{
-              textAlign: "center",
-              
-              // maxWidth: "850px"/,
-              margin: "0px",
-            }}
-          />           
-        </Row>
-        <Row style={{ paddingBottom: "20px" }}>
-           <h1>Videos</h1>
-          <Col sm={4}>
-            <Card />
+      <div className="Header">
+        <Navbar />
+      </div>
+      <div className="Content">
+        <p className="Page-Title">Resources</p>
+        <Container>
+          <Row style={{ paddingBottom: "70px" }}>
+            <h1>News and Articles</h1>
+            <Carousel
+              data={data}
+              time={6000}
+              width="900px"
+              height="500px"
+              filenameStyle={filenameStyle}
+              radius="10px"
+              slideNumber={true}
+              slideNumberStyle={slideNumberStyle}
+              filenamePosition="bottom"
+              automatic={false}
+              dots={true}
+              pauseIconColor="white"
+              pauseIconSize="40px"
+              slideBackgroundColor="transparent"
+              slideImageFit="cover"
+              thumbnails={true}
+              thumbnailWidth="100px"
+              showNavBtn={true}
+              style={{
+                textAlign: "center",
+
+                // maxWidth: "850px"/,
+                margin: "0px",
+              }}
+            />
+          </Row>
+          <Row style={{ paddingBottom: "20px" }}>
+            <h1>Videos</h1>
+            <Col sm={4}>
+              <Card />
             </Col>
-          <Col sm={4}>
-             <Card />
+            <Col sm={4}>
+              <Card />
             </Col>
-          <Col sm={4}>
-             <Card />
-          </Col>
-         
-        </Row>
-        <Row>
-        <Button variant="info" style={{width:"200px", margin:"20px auto"}} onClick={showCards} >
-          {showResults ? "-":"+"}
-        </Button>
-        </Row>
-        
-            { showResults ? <Row style={{paddingBottom:"20px"}}>
-          <Col sm={4}>
-            <Card />
+            <Col sm={4}>
+              <Card />
             </Col>
-          <Col sm={4}>
-             <Card />
-            </Col>
-          <Col sm={4}>
-             <Card />
-            </Col>
-        </Row> : null }    
-        
-        <Row style={{ paddingBottom: "20px" }}>
-          <h1>Files</h1>
-         <Table api="http://127.0.0.1:8000/api/files/"  page={"Files"} data={FileDataTable} column={fileColumn} />
-         
-        </Row>
-      </Container>
-          
-    </div> 
-    <div className="Footer">
-       <Footer />
-    </div>
+          </Row>
+          <Row>
+            <Button
+              variant="info"
+              style={{ width: "200px", margin: "20px auto" }}
+              onClick={showCards}
+            >
+              {showResults ? "-" : "+"}
+            </Button>
+          </Row>
+
+          {showResults ? (
+            <Row style={{ paddingBottom: "20px" }}>
+              <Col sm={4}>
+                <Card />
+              </Col>
+              <Col sm={4}>
+                <Card />
+              </Col>
+              <Col sm={4}>
+                <Card />
+              </Col>
+            </Row>
+          ) : null}
+
+          <Row style={{ paddingBottom: "20px" }}>
+            <h1>Files</h1>
+            <Table
+              api="http://127.0.0.1:8000/api/files/"
+              page={"Files"}
+              data={FileDataTable}
+              column={fileColumn}
+            />
+          </Row>
+        </Container>
+      </div>
+      <div className="Footer">
+        <Footer />
+      </div>
     </>
-  )
-}
+  );
+};
 
 export default Resources;
-
