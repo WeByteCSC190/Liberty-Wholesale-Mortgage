@@ -50,7 +50,6 @@ function AddRow({api, page}) {
     formData.append("phone_num", formValue.phone_num)
     formData.append("status", formValue.status)
     formData.append("creditScore", formValue.creditScore)
-    formData.append("status_check", formValue.status_check)
    
     console.log(Object.fromEntries(formData))
   try {
@@ -86,7 +85,6 @@ function AddRow({api, page}) {
       phone_num: '',
       status: '',
       creditScore: '',
-      status_check: false
     });
   }
   const handleShow = () => setShow(true);
@@ -163,10 +161,10 @@ function AddRow({api, page}) {
               </Form.Group>
             
               
-              <Form.Group className="mb-3" controlId="">
+              {/* <Form.Group className="mb-3" controlId="">
                 <Form.Check value={formValue.status_check}
                   onChange={handleChange} type="checkbox" label="The borrower is approved" />
-              </Form.Group>
+              </Form.Group> */}
             </Form>
           </Modal.Body>
           <Modal.Footer>
@@ -366,10 +364,10 @@ function AddRow({api, page}) {
         </Form.Group>
       
         
-        <Form.Group className="mb-3" controlId="">
+        {/* <Form.Group className="mb-3" controlId="">
           <Form.Check value={formValue.status_check}
             onChange={handleChange} type="checkbox" label="The borrower is approved" />
-        </Form.Group>
+        </Form.Group> */}
       </Form>
     </Modal.Body>
     <Modal.Footer>
