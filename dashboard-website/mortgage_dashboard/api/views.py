@@ -553,6 +553,16 @@ def delAccountDetail(request,pk):
     detail.delete()
     return Response('Account Details has been successfully deleted!')
 
+@api_view(['POST'])
+def updateAccount(request,pk):
+    user = UserProfile.objects.get(id = pk)
+    serializer = UserProfileSerializer(instance=user, data=request.data)
+    
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
 
 
 ####  Video API

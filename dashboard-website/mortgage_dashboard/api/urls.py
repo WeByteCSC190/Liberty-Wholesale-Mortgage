@@ -62,6 +62,7 @@ urlpatterns = [
     path('accountDetail-delete/<int:pk>',views.delAccountDetail,name='accountDetail-del'),
     path('accountDetail-Create',views.createAccountDetail,name='accountDetail-create'),
     path('accountDetail-update/<int:pk>',views.updateAccountDetail,name='accountDetail-update'),
+    path('updateAccount/<int:pk>',views.updateAccount,name='account-update'),
 
     path('borrowernote-list/',views.borrowernote_list, name='borrowernote-list'),
     path('borrowernote-list/<int:pk>/',views.borrowernote_detail, name='borrowerNote-create'),
