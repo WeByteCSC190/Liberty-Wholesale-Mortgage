@@ -24,13 +24,6 @@ from new_users.serializers import UserSerializer
 from .models import Client, Lead, Borrower, Lender,LenderLogo, Bio, Resources, RecyclingBin,BorrowerNote,LeadNote,File,Video,Announcements, ImportantAnnouncements
 from .serializers import ClientSerializer, LeadSerializer, BorrowerSerializer,  LenderSerializer, LenderLogoSerializer,BioSerializer,BiographySerializer, ResourcesSerializer, RecycleBinSerializer,BorrowerNoteSerializer,LeadNoteSerializer, FileSerializer,VideoSerializer, AnnouncementsSerializer, ImportantAnnouncementsSerializer
 
-# @api_view(['GET'])
-# def listAll(request):
-#     serializer = UserSerializer(users, many = True)
-#     return Response(serializer.data)
-#
-#     users = CustomUser.objects.all()
-#
 @api_view(['GET'])
 def userDetail(request,pk):
     user = CustomUser.objects.get(id = pk)
@@ -101,6 +94,22 @@ class LeadView(viewsets.ModelViewSet):
         serializer = LeadSerializer(recent_three, many=True)
         return JsonResponse(serializer.data, content_type="application/json", safe=False)
 
+    def destroy(self, request, pk):
+        lead = Lead.objects.get(caseId=pk)
+        name = "Lead"
+        caseID = lead.caseId
+        date = lead.date
+        fname = lead.fName
+        lname = lead.lName
+        creditscore = lead.creditScore
+        email = lead.email
+        phone_num = lead.phone_num
+        status = lead.status
+        leadBin = RecyclingBin(name,None,caseID,date,fname,lname,creditscore,email,phone_num,status)
+        leadBin.save()
+        lead.delete()
+        return Response("Moved to Bin!")
+
 class BorrowerView(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )
     queryset = Borrower.objects.all()
@@ -114,6 +123,23 @@ class BorrowerView(viewsets.ModelViewSet):
         recent_three = reversed(queryset)
         serializer = LeadSerializer(recent_three, many=True)
         return JsonResponse(serializer.data, content_type="application/json", safe=False)
+
+    def destroy(self, request, pk):
+        # borrower = self.get_object()
+        borrower = Borrower.objects.get(caseId=pk)
+        name = "Borrower"
+        caseID = borrower.caseId
+        date = borrower.date
+        fname = borrower.fName
+        lname = borrower.lName
+        creditscore = borrower.creditScore
+        email = borrower.email
+        phone_num = borrower.phone_num
+        status = borrower.status
+        borrowerBin = RecyclingBin(name,None,caseID,date,fname,lname,creditscore,email,phone_num,status)
+        borrowerBin.save()
+        borrower.delete()
+        return Response("Moved to Bin!")
 
 class BioView(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )

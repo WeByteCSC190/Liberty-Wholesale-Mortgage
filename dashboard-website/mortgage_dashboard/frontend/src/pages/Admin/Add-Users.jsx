@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { register } from "../../actions/auth";
+import { register } from "../../features/auth/authSlice";
 import { connect } from "react-redux";
 import { useNavigate, Navigate, Link } from "react-router-dom";
 import Navbar from "../../components/NavbarAdmin";
@@ -8,7 +8,7 @@ import api from "../../services/api";
 
 api.defaults.withCredentials = true;
 
-const AddUsers = ({ register, isAuthenticated }) => {
+const AddUsers = ({ register }) => {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -23,16 +23,10 @@ const AddUsers = ({ register, isAuthenticated }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    if (re_password === password) {
-      register(username, password, re_password);
-      setAccountCreated(true);
-    }
+    register(formData);
+    setAccountCreated(true);
+    // }
   };
-
-  if (isAuthenticated) {
-    return <Navigate to="/dashboard" />;
-  } else if (accountCreated) return <Navigate to="/sign-in" />;
 
   return (
     <>
@@ -72,6 +66,7 @@ const AddUsers = ({ register, isAuthenticated }) => {
               Register
             </button>
           </form>
+          {accountCreated === true && <p>{"Account had been created!"}</p>}
           <p className="mt-3">
             Already have an Account? <Link to="/sign-in">Sign In</Link>
           </p>

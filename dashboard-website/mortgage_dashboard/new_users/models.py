@@ -4,14 +4,17 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, Permis
 
 
 class UserAccountManager(BaseUserManager):
-  def create_user(self, username,fName, lName, password=None):
-    if not username:
-      raise ValueError('Users must have a username')
+  def create_user(self, username, password=None):
+    if username is None:
+      raise TypeError('Users must have a username')
+    if password is None:
+        raise TypeError('Users must have a password')
 
     user = self.model(
       username=username,
-      fName=fName,
-      lName=lName,
+      password=password
+      # fName=fName,
+      # lName=lName,
     )
 
     user.set_password(password)
@@ -51,14 +54,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
   address_1 = models.CharField(max_length=128, default='')
   address_2 = models.CharField(max_length=128, default='')
   zip_code = models.CharField(max_length=5, default='')
-  is_superuser = models.IntegerField(default=0)
-  is_staff = models.IntegerField(default=False)
-  is_active = models.IntegerField(default=True)
+  is_superuser = models.BooleanField(default=False)
+  is_staff = models.BooleanField(default=False)
+  is_active = models.BooleanField(default=True)
 
   USERNAME_FIELD= 'username'
-  REQUIRED_FIELDS = ['fName', 'lName']
+  # REQUIRED_FIELDS = ['fName', 'lName']
 
   objects = UserAccountManager()
 
   def __str__(self):
-    return self.fName
+    return self.username

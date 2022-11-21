@@ -13,7 +13,7 @@ import Terms from "./components/legal/terms.jsx";
 import Privacy from "./components/legal/privacy.jsx";
 import LegalThree from "./components/legal/LegalThree";
 import LegalFour from "./components/legal/LegalFour.jsx";
-// import AddUser from "./pages/Admin/Add-Users.jsx";
+import AddUser from "./pages/Admin/Add-Users.jsx";
 import Users from "./pages/Admin/Users.jsx";
 import LendersAdmin from "./pages/Admin/EditLenders";
 import ResourcesAdmin from "./pages/Admin/EditResources";
@@ -45,6 +45,7 @@ const App = () => {
             <Route path="Users" element={<Users />} />
             <Route path="LendersAdmin" element={<LendersAdmin />} />
             <Route path="ResourcesAdmin" element={<ResourcesAdmin />} />
+            <Route path="Add-User" element={<AddUser />} />
             <Route path="Lenders" element={<Lenders />} />
             <Route path="Deleted" element={<Deleted />} />
           </Route>
@@ -56,7 +57,7 @@ const App = () => {
 
 export default App;
 
-// <Route path="Add-User" element={<AddUser />} />
+<Route path="Add-User" element={<AddUser />} />;
 //<div className="milestone"></div>
 // <div className="recent-leads"></div>
 //<div className="recent-borrowers"></div>

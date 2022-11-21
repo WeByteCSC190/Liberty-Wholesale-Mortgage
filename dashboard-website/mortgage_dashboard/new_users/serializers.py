@@ -10,7 +10,8 @@ class UserCreateSerializer(serializers.ModelSerializer):
     model = User
     # fields= '__all__'
     # fields = ('username', 'password', 'uId', 'fName', 'lName', 'nmlsID', 'ssn')
-    fields = ('fName', 'lName', 'username', 'password')
+    # fields = ('fName', 'lName', 'username', 'password')
+    fields = ('username', 'password')
 
   def validate(self, data):
     user = User(**data)
@@ -30,8 +31,8 @@ class UserCreateSerializer(serializers.ModelSerializer):
   def create(self, validated_data):
     user = User.objects.create_user(
       username=validated_data['username'],
-      fName=validated_data['fName'],
-      lName=validated_data['lName'],
+      # fName=validated_data['fName'],
+      # lName=validated_data['lName'],
       # email=validated_data['email'],
       password=validated_data['password'],
     )

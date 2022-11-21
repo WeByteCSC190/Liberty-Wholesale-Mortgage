@@ -72,6 +72,40 @@ export const verify = createAsyncThunk(
   }
 );
 
+// http://127.0.0.1:8000/accounts/users/register
+export const register = createAsyncThunk(
+  "accounts/users/register",
+  async ({ username, password }, thunkAPI) => {
+    const options = {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      url: "/accounts/users/register",
+      data: {
+        username: username,
+        password: password,
+      },
+    };
+    try {
+      const res = await axios(options);
+      const data = await res.data;
+      if (res.status === 201 || res.status === 200) {
+        // const access = data.access;
+        // localStorage.setItem("access", access);
+        // localStorage.setItem("refresh", data.refresh);
+        return data;
+      } else {
+        return thunkAPI.rejectWithValue(data);
+      }
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  }
+);
+
 export const login = createAsyncThunk(
   "accounts/token",
   async ({ username, password }, thunkAPI) => {
