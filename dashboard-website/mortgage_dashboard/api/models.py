@@ -1,5 +1,5 @@
 from datetime import datetime
-from pyexpat import model
+# from pyexpat import model
 from sqlite3 import Date
 from tarfile import LENGTH_NAME
 from xmlrpc.client import DateTime
@@ -306,18 +306,18 @@ class Bio(models.Model):
 
 class BorrowerNote(models.Model):
    borrower=models.ForeignKey(Borrower,on_delete=models.CASCADE)
-   borrowernote=models.TextField('Note',blank=True, max_length=200)
+   note=models.TextField('Note',blank=True, max_length=200)
    created_on=models.DateTimeField(auto_now_add=True)
 
    def __str__(self):
         return self.note
 class LeadNote(models.Model):
     lead=models.ForeignKey(Lead,on_delete=models.CASCADE)
-    leadnote = models.TextField('Note', max_length=200,blank=True)
+    note = models.TextField('Note', max_length=200,blank=True)
     created_on=models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return self.leadnote
+        return self.note
         
 # class AccountDetail(models.Model):
 #     ssn = models.ForeignKey(CustomUser, blank = True, null = True, on_delete=models.CASCADE)
