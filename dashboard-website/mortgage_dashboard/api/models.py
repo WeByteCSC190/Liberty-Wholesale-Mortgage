@@ -46,12 +46,14 @@ class Anouncements(models.Model):
 
 
 
-class Files(models.Model):
-    fileType = models.URLField('File type')
-    filePath = models.URLField('File path')
-
+class File(models.Model):
+    file = models.FileField(upload_to='files_uploaded',null=True,
+        validators=[FileExtensionValidator(allowed_extensions=['doc','pdf','docx','txt'])])
+    date_uploaded = models.DateTimeField(default=timezone.now)
+    id = models.IntegerField('ID', primary_key=True, null=False,
+                             default=generate_random_number(), unique=True)
     def __str__(self):
-        return self.fileType
+        return self.id
 
 
 class Media(models.Model):
@@ -70,12 +72,11 @@ class Video(models.Model):
     def __int__(self):
         return self.id
 
-
 class Resources(models.Model):
     media = models.ForeignKey(
         Media, blank=True, null=True, on_delete=models.CASCADE)
     files = models.ForeignKey(
-        Files, blank=True, null=True, on_delete=models.CASCADE)
+        File, blank=True, null=True, on_delete=models.CASCADE)
     announcements = models.ForeignKey(
         Anouncements, blank=True, null=True, on_delete=models.CASCADE)
     news = models.ForeignKey(
@@ -84,7 +85,7 @@ class Resources(models.Model):
     id = models.IntegerField('ID', primary_key=True, null=False,
                              default=generate_random_number(), unique=True)
     name = models.CharField('Name', max_length=40, null=True, blank=True)
-    # video = models.ForeignKey(Video, blank=True, null=True, on_delete=models.CASCADE)
+    video = models.ForeignKey(Video, blank=True, null=True, on_delete=models.CASCADE)
 
     def __int__(self):
         return self.id
@@ -95,6 +96,14 @@ class Announcements(models.Model):
 
      def __str__(self):
          return str(self.date)+" "+str(self.content)
+
+class ImportantAnnouncements(models.Model):
+     date=models.DateTimeField('Date')
+     content=models.TextField('Content',blank=True)
+
+     def __str__(self):
+         return str(self.date)+" "+str(self.content)
+
 
 class Lead(models.Model):
     STATUS_CHOICES = [

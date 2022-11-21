@@ -8,7 +8,7 @@ const RecentBorrowers = () => {
 
   useEffect(() => {
     api
-      .get("http://localhost:8000/api/recentBorrowers/")
+      .get("http://localhost:8000/api/borrowers/recent/")
       .then((response) => setBorrowers(response.data));
   }, []);
 

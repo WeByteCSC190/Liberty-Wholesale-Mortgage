@@ -41,7 +41,7 @@ const EditResources = () => {
 
   useEffect(() => {
     getFiles();
-  });
+  }, [true]);
 
   const column = [
     { heading: "Image Link", value: "image" },

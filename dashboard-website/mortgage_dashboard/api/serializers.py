@@ -1,4 +1,5 @@
 from dataclasses import field
+from django.core.files.base import File
 from rest_framework import serializers
 from .models import * 
 from django.contrib.auth.models import User
@@ -10,6 +11,13 @@ class AnnouncementsSerializer(serializers.HyperlinkedModelSerializer):
       class Meta:
           model= Announcements
           fields=('date','content')
+
+class ImportantAnnouncementsSerializer(serializers.HyperlinkedModelSerializer):
+      class Meta:
+          model= ImportantAnnouncements
+          fields=('date','content')
+
+
 class LeadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lead
@@ -79,3 +87,13 @@ class LeadNoteSerializer(serializers.ModelSerializer):
     class Meta:
         model= LeadNote
         fields= '__all__'
+
+class FileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = File
+        fields = '__all__'
+
+class VideoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Video
+        fields = '__all__'

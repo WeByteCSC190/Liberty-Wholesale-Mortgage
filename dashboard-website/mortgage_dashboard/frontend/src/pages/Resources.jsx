@@ -19,7 +19,7 @@ const Resources = () => {
   const [AnnoucementsDataTable, setAnnouncementsDataTable] = useState([]);
   const getResourceUrl = "http://localhost:8000/api/resources/";
   const getFileUrl = "http://127.0.0.1:8000/api/files/";
-  const getVideoUrl = "http://127.0.0.1:8000/api/video/";
+  const getVideoUrl = "http://127.0.0.1:8000/api/videos/";
   const getAnnouncementsUrl = "http://127.0.0.1:8000/api/Announcements/";
   function getResource() {
     api({

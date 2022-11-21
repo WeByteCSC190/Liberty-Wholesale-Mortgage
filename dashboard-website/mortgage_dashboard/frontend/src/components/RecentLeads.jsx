@@ -8,7 +8,7 @@ const RecentLeads = () => {
 
   useEffect(() => {
     api
-      .get("http://localhost:8000/api/recentLeads/")
+      .get("http://localhost:8000/api/leads/recent/")
       .then((response) => setLeads(response.data));
   }, []);
 
