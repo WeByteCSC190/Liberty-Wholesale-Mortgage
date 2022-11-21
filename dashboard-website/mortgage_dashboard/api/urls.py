@@ -59,6 +59,9 @@ urlpatterns = [
     path('lead-recover/<int:pk>/',LeadRecover.as_view(), name='lead-recover'),
     path('recyclingBin-delete/<int:pk>/',views.recyclingBinDelete, name='recycleingBin-delete'),
     path('get-recyclebin', RecyclingBinView.as_view(), name='recyclebin'),
+    path('accountDetail-delete/<int:pk>',views.delAccountDetail,name='accountDetail-del'),
+    path('accountDetail-Create',views.createAccountDetail,name='accountDetail-create'),
+    path('accountDetail-update/<int:pk>',views.updateAccountDetail,name='accountDetail-update'),
 
     path('borrowernote-list/',views.borrowernote_list, name='borrowernote-list'),
     path('borrowernote-list/<int:pk>/',views.borrowernote_detail, name='borrowerNote-create'),
