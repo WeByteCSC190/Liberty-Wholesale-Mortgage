@@ -35,6 +35,7 @@ instance.interceptors.response.use(
     if (error.response.status === 401 && !originalConfig._retry) {
       originalConfig._retry = true;
       refresh();
+      return instance.request(error.config);
     }
     return Promise.reject(error);
   }

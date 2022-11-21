@@ -22,16 +22,14 @@ class UserAccountManager(BaseUserManager):
 
     return user
   
-  def create_superuser(self, username, fName, lName, password=None):
+  def create_superuser(self, username, password=None):
     if password is None:
       raise TypeError('Superusers must have a password')
     if username is None:
       raise TypeError('Superuserse must have a username')
 
     user = self.create_user(
-      username,
-      fName,
-      lName,
+      username=username,
       password=password
     )
 
