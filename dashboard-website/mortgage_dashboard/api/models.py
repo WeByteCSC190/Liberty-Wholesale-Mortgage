@@ -91,7 +91,7 @@ class Resources(models.Model):
         return self.id
 
 class Announcements(models.Model):
-     date=models.DateTimeField('Date')
+     date=models.DateTimeField(auto_now_add=True)
      content=models.TextField('Content',blank=True)
 
      def __str__(self):
@@ -182,6 +182,7 @@ class RecyclingBin(models.Model):
         'Credit Score', blank=True, null=True, unique=False)
     email = models.EmailField('Email Address')
     phone_num = models.CharField('Phone Number', max_length=16, null=True)
+    status = models.CharField(max_length=40)
     def __str__(self):
         return self.dataName + " " + f'caseId: {self.caseId}'
 

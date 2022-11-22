@@ -105,7 +105,7 @@ class LeadView(viewsets.ModelViewSet):
         email = lead.email
         phone_num = lead.phone_num
         status = lead.status
-        leadBin = RecyclingBin(name,None,caseID,date,fname,lname,creditscore,email,phone_num,status)
+        leadBin = RecyclingBin(name,None, None,caseID,date,fname,lname,creditscore,email,phone_num, status)
         leadBin.save()
         lead.delete()
         return Response("Moved to Bin!")
@@ -125,9 +125,8 @@ class BorrowerView(viewsets.ModelViewSet):
         return JsonResponse(serializer.data, content_type="application/json", safe=False)
 
     def destroy(self, request, pk):
-        # borrower = self.get_object()
         borrower = Borrower.objects.get(caseId=pk)
-        name = "Borrower"
+        name = "borrower"
         caseID = borrower.caseId
         date = borrower.date
         fname = borrower.fName
@@ -136,10 +135,11 @@ class BorrowerView(viewsets.ModelViewSet):
         email = borrower.email
         phone_num = borrower.phone_num
         status = borrower.status
-        borrowerBin = RecyclingBin(name,None,caseID,date,fname,lname,creditscore,email,phone_num,status)
+        borrowerBin = RecyclingBin(name,None, None,caseID,date,fname,lname,creditscore,email,phone_num, status)
         borrowerBin.save()
         borrower.delete()
         return Response("Moved to Bin!")
+
 
 class BioView(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )
@@ -156,7 +156,7 @@ def bioUpdate(request, pk):
     
     return Response(serializer.data)
 
-class RecyclingBinView(generics.ListCreateAPIView):
+class RecyclingBinView(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated, )
     queryset = RecyclingBin.objects.all()
     serializer_class=  RecycleBinSerializer

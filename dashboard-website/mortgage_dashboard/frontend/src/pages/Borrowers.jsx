@@ -232,27 +232,23 @@ const Borrowers = () => {
       <div className="Content">
         <p className="Page-Title">Borrowers</p>
         <div className="Borrowers">
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <div>
-              <Search
-                callback1={(searchValue) => setSearchValue(searchValue)}
-                callback2={(filterType) => setFilterType(filterType)}
-              />
-              <Table
-                api="http://localhost:8000/api/borrowers/"
-                page={"Borrowers"}
-                data={dataTable}
-                column={column}
-                notes={dataNotes}
-              />
+          <div>
+            <Search
+              callback1={(searchValue) => setSearchValue(searchValue)}
+              callback2={(filterType) => setFilterType(filterType)}
+            />
+            <Table
+              api="http://localhost:8000/api/borrowers/"
+              page={"Borrowers"}
+              data={dataTable}
+              column={column}
+              notes={dataNotes}
+            />
 
-              <div className="Footer">
-                <Footer />
-              </div>
+            <div className="Footer">
+              <Footer />
             </div>
-          )}
+          </div>
         </div>
       </div>
     </>

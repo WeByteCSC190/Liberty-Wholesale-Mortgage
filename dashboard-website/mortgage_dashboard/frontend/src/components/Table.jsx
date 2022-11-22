@@ -15,7 +15,7 @@ const TableComponent = ({ url, page, data, column, notes }) => {
     // store the states in the form data
     if (page === "Borrowers") {
       var formData = new FormData();
-      formData.append("borrowernote", noteText);
+      formData.append("note", noteText);
       formData.append("borrower", caseId);
       url = "http://localhost:8000/api/borrowernote/";
       try {
@@ -34,7 +34,7 @@ const TableComponent = ({ url, page, data, column, notes }) => {
       }
     } else if (page === "Leads") {
       var formData = new FormData();
-      formData.append("leadnote", noteText);
+      formData.append("note", noteText);
       formData.append("lead", caseId);
       url = "http://localhost:8000/api/leadnote/";
       try {

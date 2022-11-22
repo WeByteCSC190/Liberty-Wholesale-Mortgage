@@ -189,31 +189,27 @@ const Lenders = () => {
       <div className="Content">
         <p className="Page-Title">Lenders</p>
         <div className="Lenders">
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <div>
-              <Search
-                callback1={(searchValue) => setSearchValue(searchValue)}
-                callback2={(filterType) => setFilterType(filterType)}
-                button1={"Company"}
-                button2={"Rating"}
-                button3={"Programs"}
-              />
-              <Table
-                api="http://localhost:8000/api/lender/"
-                page={"Lenders"}
-                data={dataTable}
-                column={column}
-                columns={columns}
-                image={logoTable}
-              />
+          <div>
+            <Search
+              callback1={(searchValue) => setSearchValue(searchValue)}
+              callback2={(filterType) => setFilterType(filterType)}
+              button1={"Company"}
+              button2={"Rating"}
+              button3={"Programs"}
+            />
+            <Table
+              api="http://localhost:8000/api/lender/"
+              page={"Lenders"}
+              data={dataTable}
+              column={column}
+              columns={columns}
+              image={logoTable}
+            />
 
-              <div className="Footer">
-                <Footer />
-              </div>
+            <div className="Footer">
+              <Footer />
             </div>
-          )}
+          </div>
         </div>
       </div>
     </>

@@ -25,34 +25,34 @@ import ProtectedRoutes from "./utils/ProtectedRoutes";
 // import Layout from "./hocs/layout";
 
 const App = () => {
-  return (
-    <Provider store={store}>
-      <div className="App">
-        <Routes>
-          <Route path="Sign-In" element={<SignIn />} />
-          <Route element={<ProtectedRoutes />}>
-            <Route path="" element={<Dashboard />} />
-            <Route path="/Dashboard" element={<Dashboard />} />
-            <Route path="Account" element={<Account />} />
-            <Route path="Leads" element={<Leads />} />
-            <Route path="Borrowers" element={<Borrowers />} />
-            <Route path="Resources" element={<Resources />} />
-            <Route path="Help" element={<Help />} />
-            <Route path="Terms" element={<Terms />} />
-            <Route path="Privacy" element={<Privacy />} />
-            <Route path="LegalThree" element={<LegalThree />} />
-            <Route path="LegalFour" element={<LegalFour />} />
-            <Route path="Users" element={<Users />} />
-            <Route path="LendersAdmin" element={<LendersAdmin />} />
-            <Route path="ResourcesAdmin" element={<ResourcesAdmin />} />
-            <Route path="Add-User" element={<AddUser />} />
-            <Route path="Lenders" element={<Lenders />} />
-            <Route path="Deleted" element={<Deleted />} />
-          </Route>
-        </Routes>
-      </div>
-    </Provider>
-  );
+    return (
+        <Provider store={store}>
+            <div className="App">
+                <Routes>
+                    <Route path="Sign-In" element={<SignIn />} />
+                    <Route element={<ProtectedRoutes />}>
+                        <Route path="" element={<Dashboard />} />
+                        <Route path="/Dashboard" element={<Dashboard />} />
+                        <Route path="Account" element={<Account />} />
+                        <Route path="Leads" element={<Leads />} />
+                        <Route path="Borrowers" element={<Borrowers />} />
+                        <Route path="Resources" element={<Resources />} />
+                        <Route path="Help" element={<Help />} />
+                        <Route path="Terms" element={<Terms />} />
+                        <Route path="Privacy" element={<Privacy />} />
+                        <Route path="LegalThree" element={<LegalThree />} />
+                        <Route path="LegalFour" element={<LegalFour />} />
+                        <Route path="Users" element={<Users />} />
+                        <Route path="LendersAdmin" element={<LendersAdmin />} />
+                        <Route path="ResourcesAdmin" element={<ResourcesAdmin />} />
+                        <Route path="Add-User" element={<AddUser />} />
+                        <Route path="Lenders" element={<Lenders />} />
+                        <Route path="Deleted" element={<Deleted />} />
+                    </Route>
+                </Routes>
+            </div>
+        </Provider>
+    );
 };
 
 export default App;

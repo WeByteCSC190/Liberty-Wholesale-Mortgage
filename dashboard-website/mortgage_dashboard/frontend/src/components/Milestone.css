@@ -1,29 +1,35 @@
-.Milestone {
-  background: black;
-  height: 100%;
-  width: 95%;
-  display: flex;
-  justify-self: center;
-  overflow: hidden;
-}
+/* .Milestone { */
+/*   background: black; */
+/*   height: 100%; */
+/*   width: 95%; */
+/*   display: flex; */
+/*   justify-self: center; */
+/*   overflow: hidden; */
+/* } */
 .Milestone-Title {
   color: white;
   font-weight: bold;
 }
 
-.Milestone-Progress-Meter {
-  top: 7%;
-  left: 5%;
-  width: 90%;
-  height: 10px;
+.prog {
+  width: 40rem;
   position: absolute;
-  /* background: lightgreen; */
-  /* background: linear-gradient(to-left, lightgreen 40%, white 60%); */
-  background: -webkit-linear-gradient(to right, lightgreen 50%, white 0%);
-  background: -moz-linear-gradient(to right, lightgreen 50%, white 0%);
-  background: -ms-linear-gradient(to right, lightgreen 50%, white 0%);
-  background: linear-gradient(to right, lightgreen 50%, white 0%);
 }
+
+/* .Milestone-Progress-Meter { */
+/*   top: 7%; */
+/*   left: 5%; */
+/*   width: 90%; */
+/*   height: 10px; */
+/*   position: absolute; */
+/*   /* background: lightgreen; */
+*/
+/*   /* background: linear-gradient(to-left, lightgreen 40%, white 60%); */ */
+/*   background: -webkit-linear-gradient(to right, lightgreen 50%, white 0%); */
+/*   background: -moz-linear-gradient(to right, lightgreen 50%, white 0%); */
+/*   background: -ms-linear-gradient(to right, lightgreen 50%, white 0%); */
+/*   background: linear-gradient(to right, lightgreen 50%, white 0%); */
+/* } */
 
 .Milestone-Progress-Tracker {
   top: 6%;

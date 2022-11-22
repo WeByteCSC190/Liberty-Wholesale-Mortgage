@@ -195,27 +195,23 @@ const Leads = () => {
       <div className="Content">
         <p className="Page-Title">Leads</p>
         <div className="Leads">
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <div>
-              <Search
-                callback1={(searchValue) => setSearchValue(searchValue)}
-                callback2={(filterType) => setFilterType(filterType)}
-              />
-              <Table
-                api="http://localhost:8000/api/leads/"
-                page={"Leads"}
-                data={dataTable}
-                column={column}
-                notes={dataNotes}
-              />
+          <div>
+            <Search
+              callback1={(searchValue) => setSearchValue(searchValue)}
+              callback2={(filterType) => setFilterType(filterType)}
+            />
+            <Table
+              api="http://localhost:8000/api/leads/"
+              page={"Leads"}
+              data={dataTable}
+              column={column}
+              notes={dataNotes}
+            />
 
-              <div className="Footer">
-                <Footer />
-              </div>
+            <div className="Footer">
+              <Footer />
             </div>
-          )}
+          </div>
         </div>
       </div>
     </>
