@@ -38,7 +38,7 @@ const SignIn = ({login, isAuthenticated}) => {
         alignItems: "center" }}>
         <form onSubmit={e => onSubmit(e)}>
           <CSRFToken/>
-            <img src={logo} width="200" height="110" alt="MLO Support" />
+            <img src={logo} width="200" height="100" alt="MLO Support" />
             <p>Sign In with a MLO Support Account</p>
           <div className="center">
             <input type="text" placeholder="Username" name="username" onChange={e =>onChange(e)} value={username} required />

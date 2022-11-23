@@ -15,7 +15,7 @@ export default class Help extends Component {
           justifyContent: "center",
           alignItems: "center" }}>
         <form>
-        <img src={logo} width="200" height="110" alt="MLO Support" />
+        <img src={logo} width="200" height="100" alt="MLO Support" />
           <p className="sign-in-topic">Help Options</p>
           <Row>
                <Link to="/" className="info-b">Forgot Username</Link>
