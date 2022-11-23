@@ -1,107 +1,390 @@
-import * as React from 'react';
+import * as React from "react";
 import Navbar from "../components/Navbar";
-import FloatingLabel from 'react-bootstrap/FloatingLabel'
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
-import Footer from '../components/Footer';
-import Container from 'react-bootstrap/Container';
-import "../components/Account.css";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
+import Footer from "../components/Footer";
+import Container from "react-bootstrap/Container";
+// import "../components/Account.css";
 
-
-const Account = () => {
+export default function Account() {
   return (
-    <>
-    <div className="page-wrapper">
-    <div className="Header">
+    <div>
       <Navbar />
-      
-    </div>
-    <div className="Content">
-      <Container className="page-format">
-      <p className="Page-Title">Account</p>
-        <div className="AccountPage-Content">
-          <div className="user-info">
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Full Name, Middle Name, Last Name"
-              className="mb-3"
-            >
-            <Form.Control placeholder="John Doe" />
-            </FloatingLabel>
-            <FloatingLabel
-              controlId="floatingInput"
-              label="NMLS ID (Can't be changed by user)"
-              className="mb-3"
-            >
-              <Form.Control type="email" placeholder="name@example.com" />
-            </FloatingLabel>
-            <Row className="mb-3">
-              <Col xs={9}>
-                <Form.Control placeholder="Address" />
-              </Col>
-              <Col>
-                <Form.Control placeholder="Postal Code" />
-              </Col>
-            </Row>
-
-
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Secondary Address (if applicable)"
-              className="mb-3"
-            >
-              <Form.Control type="email" placeholder="name@example.com" />
-            </FloatingLabel>
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Date of Birth"
-              className="mb-3"
-            >
-              <Form.Control type="email" placeholder="name@example.com" />
-            </FloatingLabel>
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Social Security Number (Displayed as XXX-XXX-1234)"
-              className="mb-3"
-            >
-              <Form.Control type="email" placeholder="name@example.com" />
-            </FloatingLabel>
-            <FloatingLabel
-              controlId="floatingInput"
-              label="Email Address"
-              className="mb-3"
-            >
-              <Form.Control type="email" placeholder="name@example.com" />
-            </FloatingLabel>
-            <Form.Select aria-label="Default select example">
-              <option>Role (Select Button)</option>
-              <option value="Loan Officer">Loan Officer</option>
-              <option value="Loan Approver">Loan Approver</option>
-            </Form.Select>
-          </div>
-          <div className="user-photo">
-            <div className="picture">
+      <form className="space-y-8 divide-y divide-gray-200 mx-auto flex max-w-4xl flex-col md:px-8 xl:px-0">
+        <div className="space-y-8 divide-y divide-gray-200">
+          <div>
+            <div>
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Profile
+              </h3>
+              <p className="mt-1 text-sm text-gray-500">
+                This information will be displayed publicly so be careful what
+                you share.
+              </p>
             </div>
-            <div className="picture-buttons">
-             <Button variant="primary" size="sm">
-               Edit
-             </Button>
-             <Button variant="light" size="sm">
-               Change Photo
-             </Button>
+
+            <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="username"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Username
+                </label>
+                <div className="mt-1 flex rounded-md shadow-sm">
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    autoComplete="username"
+                    className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-6">
+                <label
+                  htmlFor="about"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  About
+                </label>
+                <div className="mt-1">
+                  <textarea
+                    id="about"
+                    name="about"
+                    rows={3}
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    defaultValue={""}
+                  />
+                </div>
+                <p className="mt-2 text-sm text-gray-500">
+                  Write a few sentences about yourself.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="pt-8">
+            <div>
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Personal Information
+              </h3>
+              <p className="mt-1 text-sm text-gray-500">
+                Use a permanent address where you can receive mail.
+              </p>
+            </div>
+            <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="first-name"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  First name
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    name="first-name"
+                    id="first-name"
+                    autoComplete="given-name"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="last-name"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Last name
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    name="last-name"
+                    id="last-name"
+                    autoComplete="family-name"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Email address
+                </label>
+                <div className="mt-1">
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="country"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Country
+                </label>
+                <div className="mt-1">
+                  <select
+                    id="country"
+                    name="country"
+                    autoComplete="country-name"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  >
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>Mexico</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="sm:col-span-6">
+                <label
+                  htmlFor="street-address"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Street address
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    name="street-address"
+                    id="street-address"
+                    autoComplete="street-address"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="city"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  City
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    name="city"
+                    id="city"
+                    autoComplete="address-level2"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="region"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  State / Province
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    name="region"
+                    id="region"
+                    autoComplete="address-level1"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-2">
+                <label
+                  htmlFor="postal-code"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  ZIP / Postal code
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    name="postal-code"
+                    id="postal-code"
+                    autoComplete="postal-code"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-8">
+            <div>
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Notifications
+              </h3>
+              <p className="mt-1 text-sm text-gray-500">
+                We'll always let you know about important changes, but you pick
+                what else you want to hear about.
+              </p>
+            </div>
+            <div className="mt-6">
+              <fieldset>
+                <legend className="sr-only">By Email</legend>
+                <div
+                  className="text-base font-medium text-gray-900"
+                  aria-hidden="true"
+                >
+                  By Email
+                </div>
+                <div className="mt-4 space-y-4">
+                  <div className="relative flex items-start">
+                    <div className="flex h-5 items-center">
+                      <input
+                        id="comments"
+                        name="comments"
+                        type="checkbox"
+                        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      />
+                    </div>
+                    <div className="ml-3 text-sm">
+                      <label
+                        htmlFor="comments"
+                        className="font-medium text-gray-700"
+                      >
+                        Comments
+                      </label>
+                      <p className="text-gray-500">
+                        Get notified when someones posts a comment on a posting.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="relative flex items-start">
+                    <div className="flex h-5 items-center">
+                      <input
+                        id="candidates"
+                        name="candidates"
+                        type="checkbox"
+                        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      />
+                    </div>
+                    <div className="ml-3 text-sm">
+                      <label
+                        htmlFor="candidates"
+                        className="font-medium text-gray-700"
+                      >
+                        Candidates
+                      </label>
+                      <p className="text-gray-500">
+                        Get notified when a candidate applies for a job.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="relative flex items-start">
+                    <div className="flex h-5 items-center">
+                      <input
+                        id="offers"
+                        name="offers"
+                        type="checkbox"
+                        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                      />
+                    </div>
+                    <div className="ml-3 text-sm">
+                      <label
+                        htmlFor="offers"
+                        className="font-medium text-gray-700"
+                      >
+                        Offers
+                      </label>
+                      <p className="text-gray-500">
+                        Get notified when a candidate accepts or rejects an
+                        offer.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+              <fieldset className="mt-6">
+                <legend className="contents text-base font-medium text-gray-900">
+                  Push Notifications
+                </legend>
+                <p className="text-sm text-gray-500">
+                  These are delivered via SMS to your mobile phone.
+                </p>
+                <div className="mt-4 space-y-4">
+                  <div className="flex items-center">
+                    <input
+                      id="push-everything"
+                      name="push-notifications"
+                      type="radio"
+                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    />
+                    <label
+                      htmlFor="push-everything"
+                      className="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Everything
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      id="push-email"
+                      name="push-notifications"
+                      type="radio"
+                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    />
+                    <label
+                      htmlFor="push-email"
+                      className="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      Same as email
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      id="push-nothing"
+                      name="push-notifications"
+                      type="radio"
+                      className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                    />
+                    <label
+                      htmlFor="push-nothing"
+                      className="ml-3 block text-sm font-medium text-gray-700"
+                    >
+                      No push notifications
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
             </div>
           </div>
         </div>
-        </Container>
-    </div>
-   <div className="Footer">
-             <Footer />
-    </div>
-    </div>
-    </>
-  )
-}
 
-export default Account;
+        <div className="pt-5">
+          <div className="flex justify-end">
+            <button
+              type="button"
+              className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="ml-3 inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+}

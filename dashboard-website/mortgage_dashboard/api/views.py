@@ -10,6 +10,7 @@ from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework import permissions 
@@ -77,12 +78,60 @@ class LeadViewSet(viewsets.ModelViewSet):
     queryset = Lead.objects.all()
     serializer_class= LeadSerializer
 
+    @action(methods=['GET'], detail=False, url_path='recent')
+    def recent_leads(self, request):
+        queryset=Lead.objects.all().order_by('-date')[:3];
+        recent_three = reversed(queryset)
+        serializer = LeadSerializer(recent_three, many=True)
+        return JsonResponse(serializer.data, content_type="application/json", safe=False)
+
+    def destroy(self, request, pk):
+        lead = Lead.objects.get(caseId=pk)
+        name = "Lead"
+        caseID = lead.caseId
+        date = lead.date
+        fname = lead.fName
+        lname = lead.lName
+        creditscore = lead.creditScore
+        email = lead.email
+        phone_num = lead.phone_num
+        status = lead.status
+        leadBin = RecyclingBin(name,None, None,caseID,date,fname,lname,creditscore,email,phone_num, status)
+        leadBin.save()
+        lead.delete()
+        return Response("Moved to Bin!")
+
+
 class BorrowerViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
     queryset = Borrower.objects.all()
     serializer_class=BorrowerSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['Date', 'First Name', 'Last Name', 'Status']
+
+    @action(methods=['GET'], detail=False, url_path='recent')
+    def recent_borrowers(self, request):
+        queryset=Borrower.objects.all().order_by('-date')[:3];
+        recent_three = reversed(queryset)
+        serializer = LeadSerializer(recent_three, many=True)
+        return JsonResponse(serializer.data, content_type="application/json", safe=False)
+
+    def destroy(self, request, pk):
+        borrower = Borrower.objects.get(caseId=pk)
+        name = "borrower"
+        caseID = borrower.caseId
+        date = borrower.date
+        fname = borrower.fName
+        lname = borrower.lName
+        creditscore = borrower.creditScore
+        email = borrower.email
+        phone_num = borrower.phone_num
+        status = borrower.status
+        borrowerBin = RecyclingBin(name,None, None,caseID,date,fname,lname,creditscore,email,phone_num, status)
+        borrowerBin.save()
+        borrower.delete()
+        return Response("Moved to Bin!")
+
 
 class BorrowerNoteViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )

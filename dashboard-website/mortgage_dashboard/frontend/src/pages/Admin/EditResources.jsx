@@ -1,69 +1,68 @@
-import * as React from 'react';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import * as React from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import Navbar from "../../components/NavbarAdmin.jsx";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 import Table from "../../components/Table";
 import Carousel from "../../components/Carousel";
 import Card from "../../components/Card";
-import Footer from '../../components/Footer';
-
+import Footer from "../../components/Footer";
 
 const EditResources = () => {
-
-// files start
+  // files start
   const [dataTable, setDataTable] = useState([]);
   const getFilesUrl = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
   function getFiles() {
-  axios({
+    axios({
       method: "GET",
-      url:getFilesUrl,
-    }).then((response)=>{
-      const data = response.data;
-      setDataTable(data)
-      console.log(data)
-      return data
-    }).catch((error) => {
-      if (error.response) {
-        console.log(error.response);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-        }
+      url: getFilesUrl,
     })
-}
+      .then((response) => {
+        const data = response.data;
+        setDataTable(data);
+        console.log(data);
+        return data;
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+  }
 
   useEffect(() => {
     getFiles();
-  });
-
+  }, [true]);
 
   const column = [
-    { heading: 'Image Link', value: 'image' },
-    { heading: 'Text', value: 'caption' },
-    {heading: 'AddRow', value:'EditResources'}
-  ]
+    { heading: "Image Link", value: "image" },
+    { heading: "Text", value: "caption" },
+    { heading: "AddRow", value: "EditResources" },
+  ];
   const column2 = [
-    { heading: 'Image Link', value: 'image' },
-    { heading: 'File Name', value: 'caption' },
-    {heading: 'AddRow', value:'EditResources'}
-  ]
+    { heading: "Image Link", value: "image" },
+    { heading: "File Name", value: "caption" },
+    { heading: "AddRow", value: "EditResources" },
+  ];
   const column1 = [
-    { heading: 'Video Link', value: 'image' },
-    { heading: 'Image Link', value: 'image' },
-    { heading: 'Title', value: 'caption' },
-    { heading: 'Text', value: 'caption' },
-    {heading: 'AddRow', value:'EditResources'}
-  ]
+    { heading: "Video Link", value: "image" },
+    { heading: "Image Link", value: "image" },
+    { heading: "Title", value: "caption" },
+    { heading: "Text", value: "caption" },
+    { heading: "AddRow", value: "EditResources" },
+  ];
   // files end
-    const [showResults, setShowResults] = React.useState(false)
+  const [showResults, setShowResults] = React.useState(false);
   const showCards = () => {
-    showResults ? setShowResults(false) : setShowResults(true)
-  }
-  
-   const data = [
+    showResults ? setShowResults(false) : setShowResults(true);
+  };
+
+  const data = [
     {
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
@@ -108,17 +107,17 @@ const EditResources = () => {
       image:
         "https://www.oyorooms.com/travel-guide/wp-content/uploads/2019/02/summer-7.jpg",
       caption: "San Francisco",
-     },
+    },
     {
       image:
         "https://www.oyorooms.com/travel-guide/wp-content/uploads/2019/02/summer-7.jpg",
       caption: "Another caption",
-     },
-     {
+    },
+    {
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/GoldenGateBridge-001.jpg/1200px-GoldenGateBridge-001.jpg",
       caption: "The last one",
-    }
+    },
   ];
 
   const captionStyle = {
@@ -131,39 +130,52 @@ const EditResources = () => {
   };
   return (
     <>
-    <div className="page-wrapper">
-    <div className="Header">
-      <Navbar />   
-    </div>
-    <div className="Content">
-    <Container className="page-format">
-    <p className="Page-Title">Resources</p>
-    
-      <Container>
-        <Row style={{ paddingBottom: "70px" }}>
-           <h1>News and Articles</h1>
-            <Table api="http://localhost:8000/api/borrowers/"  page={"EditResources-carousel"} data={data} column={column} />
-        </Row>
-        <Row style={{ paddingBottom: "20px" }}>
-           <h1>Videos</h1>
-           <Table api="http://localhost:8000/api/borrowers/"  page={"EditResources-video"} data={data} column={column1} />
-        </Row>
-       
-        <Row style={{ paddingBottom: "20px" }}>
-          <h1>Files</h1>
-         <Table api="http://localhost:8000/api/borrowers/"  page={"Files"} data={data} column={column2} />
-         
-        </Row>
-      </Container>
-      </Container>
-      </div>
-      <div className="Footer">
-        <Footer />
-      </div>
+      <div className="page-wrapper">
+        <div className="Header">
+          <Navbar />
+        </div>
+        <div className="Content">
+          <Container className="page-format">
+            <p className="Page-Title">Resources</p>
+
+            <Container>
+              <Row style={{ paddingBottom: "70px" }}>
+                <h1>News and Articles</h1>
+                <Table
+                  api="http://localhost:8000/api/borrowers/"
+                  page={"EditResources-carousel"}
+                  data={data}
+                  column={column}
+                />
+              </Row>
+              <Row style={{ paddingBottom: "20px" }}>
+                <h1>Videos</h1>
+                <Table
+                  api="http://localhost:8000/api/borrowers/"
+                  page={"EditResources-video"}
+                  data={data}
+                  column={column1}
+                />
+              </Row>
+
+              <Row style={{ paddingBottom: "20px" }}>
+                <h1>Files</h1>
+                <Table
+                  api="http://localhost:8000/api/borrowers/"
+                  page={"Files"}
+                  data={data}
+                  column={column2}
+                />
+              </Row>
+            </Container>
+          </Container>
+        </div>
+        <div className="Footer">
+          <Footer />
+        </div>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default EditResources;
-
