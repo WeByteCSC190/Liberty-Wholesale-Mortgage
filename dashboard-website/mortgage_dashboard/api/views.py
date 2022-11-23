@@ -62,16 +62,16 @@ class LenderLogoViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['company']
 
-class AnnoucementsViewSet(viewsets.ModelViewSet):
+class AnnouncementsViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
-    queryset=Annoucements.objects.all()
-    serializer_class=AnnoucementsSerializer
+    queryset=Announcements.objects.all()
+    serializer_class=AnnouncementsSerializer
 
-class ImportantAnnoucementsViewSet(viewsets.ModelViewSet):
+class ImportantAnnouncementsViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
-    queryset=Annoucements.objects.all().order_by('-date')
+    queryset=Announcements.objects.all().order_by('-date')
     recent_three_leads=reversed(queryset)
-    serializer_class=AnnoucementsSerializer
+    serializer_class=AnnouncementsSerializer
 
 class LeadViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
@@ -80,7 +80,7 @@ class LeadViewSet(viewsets.ModelViewSet):
 
     @action(methods=['GET'], detail=False, url_path='recent')
     def recent_leads(self, request):
-        queryset=Lead.objects.all().order_by('-date')[:3];
+        queryset=Lead.objects.all().order_by('-date')[:5];
         recent_three = reversed(queryset)
         serializer = LeadSerializer(recent_three, many=True)
         return JsonResponse(serializer.data, content_type="application/json", safe=False)
@@ -111,7 +111,7 @@ class BorrowerViewSet(viewsets.ModelViewSet):
 
     @action(methods=['GET'], detail=False, url_path='recent')
     def recent_borrowers(self, request):
-        queryset=Borrower.objects.all().order_by('-date')[:3];
+        queryset=Borrower.objects.all().order_by('-date')[:5];
         recent_three = reversed(queryset)
         serializer = LeadSerializer(recent_three, many=True)
         return JsonResponse(serializer.data, content_type="application/json", safe=False)

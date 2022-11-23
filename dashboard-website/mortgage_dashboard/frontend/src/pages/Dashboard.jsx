@@ -9,37 +9,10 @@ import Milestone from "../components/Milestone";
 import RecentLeads from "../components/RecentLeads";
 import RecentBorrowers from "../components/RecentBorrowers";
 import AnnouncementsWidget from "../components/AnnouncementsWidget";
-// import DashboardCards from "../components/DashboardCards";
+import DashboardCards from "../components/DashboardCards";
 import Footer from "../components/Footer";
 
 const Dashboard = () => {
-  // return (
-  //   <>
-  //   <div className="page-wrapper">
-  //     <div className="Header">
-  //       <Navbar />
-  //     </div>
-  //     <div className="Content">
-  //       <Container className="page-style">
-  //           <p className="Page-Title">Dashboard</p>
-  //           <Row className="blkMilestone">
-  //           <Milestone />
-  //           </Row>
-  //       <Container className="Dashboard">
-  //         {/* <DashboardCards /> */}
-  //
-  //         <RecentLeads />
-  //         <RecentBorrowers />
-  //         <AnnouncementsWidget />
-  //       </Container>
-  //       </Container>
-  //     </div>
-  //     <div className="Footer">
-  //       <Footer />
-  //     </div>
-  //     </div>
-  //   </>
-  // )
   return (
     <div className="min-h-full">
       <Navbar />
@@ -47,18 +20,18 @@ const Dashboard = () => {
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
           <h1 className="sr-only">Dashboard</h1>
           <Milestone />
+          <DashboardCards />
           {/* Main 3 column grid */}
           <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
             {/* Left column */}
-            <div className="grid grid-cols-1 gap-4 lg:col-span-2">
+            <div className="grid grid-cols-1 gap-4 lg:col-span-2 h-full">
               <section aria-labelledby="section-1-title">
                 <h2 className="sr-only" id="section-1-title">
-                  Section title
+                  Recent
                 </h2>
                 <div className="overflow-hidden rounded-lg bg-white shadow">
                   <RecentLeads />
                   <RecentBorrowers />
-                  {/*<div className="p-6">Your content</div>*/}
                 </div>
               </section>
             </div>

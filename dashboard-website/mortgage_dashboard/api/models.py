@@ -137,7 +137,7 @@ class Status(models.Model):
     def __str__(self):
         return str(self.id)
 
-class Annoucements(models.Model):
+class Announcements(models.Model):
      date=models.DateTimeField('Date')
      content=models.TextField('Content',blank=True)
 

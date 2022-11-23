@@ -6,10 +6,8 @@ from . models import *
 # Register your models here.
 admin.site.register(Client)
 admin.site.register(News)
-admin.site.register(Anouncements)
-admin.site.register(Annoucements)
 admin.site.register(Files)
-
+admin.site.register(Announcements)
 admin.site.register(Media)
 admin.site.register(Video)
 admin.site.register(Resources)
@@ -19,7 +17,6 @@ admin.site.register(Borrower)
 admin.site.register(MileStone)
 admin.site.register(LoanOfficer)
 admin.site.register(LoanProcessor)
-
 admin.site.register(Bio)
 admin.site.register(RecyclingBin)
 admin.site.register(BorrowerNote)
