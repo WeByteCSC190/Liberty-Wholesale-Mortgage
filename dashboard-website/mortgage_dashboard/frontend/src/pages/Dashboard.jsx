@@ -24,7 +24,7 @@ const Dashboard = () => {
           {/* Main 3 column grid */}
           <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
             {/* Left column */}
-            <div className="grid grid-cols-1 gap-4 lg:col-span-2 h-full">
+            <div className="grid grid-cols-1 gap-4 lg:col-span-2">
               <section aria-labelledby="section-1-title">
                 <h2 className="sr-only" id="section-1-title">
                   Recent

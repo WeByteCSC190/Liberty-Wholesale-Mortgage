@@ -80,7 +80,7 @@ class LeadViewSet(viewsets.ModelViewSet):
 
     @action(methods=['GET'], detail=False, url_path='recent')
     def recent_leads(self, request):
-        queryset=Lead.objects.all().order_by('-date')[:5];
+        queryset=Lead.objects.all().order_by('-date')[:4];
         recent_three = reversed(queryset)
         serializer = LeadSerializer(recent_three, many=True)
         return JsonResponse(serializer.data, content_type="application/json", safe=False)
@@ -111,7 +111,7 @@ class BorrowerViewSet(viewsets.ModelViewSet):
 
     @action(methods=['GET'], detail=False, url_path='recent')
     def recent_borrowers(self, request):
-        queryset=Borrower.objects.all().order_by('-date')[:5];
+        queryset=Borrower.objects.all().order_by('-date')[:4];
         recent_three = reversed(queryset)
         serializer = LeadSerializer(recent_three, many=True)
         return JsonResponse(serializer.data, content_type="application/json", safe=False)
