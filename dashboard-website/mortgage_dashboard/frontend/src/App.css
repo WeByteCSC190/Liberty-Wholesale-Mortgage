@@ -234,12 +234,13 @@ h1 {
 
 .sign-in-message {
   padding-top: 0.2%;
-  padding-bottom: 0.1%; 
+  padding-bottom: 0.2%; 
+  
 }
 
 .sign-in-topic {
   padding-top: 0.2%;
-  padding-bottom: 0.2%; 
+  padding-bottom: 0.1%; 
   font-size: 20px !important;
   font-weight: bold;
   color: rgb(86, 152, 251) !important;
