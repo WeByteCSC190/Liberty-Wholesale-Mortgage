@@ -13,7 +13,7 @@ export default function Account() {
   return (
     <div>
       <Navbar />
-      <form className="space-y-8 divide-y divide-gray-200 mx-auto flex max-w-4xl flex-col md:px-8 xl:px-0">
+      <form className="space-y-8 divide-y divide-gray-200 mx-auto flex max-w-4xl flex-col md:px-8 xl:px-0 py-5">
         <div className="space-y-8 divide-y divide-gray-200">
           <div>
             <div>
@@ -170,6 +170,23 @@ export default function Account() {
                 </div>
               </div>
 
+              <div className="sm:col-span-6">
+                <label
+                  htmlFor="secondary-street-address"
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Secondary Street address
+                </label>
+                <div className="mt-1">
+                  <input
+                    type="text"
+                    name="secondary-street-address"
+                    id="secondary-street-address"
+                    autoComplete="secondary-street-address"
+                    className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  />
+                </div>
+              </div>
               <div className="sm:col-span-2">
                 <label
                   htmlFor="city"
