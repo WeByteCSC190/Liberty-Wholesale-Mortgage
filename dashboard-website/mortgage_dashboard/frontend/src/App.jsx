@@ -38,6 +38,12 @@ const App = () => {
       <div className="App">
         <Routes>
           <Route path="Sign-In" element={<SignIn />} />
+          <Route path="Help" element={<Help />} />
+          <Route path="Terms" element={<Terms />} />
+          <Route path="Privacy" element={<Privacy />} />
+          <Route path="LegalThree" element={<LegalThree />} />
+          <Route path="LegalFour" element={<LegalFour />} />
+
           <Route element={<ProtectedRoutes />}>
             <Route path="" element={<Dashboard />} />
             <Route path="/Dashboard" element={<Dashboard />} />
@@ -45,11 +51,6 @@ const App = () => {
             <Route path="Leads" element={<Leads />} />
             <Route path="Borrowers" element={<Borrowers />} />
             <Route path="Resources" element={<Resources />} />
-            <Route path="Help" element={<Help />} />
-            <Route path="Terms" element={<Terms />} />
-            <Route path="Privacy" element={<Privacy />} />
-            <Route path="LegalThree" element={<LegalThree />} />
-            <Route path="LegalFour" element={<LegalFour />} />
             <Route path="Users" element={<Users />} />
             <Route path="Add-User" element={<AddUser />} />
             <Route path="LendersAdmin" element={<LendersAdmin />} />
