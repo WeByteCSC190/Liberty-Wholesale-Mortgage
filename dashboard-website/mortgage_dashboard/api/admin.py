@@ -4,7 +4,6 @@ from import_export import resources
 from . models import *
 
 # Register your models here.
-admin.site.register(UserProfile)
 admin.site.register(Client)
 admin.site.register(News)
 admin.site.register(Anouncements)

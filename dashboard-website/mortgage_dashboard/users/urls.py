@@ -1,8 +1,7 @@
-from re import U
 from django.urls import path
-from .views import GetUserProfileView, UpdateUserProfileView
+from .views import RegisterView, RetrieveUserView
 
 urlpatterns = [
-    path('user', GetUserProfileView.as_view()),
-    path('update', UpdateUserProfileView.as_view())
+    path('register', RegisterView.as_view()),
+    # path('update', UpdateUserProfileView.as_view())
 ]

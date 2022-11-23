@@ -1,60 +1,63 @@
-
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import BlueLogo from './images/blue_logo.png';
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import BlueLogo from "./images/blue_logo.png";
 import { Link, NavLink, useMatch, useResolvedPath } from "react-router-dom";
-import {useEffect, useLayoutEffect, useRef, useState} from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
-import * as Icons from "@fortawesome/free-solid-svg-icons"
-import React, { Fragment } from 'react';
-import {logout} from '../actions/auth';
-import {connect} from 'react-redux'; 
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import Dropdown from "react-bootstrap/Dropdown";
+import * as Icons from "@fortawesome/free-solid-svg-icons";
+import React, { Fragment } from "react";
+// import {logout} from '../actions/auth';
+import { Logout } from "../features/auth/authSlice";
+import { connect } from "react-redux";
 
 /* Renders the Navbar */
 
 // export default function NavbarCustom() {
-const NavbarCustom = (isAuthenticated) =>{    
-
+const NavbarCustom = (isAuthenticated) => {
   const authenticatedLinks = (
     <Container className="nav-menu">
       <SwitchPage href="/">Dashboard</SwitchPage>
       <SwitchPage href="/leads">Leads</SwitchPage>
       <SwitchPage href="/borrowers">Borrowers</SwitchPage>
-      <SwitchPage href="/lenders" >Lenders</SwitchPage>
-      <SwitchPage href="/resources" >Resources</SwitchPage>
+      <SwitchPage href="/lenders">Lenders</SwitchPage>
+      <SwitchPage href="/resources">Resources</SwitchPage>
     </Container>
   );
 
   const nonAuthLinks = (
     <Fragment>
-      <li className='nav-menu'>
-        <NavLink className = 'nav-link' to='/sign-in'>Login</NavLink>
+      <li className="nav-menu">
+        <NavLink className="nav-link" to="/sign-in">
+          Login
+        </NavLink>
       </li>
-      <li className='nav-menu'>
-        <NavLink className = 'nav-link' to='/register'>Register</NavLink>
-      </li>      
+      <li className="nav-menu">
+        <NavLink className="nav-link" to="/register">
+          Register
+        </NavLink>
+      </li>
     </Fragment>
   );
 
   return (
     <Navbar collapseOnSelect expand="lg" variant="dark" className="Navbar">
-    <Container>
-    <Navbar.Brand href="/">
-      <img
-        src={BlueLogo} //MLO Support Logo
-        width="150"
-        height="70"
-        className="Nav-Logo"
-        alt="MLO Support"
-      />
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className='m-auto'>
-          {/* <Container>
+      <Container>
+        <Navbar.Brand href="/">
+          <img
+            src={BlueLogo} //MLO Support Logo
+            width="150"
+            height="70"
+            className="Nav-Logo"
+            alt="MLO Support"
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="m-auto">
+            {/* <Container>
             <ul className="nav-menu">
             <SwitchPage href="/">Dashboard</SwitchPage>
             <SwitchPage href="/leads">Leads</SwitchPage>
@@ -64,104 +67,94 @@ const NavbarCustom = (isAuthenticated) =>{
             </ul>
            </Container> */}
 
-           {/* <Container className="nav-menu"> */}
-           {isAuthenticated ? authenticatedLinks : nonAuthLinks}         
-           {/* </Container> */}   
-        </Nav>
-        
-        <Nav>
-          <SwitchIcon />
-        </Nav>
-        
-      </Navbar.Collapse>
-    </Container>
-  </Navbar>
-      
+            {/* <Container className="nav-menu"> */}
+            {isAuthenticated ? authenticatedLinks : nonAuthLinks}
+            {/* </Container> */}
+          </Nav>
+
+          <Nav>
+            <SwitchIcon />
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+};
+
+// Checks the current page uses css to underline/bold the link on Navbar Menu
+function SwitchPage({ href, children, ...props }) {
+  const resolvedPath = useResolvedPath(href);
+  const isActive = useMatch({ path: resolvedPath.pathname, end: true });
+  return (
+    <li className={isActive ? "active" : ""}>
+      <Nav.Link href={href} {...props}>
+        {children}
+      </Nav.Link>
+    </li>
   );
 }
 
-// Checks the current page uses css to underline/bold the link on Navbar Menu
-function SwitchPage( {href, children, ...props }) {
-  const resolvedPath = useResolvedPath(href)
-  const isActive = useMatch( {path: resolvedPath.pathname, end:true} ) 
-  return (
-    
-      <li className={ isActive ? "active" : ""}> 
-          <Nav.Link href={href} {...props}>
-              {children}
-          </Nav.Link>
-      </li>
-      
-  )
-}
-
 // Checks if the navbar is mobile, swaps the icon, and add 2 links to Mobile Menu
-function SwitchIcon(logout){
-
+function SwitchIcon() {
   // Gets width of web browser
   const [windowDimension, detectWidth] = useState({
-    windowWidth: window.innerWidth})
+    windowWidth: window.innerWidth,
+  });
 
-    const detectSize = () => {
-      detectWidth({
-        windowWidth: window.innerWidth, 
-      })
-    }
-      useEffect(() => {
-        window.addEventListener('resize', detectSize)
-        return() => {
-          window.removeEventListener('resize', detectSize)
-          
-        }
-      }, [windowDimension])
-    
-  
-  
+  const detectSize = () => {
+    detectWidth({
+      windowWidth: window.innerWidth,
+    });
+  };
+  useEffect(() => {
+    window.addEventListener("resize", detectSize);
+    return () => {
+      window.removeEventListener("resize", detectSize);
+    };
+  }, [windowDimension]);
+
   // Compare width of web broswer and performs action
-  if( windowDimension.windowWidth < 992) {
+  if (windowDimension.windowWidth < 992) {
     return (
       <Container className="nav-menu">
-      <Nav.Link href="/account">Account</Nav.Link>
-      <Nav.Link className='nav-item' onClick={logout} href='#!' >Sign Out</Nav.Link>
+        <Nav.Link href="/account">Account</Nav.Link>
+        <Nav.Link className="nav-item" onClick={Logout} href="#!">
+          Sign Out
+        </Nav.Link>
       </Container>
-      
     );
   } else {
-    return(
+    return (
       <Dropdown>
-        <Dropdown.Toggle 
-           variant="outline-primary" 
-           style={{color: 'white', border: 0,}}
-           id="NavDropDownButton"
+        <Dropdown.Toggle
+          variant="outline-primary"
+          style={{ color: "white", border: 0 }}
+          id="NavDropDownButton"
         >
-        <FontAwesomeIcon 
-           icon={Icons.faUser} 
-           size="2x" 
-         />
-        
+          <FontAwesomeIcon icon={Icons.faUser} size="2x" />
         </Dropdown.Toggle>
-  
-        <Dropdown.Menu 
-          
-        >
+
+        <Dropdown.Menu>
           <NavDropdown.Item className="nav-drop-link">
-          <Link to="/account">Account</Link>
-         </NavDropdown.Item>
-  
-        <NavDropdown.Item className="nav-drop-link">
-          <a className='nav-item' onClick={logout} href='#!'> Sign Out</a>
-          {/* <Link onClick={logout} href='#!'>Sign Out</Link> */}
-        </NavDropdown.Item>
+            <Link to="/account">Account</Link>
+          </NavDropdown.Item>
+
+          <NavDropdown.Item className="nav-drop-link">
+            <a className="nav-item" onClick={Logout} href="#!">
+              {" "}
+              Sign Out
+            </a>
+            {/* <Link onClick={logout} href='#!'>Sign Out</Link> */}
+          </NavDropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-    )
+    );
   }
 }
 
+// const mapStateToProps = (state) => ({
+//   isAuthenticated: state.auth.isAuthenticated,
+// });
+// export default connect(mapStateToProps, { Logout })(NavbarCustom);
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-});
-export default connect(mapStateToProps,{logout})(NavbarCustom);
-
-
+export default NavbarCustom;

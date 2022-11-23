@@ -1,5 +1,4 @@
 from datetime import datetime
-from pyexpat import model
 from sqlite3 import Date
 from tarfile import LENGTH_NAME
 from xmlrpc.client import DateTime
@@ -52,6 +51,7 @@ class Files(models.Model):
                              default=generate_random_number(), unique=True)
     def __int__(self):
         return self.id
+
 class Images(models.Model):
     images = models.FileField(upload_to='images_uploaded',null=True,
         validators=[FileExtensionValidator(allowed_extensions=['JPEG','GIF','PNG','JPG'])])
@@ -73,7 +73,7 @@ class Video(models.Model):
     video = models.FileField(upload_to='videos_uploaded',null=True,
         validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
     date_uploaded = models.DateTimeField(default=timezone.now)
-    user = models.ForeignKey(User,on_delete= models.CASCADE)
+    # user = models.ForeignKey(User,on_delete= models.CASCADE)
     id = models.IntegerField('ID', primary_key=True, null=False,
                              default=generate_random_number(), unique=True)
     def __int__(self):
@@ -198,8 +198,8 @@ class RecyclingBin(models.Model):
         'Credit Score', blank=True, null=True, unique=False)
     email = models.EmailField('Email Address')
     phone_num = models.CharField('Phone Number', max_length=16, null=True)
-    status = models.ForeignKey(
-        Status, blank=True, null=True, on_delete=models.CASCADE)
+    # status = models.ForeignKey(
+    #     Status, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.dataName + " " + f'caseId: {self.caseId}'
@@ -232,29 +232,6 @@ class LoanOfficer(models.Model):
 
     def __str__(self):
         return self.mileStone
-
-
-class UserProfile(models.Model):
-    # resources = models.ForeignKey(
-    #     Resources, blank=True, null=True, on_delete=models.CASCADE)
-
-    # userName = models.CharField(max_length=40, null=True, blank=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    username = models.CharField(max_length=20, default='')
-    password = models.CharField(max_length=20, default='')
-    uID = models.IntegerField(default=000000)
-    fName = models.CharField(max_length=40, default='') 
-    lName = models.CharField(max_length=40, default='')
-    nmlsID = models.IntegerField(default=000000)  # could not tell what the variable name is supposed to be
-    ssn = models.IntegerField(default=000000)
-    is_superuser = models.IntegerField(default =0)
-    is_staff = models.IntegerField(default =0)
-    is_active = models.IntegerField(default =1)
-
-
-    def __str__(self):
-        return str(self.fName)
-
 
 class Client(models.Model):
     # this is a template model, ex. cID needs to have a default value
@@ -320,10 +297,10 @@ class LeadNote(models.Model):
     def __str__(self):
         return self.leadnote
         
-class AccountDetail(models.Model):
-    ssn = models.ForeignKey(UserProfile, blank = True, null = True, on_delete=models.CASCADE)
-    details = models.TextField('Account Information', blank = True, max_length = 200)
-
-    def __str__(self):
-        return self.ssn
+# class AccountDetail(models.Model):
+#     ssn = models.ForeignKey(UserProfile, blank = True, null = True, on_delete=models.CASCADE)
+#     details = models.TextField('Account Information', blank = True, max_length = 200)
+#
+#     def __str__(self):
+#         return self.ssn
         

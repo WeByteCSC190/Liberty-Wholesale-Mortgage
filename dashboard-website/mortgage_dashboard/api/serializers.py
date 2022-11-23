@@ -15,17 +15,7 @@ class LeadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lead
         fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
-        
-class AddLead(serializers.ModelSerializer):
-    class Meta:
-        model = Lead
-        fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
 
-class AddBorrower(serializers.ModelSerializer):
-    class Meta:
-        model = Borrower
-        fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
-        
 class BorrowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Borrower
@@ -41,30 +31,15 @@ class ResourcesSerializer(serializers.ModelSerializer):
         model = Resources
         fields = '__all__'
 
-class AddResources(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Resources
-        fields = '__all__'
-        
 class LoanOfficerSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
-
-class UserProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
         fields = '__all__'
 
 class ClientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Client
         fields = ('cID', 'fName', 'lName', 'email', 'phone_num')
-
-class AddClient(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Client
-        fields = ('fName', 'lName', 'email', 'phone_num')
 
 class LenderSerializer(serializers.ModelSerializer):
     class Meta:
@@ -101,10 +76,10 @@ class LeadNoteSerializer(serializers.ModelSerializer):
         model= LeadNote
         fields=('__all__')
         
-class AccountDetails(serializers.ModelSerializer):
-    class Meta:
-        model = AccountDetail
-        fields = ('__all__')
+# class AccountDetails(serializers.ModelSerializer):
+#     class Meta:
+#         model = AccountDetail
+#         fields = ('__all__')
         
 class StatusSerializer(serializers.ModelSerializer):
     class Meta:
