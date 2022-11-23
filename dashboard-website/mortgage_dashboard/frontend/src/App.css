@@ -151,7 +151,7 @@
 } */
 
 .SignIn {
-  padding: 70px 0 0 0;
+  padding-top: 10%; 
   position: absolute;
   text-align: center;
   height: 100vh;
@@ -162,6 +162,20 @@
   background-image: radial-gradient(circle farthest-corner at 22.4% 21.7%, rgba(4, 189, 228, 1) 0%, rgba(2, 83, 185, 1) 100.2%);
   display: block;
   flex-direction: column;
+}
+
+.sign-in-message {
+  padding-top: 0.2%;
+  padding-bottom: 0.1%; 
+}
+
+.sign-in-topic {
+  padding-top: 0.2%;
+  padding-bottom: 0.2%; 
+  font-size: 20px !important;
+  font-weight: bold;
+  color: rgb(86, 152, 251) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 
 .SignIn a {

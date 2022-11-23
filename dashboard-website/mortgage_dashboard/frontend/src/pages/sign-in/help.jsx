@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import logo from '../../logo.jpg'; 
-import Container from 'react-bootstrap/Container';
+import { Container, Nav, Navbar } from "react-bootstrap";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link} from "react-router-dom";
@@ -8,13 +8,15 @@ import { Link} from "react-router-dom";
 export default class Help extends Component {
   render() {
     return (
+      <div className="page-wrapper">
+      <div className="Content">
       <div className="SignIn">
         <div style={{  display: "flex",
           justifyContent: "center",
           alignItems: "center" }}>
         <form>
-          <img src={logo} alt="logo" />
-          <p>Help Options</p>
+        <img src={logo} width="200" height="110" alt="MLO Support" />
+          <p className="sign-in-topic">Help Options</p>
           <Row>
                <Link to="/" className="info-b">Forgot Username</Link>
           </Row>
@@ -32,21 +34,27 @@ export default class Help extends Component {
             </Row>
           </form>
           </div>
-        <Row style={{ position: "relative",  margin: '50px 0 0 0' }}>
-          <Col style={{ padding: '0 2%' }}>
-            <Link to="/" style={{ float: 'left' }} className="info">
-            Terms of Use
-            </Link>
-            <Link to="/" style={{ float: 'left' }} className="info">
-            Privacy Policy
-            </Link>
-          </Col>
-          <Col style={{ padding: '0 2%' }} >
-            <Link to="/" className="info" style={{ float: 'right' }}>
-              Help
-            </Link>
-          </Col >
-        </Row>
+          <div className="Footer">
+          <Navbar className="footer-login-body" variant="dark" fixed="bottom">
+        <Container>
+          <Nav className="footer-login-links">
+            <Nav.Link href="/terms" target="_blank" 
+                  rel="noopener noreferrer">Terms of Use</Nav.Link>
+            <Nav.Link href="/privacy" target="_blank" 
+                  rel="noopener noreferrer">Privacy Policy</Nav.Link>
+            <Nav.Link href="/legalthree" target="_blank" 
+                  rel="noopener noreferrer">Cookie Policy</Nav.Link>
+            <Nav.Link href="/help" target="_blank" 
+                  rel="noopener noreferrer">Help</Nav.Link>
+          </Nav>
+          <Nav>
+          <Navbar.Brand className="footer-login-brand">Powered by Liberty Wholesale Mortgage</Navbar.Brand>
+          </Nav>
+        </Container>
+         </Navbar>
+          </div>
+          </div>
+          </div>
           </div>
     );
   }
