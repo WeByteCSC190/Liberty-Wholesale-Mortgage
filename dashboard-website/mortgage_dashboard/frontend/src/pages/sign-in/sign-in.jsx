@@ -7,6 +7,7 @@ import {login} from '../../actions/auth';
 import CSRFToken from "../../components/CSRFToken";
 import {connect} from 'react-redux';
 import axios from 'axios';
+import { Container, Nav, Navbar } from "react-bootstrap";
 
 axios.defaults.withCredentials = true;
 
@@ -37,7 +38,7 @@ const SignIn = ({login, isAuthenticated}) => {
         alignItems: "center" }}>
         <form onSubmit={e => onSubmit(e)}>
           <CSRFToken/>
-            <img src={logo} alt="logo" />
+            <img src={logo} width="200" height="110" alt="MLO Support" />
             <p>Sign In with a MLO Support Account</p>
           <div className="center">
             <input type="text" placeholder="Username" name="username" onChange={e =>onChange(e)} value={username} required />
@@ -50,23 +51,27 @@ const SignIn = ({login, isAuthenticated}) => {
               <a href="sign-up">Forgot Username or Password</a>
           </Row>
         </form>
+        </div>
+      <div className="Footer">
+      <Navbar className="footer-login-body" variant="dark" fixed="bottom">
+        <Container>
+          <Nav className="footer-login-links">
+            <Nav.Link href="/terms" target="_blank" 
+                  rel="noopener noreferrer">Terms of Use</Nav.Link>
+            <Nav.Link href="/privacy" target="_blank" 
+                  rel="noopener noreferrer">Privacy Policy</Nav.Link>
+            <Nav.Link href="/legalthree" target="_blank" 
+                  rel="noopener noreferrer">Cookie Policy</Nav.Link>
+            <Nav.Link href="/legalfour" target="_blank" 
+                  rel="noopener noreferrer">Help</Nav.Link>
+          </Nav>
+          <Nav>
+          <Navbar.Brand className="footer-login-brand">Powered by Liberty Wholesale Mortgage</Navbar.Brand>
+          </Nav>
+        </Container>
+      </Navbar>
       </div>
-      <Row style={{ position: "relative",  margin: '50px 0 0 0' }}>
-        <Col style={{ padding: '0 2%' }}>
-          <Link to="/terms" style={{ float: 'left' }} className="info">
-          Terms of Use
-          </Link>
-          <Link to="/privacy" style={{ float: 'left' }} className="info">
-          Privacy Policy
-          </Link>
-        </Col>
-        <Col style={{ padding: '0 2%' }} >
-          <Link to="/Help" className="info" style={{ float: 'right' }}>
-            Help
-          </Link>
-        </Col >
-      </Row>
-    </div>
+     </div>
   );
   // }
 };
@@ -76,3 +81,24 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { login })(SignIn);
+
+/*<Container>
+      <Row style={{ position: "relative",  margin: '50px 0 0 0', width: '100%', bottom: '0', }}>
+        <Nav>
+        <Col style={{ padding: '0 3%' }}>
+          <Link to="/terms" style={{ float: 'left' }} className="info">
+          Terms of Use
+          </Link>
+          <Link to="/privacy" style={{ float: 'left' }} className="info">
+          Privacy Policy
+          </Link>
+          <Link to="/Help" className="info" style={{ float: 'left' }}>
+            Help
+          </Link>
+        </Col>
+        </Nav>
+        <Col>
+          <p>Powered by Liberty Wholesale Mortgage</p>
+        </Col>
+      </Row>
+      </Container> */
