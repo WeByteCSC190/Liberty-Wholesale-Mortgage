@@ -37,18 +37,21 @@ const SignIn = () => {
     return <h1>"Loading..."</h1>;
   } else {
     return (
-      <div className="SignIn">
+      <div className="page-wrapper">
+      
         <div className="Content">
+          
+           <div className="SignIn"> 
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}
-        >
+        > 
           <form onSubmit={(e) => onSubmit(e)}>
           <img src={logo} width="200" height="110" alt="MLO Support" />
-            <p>Sign In with a MLO Support Account</p>
+            <p className="sign-in-message">Sign In with a MLO Support Account</p>
             <div className="center">
               <input
                 type="text"
@@ -73,7 +76,6 @@ const SignIn = () => {
             <button className="btn btn-primary" type="submit">
               Sign In
             </button>
-            
             <Row>
               <a href="sign-up">Forgot Username or Password</a>
             </Row>
@@ -90,7 +92,7 @@ const SignIn = () => {
                   rel="noopener noreferrer">Privacy Policy</Nav.Link>
             <Nav.Link href="/legalthree" target="_blank" 
                   rel="noopener noreferrer">Cookie Policy</Nav.Link>
-            <Nav.Link href="/legalfour" target="_blank" 
+            <Nav.Link href="/help" target="_blank" 
                   rel="noopener noreferrer">Help</Nav.Link>
           </Nav>
           <Nav>
@@ -98,6 +100,7 @@ const SignIn = () => {
           </Nav>
         </Container>
       </Navbar>
+      </div>
       </div>
       </div>
       </div>
