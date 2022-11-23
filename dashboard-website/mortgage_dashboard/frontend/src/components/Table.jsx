@@ -70,7 +70,6 @@ const TableComponent = ({ url, page, data, column, notes }) => {
     setExpandedRows(newExpandedRows);
   };
   return (
-    <div style={{ paddingBottom: 10, paddingLeft: 90, paddingRight: 90 }}>
       <Table className="Table" responsive hover>
         <thead>
           <tr className="table-title">List of {page}</tr>
@@ -100,7 +99,7 @@ const TableComponent = ({ url, page, data, column, notes }) => {
           Showing {data.length} out of {data.length} results
         </tr>
       </Table>
-    </div>
+    
   );
 };
 const TableHeadItem = ({ item, url, page }) => {
