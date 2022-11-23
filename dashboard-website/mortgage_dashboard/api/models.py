@@ -63,10 +63,11 @@ class Media(models.Model):
         return self.link
 
 class Video(models.Model):
-    video = models.FileField(upload_to='videos_uploaded',null=True,
-        validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
+    # video = models.FileField(upload_to='videos_uploaded',null=True,
+        # validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
+    url = models.URLField(null=True)
+    title = models.CharField(max_length=50, null=True)
     date_uploaded = models.DateTimeField(default=timezone.now)
-    # user = models.ForeignKey(CustomUser,on_delete= models.CASCADE)
     id = models.IntegerField('ID', primary_key=True, null=False,
                              default=generate_random_number(), unique=True)
     def __int__(self):
@@ -185,7 +186,6 @@ class RecyclingBin(models.Model):
     status = models.CharField(max_length=40)
     def __str__(self):
         return self.dataName + " " + f'caseId: {self.caseId}'
-
 
 class MileStone(models.Model):
     id = models.IntegerField('ID', primary_key=True, null=False,

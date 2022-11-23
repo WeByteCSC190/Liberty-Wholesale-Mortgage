@@ -49,8 +49,7 @@ const refresh = async () => {
   const options = {
     method: "post",
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
       "Access-Control-Allow-Origin": "*",
     },
     url: "/accounts/token/refresh",

@@ -45,10 +45,6 @@ const Borrowers = () => {
   function getBorrowers() {
     api({
       method: "GET",
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: "Bearer " + localStorage.getItem("access"),
-      },
       url: getBorrowersUrl,
     })
       .then((response) => {
@@ -238,6 +234,7 @@ const Borrowers = () => {
               callback2={(filterType) => setFilterType(filterType)}
             />
             <Table
+              url={getBorrowersUrl}
               api="http://localhost:8000/api/borrowers/"
               page={"Borrowers"}
               data={dataTable}

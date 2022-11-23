@@ -201,6 +201,7 @@ const Leads = () => {
               callback2={(filterType) => setFilterType(filterType)}
             />
             <Table
+              url={getLeadsUrl}
               api="http://localhost:8000/api/leads/"
               page={"Leads"}
               data={dataTable}

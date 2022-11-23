@@ -17,16 +17,11 @@ const TableComponent = ({ url, page, data, column, notes }) => {
       var formData = new FormData();
       formData.append("note", noteText);
       formData.append("borrower", caseId);
-      url = "http://localhost:8000/api/borrowernote/";
       try {
         const response = await api({
           method: "post",
-          url: url,
+          url: "http://localhost:8000/api/borrowernote/",
           data: formData,
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: "Bearer " + localStorage.getItem("access"),
-          },
         });
         window.location.reload(false);
       } catch (error) {
@@ -40,12 +35,8 @@ const TableComponent = ({ url, page, data, column, notes }) => {
       try {
         const response = await api({
           method: "post",
-          url: url,
+          url: { url },
           data: formData,
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: "Bearer " + localStorage.getItem("access"),
-          },
         });
         window.location.reload(false);
       } catch (error) {
@@ -116,7 +107,7 @@ const TableHeadItem = ({ item, url, page }) => {
   if (item.heading === "AddRow") {
     return (
       <th>
-        <AddRow page={`${page}`} url={`${url}`} />
+        <AddRow page={page} url={url} />
       </th>
     );
   } else {
