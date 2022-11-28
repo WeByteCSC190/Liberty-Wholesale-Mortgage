@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import Navbar from "../../components/NavbarAdmin";
 import Search from "../../components/SearchLenders";
 import Table from "../../components/TableLenders";
-import Loader from "../../components/spinner";
 import Footer from "../../components/Footer";
 import Container from "react-bootstrap/Container";
 
@@ -13,7 +12,6 @@ const LendersAdmin = () => {
   const [dataTable, setDataTable] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [filterType, setFilterType] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const getLendersUrl = `${process.env.REACT_APP_API_URL}/api/lender/`;
   const getLendersLogoUrl = `${process.env.REACT_APP_API_URL}/api/lenderLogo/`;
   let testData = [];
@@ -89,8 +87,6 @@ const LendersAdmin = () => {
   ];
 
   const fetchData = (searchValue, filterType) => {
-    setIsLoading(true);
-
     return new Promise((resolve) => {
       setTimeout(() => {
         if (searchValue !== "") {
@@ -118,7 +114,6 @@ const LendersAdmin = () => {
         } else if (searchValue === "" || filterType === "") {
           resolve(testData);
         }
-        setIsLoading(false);
       }, 1000);
     });
   };
@@ -142,7 +137,6 @@ const LendersAdmin = () => {
     return sorted;
   };
   const filterTable = (searchValue, filterType) => {
-    setIsLoading(true);
     console.log("filterTable function called");
     if (filterType !== "") {
       switch (filterType) {
@@ -172,7 +166,6 @@ const LendersAdmin = () => {
         dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
       );
     }
-    setIsLoading(false);
   };
   return (
     <>
@@ -184,34 +177,26 @@ const LendersAdmin = () => {
           <Container className="page-format">
             <p className="Page-Title">Lenders</p>
             <div className="Lenders">
-              {isLoading ? (
-                <Loader />
-              ) : (
-                <div>
-                  <Search
-                    callback1={(searchValue) => setSearchValue(searchValue)}
-                    callback2={(filterType) => setFilterType(filterType)}
-                  />
-                  <Table
-                    api="http://localhost:8000/api/lender/"
-                    page={"Lenders"}
-                    data={dataTable}
-                    column={column}
-                    columns={columns}
-                  />
-                </div>
-              )}
+              <div>
+                <Search
+                  callback1={(searchValue) => setSearchValue(searchValue)}
+                  callback2={(filterType) => setFilterType(filterType)}
+                />
+                <Table
+                  api="http://localhost:8000/api/lender/"
+                  page={"Lenders"}
+                  data={dataTable}
+                  column={column}
+                  columns={columns}
+                />
+              </div>
             </div>
           </Container>
         </div>
         <div className="Footer">
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <div>
-              <Footer />
-            </div>
-          )}
+          <div>
+            <Footer />
+          </div>
         </div>
       </div>
     </>

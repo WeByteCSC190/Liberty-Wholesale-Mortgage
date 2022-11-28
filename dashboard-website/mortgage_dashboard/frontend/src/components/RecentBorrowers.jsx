@@ -40,7 +40,7 @@ const RecentBorrowers = () => {
   return (
     <div className="RecentBorrowers w-100 px-4 sm:px-6 lg:px-8 col-span-1">
       <div className="mt-8 flex flex-col">
-        <div className="inline-block text-lg text-gray-900 font-semibold bg-white">
+        <div className="inline-block text-lg text-gray-900 font-extralight bg-white">
           Recently Added Borrowers
         </div>
         <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">

@@ -40,6 +40,6 @@ class UserCreateSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
-    fields = ('fName', 'lName', 'username','password')
+    # fields = ('fName', 'lName', 'username','password')
     # fields = ('username', 'password', 'uId', 'fName', 'lName', 'nmlsID', 'ssn')
-    # fields='__all__'
+    fields='__all__'

@@ -155,6 +155,7 @@ export const login = createAsyncThunk(
 const initialState = {
   isAuthenticated: false,
   loading: false,
+  rejected: false,
 };
 
 export const authSlice = createSlice({
@@ -172,6 +173,7 @@ export const authSlice = createSlice({
       })
       .addCase(login.rejected, (state) => {
         state.loading = false;
+        state.rejected = true;
         state.isAuthenticated = false;
       })
       .addCase(logout.fulfilled, (state) => {

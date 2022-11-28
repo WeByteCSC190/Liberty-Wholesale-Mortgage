@@ -6,10 +6,12 @@ from django.db import models
 from django.db.models import OuterRef, Subquery
 import random
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as lazy
 from django.core.validators import FileExtensionValidator
+
+from users.models import CustomUser
+
 # Create your models here.
 
 # Models.py gets converted into our database and
@@ -304,3 +306,25 @@ class LeadNote(models.Model):
 #     def __str__(self):
 #         return self.ssn
         
+
+
+# class AccountDetails(models.Model):
+#   ROLE = (
+#           ('Loan Processor', 'Loan Processor'),
+#           ('Loan Officer', 'Loan Officer'),
+#           )
+
+#   fName = models.CharField(max_length=40, default='') 
+#   lName = models.CharField(max_length=40, default='')
+#   user = models.ForeignKey(CustomUser,on_delete= models.CASCADE)
+#   uID = models.IntegerField(default=000000)
+#   nmlsID = models.IntegerField(default=000000)
+#   ssn = models.IntegerField(default=000000)
+#   # email=models.EmailField(max_length=254, default='')
+#   address_1 = models.CharField(max_length=128, default='')
+#   address_2 = models.CharField(max_length=128, default='')
+#   zip_code = models.CharField(max_length=5, default='')
+#   role = models.CharField(max_length=40, choices=ROLE, default='')
+
+#   def __str__(self):
+#     return self.fName

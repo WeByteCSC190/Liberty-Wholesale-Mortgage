@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import * as React from "react";
-// import "./RecentLeads.css";
 
 const RecentLeads = () => {
   const [leads, setLeads] = useState([]);
@@ -12,36 +11,10 @@ const RecentLeads = () => {
       .then((response) => setLeads(response.data));
   }, []);
 
-  // return (
-  //   <div className="RecentLeads">
-  //     <div className="RecentLeadsTitle">
-  //       <p>Recently Added Leads</p>
-  //     </div>
-  //     <ol className="RecentLeadsColumnNames">
-  //       <li>Case ID</li>
-  //       <li>Date</li>
-  //       <li>First Name</li>
-  //       <li>Last Name</li>
-  //       <li>Phone #</li>
-  //     </ol>
-  //     <div className="RecentLeadsTable">
-  //       {leads.map((row) => (
-  //         <ol className="RecentLeadsData">
-  //           <li>{row.caseId}</li>
-  //           <li>{row.date.slice(0, 10)}</li>
-  //           <li>{row.fName}</li>
-  //           <li>{row.lName}</li>
-  //           <li>{row.phone_num}</li>
-  //         </ol>
-  //       ))}
-  //     </div>
-  //   </div>
-  // );
-  //
   return (
     <div className="RecentLeads w-100 px-4 sm:px-6 lg:px-8 col-span-1">
       <div className="mt-8 flex flex-col">
-        <div className="inline-block text-lg text-gray-900 font-semibold bg-white">
+        <div className="inline-block text-lg text-gray-900 font-extralight bg-white">
           Recently Added Leads
         </div>
         <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">

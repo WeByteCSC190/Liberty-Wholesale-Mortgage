@@ -49,10 +49,12 @@ const AnnouncementsWidget = () => {
                             className="absolute inset-0"
                             aria-hidden="true"
                           />
-                          {announcement.date}
+                          <p className="text-slate-500 font-extralight">
+                            {announcement.date.slice(0, 10)}
+                          </p>
                         </a>
                       </h3>
-                      <p className="mt-1 text-sm text-gray-600 line-clamp-2">
+                      <p className="mt-1 text-sm text-gray-600 line-clamp-2 font-bold">
                         {announcement.content}
                       </p>
                     </div>
@@ -73,28 +75,6 @@ const AnnouncementsWidget = () => {
       </section>
     </div>
   );
-  // return (
-  //   <div className="AnnouncementsWidget mx-auto max-w-7xl sm:px-6 lg:px-8 border-4 rounded-2xl border-blue-500 justify-center flex">
-  //     <div className="flex flex-col rounded-3xl bg-white place-items-center">
-  //       <div className="text-lg font-semibold leading-8 tracking-tight text-indigo-600">
-  //         Announcements
-  //       </div>
-  //
-  //       <div>
-  //         {news.map((row) => (
-  //           <div className="overflow-hidden">
-  //             <p className="text-xs text-slate-600 px-4 py-3 sm:px-3">
-  //               {row.date.slice(0, 10)}
-  //             </p>
-  //             <div className="text-sm text-black px-2 sm:p-3">
-  //               {row.content}
-  //             </div>
-  //           </div>
-  //         ))}
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default AnnouncementsWidget;

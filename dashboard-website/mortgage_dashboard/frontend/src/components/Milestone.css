@@ -6,15 +6,15 @@
 }
 
 .Milestone-Title {
-  color: white;
+  color: black;
   font-weight: bold;
   font-size: 19px !important;
 }
 .Milestone-Title:hover {
   color: lightgray;
 }
-.Milestone h1:hover{
-  color:white;
+.Milestone h1:hover {
+  color: white;
 }
 /* .Milestone{
   background: black;

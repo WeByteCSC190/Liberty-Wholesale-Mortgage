@@ -13,8 +13,6 @@ class UserAccountManager(BaseUserManager):
     user = self.model(
       username=username,
       password=password
-      # fName=fName,
-      # lName=lName,
     )
 
     user.set_password(password)
@@ -41,6 +39,11 @@ class UserAccountManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+  ROLE = (
+          ('Loan Processor', 'Loan Processor'),
+          ('Loan Officer', 'Loan Officer'),
+          )
+
   username = models.CharField(max_length=20, default='', unique=True)
   password = models.CharField(max_length=20, default='')
   fName = models.CharField(max_length=40, default='') 
@@ -52,6 +55,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
   address_1 = models.CharField(max_length=128, default='')
   address_2 = models.CharField(max_length=128, default='')
   zip_code = models.CharField(max_length=5, default='')
+  role = models.CharField(max_length=40, choices=ROLE, default='')
   is_superuser = models.BooleanField(default=False)
   is_staff = models.BooleanField(default=False)
   is_active = models.BooleanField(default=True)
