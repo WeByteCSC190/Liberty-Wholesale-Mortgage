@@ -58,6 +58,8 @@ const SignIn = () => {
     console.log(failed);
   };
 
+  if (isAuthenticated && formData.username === "admin")
+    return <Navigate to="/LendersAdmin" />;
   if (isAuthenticated) return <Navigate to="/dashboard" />;
   else {
     return (
