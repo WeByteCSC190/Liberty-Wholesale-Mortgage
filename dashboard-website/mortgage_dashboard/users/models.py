@@ -51,7 +51,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
   uID = models.IntegerField(default=000000, blank=True)
   nmlsID = models.IntegerField(default=000000, blank=True)
   ssn = models.IntegerField(default=000000, blank=True)
-  # email=models.EmailField(max_length=254, default='')
+  email=models.EmailField(max_length=254, default='', blank=True)
   bio = models.CharField(max_length=255, default='', blank=True)
   address_1 = models.CharField(max_length=128, default='', blank=True)
   address_2 = models.CharField(max_length=128, default='', blank=True )

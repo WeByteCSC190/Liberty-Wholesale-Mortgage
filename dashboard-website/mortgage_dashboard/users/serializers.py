@@ -49,7 +49,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UpdateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'fName', 'lName', 'bio', 'uID', 'nmlsID', 'ssn', 'address_1', 'address_2', 'zip_code', 'role', 'city', 'state')
+        fields = ('username', 'email', 'fName', 'lName', 'bio', 'uID', 'nmlsID', 'ssn', 'address_1', 'address_2', 'zip_code', 'role', 'city', 'state')
         extra_kwargs = {
             'fName': {'required': True},
             'lName': {'required': True},
@@ -71,6 +71,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         instance.lName = validated_data['lName']
         instance.bio = validated_data['bio']
         instance.role = validated_data['role']
+        instance.email = validated_data['email']
         # instance.username = validated_data['username']
         # instance.uID = validated_data['uID']
         # instance.nmlsID = validated_data['nmlsID']

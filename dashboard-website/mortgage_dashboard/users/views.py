@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions, status
 # from django.views.generic.edit import UpdateView
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from .models import *
 from .serializers import UserCreateSerializer, UserSerializer, UpdateUserSerializer
 from .forms import CustomUserChangeForm
@@ -52,3 +52,8 @@ class UpdateProfileView(generics.UpdateAPIView):
     queryset = CustomUser.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = UpdateUserSerializer
+
+class ListUserView(viewsets.ModelViewSet):
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
