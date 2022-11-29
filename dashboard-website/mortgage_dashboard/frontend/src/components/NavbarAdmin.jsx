@@ -41,7 +41,7 @@ import {connect} from 'react-redux';
     );
   
     return (
-      <Navbar collapseOnSelect expand="lg" variant="dark" className="Navbar">
+      <Navbar collapseOnSelect expand="lg" variant="dark" className="Navbar" fixed="top">
       <Container>
       <Navbar.Brand href="/">
         <img

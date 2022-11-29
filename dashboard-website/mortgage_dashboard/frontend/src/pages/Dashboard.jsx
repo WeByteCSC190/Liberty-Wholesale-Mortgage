@@ -14,9 +14,10 @@ import Footer from "../components/Footer";
 
 const Dashboard = () => {
   return (
+    
     <div className="min-h-full">
       <Navbar />
-      <main className="-mt-24 pb-8 py-32">
+      <main className="-mt-24 pb-8 py-32" style={{marginTop: 'auto'}}>
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
           <h1 className="sr-only">Dashboard</h1>
           <Milestone />
@@ -51,6 +52,9 @@ const Dashboard = () => {
           </div>
         </div>
       </main>
+      <div className="Footer">
+        <Footer />
+      </div>
     </div>
   );
 };
