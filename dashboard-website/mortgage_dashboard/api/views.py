@@ -19,6 +19,7 @@ from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from .serializers import *
 from .models import *
+from users.serializers import UserSerializer
 from rest_framework.parsers import JSONParser
 
 # @api_view(['GET'])
@@ -201,6 +202,32 @@ class RecyclingBinViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
     queryset=RecyclingBin.objects.all()
     serializer_class= RecycleBinSerializer
+
+# class UserProfileViewSet(APIView):
+#     permission_classes = (permissions.IsAuthenticated, )
+#     serializer_class=UserProfileSerializer
+
+#     def list(self, request):
+#         profile = UserProfile.objects.get(user=request.user)
+#         serializer = UserProfileSerializer(profile, context={'user': request.user.profile})
+#         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+#     def post(self, request, format=None):
+#         serializer = UserProfileSerializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response ({ 'msg':'Data Updated Successfully'},status=status.HTTP_201_CREATED 
+#     )
+
+#     def put(self, request, format=None):
+#         serializer = UserProfileSerializer(data=request.data, partial=True, context={'user': request.user.profile})
+
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+
+#         return Response({'msg':'Profile Succeded'}, status= status.HTTP_200_OK)
+
 
 # @api_view(['POST'])
 # def updateAccountDetail(request,pk):

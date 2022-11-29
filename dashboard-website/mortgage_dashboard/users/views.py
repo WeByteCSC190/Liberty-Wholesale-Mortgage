@@ -2,9 +2,10 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import permissions, status
-from django.views.generic.edit import UpdateView
+# from django.views.generic.edit import UpdateView
+from rest_framework import generics
 from .models import *
-from .serializers import UserCreateSerializer, UserSerializer
+from .serializers import UserCreateSerializer, UserSerializer, UpdateUserSerializer
 from .forms import CustomUserChangeForm
 
 
@@ -31,16 +32,23 @@ class RetrieveUserView(APIView):
 
     return Response(user.data, status=status.HTTP_200_OK)
 
-class UpdateUserView(APIView):
+# class UpdateUserView(APIView):
 
-    permission_classes = [permissions.IsAuthenticated]
+#     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request):
-        user = request.user
-        user = UserSerializer(user)
-        form = CustomUserChangeForm(request, instance=user)
+#     def post(self, request):
+#         user = request.user
+#         user = UserSerializer(user)
+#         user= request.body.fName
+#         # return Response(str(request.body),status=status.HTTP_400_BAD_REQUEST)
 
-        if form.is_valid():
-            form.save()
-            return Response(status=status.HTTP_200_OK)
-        return Response(str(form.is_valid()), status=status.HTTP_400_BAD_REQUEST)
+#         if form.is_valid():
+#             form.save()
+#             return Response(status=status.HTTP_200_OK)
+#         return Response(str(form.is_valid()), status=status.HTTP_400_BAD_REQUEST)
+
+class UpdateProfileView(generics.UpdateAPIView):
+
+    queryset = CustomUser.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = UpdateUserSerializer

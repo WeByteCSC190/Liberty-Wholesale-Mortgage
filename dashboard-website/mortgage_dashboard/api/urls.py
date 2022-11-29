@@ -29,10 +29,12 @@ router.register(r'leadnote',views.LeadNoteViewSet)
 router.register(r'status',views.StatusViewSet)
 router.register(r'files',views.FileViewSet)
 router.register(r'media',views.VideoViewSet)
+# router.register(r'userprofile',views.UserProfileViewSet, basename='profile')
 urlpatterns = [
 
     #automatic URL routing
     path('',include(router.urls)),
-    path('api/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api/', include('rest_framework.urls', namespace='rest_framework')),
+    # path('userprofile', UserProfileViewSet.as_view()),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

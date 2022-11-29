@@ -6,6 +6,7 @@ from django.db import models
 from django.db.models import OuterRef, Subquery
 import random
 from django.db import models
+from django.conf import settings
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as lazy
 from django.core.validators import FileExtensionValidator
@@ -308,15 +309,15 @@ class LeadNote(models.Model):
         
 
 
-# class AccountDetails(models.Model):
+# class UserProfile(models.Model):
 #   ROLE = (
 #           ('Loan Processor', 'Loan Processor'),
 #           ('Loan Officer', 'Loan Officer'),
 #           )
 
+#   user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete= models.CASCADE, primary_key=True, related_name='profile')
 #   fName = models.CharField(max_length=40, default='') 
 #   lName = models.CharField(max_length=40, default='')
-#   user = models.ForeignKey(CustomUser,on_delete= models.CASCADE)
 #   uID = models.IntegerField(default=000000)
 #   nmlsID = models.IntegerField(default=000000)
 #   ssn = models.IntegerField(default=000000)

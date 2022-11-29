@@ -67,7 +67,7 @@ export default function Account() {
                       type="text"
                       name="username"
                       id="username"
-                      value={accountInfo.username}
+                      defaultValue={accountInfo.username}
                       autoComplete="username"
                       className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
@@ -136,7 +136,7 @@ export default function Account() {
                     <input
                       type="text"
                       name="last-name"
-                      value={accountInfo.lName}
+                      defaultValue={accountInfo.lName}
                       id="last-name"
                       autoComplete="family-name"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -195,7 +195,7 @@ export default function Account() {
                       type="text"
                       name="street-address"
                       id="street-address"
-                      value={accountInfo.address_1}
+                      defaultValue={accountInfo.address_1}
                       autoComplete="street-address"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
@@ -214,7 +214,7 @@ export default function Account() {
                       type="text"
                       name="secondary-street-address"
                       id="secondary-street-address"
-                      value={accountInfo.address_2}
+                      defaultValue={accountInfo.address_2}
                       autoComplete="secondary-street-address"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />

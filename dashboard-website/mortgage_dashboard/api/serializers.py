@@ -80,6 +80,12 @@ class LeadNoteSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = AccountDetail
 #         fields = ('__all__')
+
+# class UserProfileSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = UserProfile
+#         # fields = ('fName', 'lName', 'uID', 'nmlsID', 'ssn', 'address_1', 'address_2', 'zip_code', 'role')
+#         fields=('__all__')
         
 class StatusSerializer(serializers.ModelSerializer):
     class Meta:
