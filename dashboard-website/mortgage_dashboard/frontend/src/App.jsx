@@ -7,6 +7,7 @@ import Leads from "./pages/Leads";
 import Borrowers from "./pages/Borrowers";
 import Resources from "./pages/Resources";
 import SignIn from "./pages/sign-in/sign-in";
+import SignOut from "./pages/sign-in/sign-out";
 import Help from "./pages/sign-in/help.jsx";
 import ContactPublic from "./pages/sign-in/contact-public";
 import Lenders from "./pages/Lenders";
@@ -39,6 +40,7 @@ const App = () => {
       <div className="App">
         <Routes>
           <Route path="Sign-In" element={<SignIn />} />
+          <Route path="Sign-Out" element={<SignOut />} />
           <Route path="Help" element={<Help />} />
           <Route path="Terms" element={<Terms />} />
           <Route path="Privacy" element={<Privacy />} />
