@@ -12,7 +12,8 @@ instance.interceptors.request.use(
     // Do something before request is sent
     config.headers["Authorization"] =
       "Bearer " + localStorage.getItem("access");
-    config.headers["Content-Type"] = "application/json";
+    // config.headers["Content-Type"] = "application/json";
+    // config.headers["Access-Control-Allow-Origin"] = "*";
     return config;
   },
   (error) => {

@@ -11,16 +11,90 @@ import Container from "react-bootstrap/Container";
 
 export default function Account() {
   let [accountInfo, setAccountInfo] = useState([]);
+  const [formValue, setformValue] = React.useState({
+    address_1: "",
+    address_2: "",
+    fName: "",
+    lName: "",
+    bio: "",
+    // nmlsID: "",
+    ssn: "",
+    username: "",
+    zip_code: "",
+    city: "",
+    state: "",
+    role: "",
+  });
+
   useEffect(() => {
-    //Update Account Info
+    //Get Account Info
     getAccount();
-  }, [true]);
+  }, []);
 
   function getAccount() {
     const getAccountUrl = `${process.env.REACT_APP_API_URL}/accounts/users/info`;
     api({
       method: "GET",
       url: getAccountUrl,
+    })
+      .then((response) => {
+        const data = response.data;
+        setAccountInfo(data);
+        setformValue(data);
+        console.log(data);
+        return data;
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+  }
+
+  const handleChange = (event) => {
+    setformValue({
+      ...formValue,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSelect = (event) => {
+    setformValue({
+      ...formValue,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    var formData = new FormData();
+    formData.append("address_1", formValue.address_1);
+    formData.append("address_2", formValue.address_2);
+    formData.append("fName", formValue.fName);
+    formData.append("lName", formValue.lName);
+    formData.append("bio", formValue.bio);
+    // formData.append("email", formValue.email);
+    // formData.append("nmlsID", formValue.nmlsID);
+    formData.append("ssn", formValue.ssn);
+    formData.append("zip_code", formValue.zip_code);
+    formData.append("city", formValue.city);
+    formData.append("state", formValue.state);
+    formData.append("role", formValue.role);
+
+    const updateAccountUrl =
+      `${process.env.REACT_APP_API_URL}/accounts/users/update_profile/` +
+      accountInfo.id +
+      `/`;
+    // console.log(updateAccountUrl);
+    api({
+      method: "PUT",
+      url: updateAccountUrl,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      data: formData,
     })
       .then((response) => {
         const data = response.data;
@@ -35,13 +109,16 @@ export default function Account() {
           console.log(error.response.headers);
         }
       });
-  }
+  };
 
   return (
     <div>
       <Navbar />
       <div className="bg-slate-100 rounded-lg mx-auto md:px-8 xl:px-0 py-5 h-auto w-auto">
-        <form className="space-y-8 divide-y divide-gray-200 mx-auto flex max-w-4xl flex-col md:px-8 xl:px-0 py-5">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-8 divide-y divide-gray-200 mx-auto flex max-w-4xl flex-col md:px-8 xl:px-0 py-5"
+        >
           <div className="space-y-8 divide-y divide-gray-200">
             <div>
               <div>
@@ -68,6 +145,7 @@ export default function Account() {
                       name="username"
                       id="username"
                       defaultValue={accountInfo.username}
+                      onChange={handleChange}
                       autoComplete="username"
                       className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
@@ -76,23 +154,49 @@ export default function Account() {
 
                 <div className="sm:col-span-6">
                   <label
-                    htmlFor="about"
+                    htmlFor="bio"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    About
+                    Bio
                   </label>
                   <div className="mt-1">
                     <textarea
-                      id="about"
-                      name="about"
+                      id="bio"
+                      name="bio"
+                      onChange={handleChange}
+                      autocomplete="bio"
                       rows={3}
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      defaultValue={""}
+                      defaultValue={accountInfo.bio}
                     />
                   </div>
                   <p className="mt-2 text-sm text-gray-500">
                     Write a few sentences about yourself.
                   </p>
+                </div>
+                <div className="sm:col-span-3">
+                  <label
+                    htmlFor="role"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Role
+                  </label>
+                  <div className="mt-1">
+                    <select
+                      id="role"
+                      name="role"
+                      selectedValue={accountInfo.role}
+                      onChange={handleChange}
+                      autoComplete="role"
+                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    >
+                      <option value={accountInfo.role} selected disabled>
+                        {accountInfo.role}
+                      </option>
+                      <option>Loan Officer</option>
+                      <option>Loan Processor</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
@@ -108,7 +212,7 @@ export default function Account() {
               <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor="first-name"
+                    htmlFor="fName"
                     className="block text-sm font-medium text-gray-700"
                   >
                     First name
@@ -116,9 +220,10 @@ export default function Account() {
                   <div className="mt-1">
                     <input
                       type="text"
-                      name="first-name"
-                      id="first-name"
-                      value={accountInfo.fname}
+                      name="fName"
+                      id="fName"
+                      defaultValue={accountInfo.fName}
+                      onChange={handleChange}
                       autoComplete="given-name"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
@@ -127,7 +232,7 @@ export default function Account() {
 
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor="last-name"
+                    htmlFor="lName"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Last name
@@ -135,9 +240,10 @@ export default function Account() {
                   <div className="mt-1">
                     <input
                       type="text"
-                      name="last-name"
+                      name="lName"
+                      id="lName"
                       defaultValue={accountInfo.lName}
-                      id="last-name"
+                      onChange={handleChange}
                       autoComplete="family-name"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
@@ -162,30 +268,30 @@ export default function Account() {
                 {/*   </div> */}
                 {/* </div> */}
 
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="country"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Country
-                  </label>
-                  <div className="mt-1">
-                    <select
-                      id="country"
-                      name="country"
-                      autoComplete="country-name"
-                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    >
-                      <option>United States</option>
-                      <option>Canada</option>
-                      <option>Mexico</option>
-                    </select>
-                  </div>
-                </div>
+                {/* <div className="sm:col-span-3"> */}
+                {/*   <label */}
+                {/*     htmlFor="country" */}
+                {/*     className="block text-sm font-medium text-gray-700" */}
+                {/*   > */}
+                {/*     Country */}
+                {/*   </label> */}
+                {/*   <div className="mt-1"> */}
+                {/*     <select */}
+                {/*       id="country" */}
+                {/*       name="country" */}
+                {/*       autoComplete="country-name" */}
+                {/*       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" */}
+                {/*     > */}
+                {/*       <option>United States</option> */}
+                {/*       <option>Canada</option> */}
+                {/*       <option>Mexico</option> */}
+                {/*     </select> */}
+                {/*   </div> */}
+                {/* </div> */}
 
                 <div className="sm:col-span-6">
                   <label
-                    htmlFor="street-address"
+                    htmlFor="address_1"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Street address
@@ -193,10 +299,11 @@ export default function Account() {
                   <div className="mt-1">
                     <input
                       type="text"
-                      name="street-address"
-                      id="street-address"
+                      name="address_1"
+                      id="address_1"
                       defaultValue={accountInfo.address_1}
-                      autoComplete="street-address"
+                      onChange={handleChange}
+                      autoComplete="address_1"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
                   </div>
@@ -204,7 +311,7 @@ export default function Account() {
 
                 <div className="sm:col-span-6">
                   <label
-                    htmlFor="secondary-street-address"
+                    htmlFor="address_2"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Secondary Street address
@@ -212,10 +319,11 @@ export default function Account() {
                   <div className="mt-1">
                     <input
                       type="text"
-                      name="secondary-street-address"
-                      id="secondary-street-address"
+                      name="address_2"
+                      id="address_2"
                       defaultValue={accountInfo.address_2}
-                      autoComplete="secondary-street-address"
+                      onChange={handleChange}
+                      autoComplete="address_2"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
                   </div>
@@ -232,7 +340,9 @@ export default function Account() {
                       type="text"
                       name="city"
                       id="city"
-                      autoComplete="address-level2"
+                      defaultValue={accountInfo.city}
+                      autoComplete="city"
+                      onChange={handleChange}
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
                   </div>
@@ -240,7 +350,7 @@ export default function Account() {
 
                 <div className="sm:col-span-2">
                   <label
-                    htmlFor="region"
+                    htmlFor="state"
                     className="block text-sm font-medium text-gray-700"
                   >
                     State / Province
@@ -248,9 +358,11 @@ export default function Account() {
                   <div className="mt-1">
                     <input
                       type="text"
-                      name="region"
-                      id="region"
-                      autoComplete="address-level1"
+                      name="state"
+                      id="state"
+                      defaultValue={accountInfo.state}
+                      autoComplete="state"
+                      onChange={handleChange}
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
                   </div>
@@ -258,7 +370,7 @@ export default function Account() {
 
                 <div className="sm:col-span-2">
                   <label
-                    htmlFor="postal-code"
+                    htmlFor="zip_code"
                     className="block text-sm font-medium text-gray-700"
                   >
                     ZIP / Postal code
@@ -266,9 +378,11 @@ export default function Account() {
                   <div className="mt-1">
                     <input
                       type="text"
-                      name="postal-code"
-                      id="postal-code"
-                      autoComplete="postal-code"
+                      name="zip_code"
+                      id="zip_code"
+                      defaultValue={accountInfo.zip_code}
+                      onChange={handleChange}
+                      autoComplete="zip_code"
                       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     />
                   </div>
@@ -299,6 +413,7 @@ export default function Account() {
                       name="nmlsID"
                       id="nmlsID"
                       value={accountInfo.nmlsID}
+                      onChange={handleChange}
                       autoComplete="nmlsID"
                       className="block w-full min-w-0 flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-300"
                       disabled

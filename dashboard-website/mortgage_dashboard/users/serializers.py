@@ -49,7 +49,7 @@ class UserSerializer(serializers.ModelSerializer):
 class UpdateUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'fName', 'lName', 'uID', 'nmlsID', 'ssn', 'address_1', 'address_2', 'zip_code', 'role')
+        fields = ('username', 'fName', 'lName', 'bio', 'uID', 'nmlsID', 'ssn', 'address_1', 'address_2', 'zip_code', 'role', 'city', 'state')
         extra_kwargs = {
             'fName': {'required': True},
             'lName': {'required': True},
@@ -69,13 +69,17 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
         instance.fName = validated_data['fName']
         instance.lName = validated_data['lName']
+        instance.bio = validated_data['bio']
+        instance.role = validated_data['role']
         # instance.username = validated_data['username']
-        instance.uID = validated_data['uID']
-        instance.nmlsID = validated_data['nmlsID']
-        instance.ssn = validated_data['ssn']
+        # instance.uID = validated_data['uID']
+        # instance.nmlsID = validated_data['nmlsID']
+        # instance.ssn = validated_data['ssn']
         instance.address_1 = validated_data['address_1']
         instance.address_2 = validated_data['address_2']
         instance.zip_code = validated_data['zip_code']
+        instance.city = validated_data['city']
+        instance.state = validated_data['state']
 
         instance.save()
 
