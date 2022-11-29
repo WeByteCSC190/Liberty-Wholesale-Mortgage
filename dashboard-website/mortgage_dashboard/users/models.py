@@ -4,7 +4,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, Permis
 
 
 class UserAccountManager(BaseUserManager):
-  def create_user(self, username, password=None):
+  def create_user(self, username, email, fName, lName, nmlsID, password=None):
     if username is None:
       raise TypeError('Users must have a username')
     if password is None:
@@ -12,7 +12,11 @@ class UserAccountManager(BaseUserManager):
 
     user = self.model(
       username=username,
-      password=password
+      password=password,
+      email=email,
+      fName=fName,
+      lName=lName,
+      nmlsID=nmlsID
     )
 
     user.set_password(password)
@@ -20,7 +24,7 @@ class UserAccountManager(BaseUserManager):
 
     return user
   
-  def create_superuser(self, username, password=None):
+  def create_superuser(self, username,email, fName, lName, nmlsID, password=None):
     if password is None:
       raise TypeError('Superusers must have a password')
     if username is None:
@@ -28,7 +32,11 @@ class UserAccountManager(BaseUserManager):
 
     user = self.create_user(
       username=username,
-      password=password
+      password=password,
+      email=email,
+      fName=fName,
+      lName=lName,
+      nmlsID=nmlsID
     )
 
     user.is_staff = True
@@ -66,7 +74,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
   USERNAME_FIELD= 'username'
   # REQUIRED_FIELDS = ['fName', 'lName']
 
-  objects = UserAccountManager()
+  objects:UserAccountManager = UserAccountManager()
 
   def __str__(self):
     return self.username

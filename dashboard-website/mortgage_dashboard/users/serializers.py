@@ -2,6 +2,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.core import exceptions
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from .models import UserAccountManager
 User = get_user_model()
 
 
@@ -9,9 +10,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
     # fields= '__all__'
-    # fields = ('username', 'password', 'uId', 'fName', 'lName', 'nmlsID', 'ssn')
-    # fields = ('fName', 'lName', 'username', 'password')
-    fields = ('username', 'password')
+    fields = ('username', 'password','email', 'fName', 'lName', 'nmlsID')
 
   def validate(self, data):
     user = User(**data)
@@ -32,6 +31,10 @@ class UserCreateSerializer(serializers.ModelSerializer):
     user = User.objects.create_user(
       username=validated_data['username'],
       password=validated_data['password'],
+      fName=validated_data['fName'],
+      lName=validated_data['lName'],
+      email=validated_data['email'],
+      nmlsID=validated_data['nmlsID'],
     )
 
     return user
