@@ -8,6 +8,7 @@ import Borrowers from "./pages/Borrowers";
 import Resources from "./pages/Resources";
 import SignIn from "./pages/sign-in/sign-in";
 import Help from "./pages/sign-in/help.jsx";
+import ContactPublic from "./pages/sign-in/contact-public";
 import Lenders from "./pages/Lenders";
 import Terms from "./components/legal/terms.jsx";
 import Privacy from "./components/legal/privacy.jsx";
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="Help" element={<Help />} />
           <Route path="Terms" element={<Terms />} />
           <Route path="Privacy" element={<Privacy />} />
+          <Route path="Contact-Public" element={<ContactPublic />} />
           <Route path="LegalThree" element={<LegalThree />} />
           <Route path="LegalFour" element={<LegalFour />} />
 
