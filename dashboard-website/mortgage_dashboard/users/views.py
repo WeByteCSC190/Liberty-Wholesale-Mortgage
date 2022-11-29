@@ -32,6 +32,15 @@ class RetrieveUserView(APIView):
 
     return Response(user.data, status=status.HTTP_200_OK)
 
+class RetrieveUserMilestonesView(APIView):
+  permission_classes = [permissions.IsAuthenticated]
+
+  def get(self, request):
+    user = request.user
+    user = UserSerializer(user)
+
+    return Response(user.data.get('milestones'), status=status.HTTP_200_OK)
+
 # class UpdateUserView(APIView):
 
 #     permission_classes = [permissions.IsAuthenticated]

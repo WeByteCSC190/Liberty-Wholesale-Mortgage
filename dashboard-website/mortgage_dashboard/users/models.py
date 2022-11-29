@@ -67,6 +67,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
   city = models.CharField(max_length=40, default='', blank=True)
   state = models.CharField(max_length=40, default='', blank=True)
   role = models.CharField(max_length=40, choices=ROLE, default='', blank=True)
+  milestone_count = models.IntegerField(default=000000, blank=True)
   is_superuser = models.BooleanField(default=False)
   is_staff = models.BooleanField(default=False)
   is_active = models.BooleanField(default=True)
