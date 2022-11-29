@@ -8,6 +8,7 @@ import api from "../../services/api";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { login } from "../../features/auth/authSlice";
 import { XCircleIcon, XMarkIcon } from "@heroicons/react/20/solid";
+import FooterLogin from "../../components/FooterLogin";
 
 api.defaults.withCredentials = true;
 
@@ -107,49 +108,7 @@ const SignIn = () => {
             </div>
 
             <div className="Footer">
-              <Navbar
-                className="footer-login-body"
-                variant="dark"
-                fixed="bottom"
-              >
-                <Container>
-                  <Nav className="footer-login-links">
-                    <Nav.Link
-                      href="/terms"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Terms of Use
-                    </Nav.Link>
-                    <Nav.Link
-                      href="/privacy"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Privacy Policy
-                    </Nav.Link>
-                    <Nav.Link
-                      href="/legalthree"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Cookie Policy
-                    </Nav.Link>
-                    <Nav.Link
-                      href="/help"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Help
-                    </Nav.Link>
-                  </Nav>
-                  <Nav>
-                    <Navbar.Brand className="footer-login-brand">
-                      Powered by Liberty Wholesale Mortgage
-                    </Navbar.Brand>
-                  </Nav>
-                </Container>
-              </Navbar>
+              <FooterLogin />
             </div>
           </div>
         </div>

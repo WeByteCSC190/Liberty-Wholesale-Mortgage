@@ -7,8 +7,6 @@ import axios from 'axios';
 
 function AddLenders({api, page, topic}) {
 
-
-
   const handleSubmit = async() => {
   // store the states in the form data
   var formData = new FormData();

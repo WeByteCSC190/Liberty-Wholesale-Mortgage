@@ -6,7 +6,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link} from "react-router-dom";
 import FooterLogin from "../../components/FooterLogin";
 
-export default class Help extends Component {
+export default class ContactPublic extends Component {
   render() {
     return ( 
     
@@ -17,15 +17,15 @@ export default class Help extends Component {
           alignItems: "center" }}>
         <form>
         <img src={logo} width="200" height="110" alt="MLO Support" />
-          <p className="sign-in-topic">Help Options</p>
+          <p className="sign-in-topic">Contact Support</p>
           <Row>
-               <Link className="info-b">Forgot Username</Link>
+               <p className="info-b">support@email.com</p>
           </Row>
             <Row>
-              <Link to="/" className="info-b">Forgot Password</Link>
+              <p className="info-b">(530)123 - 4567</p>
           </Row>
           <Row>
-              <Link to="/contact-public" className="info-b">Contact Us</Link>
+             
             </Row>
             <Row>
             <Link to="/sign-in">
@@ -42,6 +42,5 @@ export default class Help extends Component {
     );
   }
 }
-
 
 
