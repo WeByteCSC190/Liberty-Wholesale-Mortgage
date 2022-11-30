@@ -3,7 +3,7 @@ import * as React from "react";
 import Moment from "react-moment";
 import { useState, useEffect } from "react";
 import Navbar from "../../components/NavbarAdmin";
-import Search from "../../components/SearchLenders";
+import Search from "../../components/Search";
 import Table from "../../components/TableLenders";
 import Footer from "../../components/Footer";
 import Container from "react-bootstrap/Container";
@@ -179,6 +179,7 @@ const LendersAdmin = () => {
             <div className="Lenders">
               <div>
                 <Search
+                  page={"Lenders"}
                   callback1={(searchValue) => setSearchValue(searchValue)}
                   callback2={(filterType) => setFilterType(filterType)}
                 />
