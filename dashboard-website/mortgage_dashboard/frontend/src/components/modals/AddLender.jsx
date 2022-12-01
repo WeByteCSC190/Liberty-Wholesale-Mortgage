@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 import api from "../../services/api";
 
 function AddLendersRow({ page, url }) {
@@ -79,12 +82,15 @@ function AddLendersRow({ page, url }) {
         Add Row
       </Button>
 
-      <Modal show={show} onHide={handleClose} animation={false}>
+      <Modal size="lg" show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>Add {page}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
+            <Container>
+              <Row>
+                <Col>
           <Form.Group className="mb-3" controlId="">
         <Form.Label>Company Infomation</Form.Label>
         <Form.Control 
@@ -94,7 +100,8 @@ function AddLendersRow({ page, url }) {
             value={formValue.company}
             onChange={handleChange}/>
       </Form.Group>
-
+            </Col>
+            <Col>
       <Form.Group className="mb-3" controlId="">
         <Form.Label>Rating</Form.Label>
         <Form.Select name="rating" aria-label="Default select example" value={formValue.rating}
@@ -107,7 +114,8 @@ function AddLendersRow({ page, url }) {
         <option value="U">U</option>
         </Form.Select>
         </Form.Group>
-
+        </Col>
+        </Row>
         <Form.Group className="mb-3" controlId="">
         <Form.Label>Programs</Form.Label>
         <Form.Control name="programs" type="text" placeholder="Programs" value={formValue.programs}
@@ -116,18 +124,22 @@ function AddLendersRow({ page, url }) {
          Enter list of programs separated by commas
         </Form.Text>
         </Form.Group>
-
+        <Row>
+          <Col>
         <Form.Group className="mb-3" controlId="">
         <Form.Label>FHA ID</Form.Label>
         <Form.Control name="FHA ID" type="text" placeholder="FHA ID" value={formValue.lender_FHA_ID}
         onChange={handleChange}/>
         </Form.Group>
-
+        </Col>
+        <Col>
         <Form.Group className="mb-3" controlId="">
         <Form.Label>VA ID</Form.Label>
         <Form.Control name="VA ID" type="text" placeholder="VA ID" value={formValue.lender_VA_ID}
         onChange={handleChange}/>
         </Form.Group>
+        </Col>
+        </Row>
 
         <Form.Group className="mb-3" controlId="">
         <Form.Label>Account Executive</Form.Label>
@@ -135,18 +147,24 @@ function AddLendersRow({ page, url }) {
         onChange={handleChange}/>
         </Form.Group>
 
+        <Row>
+        <Col>
         <Form.Group className="mb-3" controlId="">
         <Form.Label>Phone</Form.Label>
         <Form.Control name="phone_num" type="text" placeholder="Phone Number" value={formValue.phone_num}
         onChange={handleChange} />
         </Form.Group>
-
+        </Col>
+        <Col>
         <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control name="email" type="email" placeholder="Email Address" value={formValue.email}
         onChange={handleChange}/>
-        </Form.Group>   
-
+        </Form.Group> 
+        </Col>
+        </Row>
+        <Row>
+        <Col>
         <Form.Group className="mb-3" controlId="">
         <Form.Label>URL</Form.Label>
         <Form.Control name="website" type="text" placeholder="Website Url" value={formValue.website}
@@ -155,7 +173,8 @@ function AddLendersRow({ page, url }) {
           Enter a link with http or https. Example: https://www.google.com
         </Form.Text>
         </Form.Group>
-
+        </Col>
+        <Col>
         <Form.Group className="mb-3" controlId="">
         <Form.Label>Upload an image the company logo</Form.Label>
         <Form.Control type="file" />
@@ -163,8 +182,11 @@ function AddLendersRow({ page, url }) {
          Note: Width of picture is 150px and height is 75px
         </Form.Text>
         </Form.Group>
-
+        </Col>
+        </Row>
+        </Container>
           </Form>
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -181,56 +203,3 @@ function AddLendersRow({ page, url }) {
 
 export default AddLendersRow;
 
-/* 
- <Form.Group className="mb-3" controlId="">
-        <Form.Label>Programs</Form.Label>
-        <Form.Control name="lName" type="text" placeholder="Programs" value={formValue.programs}
-        onChange={handleChange}/>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>FHA ID</Form.Label>
-        <Form.Control name="FHA ID" type="text" placeholder="FHA ID" value={formValue.lender_FHA_ID}
-        onChange={handleChange}/>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>VA ID</Form.Label>
-        <Form.Control name="VA ID" type="text" placeholder="VA ID" value={formValue.lender_VA_ID}
-        onChange={handleChange}/>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>Account Executive</Form.Label>
-        <Form.Control name="Account Executive" type="text" placeholder="Full Name of Account Executive" value={formValue.account_executive}
-        onChange={handleChange}/>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>Phone</Form.Label>
-        <Form.Control name="phone_num" type="text" placeholder="Enter Phone Number" value={formValue.phone_num}
-        onChange={handleChange} />
-        </Form.Group>
-              
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email</Form.Label>
-        <Form.Control name="email" type="email" placeholder="Enter Email" value={formValue.email}
-        onChange={handleChange}/>
-        </Form.Group>    
-
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>URL</Form.Label>
-        <Form.Text className="text-muted">
-          Enter a link with http or https. 
-        </Form.Text>
-        <Form.Control name="website" type="text" placeholder="'https://www.websitename.com'" value={formValue.website}
-        onChange={handleChange} />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>Logo</Form.Label>
-        <Form.file label="Upload an image of the company logo" value={formValue.logo}></Form.file>
-        </Form.Group>
-
-
-*/

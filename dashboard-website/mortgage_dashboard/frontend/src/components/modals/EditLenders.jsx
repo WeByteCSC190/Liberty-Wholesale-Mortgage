@@ -102,20 +102,24 @@ const handleChange = (event) => {
   return (
     <>
       <Dropdown.Item onClick={handleShow}>Edit</Dropdown.Item>
-      <Modal size="lg"show={show} onHide={handleClose} animation={false}>
+      <Modal size="lg" show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
         <Modal.Title>Lender: {rowData.company} </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Container>
-
-            <Form.Group className="mb-3" controlId="">
+  
+              <Row>
+                <Col>
+                    <Form.Group className="mb-3" controlId="">
                     <Form.Label>Company</Form.Label>
                     <Form.Control name="company" type="text" placeholder={formValue.company} value={formValue.company}
                     onChange={handleChange}/>
                     </Form.Group>
-
+                    
+                </Col>
+                <Col>
                     <Form.Group className="mb-3" controlId="">
                     <Form.Label>Rating</Form.Label>
                     <Form.Select name="rating" aria-label="Default select example" value={formValue.rating}
@@ -126,14 +130,8 @@ const handleChange = (event) => {
                         <option value="B">B</option>
                         <option value="C">C</option>
                         <option value="U">U</option>
-                   </Form.Select>
-                    </Form.Group>
-              <Row>
-                <Col>
-                    
-                </Col>
-                <Col>
-                    
+                    </Form.Select>
+                    </Form.Group> 
                 </Col>
               </Row>
       
