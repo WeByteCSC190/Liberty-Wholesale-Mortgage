@@ -80,6 +80,8 @@ const Lenders = () => {
     { heading: "Programs", value: "programs" },
     { heading: "Details", value: "Details" },
     { heading: "Website", value: "website" },
+    
+
   ];
 
   const columns = [

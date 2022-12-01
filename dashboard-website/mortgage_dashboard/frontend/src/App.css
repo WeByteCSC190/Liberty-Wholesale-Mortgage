@@ -22,7 +22,6 @@
   top: 0;
   width: 100%;
   z-index: 4;  */
-  
 }
 
 .Content {
@@ -37,6 +36,8 @@
 .Footer {
   margin-top: auto;
 }
+
+
 
 /* CSS Code for Navbar */
 
@@ -406,8 +407,7 @@ h1 {
 /* For legal pages */
 
 .company-logo {
-  margin-top: 10%;
-  margin-bottom: 2%;
+  margin: auto; 
 }
 
 .legal-body {
@@ -418,41 +418,44 @@ h1 {
 }
 
 .legal-section {
-  min-height: 30vh;
+  min-height: 100%; 
+  height: auto; 
   position: relative;
+  margin: auto; 
+  padding: auto; 
 }
 
 .legal-container {
   border: white;
   background-color: white;
-  max-width: 700px;
+  max-width: 992px;
   width: 100%;
-  height: auto;
-
+  height: auto; 
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 0;
   left: 0;
+  right: 0;
   top: 0;
   bottom: 0;
   margin: auto;
+  padding: auto; 
+
   /*order: 1px red solid */
 }
 
 .legal-content {
   box-sizing: border-box;
-  height: auto;
-  align-items: left;
   justify-content: left;
   position: absolute;
+  height: auto; 
+  margin-top: auto; 
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  margin: auto;
-  padding: 1em;
+  
 }
 
 .legal-content h2 {
@@ -472,7 +475,6 @@ h1 {
 .legal-content p {
   align-items: center;
   justify-content: center;
-  position: flex;
   margin: auto;
   line-height: 1.7142857;
 }
@@ -769,6 +771,8 @@ h1 {
   .carousel-caption-bottom {
     bottom: 25px;
   }
+
+  
 }
 
 /* Carousel end */

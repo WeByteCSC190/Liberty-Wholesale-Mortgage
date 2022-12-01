@@ -4,7 +4,7 @@ import Moment from "react-moment";
 import { useState, useEffect } from "react";
 import Navbar from "../../components/NavbarAdmin";
 import Search from "../../components/Search";
-import Table from "../../components/TableLenders";
+import TableLenders from "../../components/TableLenders";
 import Footer from "../../components/Footer";
 import Container from "react-bootstrap/Container";
 
@@ -75,6 +75,7 @@ const LendersAdmin = () => {
     { heading: "Programs", value: "programs" },
     { heading: "Details", value: "Details" },
     { heading: "Website", value: "website" },
+    { heading: "AddRow", value: "AddLender" },
   ];
 
   const columns = [
@@ -183,7 +184,7 @@ const LendersAdmin = () => {
                   callback1={(searchValue) => setSearchValue(searchValue)}
                   callback2={(filterType) => setFilterType(filterType)}
                 />
-                <Table
+                <TableLenders
                   api="http://localhost:8000/api/lender/"
                   page={"Lenders"}
                   data={dataTable}

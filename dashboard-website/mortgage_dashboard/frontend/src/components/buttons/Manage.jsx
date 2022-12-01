@@ -1,15 +1,24 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import Edit from '../modals/EditLenders'
-import Delete from '../modals/EditLenders'
-import axios from 'axios';
+import Edit from '../modals/EditRow'
+import EditLenders from '../modals/EditLenders';
+import Delete from '../modals/Confirmation'
+import Button from 'react-bootstrap/Button';
 
-/* For the Lender pages */
+function ManageBtn({ page, rowData, index }) {
 
-function ManageBtn({ nameButton, api, page, rowData, rowKey, index }){
-  return(
-  <>
-  </>
-  );
+    return(
+        <Dropdown>
+          <Dropdown.Toggle variant="success" id="dropdown-basic">
+            Action
+          </Dropdown.Toggle>
+    
+          <Dropdown.Menu>
+            <EditLenders page={`${page}`} rowData={rowData}/>
+            <Delete title="Remove Lender" cID={rowData.company} message="Are you sure you want to remove this Lender permanently?"/>
+          </Dropdown.Menu>
+        </Dropdown>
+        );
+
 }
 
 export default ManageBtn;

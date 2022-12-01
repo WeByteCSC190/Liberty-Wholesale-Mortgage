@@ -194,6 +194,7 @@ const Leads = () => {
             <p className="Page-Title">Leads</p>
             <div>
               <Search
+                page="Leads"
                 callback1={(searchValue) => setSearchValue(searchValue)}
                 callback2={(filterType) => setFilterType(filterType)}
               />
