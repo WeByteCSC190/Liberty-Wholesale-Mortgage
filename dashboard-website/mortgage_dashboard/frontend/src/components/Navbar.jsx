@@ -117,7 +117,7 @@ function SwitchIcon() {
   if (windowDimension.windowWidth < 992) {
     return (
       <Container className="nav-menu">
-        <Nav.Link href="/account">Account</Nav.Link>
+        <SwitchPage href="/account">Account</SwitchPage>
         <Nav.Link className="nav-item" onClick={Logout} href="#!">
           Sign Out
         </Nav.Link>
@@ -133,19 +133,15 @@ function SwitchIcon() {
         >
           <FontAwesomeIcon icon={Icons.faUser} size="2x" />
         </Dropdown.Toggle>
-
         <Dropdown.Menu>
-          <NavDropdown.Item className="nav-drop-link">
-            <Link to="/account">Account</Link>
-          </NavDropdown.Item>
-
-          <NavDropdown.Item className="nav-drop-link">
-            <a className="nav-item" onClick={Logout} href="#!">
-              {" "}
-              Sign Out
-            </a>
-            {/* <Link onClick={logout} href='#!'>Sign Out</Link> */}
-          </NavDropdown.Item>
+        <NavDropdown.Item className="nav-drop-link">
+          <Link to="/account">Account</Link>
+         </NavDropdown.Item>
+  
+        <NavDropdown.Item className="nav-drop-link">
+          <a className='nav-item' onClick={Logout} href='#!'> Sign Out</a>
+          {/* <Link onClick={logout} href='#!'>Sign Out</Link> */}
+        </NavDropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     );

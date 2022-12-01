@@ -17,7 +17,7 @@ import LegalThree from "./components/legal/LegalThree";
 import LegalFour from "./components/legal/LegalFour.jsx";
 import AddUser from "./pages/Admin/Add-Users.jsx";
 import Users from "./pages/Admin/Users.jsx";
-import LendersAdmin from "./pages/Admin/EditLenders";
+import LendersAdmin from "./pages/Admin/LendersAdmin";
 import ResourcesAdmin from "./pages/Admin/EditResources";
 import Deleted from "./pages/Admin/Deleted";
 import "bootstrap/dist/css/bootstrap.min.css";

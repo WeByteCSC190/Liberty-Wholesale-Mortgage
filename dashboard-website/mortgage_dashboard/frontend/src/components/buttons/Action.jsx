@@ -1,5 +1,6 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import Edit from '../modals/EditRow'
+import EditLenders from '../modals/EditLenders';
 import Delete from '../modals/Confirmation'
 import Button from 'react-bootstrap/Button';
 
@@ -82,17 +83,18 @@ function ActionBtn({ page, rowData, index }) {
   );
    }
    else if(page === "Lenders"){
+    return(
     <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
         Action
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Edit page={`${page}`} rowData={rowData}/>
+        <EditLenders page={`${page}`} rowData={rowData}/>
         <Delete title="Remove Lender" cID={rowData.company} message="Are you sure you want to remove this Lenders permanently?"/>
       </Dropdown.Menu>
     </Dropdown>
-
+    );
    }
   
 }
