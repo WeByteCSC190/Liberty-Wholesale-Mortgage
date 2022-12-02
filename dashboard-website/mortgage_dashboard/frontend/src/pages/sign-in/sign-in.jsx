@@ -64,7 +64,7 @@ const SignIn = () => {
   else {
     return (
       <div className="page-wrapper">
-        <div className="Content">
+        <div className="sign-in-content">
           <div className="SignIn">
             {alert()}
             <div

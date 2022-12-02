@@ -7,7 +7,7 @@ import FooterLogin from "../../components/FooterLogin";
 export default class SignOut extends Component {
   render() {
     return ( 
-    <div className="Content">
+    <div className="sign-in-content">
       <div className="SignIn"> 
         <div style={{  display: "flex",
           justifyContent: "center",

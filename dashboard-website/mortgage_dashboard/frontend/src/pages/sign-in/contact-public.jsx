@@ -10,7 +10,7 @@ export default class ContactPublic extends Component {
   render() {
     return ( 
     
-    <div className="Content">
+    <div className="sign-in-content">
       <div className="SignIn"> 
         <div style={{  display: "flex",
           justifyContent: "center",
