@@ -46,7 +46,7 @@ const SignIn = () => {
               />
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-red-800">
+              <h3 href="/help" className="text-sm font-medium text-red-800">
                 Incorrect Username or Password
               </h3>
               <div className="mt-2 text-sm text-red-700"></div>
@@ -104,7 +104,7 @@ const SignIn = () => {
                   Sign In
                 </button>
                 <Row>
-                  <a href="sign-up">Forgot Username or Password</a>
+                  <a href="/help">Forgot Username or Password</a>
                 </Row>
               </form>
             </div>

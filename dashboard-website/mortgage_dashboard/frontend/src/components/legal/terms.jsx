@@ -1,6 +1,5 @@
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
 import WhiteLogo from '../images/logo.jpg'
 
 

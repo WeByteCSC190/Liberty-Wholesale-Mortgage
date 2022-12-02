@@ -49,7 +49,7 @@ export default function Users() {
         </div>
         <div className="Content">
           <Container className="page-format">
-            <p className="Page-Title">View TPO</p>
+            <p className="Page-Title">Manage Accounts</p>
             <Table page="Users" data={dataTable} column={column} />
           </Container>
         </div>
