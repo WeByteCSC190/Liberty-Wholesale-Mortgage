@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import logo from '../../logo.jpg'; 
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import { Container, Nav, Navbar } from "react-bootstrap";
 import { Link} from "react-router-dom";
 import FooterLogin from "../../components/FooterLogin";
 
@@ -19,10 +17,10 @@ export default class Help extends Component {
         <img src={logo} width="200" height="110" alt="MLO Support" />
           <p className="sign-in-topic">Help Options</p>
           <Row>
-               <Link className="info-b">Forgot Username</Link>
+               <Link to="/username" className="info-b">Forgot Username</Link>
           </Row>
             <Row>
-              <Link to="/" className="info-b">Forgot Password</Link>
+              <Link to="/password" className="info-b">Forgot Password</Link>
           </Row>
           <Row>
               <Link to="/contact-public" className="info-b">Contact Us</Link>
