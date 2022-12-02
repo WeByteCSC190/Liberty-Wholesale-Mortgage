@@ -179,3 +179,4 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 TEST_RUNNER = 'my_project.runner.PytestTestRunner'
+

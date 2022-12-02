@@ -28,7 +28,7 @@ class UserAccountManager(BaseUserManager):
     if password is None:
       raise TypeError('Superusers must have a password')
     if username is None:
-      raise TypeError('Superuserse must have a username')
+      raise TypeError('Superusers must have a username')
 
     user = self.create_user(
       username=username,
