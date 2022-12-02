@@ -1,61 +1,119 @@
-import React, { Component } from "react";
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import WhiteLogo from '../images/logo.jpg'
 
-export default class Template extends Component {
-  render() {
-    <body className="legal-body">
-      <section className="legal-section">
-        <div className="legal-container">
-          <div className="legal-intro">
-            <h1 className="legal-title">NAME OF TEMPLATE HERE</h1>
-            <p>Last Updated:</p>
-          </div>
-        </div>
-      </section>
 
-      <section className="legal-section">
-        <div className="legal-container">
-          <div className="legal-content">
-            <h3>Heading 1</h3>
-            <p>Content of Heading 1</p>
-          </div>
-        </div>
-      </section>
+export default function Template() {
+    return (
+    <Container style={{maxWidth: '800px'}}>
+      <Card border="light">
+        <Card.Body className="company-logo">
+            <img
+            src={WhiteLogo} //MLO Support Logo
+            width="150"
+            height="70"
+            className="Nav-Logo"
+            alt="MLO Support">
+           </img>
+        </Card.Body>
+        <Card.Body>
+          <Card.Title className="mb-4 text-center">MLO Support Template</Card.Title>
+         
+         <Card.Subtitle className="mb-2 text-muted">1. Section of the Text</Card.Subtitle>
+          <Card.Text classname="mb-4">
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+          </Card.Text>
+        
 
-      <section className="legal-section">
-        <div className="legal-container">
-          <div className="legal-content">
-            <h3>Heading 2</h3>
-            <p>Content of heading 2</p>
-          </div>
-        </div>
-      </section>
+         <Card.Subtitle className="mb-2 text-muted">2. Section of the Text</Card.Subtitle>
+          <Card.Text classname="mb-4">
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+          </Card.Text>
 
-      <section className="legal-section">
-        <div className="legal-container">
-          <div className="legal-content">
-            <h3>Heading 3</h3>
-            <p>Content of heading 3</p>
-          </div>
-        </div>
-      </section>
+          <Card.Subtitle className="mb-2 text-muted">3. Section of the Text</Card.Subtitle>
+          <Card.Text classname="mb-4">
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+          </Card.Text>
 
-      <section className="legal-section">
-        <div className="legal-container">
-          <div className="legal-content">
-            <h3>Heading 4</h3>
-            <p>Content of heading 4</p>
-          </div>
-        </div>
-      </section>
+          <Card.Subtitle className="mb-2 text-muted">4. Section of the Text</Card.Subtitle>
+          <Card.Text classname="mb-4">
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+          </Card.Text>
 
-      <section className="legal-section">
-        <div className="legal-container">
-          <div className="legal-ending">
-            <h3></h3>
-            <p></p>
-          </div>
-        </div>
-      </section>
-    </body>;
+          <Card.Subtitle className="mb-2 text-muted">5. Section of the Text</Card.Subtitle>
+          <Card.Text classname="mb-4">
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+          </Card.Text>
+
+          <Card.Subtitle className="mb-2 text-muted">6. Section of the Text</Card.Subtitle>
+          <Card.Text classname="mb-4">
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+          </Card.Text>
+
+          <Card.Subtitle className="mb-2 text-muted">7. Section of the Text</Card.Subtitle>
+          <Card.Text classname="mb-4">
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+          </Card.Text>
+
+          <Card.Subtitle className="mb-2 text-muted">8. Section of the Text</Card.Subtitle>
+          <Card.Text classname="mb-4">
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+          </Card.Text>
+
+          <Card.Subtitle className="mb-2 text-muted">9. Section of the Text</Card.Subtitle>
+          <Card.Text classname="mb-4">
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+          </Card.Text>
+
+          <Card.Subtitle className="mb-2 text-muted">10. Section of the Text</Card.Subtitle>
+          <Card.Text classname="mb-4">
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+            With supporting text below as a natural lead-in to additional content.
+          </Card.Text>
+
+         </Card.Body> 
+         <Card.Text className="mb-2 text-center">MLO Support | A Liberty Wholesale Company</Card.Text>
+      </Card>
+            
+      </Container>
+    );
   }
-}
