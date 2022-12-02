@@ -75,13 +75,11 @@ const Lenders = () => {
   }, [searchValue, filterType]);
 
   const column = [
+    { heading: "Details", value: "Details" },
     { heading: "Company", value: "company" },
     { heading: "Rating", value: "rating" },
     { heading: "Programs", value: "programs" },
-    { heading: "Details", value: "Details" },
     { heading: "Website", value: "website" },
-    
-
   ];
 
   const columns = [

@@ -6,6 +6,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import BlueLogo from './images/blue_logo.png';
 import ManageBtn from './buttons/Manage';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as Icons from "@fortawesome/free-solid-svg-icons";
+import { render } from 'react-dom';
 
 const LendersTableComponent = ({api, page, data, column, columns, image }) => {
 
@@ -111,7 +114,7 @@ const TableRow = ({ api, item, data, page, column, columns, image, index, expand
           value={index}  onClick={event => handleEpandRow(event, item.company)}>
             {
               expandState[item.company] ?
-                'Hide' : 'Show'
+                arrowDown(false) : arrowDown(true)
             }</Button> </th>);
       } 
       else {
@@ -178,6 +181,22 @@ const ExpandedRow = ({ api, item, columns, image, index, expandState}) => {
     </>
   )
 };
+
+function arrowDown(condition) {
+
+    if(condition){
+      return(
+        <FontAwesomeIcon color="black" icon={Icons.faAngleDown} />
+  
+      );
+    } else {
+      return(
+        <FontAwesomeIcon className="fa-rotate-180" color="black" icon={Icons.faAngleDown} />
+      
+      );
+    }
+    
+}
 
 
 export default LendersTableComponent;
