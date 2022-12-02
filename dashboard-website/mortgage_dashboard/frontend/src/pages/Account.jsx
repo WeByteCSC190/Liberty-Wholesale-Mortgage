@@ -16,8 +16,8 @@ export default function Account() {
     address_2: "",
     fName: "",
     lName: "",
+    email: "",
     bio: "",
-    // nmlsID: "",
     ssn: "",
     username: "",
     zip_code: "",
@@ -75,7 +75,7 @@ export default function Account() {
     formData.append("fName", formValue.fName);
     formData.append("lName", formValue.lName);
     formData.append("bio", formValue.bio);
-    // formData.append("email", formValue.email);
+    formData.append("email", formValue.email);
     // formData.append("nmlsID", formValue.nmlsID);
     formData.append("ssn", formValue.ssn);
     formData.append("zip_code", formValue.zip_code);
@@ -250,23 +250,23 @@ export default function Account() {
                   </div>
                 </div>
 
-                {/* <div className="sm:col-span-4"> */}
-                {/*   <label */}
-                {/*     htmlFor="email" */}
-                {/*     className="block text-sm font-medium text-gray-700" */}
-                {/*   > */}
-                {/*     Email address */}
-                {/*   </label> */}
-                {/*   <div className="mt-1"> */}
-                {/*     <input */}
-                {/*       id="email" */}
-                {/*       name="email" */}
-                {/*       type="email" */}
-                {/*       autoComplete="email" */}
-                {/*       className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" */}
-                {/*     /> */}
-                {/*   </div> */}
-                {/* </div> */}
+                <div className="sm:col-span-4">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Email address
+                  </label>
+                  <div className="mt-1">
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    />
+                  </div>
+                </div>
 
                 {/* <div className="sm:col-span-3"> */}
                 {/*   <label */}
