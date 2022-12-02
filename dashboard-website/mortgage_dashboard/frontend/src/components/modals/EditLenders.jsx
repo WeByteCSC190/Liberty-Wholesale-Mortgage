@@ -109,7 +109,6 @@ const handleChange = (event) => {
         <Modal.Body>
           <Form>
             <Container>
-  
               <Row>
                 <Col>
                     <Form.Group className="mb-3" controlId="">
@@ -135,8 +134,6 @@ const handleChange = (event) => {
                 </Col>
               </Row>
       
-             <Row>
-                <Col>
                     <Form.Group className="mb-3" controlId="">
                     <Form.Label>Programs</Form.Label>
                     <Form.Control name="programs" type="text" placeholder={formValue.programs} value={formValue.programs}
@@ -145,7 +142,14 @@ const handleChange = (event) => {
                           Enter list of programs separated by commas
                     </Form.Text>
                     </Form.Group>
-                </Col>
+              
+              <Form.Group className="mb-3" controlId="">
+                    <Form.Label>Account Executive</Form.Label>
+                    <Form.Control name="account_executive" type="text" placeholder={formValue.account_executive} value={formValue.account_executive}
+                        onChange={handleChange}/>
+                     </Form.Group>
+
+              <Row>
                 <Col>
                     <Form.Group className="mb-3" controlId="">
                     <Form.Label>FHA ID</Form.Label>
@@ -153,23 +157,13 @@ const handleChange = (event) => {
                           onChange={handleChange}/>
                       </Form.Group>
                 </Col>
-              </Row>
-
-              <Row>
+                
                 <Col>
                     <Form.Group className="mb-3" controlId="">
                     <Form.Label>VA ID</Form.Label>
                     <Form.Control name="lender_VA_ID" type="text" placeholder={formValue.lender_VA_ID} value={formValue.lender_VA_ID}
                          onChange={handleChange}/>
                     </Form.Group>
-                </Col>
-                
-                <Col>
-                    <Form.Group className="mb-3" controlId="">
-                    <Form.Label>Account Executive</Form.Label>
-                    <Form.Control name="account_executive" type="text" placeholder={formValue.account_executive} value={formValue.account_executive}
-                        onChange={handleChange}/>
-                     </Form.Group>
                 </Col>
               </Row>
         

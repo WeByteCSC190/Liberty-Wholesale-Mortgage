@@ -17,7 +17,7 @@ export default function Footer() {
             <Nav.Link href="/legalfour" target="_blank" 
                   rel="noopener noreferrer">Legal Link 4</Nav.Link>
           </Nav>
-          <Navbar.Brand className="footer-brand" href="#home">Powered by Liberty Wholesale Mortgage</Navbar.Brand>
+          <Navbar.Brand className="footer-brand">Powered by Liberty Wholesale Mortgage</Navbar.Brand>
         </Container>
       </Navbar>
     </>

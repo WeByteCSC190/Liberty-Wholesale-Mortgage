@@ -170,7 +170,7 @@ function AddLendersRow({ page, url }) {
         <Form.Control name="website" type="text" placeholder="Website Url" value={formValue.website}
         onChange={handleChange} />
         <Form.Text className="text-muted">
-          Enter a link with http or https. Example: https://www.google.com
+          Enter a link with http/https. Example: https://www.google.com
         </Form.Text>
         </Form.Group>
         </Col>
