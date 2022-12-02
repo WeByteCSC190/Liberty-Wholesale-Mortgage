@@ -1,11 +1,11 @@
 import Table from 'react-bootstrap/Table';
+import AddLenderRow from "../components/modals/AddLender";
 import LinkBtn from "../components/buttons/Link";
-import ManageBtn from "../components/buttons/Manage";
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import BlueLogo from './images/blue_logo.png';
-import ActionBtn from './buttons/Action';
+import ManageBtn from './buttons/Manage';
 
 const LendersTableComponent = ({api, page, data, column, columns, image }) => {
 
@@ -48,8 +48,12 @@ const LendersTableComponent = ({api, page, data, column, columns, image }) => {
       </thead>
       <tbody>
           {data.map((item, index) => <TableRow
-            api={api} item={item} data={data} 
-            column={column} columns={columns} index={index} 
+            api={api} 
+            item={item} 
+            data={data} 
+            column={column} 
+            columns={columns} 
+            index={index} 
             expandedRows={expandedRows} 
             handleEpandRow={handleEpandRow} 
             expandState={expandState} 
@@ -67,12 +71,12 @@ const LendersTableComponent = ({api, page, data, column, columns, image }) => {
  // Renders information or buttons on the heading of the table
 const TableHeadItem = ({ item, api, page }) =>
   {
-  if (item.heading === 'TPOLogin') {
+  if (item.heading === 'AddRow' && page === "Lenders") {
+    return (<th><AddLenderRow page={`${page}`} api={`${api}`} /></th>);
+  }
+  else if(item.heading === 'TPOLogin') {
     return (<th><LinkBtn nameButton="Website" url={api.website}/></th>);
-  }
-  else if (item.heading === 'AddRow') {
-    return (<th><ActionBtn page={`${page}`} api={`${api}`} /></th>);
-  }
+  } 
  else {
     return (<th>{`${item.heading}`}</th>);
   }
@@ -92,7 +96,14 @@ const TableRow = ({ api, item, data, page, column, columns, image, index, expand
         const itemSplit = columnItem.value.split('.')
         return <td>{item[itemSplit[0]][itemSplit[1]]}</td>
       }
-      if (columnItem.heading === 'Website') {
+      if (columnItem.heading === "AddRow") {
+        return (
+          <th>
+            <ManageBtn page={`${page}`} rowData={item} index={index} />
+          </th>
+        );
+        }
+      else if (columnItem.heading === 'Website') {
         return (<th><LinkBtn nameBtn={"TPO Login"} color={"info"} url={item.website} /></th>);
       } 
       else if (columnItem.heading === 'Details') {

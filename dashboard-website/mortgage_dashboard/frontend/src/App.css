@@ -22,7 +22,6 @@
   top: 0;
   width: 100%;
   z-index: 4;  */
-  
 }
 
 .Content {
@@ -37,6 +36,8 @@
 .Footer {
   margin-top: auto;
 }
+
+
 
 /* CSS Code for Navbar */
 
@@ -406,100 +407,10 @@ h1 {
 /* For legal pages */
 
 .company-logo {
-  margin-top: 10%;
-  margin-bottom: 2%;
+  margin: auto; 
 }
 
-.legal-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f0f8fa;
-  /*border: 1px red solid; */
-  border-color: #042baa;
-}
 
-.legal-section {
-  min-height: 30vh;
-  position: relative;
-}
-
-.legal-container {
-  border: white;
-  background-color: white;
-  max-width: 700px;
-  width: 100%;
-  height: auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  right: 0;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  /*order: 1px red solid */
-}
-
-.legal-content {
-  box-sizing: border-box;
-  height: auto;
-  align-items: left;
-  justify-content: left;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  padding: 1em;
-}
-
-.legal-content h2 {
-  line-height: 1.5;
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: left;
-}
-
-.legal-content h3 {
-  line-height: 1.5;
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: left;
-}
-
-.legal-content p {
-  align-items: center;
-  justify-content: center;
-  position: flex;
-  margin: auto;
-  line-height: 1.7142857;
-}
-
-.legal-intro {
-  text-align: center;
-}
-
-.legal-title {
-  text-transform: uppercase;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.legal-intro p {
-  font-weight: lighter;
-}
-
-.legal-ending h3 {
-  text-align: left;
-  margin-top: 0.2%;
-}
-
-.legal-ending p {
-  text-align: center;
-  line-height: 1.7142857;
-}
 
 /* Responsive Navbar and Footer */
 
@@ -769,6 +680,8 @@ h1 {
   .carousel-caption-bottom {
     bottom: 25px;
   }
+
+  
 }
 
 /* Carousel end */

@@ -3,7 +3,7 @@ import * as React from "react";
 import Moment from "react-moment";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import Search from "../components/SearchLenders";
+import Search from "../components/Search";
 import Table from "../components/TableLenders";
 import Footer from "../components/Footer";
 import Container from "react-bootstrap/Container";
@@ -48,6 +48,11 @@ const Lenders = () => {
         setLogoTable(image);
         sourceImage = image;
         console.log(image);
+        if(image == null) {
+          console.log("Logo not available")
+        }else {
+          console.log("Logo successful")
+        }
         return image;
       })
       .catch((error) => {
@@ -63,7 +68,7 @@ const Lenders = () => {
     getLenders();
     fetchData(searchValue, filterType).then((dataTable) => {
       setDataTable(dataTable);
-      console.log(dataTable);
+      //console.log(dataTable);
     });
     const filteredData = filterTable(searchValue, filterType);
     setDataTable(filteredData);
@@ -75,6 +80,8 @@ const Lenders = () => {
     { heading: "Programs", value: "programs" },
     { heading: "Details", value: "Details" },
     { heading: "Website", value: "website" },
+    
+
   ];
 
   const columns = [
@@ -92,27 +99,29 @@ const Lenders = () => {
         if (searchValue !== "") {
           resolve(
             testData.filter((dataTable) =>
-              dataTable.fName.toLowerCase().includes(searchValue.toLowerCase())
+              dataTable.company.toLowerCase().includes(searchValue.toLowerCase()) ||
+              dataTable.rating.toLowerCase().includes(searchValue.toLowerCase())  ||
+              dataTable.programs.toLowerCase().includes(searchValue.toLowerCase())
             )
           );
         }
         if (filterType !== "") {
           switch (filterType) {
             case "Company":
-              // console.log("filter by first name")
+              // console.log("filter by company")
               resolve(handleSorting("company", "asc"));
               break;
             case "Rating":
-              // console.log("filter by last name")
+              // console.log("filter by rating")
               resolve(handleSorting("rating", "asc"));
               break;
             case "Programs":
-              // console.log("filter by date")
+              // console.log("filter by programs")
               resolve(handleSorting("programs", "asc"));
-              resolve(testData);
               break;
             default:
-              resolve(testData);
+              window.location.reload(false);
+              break; 
           }
         } else if (searchValue === "" || filterType === "") {
           resolve(testData);
@@ -121,6 +130,7 @@ const Lenders = () => {
     });
   };
   const handleSorting = (sortField, sortOrder) => {
+    console.log("handlesort sort field = " + sortOrder);
     if (sortField) {
       const sorted = [...dataTable].sort((a, b) => {
         return (
@@ -134,40 +144,44 @@ const Lenders = () => {
   };
   const handleSortingDate = () => {
     const sorted = [...dataTable].sort((a, b) => {
-      console.log(a.date);
-      return new Moment(a.date) - new Moment(b.date);
+      console.log(
+        new Moment(a.company.slice(0, 10)) - new Moment(b.company.slice(0, 10))
+      );
+      return new Moment(a.company.slice(0, 10)) - new Moment(b.company.slice(0, 10));
     });
     return sorted;
   };
   const filterTable = (searchValue, filterType) => {
-    console.log("filterTable function called");
     if (filterType !== "") {
       switch (filterType) {
-        case "Company":
-          console.log("filter by company");
+        case "Company ASC":
           return handleSorting("company", "asc");
-        case "Rating":
-          console.log("filter by rating");
+        case "Company Desc":
+          return handleSorting("company", "desc");
+        case "Lowest to Highest":
           return handleSorting("rating", "asc");
-        case "Programs":
-          console.log("filter by programs");
-          // return handleSortingDate()
-          break;
-
+        case "Highest to Lowest":
+          return handleSorting("rating", "desc");
+          case "Programs ASC":
+            return handleSorting("status", "asc");
+          case "Programs DESC":
+            return handleSorting("status", "desc");
         default:
-          return testData;
+          window.location.reload(false);
       }
     } else if (searchValue === "" || filterType === "") {
       return testData;
     }
     if (searchValue !== "") {
-      console.log(
-        testData.filter((dataTable) =>
-          dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
-        )
-      );
+     // console.log(
+     //   testData.filter((dataTable) =>
+     //     dataTable.company.toLowerCase().includes(searchValue.toLowerCase())
+     //   )
+    //  );
       return testData.filter((dataTable) =>
-        dataTable.fname.toLowerCase().includes(searchValue.toLowerCase())
+        dataTable.company.toLowerCase().includes(searchValue.toLowerCase()) ||
+        dataTable.ratings.toLowerCase().includes(searchValue.toLowerCase()) ||
+        dataTable.programs.toLowerCase().includes(searchValue.toLowerCase())
       );
     }
   };
@@ -182,11 +196,9 @@ const Lenders = () => {
             <p className="Page-Title">Lenders</p>
             <div>
               <Search
+                page={"Lenders"}
                 callback1={(searchValue) => setSearchValue(searchValue)}
                 callback2={(filterType) => setFilterType(filterType)}
-                button1={"Company"}
-                button2={"Rating"}
-                button3={"Programs"}
               />
               <Table
                 api="http://localhost:8000/api/lender/"

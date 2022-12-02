@@ -199,6 +199,7 @@ const Borrowers = () => {
             <p className="Page-Title">Borrowers</p>
             <div>
               <Search
+                page="Borrowers"
                 callback1={(searchValue) => setSearchValue(searchValue)}
                 callback2={(filterType) => setFilterType(filterType)}
               />

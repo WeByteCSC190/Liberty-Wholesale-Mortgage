@@ -9,6 +9,10 @@ import Resources from "./pages/Resources";
 import SignIn from "./pages/sign-in/sign-in";
 import SignOut from "./pages/sign-in/sign-out";
 import Help from "./pages/sign-in/help.jsx";
+import RecoverPassword from "./pages/sign-in/password-reset";
+import RecoverUsername from "./pages/sign-in/username-reset";
+import ConfirmPassword from "./pages/sign-in/confirm-password";
+import ConfirmUsername from "./pages/sign-in/confirm-username";
 import ContactPublic from "./pages/sign-in/contact-public";
 import Lenders from "./pages/Lenders";
 import Terms from "./components/legal/terms.jsx";
@@ -17,7 +21,7 @@ import LegalThree from "./components/legal/LegalThree";
 import LegalFour from "./components/legal/LegalFour.jsx";
 import AddUser from "./pages/Admin/Add-Users.jsx";
 import Users from "./pages/Admin/Users.jsx";
-import LendersAdmin from "./pages/Admin/EditLenders";
+import LendersAdmin from "./pages/Admin/LendersAdmin";
 import ResourcesAdmin from "./pages/Admin/EditResources";
 import Deleted from "./pages/Admin/Deleted";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -42,6 +46,10 @@ const App = () => {
           <Route path="Sign-In" element={<SignIn />} />
           <Route path="Sign-Out" element={<SignOut />} />
           <Route path="Help" element={<Help />} />
+          <Route path="Password" element={<RecoverPassword />} />
+          <Route path="Username" element={<RecoverUsername />} />
+          <Route path="ConfirmPassword" element={<ConfirmPassword />} />
+          <Route path="ConfirmUsername" element={<ConfirmUsername />} />
           <Route path="Terms" element={<Terms />} />
           <Route path="Privacy" element={<Privacy />} />
           <Route path="Contact-Public" element={<ContactPublic />} />

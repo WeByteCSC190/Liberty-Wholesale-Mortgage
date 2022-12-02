@@ -21,8 +21,8 @@ import {connect} from 'react-redux';
 
     const authenticatedLinks = (
       <Container className="nav-menu">
-        <SwitchPage href="/Add-User">Add TPO</SwitchPage>
-        <SwitchPage href="/Users">View TPO</SwitchPage>
+        <SwitchPage href="/Add-User">Add User</SwitchPage>
+        <SwitchPage href="/Users">Manage</SwitchPage>
         <SwitchPage href="/lendersAdmin">Lenders</SwitchPage>
         <SwitchPage href="/resourcesAdmin" >Resources</SwitchPage>
         <SwitchPage href="/deleted" >Recovery Bin</SwitchPage>
@@ -43,7 +43,7 @@ import {connect} from 'react-redux';
     return (
       <Navbar collapseOnSelect expand="lg" variant="dark" className="Navbar" fixed="top">
       <Container>
-      <Navbar.Brand href="/">
+      <Navbar.Brand href="/Add-User">
         <img
           src={BlueLogo} //MLO Support Logo
           width="150"
@@ -122,7 +122,7 @@ import {connect} from 'react-redux';
   if( windowDimension.windowWidth < 992) {
     return (
       <Container className="nav-menu">
-      <Nav.Link href="/account">Account</Nav.Link>
+      <SwitchPage href="/account">Account</SwitchPage>
       <Nav.Link className='nav-item' onClick={logout} href='#!' >Sign Out</Nav.Link>
       </Container>
       

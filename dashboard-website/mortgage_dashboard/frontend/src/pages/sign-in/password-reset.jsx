@@ -12,7 +12,7 @@ import FooterLogin from "../../components/FooterLogin";
 
 api.defaults.withCredentials = true;
 
-const SignIn = () => {
+const RecoverPassword = () => {
   const dispatch = useDispatch();
 
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -46,7 +46,7 @@ const SignIn = () => {
               />
             </div>
             <div className="ml-3">
-              <h3 href="/help" className="text-sm font-medium text-red-800">
+              <h3 className="text-sm font-medium text-red-800">
                 Incorrect Username or Password
               </h3>
               <div className="mt-2 text-sm text-red-700"></div>
@@ -76,36 +76,23 @@ const SignIn = () => {
             >
               <form onSubmit={(e) => onSubmit(e)}>
                 <img src={logo} width="200" height="110" alt="MLO Support" />
-                <p className="sign-in-message">
-                  Sign In with a MLO Support Account
-                </p>
+                <p className="sign-in-topic">Recover Password</p>
+                <p>Please enter your email address to retreve your username</p>
                 <div className="center">
                   <input
                     type="text"
-                    placeholder="Username"
-                    name="username"
+                    placeholder="Email"
+                    name="email"
                     onChange={(e) => onChange(e)}
                     value={username}
                     required
                   />
                 </div>
-                <div className="center">
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    onChange={(e) => onChange(e)}
-                    value={password}
-                    minLength="6"
-                    required
-                  />
-                </div>
+                <Link to="./ConfirmPassword">
                 <button className="btn btn-primary" type="submit">
-                  Sign In
+                  Submit
                 </button>
-                <Row>
-                  <a href="/help">Forgot Username or Password</a>
-                </Row>
+                </Link>
               </form>
             </div>
 
@@ -119,4 +106,4 @@ const SignIn = () => {
   }
 };
 
-export default SignIn;
+export default RecoverPassword;
