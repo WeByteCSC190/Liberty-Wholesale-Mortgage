@@ -1,10 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Icons from "@fortawesome/free-solid-svg-icons";
 
-const ColorIcons=({page, input})=> {  
+const ColorIcons = ({page, input}) => {  
 
-   var color = " "; 
-   console.log("Color Icon" + input); 
+   var colorChoice = []; 
+   console.log("Color Icon: " + input); 
+
+
    if(page == "Leads"){
 
    } else if (page == "Borrowers"){
@@ -14,35 +16,34 @@ const ColorIcons=({page, input})=> {
 
         switch(input){
             case 'A':
-                color = "green"
+                colorChoice = "green"
                 break;
 
-             case 'A-':
-                color = "yellow"
+             case "A-":
+                colorChoice = "yellow"
                 break;
 
             case 'B+':
-                color = "blue"
-                break; 
+                colorChoice = "blue"
+                 break; 
 
             case 'B':
-                color = "orange"
+                colorChoice = "orange"
                 break;
 
             case 'C':
-                color = "purple"
+                colorChoice = "purple"
                 break; 
 
             case 'U':
-                color = "black"
+                colorChoice = "black"
                 break; 
         }
-        console.log(color);
-
+        return colorChoice; 
     }
-
-         return (
-         <FontAwesomeIcon icon={Icons.faCircle} color={color}/>
+        console.log("End of colorChoice " + colorChoice);
+       return (
+         <FontAwesomeIcon icon={Icons.faCircle} color={colorChoice}/>
         )
     
 }
