@@ -86,21 +86,21 @@ class LeadViewSet(viewsets.ModelViewSet):
         serializer = LeadSerializer(recent_three, many=True)
         return JsonResponse(serializer.data, content_type="application/json", safe=False)
 
-    def destroy(self, request, pk):
-        lead = Lead.objects.get(caseId=pk)
-        name = "Lead"
-        caseID = lead.caseId
-        date = lead.date
-        fname = lead.fName
-        lname = lead.lName
-        creditscore = lead.creditScore
-        email = lead.email
-        phone_num = lead.phone_num
-        status = lead.status
-        leadBin = RecyclingBin(name,None, None,caseID,date,fname,lname,creditscore,email,phone_num, status)
-        leadBin.save()
-        lead.delete()
-        return Response("Moved to Bin!")
+    # def destroy(self, request, pk):
+    #     lead = Lead.objects.get(caseId=pk)
+    #     name = "Lead"
+    #     caseID = lead.caseId
+    #     date = lead.date
+    #     fname = lead.fName
+    #     lname = lead.lName
+    #     creditscore = lead.creditScore
+    #     email = lead.email
+    #     phone_num = lead.phone_num
+    #     status = lead.status
+    #     leadBin = RecyclingBin(name,None, None,caseID,date,fname,lname,creditscore,email,phone_num, status)
+    #     leadBin.save()
+    #     lead.delete()
+    #     return Response("Moved to Bin!")
 
 
 class BorrowerViewSet(viewsets.ModelViewSet):
