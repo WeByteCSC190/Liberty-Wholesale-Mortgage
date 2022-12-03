@@ -36,9 +36,9 @@ const ColorIcons = ({choice}) => {
         
 
         // For Lenders
-        'A' : 'red',
+        'A' : 'green',
         'B+': 'blue',
-        'B' : 'green',
+        'B' : 'brown',
         'C' : 'gray',
         'U' : 'black', 
     }

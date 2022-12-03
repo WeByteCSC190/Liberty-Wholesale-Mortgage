@@ -72,8 +72,9 @@ const LendersAdmin = () => {
   const column = [
     { heading: "Details", value: "Details" },
     { heading: "Company", value: "company" },
-    { heading: "Rating", value: "rating" },
     { heading: "Programs", value: "programs" },
+    { heading: "", value: ""}, 
+    { heading: "Rating", value: "rating" },
     { heading: "Website", value: "website" },
     { heading: "AddRow", value: "AddLender" },
   ];

@@ -195,12 +195,12 @@ function arrowDown(condition) {
 
     if(condition){
       return(
-        <FontAwesomeIcon color="black" icon={Icons.faAngleDown} />
+        <FontAwesomeIcon color="black" icon={Icons.faAngleRight} />
   
       );
     } else {
       return(
-        <FontAwesomeIcon className="fa-rotate-180" color="black" icon={Icons.faAngleDown} />
+        <FontAwesomeIcon className="fa-rotate-90" color="black" icon={Icons.faAngleRight} />
       
       );
     }
