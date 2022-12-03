@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import BlueLogo from './images/blue_logo.png';
 import ManageBtn from './buttons/Manage';
+import ColorIcons from './ColorIcon'; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Icons from "@fortawesome/free-solid-svg-icons";
 import { render } from 'react-dom';
@@ -116,7 +117,15 @@ const TableRow = ({ api, item, data, page, column, columns, image, index, expand
               expandState[item.company] ?
                 arrowDown(false) : arrowDown(true)
             }</Button> </th>);
-      } 
+       } 
+       else if(columnItem.heading == ""){
+            return (
+                <>
+                  <th><ColorIcons page={`${page}`} input={item.rating} /></th>
+                </>
+            )
+
+       }
       else {
         return <td>{item[`${columnItem.value}`]}</td>
       }
@@ -128,7 +137,7 @@ const TableRow = ({ api, item, data, page, column, columns, image, index, expand
       expandedRows.includes(item.company) ?
       <tr>
         <td colspan="12" style={{backgroundColor: '#FFF', marginBottom: 0, }}>
-              <p> Company Info </p>
+              <p> Company Info: {item.company} </p>
               <Form>
                 <Form.Group className="mb-3" controlId="notesTextarea">
                  <ExpandedRow api={api} item={item} columns={columns} image={image} index={index} expandState={expandState} />

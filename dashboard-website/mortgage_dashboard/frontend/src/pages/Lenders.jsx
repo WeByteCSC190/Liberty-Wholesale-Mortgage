@@ -76,6 +76,7 @@ const Lenders = () => {
 
   const column = [
     { heading: "Details", value: "Details" },
+    { heading: "", value: ""}, 
     { heading: "Company", value: "company" },
     { heading: "Rating", value: "rating" },
     { heading: "Programs", value: "programs" },
