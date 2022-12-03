@@ -121,7 +121,7 @@ const TableRow = ({ api, item, data, page, column, columns, image, index, expand
        else if(columnItem.heading == ""){
             return (
                 <>
-                  <th><ColorIcons page={`${page}`} input={item.rating} /></th>
+                  <th><ColorIcons page={`${page}`} choice={item.rating} /></th>
                 </>
             )
 
