@@ -26,31 +26,31 @@ function AddRow({ url, page }) {
     creditScore: "",
     status_check: false,
   });
-  // useEffect(() => {
-  //   const getStatus = "http://localhost:8000/api/status/";
-  //   async function fetchData() {
-  //     // Fetch data
-  //     axios({
-  //       method: "GET",
-  //       url: getStatus,
-  //     })
-  //       .then((response) => {
-  //         const data = response.data;
-  //         setStatus(data);
-  //         // testData = data;
-  //         console.log(data);
-  //         // return data
-  //       })
-  //       .catch((error) => {
-  //         if (error.response) {
-  //           console.log(error.response);
-  //           console.log(error.response.status);
-  //           console.log(error.response.headers);
-  //         }
-  //       });
-  //   }
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const getStatus = "http://localhost:8000/api/status/";
+    async function fetchData() {
+      // Fetch data
+      axios({
+        method: "GET",
+        url: getStatus,
+      })
+        .then((response) => {
+          const data = response.data;
+          setStatus(data);
+          // testData = data;
+          console.log(data);
+          // return data
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          }
+        });
+    }
+    fetchData();
+  }, []);
   const handleSubmit = () => {
     // store the states in the form data
     var formData = new FormData();
