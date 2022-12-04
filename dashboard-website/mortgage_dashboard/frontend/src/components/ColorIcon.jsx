@@ -14,8 +14,8 @@ const ColorIcons = ({choice}) => {
         'Missing Paperwork': 'red',
 
         // For Leads
-        'Recently Added' : 'orange', //
-        'Contacted': 'green', //
+        'Recently Added' : 'orange', 
+        'Contacted': 'green', 
         'Declined': 'black',
         'In Progress': 'gold',
         
@@ -25,16 +25,15 @@ const ColorIcons = ({choice}) => {
         "Initial Disclosure Sent" : 'orange',
         "Title Ordered" : 'orange',
         "Title Recieved" : 'gold',
-        "Appraisal Ordered": "gray", //
-        "Appraisal Received" : "sliver", //
-        "Initial Disclosure, Received" : "green", //
-        "UW Submitted" : "green", //
-        "UW Response" : "green", //
-        "Pending Conditions" : "green", //
-        "Cleared to Closed" : "gray", //
+        "Appraisal Ordered": "gray", 
+        "Appraisal Received" : "brown", 
+        "Initial Disclosure, Received" : "green", 
+        "UW Submitted" : "green", 
+        "UW Response" : "green", 
+        "Pending Conditions" : "green", 
+        "Cleared to Closed" : "gray", 
 
-        
-
+    
         // For Lenders
         'A' : 'green',
         'B+': 'blue',
@@ -42,7 +41,6 @@ const ColorIcons = ({choice}) => {
         'C' : 'gray',
         'U' : 'black', 
     }
-    
     
     return (
         <FontAwesomeIcon icon={Icons.faCircle} color={colorChoice[value]}/>

@@ -110,14 +110,14 @@ const TableRow = ({ api, item, data, page, column, columns, image, index, expand
       else if (columnItem.heading === 'Website') {
         return (<th><LinkBtn nameBtn={"TPO Login"} color={"info"} url={item.website} /></th>);
       } 
-      else if (columnItem.heading === 'Details') {
-        return (<th> <Button variant="link" 
+      else if (columnItem.heading === "Details") {
+        return (<th key={page+"detail"+index}> <Button variant="light"
           value={index}  onClick={event => handleEpandRow(event, item.company)}>
-            {
-              expandState[item.company] ?
-                arrowDown(false) : arrowDown(true)
-            }</Button> </th>);
-       } 
+          {
+            expandState[item.company] ?
+            arrowDown(false) : arrowDown(true)
+          }</Button> </th>);
+      }
        else if(columnItem.heading == ""){
             return (
                 <>
