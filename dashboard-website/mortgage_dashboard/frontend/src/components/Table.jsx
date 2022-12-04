@@ -37,11 +37,10 @@ const TableComponent = ({ url, page, data, column, notes }) => {
       var formData = new FormData();
       formData.append("note", noteText);
       formData.append("lead", caseId);
-      url = "http://localhost:8000/api/leadnote/";
       try {
         const response = await api({
           method: "post",
-          url: { url },
+          url: "http://localhost:8000/api/leadnote/",
           data: formData,
         });
         window.location.reload(false);
@@ -50,18 +49,18 @@ const TableComponent = ({ url, page, data, column, notes }) => {
       }
     }
   }
-  const handleDeleteNote = async (caseId) => {
-  // store the states in the form data
+  const handleDeleteNote = (caseId) => {
+    console.log("delete note")
+   
   if (page === "Borrowers") {
     var formData = new FormData();
     formData.append("borrower", caseId)
-    api="http://localhost:8000/api/borrowernote-list/"
+    url = "http://localhost:8000/api/borrowernote" + caseId + "/";
     try {
-      const response = await axios({
+      const response =  api({
         method: "DELETE",
-        url: api,
+        url: url,
         data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
       });
       window.location.reload(false);
     
@@ -71,13 +70,12 @@ const TableComponent = ({ url, page, data, column, notes }) => {
   }else if (page === "Leads") {
     var formData = new FormData();
     formData.append("lead", caseId)
-    api="http://localhost:8000/api/leadnote-list/"
+    url="http://localhost:8000/api/leadnote/"+caseId+"/"
     try {
-      const response = await axios({
+      const response = api({
         method: "DELETE",
-        url: api,
+        url: url,
         data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
       });
       window.location.reload(false);
     } catch(error) {
@@ -153,7 +151,7 @@ const TableHeadItem = ({ item, url, page }) => {
 
 const TableRow = ({
   page, item, column, notes, index, expandedRows, handleEpandRow, expandState,
-  handleAddNote,handleDeleteNote, setNoteText 
+  handleAddNote,handleDeleteNote, setNoteText
 }) => (
   <>
     <tr id={index}>
@@ -163,31 +161,31 @@ const TableRow = ({
           return <td key={page+index}>{item[itemSplit[0]][itemSplit[1]]}</td>;
         }
         if (columnItem.heading === "AddRow") {
-           return (<th key={page+"addRow"+index}><ActionBtn page={`${page}`} rowData={item} index={index} /></th>);
+          return (<th key={page+"addRow"+index}><ActionBtn page={`${page}`} rowData={item} index={index} /></th>);
         } else if (columnItem.heading === "Details") {
-          return (<th key={page+"detail"+index}> <Button variant="link" 
-          value={index}  onClick={event => handleEpandRow(event, item.caseId)}>
+          return (<th key={page+"detail"+index}> <Button variant="link"
+            value={index}  onClick={event => handleEpandRow(event, item.caseId)}>
             {
               expandState[item.caseId] ?
                 'Hide' : 'Show'
             }</Button> </th>);
         } else if (columnItem.heading === "Link") {
-          return (<td key={page+columnItem.heading+index}> <Button variant="link"
-          onClick={(e) => window.open( item[`${columnItem.value}`], "_blank")}
-         >
-           Open
-        </Button>
-        <Button variant="link" 
-            onClick={(e) =>saveAs(item[`${columnItem.value}`], 'image.jpg')}>
-            Download
+          return (<td key={page + columnItem.heading + index}> <Button variant="link"
+            onClick={(e) => window.open(item[`${columnItem.value}`], "_blank")}
+          >
+            Open
           </Button>
-        </td>);
+            <Button variant="link"
+              onClick={(e) => saveAs(item[`${columnItem.value}`], 'image.jpg')}>
+              Download
+            </Button>
+          </td>);
         } else {
-        if(columnItem.heading==="Date") {
-          return <td key={page+"date"+index}>{item[`${columnItem.value}`].slice(0, 10)}</td>
+          if (columnItem.heading === "Date") {
+            return <td key={page + "date" + index}>{item[`${columnItem.value}`].slice(0, 10)}</td>
+          }
+          return <td key={page + "_" + columnItem.value + "_row" + index}>{item[`${columnItem.value}`]}</td>
         }
-        return <td key={page+"_"+columnItem.value+"_row"+index}>{item[`${columnItem.value}`]}</td>
-      }
       })}
     </tr>
     <>
@@ -198,41 +196,44 @@ const TableRow = ({
             style={{ backgroundColor: "#343A40", color: "#FFF" }}
           >
             {notes.map((note) => {
-              if (page === "Borrowers"){
-                  if (note.borrower === item.caseId) {
-                    return <>
-                      <Row key={page+note+index}>
-                        <Col xs="auto"><div><h6>{note.borrowernote}
+              if (page === "Borrowers") {
+                if (note.borrower === item.caseId) {
+                  return <>
+                    <Row key={page + note + index}>
+                      <Col xs="auto"><div><h6>{note.borrowernote}
                         <small> ({note.created_on})</small></h6></div></Col>
-                        <Col xs lg="2">
-                         <Button onClick={event => handleDeleteNote(item.caseId)}variant="outline-danger"><FontAwesomeIcon icon={faTrash} /></Button>
-                        </Col>
-                      </Row>
-                    </>
-                  }
-              } else if (page === "Leads"){
-                  if (note.lead === item.caseId) {
-                    return <>  
-                     <Row key={page+note+index}>
-                        <Col xs="auto"><div><h6>{note.leadnote}
+                      <Col xs lg="2">
+                        <Button onClick={event =>
+                          handleDeleteNote(item.caseId)
+                        } variant="outline-danger"><FontAwesomeIcon icon={faTrash} /></Button>
+                      </Col>
+                    </Row>
+                     
+                  </>
+                }
+              } else if (page === "Leads") {
+                if (note.lead === item.caseId) {
+                  return <>
+                    <Row key={page + note + index}>
+                      <Col xs="auto"><div><h6>{note.leadnote}
                         <small> ({note.created_on})</small></h6></div></Col>
-                        <Col xs lg="2">
-                         <Button onClick={event => handleDeleteNote(item.caseId)}variant="outline-danger"><FontAwesomeIcon icon={faTrash} /></Button>
-                        </Col>
-                      </Row>
-                    </>
-                  }
+                      <Col xs lg="2">
+                        <Button onClick={event => handleDeleteNote(item.caseId)} variant="outline-danger"><FontAwesomeIcon icon={faTrash} /></Button>
+                      </Col>
+                    </Row>
+                  </>
+                }
               }
             })}
             <Form>
               <Form.Group className="mb-3" controlId="notesTextarea">
-                  <Form.Label>Notes</Form.Label>
-                  <Form.Control as="textarea" rows={3}
-                  onChange={(e) => setNoteText(e.target.value)}/>
-                </Form.Group>
-                <Button variant="outline-light" onClick={event => handleAddNote(item.caseId)}>
-                  Save
-                </Button>
+                <Form.Label>Notes</Form.Label>
+                <Form.Control as="textarea" rows={3}
+                  onChange={(e) => setNoteText(e.target.value)} />
+              </Form.Group>
+              <Button variant="outline-light" onClick={event => handleAddNote(item.caseId)}>
+                Save
+              </Button>
             </Form>
           </td>
         </tr>
