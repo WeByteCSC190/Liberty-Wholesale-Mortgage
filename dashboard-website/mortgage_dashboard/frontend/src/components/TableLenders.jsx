@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Icons from "@fortawesome/free-solid-svg-icons";
 import { render } from 'react-dom';
 
+import UWM from '../components/images/UWM.jpg';
+
 const LendersTableComponent = ({api, page, data, column, columns, image }) => {
 
   // State variable to keep track of all the expanded rows
@@ -171,7 +173,7 @@ const ExpandedRow = ({ api, item, columns, image, index, expandState}) => {
       } else if (columnItem.heading === 'Logo') {
         return (<td>
            <img
-              src={columns.logo} 
+              src={UWM} // columns.logo
               width="150"
               height="70"
               className="table-logo"

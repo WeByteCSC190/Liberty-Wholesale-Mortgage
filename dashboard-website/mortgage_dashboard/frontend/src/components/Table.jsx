@@ -205,7 +205,8 @@ const TableRow = ({
               Download
             </Button>
           </td>);
-        } else if(columnItem.heading == ""){
+        } 
+        if(columnItem.heading == ""){
           return (
               <>
                 <th><ColorIcons choice={item.status} /></th>
