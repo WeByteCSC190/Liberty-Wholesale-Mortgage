@@ -9,7 +9,9 @@ import axios from 'axios';
 import { saveAs } from 'file-saver';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ColorIcons from './ColorIcon'; 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as Icons from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 const TableComponent = ({ url, page, data, column, notes }) => {
   const [noteText, setNoteText] = useState("");
@@ -190,7 +192,7 @@ const TableRow = ({
             value={index}  onClick={event => handleEpandRow(event, item.caseId)}>
             {
               expandState[item.caseId] ?
-                '-' : '+'
+              arrowDown(false) : arrowDown(true)
             }</Button> </th>);
         } else if (columnItem.heading === "Link") {
           return (<td key={page + columnItem.heading + index}> <Button variant="link"
@@ -203,7 +205,14 @@ const TableRow = ({
               Download
             </Button>
           </td>);
-        } else {
+        } else if(columnItem.heading == ""){
+          return (
+              <>
+                <th><ColorIcons page={`${page}`} choice={item.status} /></th>
+              </>
+          )
+     }
+        else {
           if (columnItem.heading === "Date") {
             return <td key={page + "date" + index}>{item[`${columnItem.value}`].slice(0, 10)}</td>
           }
@@ -273,5 +282,21 @@ const TableRow = ({
     </>
   </>
 );
+
+function arrowDown(condition) {
+
+  if(condition){
+    return(
+      <FontAwesomeIcon color="black" icon={Icons.faAngleRight} />
+
+    );
+  } else {
+    return(
+      <FontAwesomeIcon className="fa-rotate-90" color="black" icon={Icons.faAngleRight} />
+    
+    );
+  }
+  
+}
 
 export default TableComponent;

@@ -66,6 +66,7 @@ const Borrowers = () => {
   }, [searchValue, filterType]);
 
   const column = [
+    { heading: "Details", value: "Details" },
     { heading: "Case ID", value: "caseId" },
     { heading: "Date", value: "date" },
     { heading: "First Name", value: "fName" },
@@ -73,8 +74,8 @@ const Borrowers = () => {
     { heading: "Credit Score", value: "creditScore" },
     { heading: "Phone", value: "phone_num" },
     { heading: "Email", value: "email" },
+    { heading: "", value: ""}, 
     { heading: "Status", value: "status" },
-    { heading: "Details", value: "Details" },
     { heading: "AddRow", value: "AddBorrower" },
   ];
 

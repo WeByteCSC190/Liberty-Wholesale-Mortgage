@@ -26,7 +26,7 @@ function EditLenderRow({ page, rowData }) {
   });
 
   useEffect(() => {
-    const getStatus = "http://localhost:8000/api/status/"
+    const getStatus = "http://localhost:8000/api/rating"
   async function fetchData() {
     // Fetch data
     axios({

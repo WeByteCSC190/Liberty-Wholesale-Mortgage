@@ -59,6 +59,8 @@ const LendersAdmin = () => {
       });
   }
 
+  
+
   useEffect(() => {
     getLenders();
     fetchData(searchValue, filterType).then((dataTable) => {

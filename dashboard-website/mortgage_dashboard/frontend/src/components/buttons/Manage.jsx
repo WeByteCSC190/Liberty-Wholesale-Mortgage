@@ -14,7 +14,10 @@ function ManageBtn({ page, rowData, index }) {
     
           <Dropdown.Menu>
             <EditLenders page={`${page}`} rowData={rowData}/>
-            <Delete title="Remove Lender" cID={rowData.company} message="Are you sure you want to remove this Lender permanently?"/>
+            <Delete title="Remove Lender" cID={rowData.company} 
+                    message="
+                    Are you sure you want to remove this Lender permanently? 
+                    "/>
           </Dropdown.Menu>
         </Dropdown>
         );

@@ -124,7 +124,6 @@ const TableRow = ({ api, item, data, page, column, columns, image, index, expand
                   <th><ColorIcons page={`${page}`} choice={item.rating} /></th>
                 </>
             )
-
        }
       else {
         return <td>{item[`${columnItem.value}`]}</td>
@@ -137,7 +136,7 @@ const TableRow = ({ api, item, data, page, column, columns, image, index, expand
       expandedRows.includes(item.company) ?
       <tr>
         <td colspan="12" style={{backgroundColor: '#FFF', marginBottom: 0, }}>
-              <p> Company Info: {item.company} </p>
+              <p>Company Info</p>
               <Form>
                 <Form.Group className="mb-3" controlId="notesTextarea">
                  <ExpandedRow api={api} item={item} columns={columns} image={image} index={index} expandState={expandState} />
@@ -193,18 +192,18 @@ const ExpandedRow = ({ api, item, columns, image, index, expandState}) => {
 
 function arrowDown(condition) {
 
-    if(condition){
-      return(
-        <FontAwesomeIcon color="black" icon={Icons.faAngleRight} />
-  
-      );
-    } else {
-      return(
-        <FontAwesomeIcon className="fa-rotate-90" color="black" icon={Icons.faAngleRight} />
-      
-      );
-    }
+  if(condition){
+    return(
+      <FontAwesomeIcon color="black" icon={Icons.faAngleRight} />
+
+    );
+  } else {
+    return(
+      <FontAwesomeIcon className="fa-rotate-90" color="black" icon={Icons.faAngleRight} />
     
+    );
+  }
+  
 }
 
 
