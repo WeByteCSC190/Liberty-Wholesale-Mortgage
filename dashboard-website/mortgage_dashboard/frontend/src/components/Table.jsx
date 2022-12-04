@@ -186,11 +186,11 @@ const TableRow = ({
         if (columnItem.heading === "AddRow") {
           return (<th key={page+"addRow"+index}><ActionBtn page={`${page}`} rowData={item} index={index} /></th>);
         } else if (columnItem.heading === "Details") {
-          return (<th key={page+"detail"+index}> <Button variant="link"
+          return (<th key={page+"detail"+index}> <Button variant="light"
             value={index}  onClick={event => handleEpandRow(event, item.caseId)}>
             {
               expandState[item.caseId] ?
-                'Hide' : 'Show'
+                '-' : '+'
             }</Button> </th>);
         } else if (columnItem.heading === "Link") {
           return (<td key={page + columnItem.heading + index}> <Button variant="link"
