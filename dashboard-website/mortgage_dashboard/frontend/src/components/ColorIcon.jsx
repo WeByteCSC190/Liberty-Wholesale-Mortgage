@@ -8,30 +8,30 @@ const ColorIcons = ({choice}) => {
     
     const colorChoice = {
        // For Leads and Borrowers
-        'Application Complete' : 'blue',
-        'Closing Package Sent': 'green', 
-        'Needs Attention': 'red',
-        'Missing Paperwork': 'red',
+        'Application_Complete' : 'blue',
+        'Closing_Package_Sent': 'green', 
+        'Needs_Attention': 'red',
+        'Missing_Paperwork': 'red',
 
         // For Leads
-        'Recently Added' : 'orange', 
+        'Recently_Added' : 'orange', 
         'Contacted': 'green', 
         'Declined': 'black',
-        'In Progress': 'gold',
+        'In_Progress': 'gold',
         
 
         // For Borrowers
-        "AUS Cleared" : 'pink',
-        "Initial Disclosure Sent" : 'orange',
-        "Title Ordered" : 'orange',
-        "Title Recieved" : 'gold',
-        "Appraisal Ordered": "gray", 
-        "Appraisal Received" : "brown", 
-        "Initial Disclosure, Received" : "green", 
-        "UW Submitted" : "green", 
-        "UW Response" : "green", 
-        "Pending Conditions" : "green", 
-        "Cleared to Closed" : "gray", 
+        "AUS_Cleared" : 'pink',
+        "Initial_Disclosure Sent" : 'orange',
+        "Title_Ordered" : 'orange',
+        "Title_Recieved" : 'gold',
+        "Appraisal_Ordered": "gray", 
+        "Appraisal_Received" : "brown", 
+        "Initial_Disclosure, Received" : "green", 
+        "UW_Submitted" : "green", 
+        "UW_Response" : "green", 
+        "Pending_Conditions" : "green", 
+        "Cleared_to_Closed" : "gray", 
 
     
         // For Lenders

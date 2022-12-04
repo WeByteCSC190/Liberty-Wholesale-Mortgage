@@ -118,7 +118,7 @@ const TableRow = ({ api, item, data, page, column, columns, image, index, expand
             arrowDown(false) : arrowDown(true)
           }</Button> </th>);
       }
-       else if(columnItem.heading == ""){
+       if(columnItem.heading == ""){
             return (
                 <>
                   <th><ColorIcons choice={item.rating} /></th>
