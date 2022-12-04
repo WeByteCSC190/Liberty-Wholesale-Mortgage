@@ -45,7 +45,7 @@ const TableComponent = ({ url, page, data, column, notes }) => {
     // store the states in the form data
     if (page === "Borrowers") {
       var formData = new FormData();
-      formData.append("note", noteText);
+      formData.append("borrowernote", noteText);
       formData.append("borrower", caseId);
       // let api=`${process.env.REACT_APP_API_URL}/api/borrowernote/`
       try {
@@ -60,7 +60,7 @@ const TableComponent = ({ url, page, data, column, notes }) => {
       }
     } else if (page === "Leads") {
       var formData = new FormData();
-      formData.append("note", noteText);
+      formData.append("leadnote", noteText);
       formData.append("lead", caseId);
       try {
         const response = await api({
