@@ -1,7 +1,7 @@
 import Table from "react-bootstrap/Table";
 import AddRow from "../components/modals/AddRow";
 import ActionBtn from "../components/buttons/Action";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import api from "../services/api";
@@ -13,6 +13,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 const TableComponent = ({ url, page, data, column, notes }) => {
   const [noteText, setNoteText] = useState("");
+   const [status, setStatus] = useState([]);
+   useEffect(() => {
+    const getStatus = "http://localhost:8000/api/status/";
+    async function fetchData() {
+      // Fetch data
+      axios({
+        method: "GET",
+        url: getStatus,
+      })
+        .then((response) => {
+          const data = response.data;
+          setStatus(data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          }
+        });
+    }
+    fetchData();
+  }, []);
   /**
    * This function adds note.
    */
@@ -51,16 +74,15 @@ const TableComponent = ({ url, page, data, column, notes }) => {
   }
   const handleDeleteNote = (caseId) => {
     console.log("delete note")
-   
   if (page === "Borrowers") {
     var formData = new FormData();
-    formData.append("borrower", caseId)
+    // formData.append("borrower", caseId)
     url = "http://localhost:8000/api/borrowernote" + caseId + "/";
     try {
       const response =  api({
         method: "DELETE",
         url: url,
-        data: formData,
+        // data: formData,
       });
       window.location.reload(false);
     
@@ -69,13 +91,13 @@ const TableComponent = ({ url, page, data, column, notes }) => {
     }
   }else if (page === "Leads") {
     var formData = new FormData();
-    formData.append("lead", caseId)
+    // formData.append("lead", caseId)
     url="http://localhost:8000/api/leadnote/"+caseId+"/"
     try {
       const response = api({
         method: "DELETE",
         url: url,
-        data: formData,
+        // data: formData,
       });
       window.location.reload(false);
     } catch(error) {
@@ -126,7 +148,8 @@ const TableComponent = ({ url, page, data, column, notes }) => {
             expandState={expandState}
             handleAddNote={handleAddNote}
             handleDeleteNote={handleDeleteNote}
-            setNoteText ={setNoteText}
+             setNoteText={setNoteText}
+             status={status}
           />)}
       
       <tr className="last-table-row">
@@ -151,7 +174,7 @@ const TableHeadItem = ({ item, url, page }) => {
 
 const TableRow = ({
   page, item, column, notes, index, expandedRows, handleEpandRow, expandState,
-  handleAddNote,handleDeleteNote, setNoteText
+  handleAddNote,handleDeleteNote, setNoteText, status
 }) => (
   <>
     <tr id={index}>
@@ -184,7 +207,16 @@ const TableRow = ({
           if (columnItem.heading === "Date") {
             return <td key={page + "date" + index}>{item[`${columnItem.value}`].slice(0, 10)}</td>
           }
-          return <td key={page + "_" + columnItem.value + "_row" + index}>{item[`${columnItem.value}`]}</td>
+          if (columnItem.heading === "Status") {
+            status.find((element) => {
+              if (element.id === item[`${columnItem.value}`]) {
+                item[`${columnItem.value}`] = element.status;
+              //  return <td key={page + "_" + columnItem.value + "_row" + index}>{element.status}</td>
+              }          
+            })
+          } 
+            return <td key={page + "_" + columnItem.value + "_row" + index}>{item[`${columnItem.value}`]}</td>
+          
         }
       })}
     </tr>
