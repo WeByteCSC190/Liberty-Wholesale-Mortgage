@@ -145,11 +145,11 @@ class test_driver_example(LiveServerTestCase):
         phone_num = driver.find_element(By.NAME, 'phone_num')
         phone_num.send_keys("180088800011")
 
-        status = driver.find_element(By.XPATH,"//select[@name='status']/option[text()='In Progress']")
-        status.click()
+        # status = driver.find_element(By.XPATH,"//select[@name='status']/option[text()='In Progress']")
+        # status.click()
 
-        date = driver.find_element(By.NAME, 'date')
-        date.send_keys("12021111")
+        # date = driver.find_element(By.NAME, 'date')
+        # date.send_keys("12021111")
 
         add = driver.find_element(By.XPATH, '//button[text()="Add"]')
         take_screenshot(driver,"screenshot/add-new-lead.png")
