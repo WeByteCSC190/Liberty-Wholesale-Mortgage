@@ -44,7 +44,6 @@ const Borrowers = () => {
       .then((response) => {
         const notes = response.data;
         setDataNotes(notes);
-        console.log("borrower notes are: ");
       })
       .catch((error) => {
         if (error.response) {
