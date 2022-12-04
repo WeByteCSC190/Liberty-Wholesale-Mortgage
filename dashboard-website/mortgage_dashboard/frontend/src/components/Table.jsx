@@ -243,7 +243,7 @@ const TableRow = ({
                   return <>
                     <Row key={page + note + index}>
                       <Col xs="auto"><div><h6>{note.borrowernote}
-                        <small> ({note.created_on})</small></h6></div></Col>
+                        <small> ({note.created_on.slice(0, 10)})</small></h6></div></Col>
                       <Col xs lg="2">
                         <Button onClick={event =>
                           handleDeleteNote(item.caseId)
@@ -258,7 +258,7 @@ const TableRow = ({
                   return <>
                     <Row key={page + note + index}>
                       <Col xs="auto"><div><h6>{note.leadnote}
-                        <small> ({note.created_on})</small></h6></div></Col>
+                        <small> ({note.created_on.slice(0, 10)})</small></h6></div></Col>
                       <Col xs lg="2">
                         <Button onClick={event => handleDeleteNote(item.caseId)} variant="outline-danger"><FontAwesomeIcon icon={faTrash} /></Button>
                       </Col>
