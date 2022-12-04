@@ -9,7 +9,6 @@ function AddRow({ url, page }) {
   const [show, setShow] = useState(false);
   const [status, setStatus] = useState([]);
 
-  console.log(url, page);
   if (page === "Leads") {
     url = `${process.env.REACT_APP_API_URL}/api/leads/`;
   } else {
@@ -37,9 +36,6 @@ function AddRow({ url, page }) {
         .then((response) => {
           const data = response.data;
           setStatus(data);
-          // testData = data;
-          console.log(data);
-          // return data
         })
         .catch((error) => {
           if (error.response) {

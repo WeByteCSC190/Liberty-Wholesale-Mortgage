@@ -106,17 +106,69 @@ const Lenders = () => {
         }
         if (filterType !== "") {
           switch (filterType) {
-            case "Company":
-              // console.log("filter by company")
+            case "Company ASC":
               resolve(handleSorting("company", "asc"));
               break;
-            case "Rating":
-              // console.log("filter by rating")
-              resolve(handleSorting("rating", "asc"));
+            case "Company DESC":
+              resolve(handleSorting("company", "desc"));
               break;
-            case "Programs":
-              // console.log("filter by programs")
-              resolve(handleSorting("programs", "asc"));
+            case "Rating A":
+              resolve(
+                testData.filter((dataTable) =>
+                  dataTable.rating.toLowerCase().includes("A".toLowerCase())
+                )
+              );
+              break;
+            case "Rating A-":
+                resolve(
+                  testData.filter((dataTable) =>
+                    dataTable.rating.toLowerCase().includes("A-".toLowerCase())
+                  )
+                );
+              break;
+              case "Rating B+":
+                resolve(
+                  testData.filter((dataTable) =>
+                    dataTable.rating.toLowerCase().includes("B+".toLowerCase())
+                  )
+                );
+                break;
+            case "Rating B":
+                resolve(
+                  testData.filter((dataTable) =>
+                    dataTable.rating.toLowerCase().includes("B".toLowerCase())-dataTable.rating.toLowerCase().includes("B+".toLowerCase())
+                  )
+                );
+              break;
+            case "Rating C":
+                resolve(
+                  testData.filter((dataTable) =>
+                    dataTable.rating.toLowerCase().includes("C".toLowerCase())
+                  )
+                );
+              break;
+              case "Rating U":
+                resolve(
+                  testData.filter((dataTable) =>
+                    dataTable.rating.toLowerCase().includes("U".toLowerCase())
+                  )
+                );
+                break;
+            case "FHA":
+              console.log("filter by programs")
+              resolve(
+                  testData.filter((dataTable) =>
+                    dataTable.programs.toLowerCase().includes("FHA".toLowerCase())
+                  )
+                );
+              break;
+            case "VA":
+              console.log("filter by programs")
+              resolve(
+                  testData.filter((dataTable) =>
+                    dataTable.programs.toLowerCase().includes("VA".toLowerCase())
+                  )
+                );
               break;
             default:
               window.location.reload(false);
@@ -141,30 +193,69 @@ const Lenders = () => {
       return sorted;
     }
   };
-  const handleSortingDate = () => {
-    const sorted = [...dataTable].sort((a, b) => {
-      console.log(
-        new Moment(a.company.slice(0, 10)) - new Moment(b.company.slice(0, 10))
-      );
-      return new Moment(a.company.slice(0, 10)) - new Moment(b.company.slice(0, 10));
-    });
-    return sorted;
-  };
   const filterTable = (searchValue, filterType) => {
     if (filterType !== "") {
       switch (filterType) {
         case "Company ASC":
           return handleSorting("company", "asc");
-        case "Company Desc":
+        case "Company DESC":
           return handleSorting("company", "desc");
-        case "Lowest to Highest":
-          return handleSorting("rating", "asc");
-        case "Highest to Lowest":
-          return handleSorting("rating", "desc");
-          case "Programs ASC":
-            return handleSorting("status", "asc");
-          case "Programs DESC":
-            return handleSorting("status", "desc");
+        case "Rating A":
+          return (
+                testData.filter((dataTable) =>
+                  dataTable.rating.toLowerCase().includes("A".toLowerCase())
+                )
+              );
+        case "Rating A":
+              return(
+                testData.filter((dataTable) =>
+                  dataTable.rating.toLowerCase().includes("A".toLowerCase())
+                )
+              );
+            case "Rating A-":
+                return(
+                  testData.filter((dataTable) =>
+                    dataTable.rating.toLowerCase().includes("A-".toLowerCase())
+                  )
+                );
+              case "Rating B+":
+                return(
+                  testData.filter((dataTable) =>
+                    dataTable.rating.toLowerCase().includes("B+".toLowerCase())
+                  )
+                );
+            case "Rating B":
+                return(
+                  testData.filter((dataTable) =>
+                    dataTable.rating.toLowerCase().includes("B".toLowerCase())-dataTable.rating.toLowerCase().includes("B+".toLowerCase())
+                  )
+                );
+            case "Rating C":
+                return(
+                  testData.filter((dataTable) =>
+                    dataTable.rating.toLowerCase().includes("C".toLowerCase())
+                  )
+                );
+              case "Rating U":
+                return(
+                  testData.filter((dataTable) =>
+                    dataTable.rating.toLowerCase().includes("U".toLowerCase())
+                  )
+                );
+            case "FHA":
+              console.log("filter by programs")
+              return(
+                  testData.filter((dataTable) =>
+                    dataTable.programs.toLowerCase().includes("FHA".toLowerCase())
+                  )
+                );
+            case "VA":
+              console.log("filter by programs")
+              return(
+                  testData.filter((dataTable) =>
+                    dataTable.programs.toLowerCase().includes("VA".toLowerCase())
+                  )
+                );
         default:
           window.location.reload(false);
       }

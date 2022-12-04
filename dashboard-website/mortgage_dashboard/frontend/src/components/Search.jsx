@@ -118,29 +118,29 @@ const Search=({page, callback1, callback2})=> {
         </Col>
         <Col>
           <DropdownButton title="Company">
-              <Dropdown.Item value="company" onClick={handleFilter}>A-Z</Dropdown.Item>
-              <Dropdown.Item value="company" onClick={handleFilter}>Z-A</Dropdown.Item>
+              <Dropdown.Item id="Company ASC" onClick={handleFilter}>A-Z</Dropdown.Item>
+              <Dropdown.Item id="Company DESC" onClick={handleFilter}>Z-A</Dropdown.Item>
           </DropdownButton>
         </Col>
         <Col>
             <DropdownButton title="Rating">
-              <Dropdown.Item  value="rating" onClick={handleFilter}>A</Dropdown.Item>
-              <Dropdown.Item  value="rating" onClick={handleFilter}>A-</Dropdown.Item>
-              <Dropdown.Item  value="rating" onClick={handleFilter}>B+</Dropdown.Item>
-              <Dropdown.Item  value="rating" onClick={handleFilter}>B</Dropdown.Item>
-              <Dropdown.Item  value="rating" onClick={handleFilter}>C</Dropdown.Item>
-              <Dropdown.Item  value="rating" onClick={handleFilter}>U</Dropdown.Item>
+              <Dropdown.Item  id="Rating A" onClick={handleFilter}>A</Dropdown.Item>
+              <Dropdown.Item  id="Rating A-" onClick={handleFilter}>A-</Dropdown.Item>
+              <Dropdown.Item  id="Rating B+" onClick={handleFilter}>B+</Dropdown.Item>
+              <Dropdown.Item  id="Rating B" onClick={handleFilter}>B</Dropdown.Item>
+              <Dropdown.Item  id="Rating C" onClick={handleFilter}>C</Dropdown.Item>
+              <Dropdown.Item  id="Rating U" onClick={handleFilter}>U</Dropdown.Item>
           </DropdownButton>
         </Col>
         <Col>
               <DropdownButton title="Programs">
-                <Dropdown.Item value="programs" onClick={handleFilter}>FHA</Dropdown.Item>
-                <Dropdown.Item value="programs" onClick={handleFilter}>VA</Dropdown.Item>
+                <Dropdown.Item id="FHA" onClick={handleFilter}>FHA</Dropdown.Item>
+                <Dropdown.Item id="VA" onClick={handleFilter}>VA</Dropdown.Item>
             </DropdownButton>
         </Col>
         
         <Col>
-             <input value="Reset" type="button"
+             <input value="Reset" type="button" id="reset"
             onClick={handleFilter} className="btn btn-primary" />
         </Col>
     </Row>

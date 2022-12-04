@@ -236,12 +236,13 @@ const TableRow = ({
           <td
             colspan="12"
             style={{ backgroundColor: "#343A40", color: "#FFF" }}
-          >
+          > Previsou Notes:
             {notes.map((note) => {
+              console.log(notes)
               if (page === "Borrowers") {
                 if (note.borrower === item.caseId) {
                   return <>
-                    <Row key={page + note + index}>
+                    <Row style={{ margin: "12px" }} key={page + note + index}> - 
                       <Col xs="auto"><div><h6>{note.borrowernote}
                         <small> ({note.created_on.slice(0, 10)})</small></h6></div></Col>
                       <Col xs lg="2">
@@ -256,7 +257,7 @@ const TableRow = ({
               } else if (page === "Leads") {
                 if (note.lead === item.caseId) {
                   return <>
-                    <Row key={page + note + index}>
+                    <Row style={{ margin: "12px" }} key={page + note + index}> - 
                       <Col xs="auto"><div><h6>{note.leadnote}
                         <small> ({note.created_on.slice(0, 10)})</small></h6></div></Col>
                       <Col xs lg="2">
@@ -269,7 +270,7 @@ const TableRow = ({
             })}
             <Form>
               <Form.Group className="mb-3" controlId="notesTextarea">
-                <Form.Label>Notes</Form.Label>
+                <Form.Label style={{ marginTop: "17px" }}>Add a Note: </Form.Label>
                 <Form.Control as="textarea" rows={3}
                   onChange={(e) => setNoteText(e.target.value)} />
               </Form.Group>
