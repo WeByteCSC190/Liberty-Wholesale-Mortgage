@@ -208,7 +208,7 @@ const TableRow = ({
         } else if(columnItem.heading == ""){
           return (
               <>
-                <th><ColorIcons page={`${page}`} choice={item.status} /></th>
+                <th><ColorIcons choice={item.status} /></th>
               </>
           )
      }
