@@ -78,7 +78,7 @@ const LendersTableComponent = ({api, page, data, column, columns, image }) => {
 const TableHeadItem = ({ item, api, page }) =>
   {
   if (item.heading === 'AddRow' && page === "Lenders") {
-    return (<th><AddLenderRow page={`${page}`} api={`${api}`} /></th>);
+    return (<th><AddLenderRow page={`${page}`} url={`${api}`} /></th>);
   }
   else if(item.heading === 'TPOLogin') {
     return (<th><LinkBtn nameButton="Website" url={api.website}/></th>);
