@@ -23,7 +23,7 @@ function EditRow({ page, rowData }) {
   });
 
   useEffect(() => {
-    const getStatus = "http://localhost:8000/api/status/";
+    const getStatus = `${process.env.REACT_APP_API_URL}/api/status/`;
     async function fetchData() {
       // Fetch data
       axios({
@@ -33,8 +33,6 @@ function EditRow({ page, rowData }) {
         .then((response) => {
           const data = response.data;
           setStatus(data);
-
-          // console.log(data)
         })
         .catch((error) => {
           if (error.response) {
@@ -60,7 +58,7 @@ function EditRow({ page, rowData }) {
     if (page === "Borrowers") {
       try {
         const postBorrowers =
-          "http://localhost:8000/api/borrowers/" + formValue.caseId + "/";
+          `${process.env.REACT_APP_API_URL}/api/borrowers/` + formValue.caseId + "/";
         const response = await axios({
           method: "PUT",
           url: postBorrowers,
@@ -78,7 +76,7 @@ function EditRow({ page, rowData }) {
     } else if (page === "Leads") {
       try {
         const postLeads =
-          "http://localhost:8000/api/leads/" + formValue.caseId + "/";
+          `${process.env.REACT_APP_API_URL}/api/leads/` + formValue.caseId + "/";
         const response = await axios({
           method: "PUT",
           url: postLeads,
@@ -92,27 +90,6 @@ function EditRow({ page, rowData }) {
       }
     }
   };
-  // try {
-  //   var api = "";
-  // if (page==="Borrowers")
-  //   api = `${process.env.REACT_APP_API_URL}/api/borrowerupdate/`;
-  // else if (page === "Leads")
-  // //   api = `${process.env.REACT_APP_API_URL}/api/leadupdate/`;
-  // console.log("before axios called")
-
-  // const response = await axios({
-  //     method: "PUT",
-  //     url: api,
-  //     data: formData,
-  //     headers: { "Content-Type": "multipart/form-data" },
-  // });
-  // console.log(response)
-  // window.location.reload(false);
-  // handleClose();
-  // } catch (error) {
-  // console.log(error)
-  // }
-  // }
 
   const handleChange = (event) => {
     console.log("handle change is called");
@@ -386,7 +363,7 @@ function EditRow({ page, rowData }) {
                   name="link"
                   type="text"
                   placeholder="File Link"
-                  value={formValue.fName}
+                  value={formValue.link}
                   onChange={handleChange}
                 />
               </Form.Group>

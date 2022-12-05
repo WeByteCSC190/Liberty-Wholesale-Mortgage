@@ -13,8 +13,8 @@ import Footer from "../../components/Footer";
 
 const EditResources = () => {
   // files start
-  const [dataTable, setDataTable] = useState([]);
-  const getFilesUrl = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
+  const [fileTable, setfileTable] = useState([]);
+  const getFilesUrl = `${process.env.REACT_APP_API_URL}/api/files/`;
   function getFiles() {
     axios({
       method: "GET",
@@ -22,7 +22,7 @@ const EditResources = () => {
     })
       .then((response) => {
         const data = response.data;
-        setDataTable(data);
+        setfileTable(data);
         console.log(data);
         return data;
       })
@@ -45,8 +45,8 @@ const EditResources = () => {
     { heading: "AddRow", value: "EditResources" },
   ];
   const column2 = [
-    { heading: "Image Link", value: "image" },
-    { heading: "File Name", value: "caption" },
+    { heading: "Image Link", value: "link" },
+    { heading: "File Name", value: "filename" },
     { heading: "AddRow", value: "EditResources" },
   ];
   const column1 = [
@@ -161,9 +161,9 @@ const EditResources = () => {
               <Row style={{ paddingBottom: "20px" }}>
                 <h1>Files</h1>
                 <Table
-                  api="http://localhost:8000/api/borrowers/"
+                  api="http://localhost:8000/api/files/"
                   page={"EditResources-file"}
-                  data={data}
+                  data={fileTable}
                   column={column2}
                 />
               </Row>
