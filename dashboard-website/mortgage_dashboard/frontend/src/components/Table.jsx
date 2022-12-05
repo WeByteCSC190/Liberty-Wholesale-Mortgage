@@ -174,7 +174,7 @@ const TableHeadItem = ({ item, url, page }) => {
   if (item.heading === "AddRow") {
     return (
       <th>
-        <AddRow page={`${page}`} url={`${url}`} />
+       <AddRow page={`${page}`} url={`${url}`} />
       </th>
     );
   } else {
