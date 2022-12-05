@@ -162,7 +162,7 @@ const EditResources = () => {
                 <h1>Files</h1>
                 <Table
                   api="http://localhost:8000/api/borrowers/"
-                  page={"Files"}
+                  page={"EditResources-file"}
                   data={data}
                   column={column2}
                 />
