@@ -37,23 +37,14 @@ class News(models.Model):
     def __str__(self):
         return self.desc
 
-class Anouncements(models.Model):
-    desc = models.TextField('Description', blank=True)
-    link = models.URLField('Website Address')
-
-    def __str__(self):
-        return self.link
-
-
-
 class Files(models.Model):
     file = models.FileField(upload_to='files_uploaded',null=True,
         validators=[FileExtensionValidator(allowed_extensions=['doc','pdf','docx','txt'])])
-    date_uploaded = models.DateTimeField(default=timezone.now)
-    id = models.IntegerField('ID', primary_key=True, null=False,
-                             default=generate_random_number(), unique=True)
+    date_uploaded = models.DateTimeField(auto_now_add = True )
+    # id = models.IntegerField('ID', primary_key=True, null=False,
+                             # default=generate_random_number(), unique=True)
     def __int__(self):
-        return self.id
+        return self.file
 
 class Images(models.Model):
     images = models.FileField(upload_to='images_uploaded',null=True,
@@ -73,33 +64,34 @@ class Media(models.Model):
         return self.link
 
 class Video(models.Model):
-    video = models.FileField(upload_to='videos_uploaded',null=True,
-        validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
+    # video = models.FileField(upload_to='videos_uploaded',null=True,
+        # validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
+    link = models.URLField(max_length=200, null=True)
     date_uploaded = models.DateTimeField(default=timezone.now)
     # user = models.ForeignKey(User,on_delete= models.CASCADE)
-    id = models.IntegerField('ID', primary_key=True, null=False,
-                             default=generate_random_number(), unique=True)
+    # id = models.IntegerField('ID', primary_key=True, null=False,
+                             # default=generate_random_number(), unique=True)
     def __int__(self):
-        return self.id
+        return self.link
    
 
-class Resources(models.Model):
-    media = models.ForeignKey(
-        Media, blank=True, null=True, on_delete=models.CASCADE)
-    files = models.ForeignKey(
-        Files, blank=True, null=True, on_delete=models.CASCADE)
-    announcements = models.ForeignKey(
-        Anouncements, blank=True, null=True, on_delete=models.CASCADE)
-    news = models.ForeignKey(
-        News, blank=True, null=True, on_delete=models.CASCADE)
+# class Resources(models.Model):
+#     media = models.ForeignKey(
+#         Media, blank=True, null=True, on_delete=models.CASCADE)
+#     files = models.ForeignKey(
+#         Files, blank=True, null=True, on_delete=models.CASCADE)
+#     announcements = models.ForeignKey(
+#         Anouncements, blank=True, null=True, on_delete=models.CASCADE)
+#     news = models.ForeignKey(
+#         News, blank=True, null=True, on_delete=models.CASCADE)
 
-    id = models.IntegerField('ID', primary_key=True, null=False,
-                             default=generate_random_number(), unique=True)
-    name = models.CharField('Name', max_length=40, null=True, blank=True)
-    video = models.ForeignKey(Video, blank=True, null=True, on_delete=models.CASCADE)
+#     id = models.IntegerField('ID', primary_key=True, null=False,
+#                              default=generate_random_number(), unique=True)
+#     name = models.CharField('Name', max_length=40, null=True, blank=True)
+#     video = models.ForeignKey(Video, blank=True, null=True, on_delete=models.CASCADE)
 
-    def __int__(self):
-        return self.id
+#     def __int__(self):
+#         return self.id
 
 class Status(models.Model):
 
@@ -148,8 +140,8 @@ class Announcements(models.Model):
          return str(self.date)+" "+str(self.content)
 
 class Lead(models.Model):
-    resources = models.ForeignKey(
-        Resources, blank=True, null=True, on_delete=models.CASCADE)
+    # resources = models.ForeignKey(
+        # Resources, blank=True, null=True, on_delete=models.CASCADE)
 
     caseId = models.IntegerField(
         'Case ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
@@ -189,8 +181,8 @@ class RecyclingBin(models.Model):
     dataName = models.CharField('Data Name', max_length=30, null=True, blank=True)
     trashID = models.IntegerField(
         'trash ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
-    resources = models.ForeignKey(
-        Resources, blank=True, null=True, on_delete=models.CASCADE)
+    # resources = models.ForeignKey(
+        # Resources, blank=True, null=True, on_delete=models.CASCADE)
 
     caseId = models.IntegerField(
         'Case ID', null=False, default=generate_random_number())
@@ -238,8 +230,8 @@ class LoanOfficer(models.Model):
 
 class Client(models.Model):
     # this is a template model, ex. cID needs to have a default value
-    resources = models.ForeignKey(
-        Resources, blank=True, null=True, on_delete=models.CASCADE)
+    # resources = models.ForeignKey(
+        # Resources, blank=True, null=True, on_delete=models.CASCADE)
 
     cID = models.IntegerField(
         null=False, default=generate_random_number(), unique=True)

@@ -29,10 +29,10 @@ from rest_framework.parsers import JSONParser
 #
 #     return Response(serializer.data)
 
-class ResourceViewSet(viewsets.ModelViewSet):
-    permission_classes = (permissions.AllowAny, )
-    queryset = Resources.objects.all()
-    serializer_class= ResourcesSerializer
+# class ResourceViewSet(viewsets.ModelViewSet):
+#     permission_classes = (permissions.AllowAny, )
+#     queryset = Resources.objects.all()
+#     serializer_class= ResourcesSerializer
 
 class ClientViewSet(viewsets.ModelViewSet):
     queryset = Client.objects.all()
