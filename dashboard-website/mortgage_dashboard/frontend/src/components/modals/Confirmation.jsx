@@ -3,16 +3,61 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Dropdown from "react-bootstrap/Dropdown";
-function Confirmation({ cID, title, message, apiUrl }) {
+function Confirmation({ btn,cID, title, message, apiUrl, rowData }) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const handleSubmit = () => {
-        console.log(apiUrl + "/" + cID + "/");
+        if (btn == "Move To Leads") {
+            console.log("start move to lead")
+            var formDataLead = new FormData();
+            formDataLead.append("caseId", rowData.caseId);
+            formDataLead.append("fName", rowData.fName);
+            formDataLead.append("lName", rowData.lName);
+            formDataLead.append("email", rowData.email);
+            formDataLead.append("phone_num", rowData.phone_num);
+            formDataLead.append("status", 1);
+            formDataLead.append("creditScore", rowData.creditScore);
+            try {
+                let urlLead = `${process.env.REACT_APP_API_URL}/api/leads/`;
+                axios({
+                    method: "post",
+                    url: urlLead,
+                    data: formDataLead,
+                });
+                console.log("successfully moved borrwer to leads")
+                handleClose();
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        if (btn == "Move To Borrowers") {
+            var formDataB = new FormData();
+            formDataB.append("caseId", rowData.caseId);
+            formDataB.append("fName", rowData.fName);
+            formDataB.append("lName", rowData.lName);
+            formDataB.append("email", rowData.email);
+            formDataB.append("phone_num", rowData.phone_num);
+            formDataB.append("status", 1);
+            formDataB.append("creditScore", rowData.creditScore);
+            try {
+                let urlBorrower = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
+                axios({
+                    method: "post",
+                    url: urlBorrower,
+                    data: formDataB,
+                });
+                console.log("successfully moved lead to borrower")
+                handleClose();
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        // Delete the row
         axios({
             method: "DELETE",
-            url: apiUrl + cID + "/",
-        })
+            url: apiUrl + cID+"/" ,
+            })
             .then((response) => {
                 console.log("delete successfull for" + cID);
                 window.location.reload(false);
@@ -23,11 +68,11 @@ function Confirmation({ cID, title, message, apiUrl }) {
                     console.log(error.response.status);
                     console.log(error.response.headers);
                 }
-            });
-    };
+        });
+    }
     return (
         <>
-            <Dropdown.Item onClick={handleShow}>Delete</Dropdown.Item>
+            <Dropdown.Item onClick={handleShow}>{btn}</Dropdown.Item>
 
             <Modal
                 show={show}
