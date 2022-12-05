@@ -38,13 +38,15 @@ class News(models.Model):
         return self.desc
 
 class Files(models.Model):
-    file = models.FileField(upload_to='files_uploaded',null=True,
-        validators=[FileExtensionValidator(allowed_extensions=['doc','pdf','docx','txt'])])
+    link = models.URLField(max_length=200, null=True)
+    filename = models.CharField(max_length=200, default='', null=False)
+    # file = models.FileField(upload_to='files_uploaded',null=True,
+        # validators=[FileExtensionValidator(allowed_extensions=['doc','pdf','docx','txt'])])
     date_uploaded = models.DateTimeField(auto_now_add = True )
     # id = models.IntegerField('ID', primary_key=True, null=False,
                              # default=generate_random_number(), unique=True)
     def __int__(self):
-        return self.file
+        return self.link
 
 class Images(models.Model):
     images = models.FileField(upload_to='images_uploaded',null=True,
