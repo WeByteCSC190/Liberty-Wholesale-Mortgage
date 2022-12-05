@@ -17,29 +17,29 @@ const Resources = () => {
   const [FileDataTable, setFileDataTable] = useState([]);
   const [VideoDataTable, setVideoDataTable] = useState([]);
   const [AnnoucementsDataTable, setAnnoucementsDataTable] = useState([]);
-  // const getResoucreUrl = `${process.env.REACT_APP_API_URL}/api/resources/`;
+  const getResoucreUrl = `${process.env.REACT_APP_API_URL}/api/resources/`;
   const getFileUrl = `${process.env.REACT_APP_API_URL}/api/files/`;
   const getVideoUrl = `${process.env.REACT_APP_API_URL}/api/media/`;
   const getAnnoucementsUrl = `${process.env.REACT_APP_API_URL}/api/Annoucements/`;
-  // function getResource() {
-  //   axios({
-  //     method: "GET",
-  //     url: getResoucreUrl,
-  //   })
-  //     .then((response) => {
-  //       const data = response.data;
-  //       setResourceDataTable(data);
-  //       console.log(data);
-  //       return data;
-  //     })
-  //     .catch((error) => {
-  //       if (error.response) {
-  //         console.log(error.response);
-  //         console.log(error.response.status);
-  //         console.log(error.response.headers);
-  //       }
-  //     });
-  // }
+  function getResource() {
+    axios({
+      method: "GET",
+      url: getResoucreUrl,
+    })
+      .then((response) => {
+        const data = response.data;
+        setResourceDataTable(data);
+        console.log(data);
+        return data;
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+  }
   function getFile() {
     axios({
       method: "GET",
@@ -98,13 +98,14 @@ const Resources = () => {
       });
   }
   useEffect(() => {
+    getResource();
     getFile();
     getVideo();
     getAnnoucements();
   }, []);
 
   // files column
-  const announcementsColumn = [
+  const annoucementsColumn = [
     { heading: "Date", value: "date" },
     { heading: "Annoucements", value: "content" },
   ];
@@ -120,15 +121,15 @@ const Resources = () => {
     { heading: "date", value: "date" },
     { heading: "User", value: "user" },
   ];
-  // const resourcesColumn = [
-  //   { heading: "id", value: "id" },
-  //   { heading: "name", value: "name" },
-  //   { heading: "media", value: "media" },
-  //   { heading: "files", value: "files" },
-  //   { heading: "announcements", value: "announcements" },
-  //   { heading: "news", value: "news" },
-  //   { heading: "video", value: "video" },
-  // ];
+  const resourcesColumn = [
+    { heading: "id", value: "id" },
+    { heading: "name", value: "name" },
+    { heading: "media", value: "media" },
+    { heading: "files", value: "files" },
+    { heading: "announcements", value: "announcements" },
+    { heading: "news", value: "news" },
+    { heading: "video", value: "video" },
+  ];
   // files end
   const [showResults, setShowResults] = React.useState(false);
   const showCards = () => {
@@ -254,7 +255,7 @@ const Resources = () => {
             </Row>
             <Row>
               <Button
-                variant="info"
+                variant="primary"
                 style={{ width: "200px", margin: "20px auto" }}
                 onClick={showCards}
               >
@@ -279,7 +280,7 @@ const Resources = () => {
             <Row style={{ paddingBottom: "20px" }}>
               <h1>Files</h1>
               <Table
-                api="http://127.0.0.1:8000/api/files/"
+                url="http://localhost:8000/api/borrowers/"
                 page={"Files"}
                 data={FileDataTable}
                 column={fileColumn}
