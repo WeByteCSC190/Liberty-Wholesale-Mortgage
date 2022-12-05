@@ -219,7 +219,7 @@ function AddRow({ url, page }) {
         </Modal>
       </>
     );
-  } else if (page === "Files") {
+  } else if (page === "EditResources-file") {
     return (
       <>
         <Button variant="primary" onClick={handleShow}>
@@ -243,8 +243,14 @@ function AddRow({ url, page }) {
                 />
               </Form.Group>
               <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Default file input example</Form.Label>
-                <Form.Control type="file" />
+                <Form.Label>Text</Form.Label>
+                <Form.Control
+                  name="text"
+                  type="text"
+                  placeholder="Text"
+                  value={formValue.fName}
+                  onChange={handleChange}
+                />
               </Form.Group>
             </Form>
           </Modal.Body>

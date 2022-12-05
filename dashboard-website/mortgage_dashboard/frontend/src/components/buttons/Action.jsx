@@ -40,7 +40,7 @@ function ActionBtn({ page, rowData, index }) {
     </Dropdown>
   );
   }
-  else if (page === "Files") {
+  else if (page === "EditResources-file") {
     return (
      <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
@@ -63,7 +63,7 @@ function ActionBtn({ page, rowData, index }) {
 
       <Dropdown.Menu>
         <Edit page={`${page}`} rowData={rowData}/>
-        <Delete title="Remove image" cID={rowData.caseId} message="Are you sure you want to remove this image permanently?" apiUrl="http://localhost:8000/api/leads/"/>
+        <Delete title="Remove article" cID={rowData.caseId} message="Are you sure you want to remove this article permanently?" apiUrl="http://localhost:8000/api/leads/"/>
       </Dropdown.Menu>
     </Dropdown>
   );
