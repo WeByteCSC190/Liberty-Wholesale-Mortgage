@@ -11,8 +11,10 @@ function AddRow({ url, page }) {
 
   if (page === "Leads") {
     url = `${process.env.REACT_APP_API_URL}/api/leads/`;
-  } else {
+  } else if(page === "Borrowers") {
     url = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
+  }else if(page === "Files") {
+    url = `${process.env.REACT_APP_API_URL}/api/files/`;
   }
 
   const [formValue, setformValue] = React.useState({
@@ -25,8 +27,12 @@ function AddRow({ url, page }) {
     creditScore: "",
     status_check: false,
   });
+   const [fileValue, setfileValue] = React.useState({
+    link: "",
+    filename: ""
+  });
   useEffect(() => {
-    const getStatus = "http://localhost:8000/api/status/";
+    const getStatus = `${process.env.REACT_APP_API_URL}/api/status/`;
     async function fetchData() {
       // Fetch data
       axios({
@@ -60,14 +66,6 @@ function AddRow({ url, page }) {
 
     console.log(Object.fromEntries(formData));
     try {
-      // const response = api({
-      //     method: "post",
-      //     url: url,
-      //     data: formData,
-      //   });
-      //   window.location.reload();
-      //   handleClose();
-      // }
       const response = api({
         method: "post",
         url: url,
@@ -80,11 +78,33 @@ function AddRow({ url, page }) {
     }
   };
 
+  const handleSubmitFile = () => {
+    // store the states in the form data
+    var formData = new FormData();
+    formData.append("link", fileValue.link);
+    formData.append("filename", fileValue.filename);
+    try {
+      const response = api({
+        method: "post",
+        url: url,
+        data: formData,
+      });
+      window.location.reload(false);
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleChange = (event) => {
     setformValue({
       ...formValue,
       [event.target.name]: event.target.value,
     });
+    setfileValue({
+      ...fileValue,
+      [event.target.name]: event.target.value,
+    });
+    
   };
 
   const handleClose = () => {
@@ -98,6 +118,11 @@ function AddRow({ url, page }) {
       phone_num: "",
       status: "",
       creditScore: "",
+    });
+    setfileValue({
+      ...fileValue,
+      link: "",
+      filename: "",
     });
   };
   const handleShow = () => setShow(true);
@@ -201,11 +226,6 @@ function AddRow({ url, page }) {
                   })}
                 </Form.Select>
               </Form.Group>
-
-              {/* <Form.Group className="mb-3" controlId="">
-                <Form.Check value={formValue.status_check}
-                  onChange={handleChange} type="checkbox" label="The borrower is approved" />
-              </Form.Group> */}
             </Form>
           </Modal.Body>
           <Modal.Footer>
@@ -233,22 +253,25 @@ function AddRow({ url, page }) {
           <Modal.Body>
             <Form>
               <Form.Group className="mb-3" controlId="">
-                <Form.Label>File Name</Form.Label>
+                <Form.Label>File Link</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="link"
                   type="text"
-                  placeholder="File Name"
-                  value={formValue.fName}
+                  
+                  value={fileValue.link}
                   onChange={handleChange}
                 />
+                <Form.Text className="text-muted">
+                 File Link has to be a valid URL.
+                </Form.Text>
               </Form.Group>
               <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Text</Form.Label>
+                <Form.Label>Filename</Form.Label>
                 <Form.Control
-                  name="text"
+                  name="filename"
                   type="text"
-                  placeholder="Text"
-                  value={formValue.fName}
+                  
+                  value={fileValue.filename}
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -258,7 +281,7 @@ function AddRow({ url, page }) {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleSubmit}>
+            <Button variant="primary" onClick={handleSubmitFile}>
               Add
             </Button>
           </Modal.Footer>

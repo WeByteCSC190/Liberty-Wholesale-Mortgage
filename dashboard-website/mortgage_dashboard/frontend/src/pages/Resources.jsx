@@ -111,8 +111,8 @@ const Resources = () => {
   ];
   const fileColumn = [
     { heading: "File id", value: "id" },
-    { heading: "File", value: "file" },
-    { heading: "date", value: "date" },
+    { heading: "File", value: "link" },
+    { heading: "filename", value: "filename" },
   ];
 
   const videoColumn = [
@@ -280,7 +280,7 @@ const Resources = () => {
             <Row style={{ paddingBottom: "20px" }}>
               <h1>Files</h1>
               <Table
-                url="http://localhost:8000/api/borrowers/"
+                url={getFileUrl}
                 page={"Files"}
                 data={FileDataTable}
                 column={fileColumn}
