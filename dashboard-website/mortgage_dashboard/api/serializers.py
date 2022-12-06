@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 class ArticlesSerializer(serializers.ModelSerializer):
       class Meta:
           model= Articles
-          fields=('date','content')
+          fields= '__all__'
 
 class LeadSerializer(serializers.ModelSerializer):
     class Meta:
