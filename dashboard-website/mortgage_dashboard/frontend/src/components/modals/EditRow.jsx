@@ -19,9 +19,11 @@ function EditRow({ page, rowData }) {
     phone_num: rowData.phone_num,
     status: rowData.status,
     creditScore: rowData.creditScore,
-    // status_check:rowData.status_check
   });
-
+ const [fileValue, setfileValue] = React.useState({
+    link: rowData.link,
+    filename: rowData.filename,
+  });
   useEffect(() => {
     const getStatus = `${process.env.REACT_APP_API_URL}/api/status/`;
     async function fetchData() {
@@ -89,12 +91,34 @@ function EditRow({ page, rowData }) {
         console.log(error);
       }
     }
+    else if (page === "EditResources-file") {
+      try {
+        const postFile =`${process.env.REACT_APP_API_URL}/api/files/` + rowData.id + "/";
+        var fileData = new FormData();
+        fileData.append("link", fileValue.link);
+        fileData.append("filename", fileValue.filename);
+        const response = await axios({
+          method: "PUT",
+          url: postFile,
+          data: fileData,
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        window.location.reload(false);
+        handleClose();
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   const handleChange = (event) => {
     console.log("handle change is called");
     setformValue({
       ...formValue,
+      [event.target.name]: event.target.value,
+    });
+    setfileValue({
+      ...fileValue,
       [event.target.name]: event.target.value,
     });
   };
@@ -363,17 +387,17 @@ function EditRow({ page, rowData }) {
                   name="link"
                   type="text"
                   placeholder="File Link"
-                  value={formValue.link}
+                  value={fileValue.link}
                   onChange={handleChange}
                 />
               </Form.Group>
               <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Text</Form.Label>
                 <Form.Control
-                  name="text"
+                  name="filename"
                   type="text"
                   placeholder="Text"
-                  value={formValue.fName}
+                  value={fileValue.filename}
                   onChange={handleChange}
                 />
               </Form.Group>
