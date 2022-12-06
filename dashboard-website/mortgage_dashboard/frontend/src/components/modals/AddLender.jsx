@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import axios from "axios";
 import api from "../../services/api";
 
 function AddLendersRow({ page, url }) {
 
-  // For Leads and Borrowers
+  // For Lenders Table
   const [show, setShow] = useState(false);
+  const [status, setStatus] = useState([]);
+
+  if(page == "Lenders"){
+    url = `${process.env.REACT_APP_API_URL}/api/lender/`;
+  }
+
   const [formValue, setformValue] = React.useState({
     company: "",
     rating: "",
@@ -23,6 +30,29 @@ function AddLendersRow({ page, url }) {
     website: "",
     logo: "",
   });
+
+  useEffect(() => {
+    const getStatus = `${process.env.REACT_APP_API_URL}/api/status/`;
+    async function fetchData() {
+      // Fetch data
+      axios({
+        method: "GET",
+        url: getStatus,
+      })
+        .then((response) => {
+          const data = response.data;
+          setStatus(data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          }
+        });
+    }
+    fetchData();
+  }, []);
 
   const handleSubmit = () => {
     // store the states in the form data
@@ -37,7 +67,9 @@ function AddLendersRow({ page, url }) {
     formData.append("email", formValue.email);
     formData.append("website", formValue.website);
     formData.append("logo", formValue.logo);
+    
     console.log(Object.fromEntries(formData));
+    
     try {
       const response = api({
         method: "post",
@@ -91,6 +123,7 @@ function AddLendersRow({ page, url }) {
             <Container>
               <Row>
                 <Col>
+
           <Form.Group className="mb-3" controlId="">
         <Form.Label>Company Infomation</Form.Label>
         <Form.Control 
@@ -99,23 +132,26 @@ function AddLendersRow({ page, url }) {
             placeholder="Enter Company Name" 
             value={formValue.company}
             onChange={handleChange}/>
-      </Form.Group>
+        </Form.Group>
             </Col>
             <Col>
+
       <Form.Group className="mb-3" controlId="">
         <Form.Label>Rating</Form.Label>
         <Form.Select name="rating" aria-label="Default select example" value={formValue.rating}
         onChange={handleChange}>
-        <option value="A">A</option>
-        <option value="A-">A-</option>
-        <option value="B+">B+</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-        <option value="U">U</option>
+            <option value="A">A</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="U">U</option>
         </Form.Select>
         </Form.Group>
         </Col>
         </Row>
+
+        <Col>
         <Form.Group className="mb-3" controlId="">
         <Form.Label>Programs</Form.Label>
         <Form.Control name="programs" type="text" placeholder="Programs" value={formValue.programs}
@@ -124,28 +160,38 @@ function AddLendersRow({ page, url }) {
          Enter list of programs separated by commas
         </Form.Text>
         </Form.Group>
-        <Row>
-          <Col>
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>FHA ID</Form.Label>
-        <Form.Control name="FHA ID" type="text" placeholder="FHA ID" value={formValue.lender_FHA_ID}
-        onChange={handleChange}/>
-        </Form.Group>
         </Col>
-        <Col>
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>VA ID</Form.Label>
-        <Form.Control name="VA ID" type="text" placeholder="VA ID" value={formValue.lender_VA_ID}
-        onChange={handleChange}/>
-        </Form.Group>
-        </Col>
-        </Row>
+        
+         <Form.Group className="mb-3" controlId="">
+                    <Form.Label>Account Executive</Form.Label>
+                    <Form.Control name="account_executive" type="text" 
+                                  placeholder="Account Executive"
+                                  value={formValue.account_executive}
+                        onChange={handleChange}/>
+                     </Form.Group>
 
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>Account Executive</Form.Label>
-        <Form.Control name="Account Executive" type="text" placeholder="Full Name of Account Executive" value={formValue.account_executive}
-        onChange={handleChange}/>
-        </Form.Group>
+              <Row>
+                <Col>
+                <Form.Group className="mb-3" controlId="">
+                    <Form.Label>FHA ID</Form.Label>
+                    <Form.Control name="lender_FHA_ID" type="text" 
+                                  placeholder="FHA ID"
+                                  value={formValue.lender_FHA_ID}
+                        onChange={handleChange}/>
+                     </Form.Group>
+                </Col>
+                
+                <Col>
+                <Form.Group className="mb-3" controlId="">
+                    <Form.Label>VA ID</Form.Label>
+                    <Form.Control name="lender_VA_ID" type="text" 
+                        placeholder="VA ID"
+                        value={formValue.lender_VA_ID}
+                        onChange={handleChange}/>
+                     </Form.Group>
+                </Col>
+              </Row>
+        
 
         <Row>
         <Col>
@@ -164,13 +210,17 @@ function AddLendersRow({ page, url }) {
         </Col>
         </Row>
         <Row>
+
         <Col>
         <Form.Group className="mb-3" controlId="">
         <Form.Label>URL</Form.Label>
         <Form.Control name="website" type="text" placeholder="Website Url" value={formValue.website}
         onChange={handleChange} />
         <Form.Text className="text-muted">
-          Enter a link with http/https. Example: https://www.google.com
+          Enter a link with http/https. 
+        </Form.Text>
+        <Form.Text className="text-muted">
+          Example: https://www.google.com
         </Form.Text>
         </Form.Group>
         </Col>
@@ -202,4 +252,5 @@ function AddLendersRow({ page, url }) {
 }
 
 export default AddLendersRow;
+
 
