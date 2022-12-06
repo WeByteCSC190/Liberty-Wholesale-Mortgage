@@ -12,11 +12,6 @@ function AddLendersRow({ page, url }) {
 
   // For Lenders Table
   const [show, setShow] = useState(false);
-  const [status, setStatus] = useState([]);
-
-  if(page == "Lenders"){
-    url = `${process.env.REACT_APP_API_URL}/api/lender/`;
-  }
 
   const [formValue, setformValue] = React.useState({
     company: "",
@@ -68,7 +63,6 @@ function AddLendersRow({ page, url }) {
     formData.append("website", formValue.website);
     formData.append("logo", formValue.logo);
     
-    console.log(Object.fromEntries(formData));
     
     try {
       const response = api({
@@ -165,7 +159,7 @@ function AddLendersRow({ page, url }) {
          <Form.Group className="mb-3" controlId="">
                     <Form.Label>Account Executive</Form.Label>
                     <Form.Control name="account_executive" type="text" 
-                                  placeholder={formValue.account_executive} 
+                                  placeholder="Account Executive"
                                   value={formValue.account_executive}
                         onChange={handleChange}/>
                      </Form.Group>
@@ -175,7 +169,7 @@ function AddLendersRow({ page, url }) {
                 <Form.Group className="mb-3" controlId="">
                     <Form.Label>FHA ID</Form.Label>
                     <Form.Control name="lender_FHA_ID" type="text" 
-                                  placeholder={formValue.lender_FHA_ID} 
+                                  placeholder="FHA ID"
                                   value={formValue.lender_FHA_ID}
                         onChange={handleChange}/>
                      </Form.Group>
@@ -185,8 +179,8 @@ function AddLendersRow({ page, url }) {
                 <Form.Group className="mb-3" controlId="">
                     <Form.Label>VA ID</Form.Label>
                     <Form.Control name="lender_VA_ID" type="text" 
-                                  placeholder={formValue.lender_VA_ID} 
-                                  value={formValue.lender_VA_ID}
+                        placeholder="VA ID"
+                        value={formValue.lender_VA_ID}
                         onChange={handleChange}/>
                      </Form.Group>
                 </Col>
@@ -252,4 +246,5 @@ function AddLendersRow({ page, url }) {
 }
 
 export default AddLendersRow;
+
 

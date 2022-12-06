@@ -6,13 +6,11 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import axios from 'axios';
-
+import api from "../../services/api";
 /* For the Lender pages */ 
 
 function EditLenderRow({ page, rowData }) {
   const [show, setShow] = useState(false);
-  const [status, setStatus] = useState([]);
 
   const [formValue, setformValue] = React.useState({
       company:rowData.company,
@@ -25,30 +23,6 @@ function EditLenderRow({ page, rowData }) {
       email:rowData.email,
       logo:rowData.logo
   });
-
-  useEffect(() => {
-    const getStatus = "http://localhost:8000/api/rating"
-  async function fetchData() {
-    // Fetch data
-    axios({
-    method: "GET",
-    url:getStatus,
-  }).then((response)=>{
-    const data = response.data;
-    setStatus(data)
-
-    // console.log(data)
-
-  }).catch((error) => {
-    if (error.response) {
-      console.log(error.response);
-      console.log(error.response.status);
-      console.log(error.response.headers);
-      }
-  })
-  }
-     fetchData();
-}, []);
 
   const handleSubmit = async() => {
   // store the states in the form data
@@ -63,26 +37,14 @@ function EditLenderRow({ page, rowData }) {
   formData.append("email", formValue.email);
   formData.append("website", formValue.website);
   formData.append("logo", formValue.logo);
-  console.log(Object.fromEntries(formData))
     try {
-      var api = "";
-    if (page==="Borrowers") 
-      api = `${process.env.REACT_APP_API_URL}/api/borrowerupdate/`;
-    else if (page === "Leads") 
-      api = `${process.env.REACT_APP_API_URL}/api/leadupdate/`;
-    else if (page === "Lenders") 
-      api = `${process.env.REACT_APP_API_URL}/api/lenderupdate/`;
-      else if (page === "Lenders" && formData.logo) 
-     // api = `${process.env.REACT_APP_API_URL}/api/lenderlogosupdate/`;
-    console.log("before axios called")
-
-    const response = await axios({
+    var url = `${process.env.REACT_APP_API_URL}/api/lender/`;
+    const response = api({
       method: "PUT",
-      url: api,
+      url: url+rowData.id+"/",
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     });
-      console.log(response)
     window.location.reload(false);
     handleClose();
   } catch(error) {
@@ -91,7 +53,6 @@ function EditLenderRow({ page, rowData }) {
 }
 
 const handleChange = (event) => {
-  console.log("Lenders handle change is called")
   setformValue({
     ...formValue,
     [event.target.name]: event.target.value

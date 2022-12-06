@@ -77,19 +77,18 @@ const TableComponent = ({ url, page, data, column, notes }) => {
   const handleDeleteNote = (id) => {
     console.log("delete note");
     if (page === "Borrowers") {
-      var formData = new FormData();
-      url = "http://localhost:8000/api/borrowernote" + id + "/";
+      url = "http://localhost:8000/api/borrowernote/" + id + "/";
       try {
         const response = api({
           method: "DELETE",
           url: url,
         });
+         setNoteText("");
         // window.location.reload(false);
       } catch (error) {
         console.log(error);
       }
     } else if (page === "Leads") {
-      var formData = new FormData();
       url = "http://localhost:8000/api/leadnote/" + id + "/";
       try {
         const response = api({
@@ -101,7 +100,7 @@ const TableComponent = ({ url, page, data, column, notes }) => {
       } catch (error) {
         console.log(error);
       }
-      // window.location.reload(false);
+      window.location.reload(false);
     }
   };
   // State variable to keep track of all the expanded rows
