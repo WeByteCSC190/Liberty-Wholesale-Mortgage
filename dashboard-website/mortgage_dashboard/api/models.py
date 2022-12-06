@@ -136,13 +136,22 @@ class Status(models.Model):
     def __str__(self):
         return str(self.id)
 
-class Announcements(models.Model):
+# class Announcements(models.Model):
+#      date=models.DateTimeField(auto_now_add = True)
+#      title=models.CharField(max_length=100, default="")
+#      content=models.TextField('Content',blank=True)
+
+#      def __str__(self):
+#          return str(self.date)+" "+str(self.content)
+
+class Articles(models.Model):
      date=models.DateTimeField(auto_now_add = True)
-     title=models.CharField(max_length=100, default="", null=True)
+     title=models.CharField(max_length=100, default="")
      content=models.TextField('Content',blank=True)
 
      def __str__(self):
-         return str(self.date)+" "+str(self.content)
+         return self.title
+
 
 class Lead(models.Model):
     # resources = models.ForeignKey(

@@ -7,7 +7,7 @@ from . models import *
 admin.site.register(Client)
 admin.site.register(News)
 admin.site.register(Files)
-admin.site.register(Announcements)
+admin.site.register(Articles)
 admin.site.register(Media)
 admin.site.register(Video)
 # admin.site.register(Resources)

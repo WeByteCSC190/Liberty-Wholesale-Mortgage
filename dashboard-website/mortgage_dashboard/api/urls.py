@@ -17,8 +17,8 @@ from rest_framework import routers
 router=routers.DefaultRouter()
 router.register(r'leads',views.LeadViewSet) #shows all leads
 router.register(r'borrowers',views.BorrowerViewSet) #shows all borrowers
-router.register(r'ImportantAnnouncements',views.ImportantAnnouncementsViewSet) #shows most important Announcements based on dates
-router.register(r'Announcements',views.AnnouncementsViewSet)
+router.register(r'ImportantArticles',views.ImportantArticlesViewSet) #shows most important Announcements based on dates
+router.register(r'Articles',views.ArticlesViewSet)
 router.register(r'lender',views.LenderViewSet)        
 router.register(r'lenderLogo', views.LenderLogoViewSet)  
 router.register(r'bio',views.BioViewSet)

@@ -63,16 +63,16 @@ class LenderLogoViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['company']
 
-class AnnouncementsViewSet(viewsets.ModelViewSet):
+class ArticlesViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
-    queryset=Announcements.objects.all()
-    serializer_class=AnnouncementsSerializer
+    queryset=Articles.objects.all()
+    serializer_class=ArticlesSerializer
 
-class ImportantAnnouncementsViewSet(viewsets.ModelViewSet):
+class ImportantArticlesViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
-    queryset=Announcements.objects.all().order_by('-date')
+    queryset=Articles.objects.all().order_by('-date')
     recent_three_leads=reversed(queryset)
-    serializer_class=AnnouncementsSerializer
+    serializer_class=ArticlesSerializer
 
 class LeadViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
