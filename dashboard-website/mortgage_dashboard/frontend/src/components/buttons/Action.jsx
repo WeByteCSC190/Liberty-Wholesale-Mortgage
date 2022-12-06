@@ -48,7 +48,7 @@ function ActionBtn({ page, rowData, index }) {
 
       <Dropdown.Menu>
         <Edit page={`${page}`} rowData={rowData}/>
-        <Confirmation  btn="Delete" title="Remove file" cID={rowData.caseId} message="Are you sure you want to remove this file permanently?" apiUrl="http://localhost:8000/api/leads/"/>
+        <Confirmation  btn="Delete" title="Remove file" cID={rowData.id} message="Are you sure you want to remove this file permanently?" apiUrl="http://localhost:8000/api/files/"/>
       </Dropdown.Menu>
     </Dropdown>
   );
