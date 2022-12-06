@@ -14,7 +14,7 @@ class ArticlesSerializer(serializers.ModelSerializer):
 class LeadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lead
-        fields = ('caseId', 'date', 'fName', 'lName', 'creditScore', 'email', 'phone_num', 'status')
+        fields = '__all__'
 
 class BorrowerSerializer(serializers.ModelSerializer):
     class Meta:
