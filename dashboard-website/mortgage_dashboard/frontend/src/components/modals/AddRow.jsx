@@ -13,7 +13,7 @@ function AddRow({ url, page }) {
     url = `${process.env.REACT_APP_API_URL}/api/leads/`;
   } else if(page === "Borrowers") {
     url = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
-  }else if(page === "Files") {
+  }else if(page === "EditResources-file") {
     url = `${process.env.REACT_APP_API_URL}/api/files/`;
   }
 
