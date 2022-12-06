@@ -9,7 +9,6 @@ function Confirmation({ btn,cID, title, message, apiUrl, rowData }) {
     const handleShow = () => setShow(true);
     const handleSubmit = () => {
         if (btn == "Move To Leads") {
-            console.log("start move to lead")
             var formDataLead = new FormData();
             formDataLead.append("caseId", rowData.caseId);
             formDataLead.append("fName", rowData.fName);
@@ -25,7 +24,6 @@ function Confirmation({ btn,cID, title, message, apiUrl, rowData }) {
                     url: urlLead,
                     data: formDataLead,
                 });
-                console.log("successfully moved borrwer to leads")
                 handleClose();
             } catch (error) {
                 console.log(error);
@@ -47,19 +45,18 @@ function Confirmation({ btn,cID, title, message, apiUrl, rowData }) {
                     url: urlBorrower,
                     data: formDataB,
                 });
-                console.log("successfully moved lead to borrower")
                 handleClose();
             } catch (error) {
                 console.log(error);
             }
         }
         // Delete the row
+        console.log(apiUrl)
         axios({
             method: "DELETE",
             url: apiUrl + cID+"/" ,
             })
             .then((response) => {
-                console.log("delete successfull for" + cID);
                 window.location.reload(false);
             })
             .catch((error) => {

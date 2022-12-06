@@ -90,7 +90,8 @@ function ActionBtn({ page, rowData, index }) {
 
       <Dropdown.Menu>
         <EditLenders page={`${page}`} rowData={rowData}/>
-        <Confirmation  btn="Delete" title="Remove Lender" cID={rowData.company} message="Are you sure you want to remove this Lenders permanently?"/>
+          <Confirmation btn="Delete" title="Remove Lender" cID={rowData.id} message="Are you sure you want to remove this Lenders permanently?"
+          apiUrl="http://localhost:8000/api/lender/"/>
       </Dropdown.Menu>
     </Dropdown>
     );
