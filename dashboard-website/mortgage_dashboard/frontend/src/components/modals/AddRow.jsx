@@ -6,6 +6,8 @@ import axios from "axios";
 import api from "../../services/api";
 
 function AddRow({ url, page }) {
+
+  // For Leads, Borrowers, and Resources Table
   const [show, setShow] = useState(false);
   const [status, setStatus] = useState([]);
 

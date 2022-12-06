@@ -80,7 +80,7 @@ const Search=({page, callback1, callback2})=> {
         </Col>
         <Col>
              <input value="Reset" type="button"
-            onClick={handleFilter} id="reset" className="btn btn-primary" />
+            onClick={handleFilter} id="reset" className="btn btn-light" />
         </Col>
     </Row>
     </Container>
@@ -141,7 +141,7 @@ const Search=({page, callback1, callback2})=> {
         
         <Col>
              <input value="Reset" type="button" id="reset"
-            onClick={handleFilter} className="btn btn-primary" />
+            onClick={handleFilter} className="btn btn-light" />
         </Col>
     </Row>
     </Container>
@@ -154,13 +154,3 @@ const Search=({page, callback1, callback2})=> {
 
 export default Search;
 
-/*
-<Col>
-  <DropdownButton value={limit} id="page-limit" title="Page Limit">
-  <Dropdown.Item value="page_limit" onClick={handleFilter}>10</Dropdown.Item>
-  <Dropdown.Item value="page_limit" onClick={handleFilter}>20</Dropdown.Item>
-  <Dropdown.Item value="page_limit" onClick={handleFilter}>50</Dropdown.Item>
-  </DropdownButton>
-</Col>
-
-*/
