@@ -162,29 +162,36 @@ function AddLendersRow({ page, url }) {
         </Form.Group>
         </Col>
         
-        <Row>
-        <Col>
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>FHA ID</Form.Label>
-        <Form.Control name="Account Executive" type="text" placeholder="Full Name of Account Executive" value={formValue.account_executive}
-        onChange={handleChange}/>
-        </Form.Group>
-        </Col>
+         <Form.Group className="mb-3" controlId="">
+                    <Form.Label>Account Executive</Form.Label>
+                    <Form.Control name="account_executive" type="text" 
+                                  placeholder={formValue.account_executive} 
+                                  value={formValue.account_executive}
+                        onChange={handleChange}/>
+                     </Form.Group>
 
-        <Col>
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>VA ID</Form.Label>
-        <Form.Control name="VA ID" type="text" placeholder="VA ID" value={formValue.lender_VA_ID}
-        onChange={handleChange}/>
-        </Form.Group>
-        </Col>
-        </Row>
-
-        <Form.Group className="mb-3" controlId="">
-        <Form.Label>Account Executive</Form.Label>
-        <Form.Control name="Account Executive" type="text" placeholder="Full Name of Account Executive" value={formValue.account_executive}
-        onChange={handleChange}/>
-        </Form.Group>
+              <Row>
+                <Col>
+                <Form.Group className="mb-3" controlId="">
+                    <Form.Label>FHA ID</Form.Label>
+                    <Form.Control name="lender_FHA_ID" type="text" 
+                                  placeholder={formValue.lender_FHA_ID} 
+                                  value={formValue.lender_FHA_ID}
+                        onChange={handleChange}/>
+                     </Form.Group>
+                </Col>
+                
+                <Col>
+                <Form.Group className="mb-3" controlId="">
+                    <Form.Label>VA ID</Form.Label>
+                    <Form.Control name="lender_VA_ID" type="text" 
+                                  placeholder={formValue.lender_VA_ID} 
+                                  value={formValue.lender_VA_ID}
+                        onChange={handleChange}/>
+                     </Form.Group>
+                </Col>
+              </Row>
+        
 
         <Row>
         <Col>
@@ -203,6 +210,7 @@ function AddLendersRow({ page, url }) {
         </Col>
         </Row>
         <Row>
+
         <Col>
         <Form.Group className="mb-3" controlId="">
         <Form.Label>URL</Form.Label>
