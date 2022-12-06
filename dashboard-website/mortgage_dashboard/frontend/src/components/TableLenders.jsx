@@ -173,7 +173,7 @@ const ExpandedRow = ({ api, item, columns, image, index, expandState}) => {
       } else if (columnItem.heading === 'Logo') {
         return (<td>
            <img
-              src={company.logo} // columns.logo
+              src={columns.logo} // columns.logo
               width="150"
               height="70"
               className="table-logo"
