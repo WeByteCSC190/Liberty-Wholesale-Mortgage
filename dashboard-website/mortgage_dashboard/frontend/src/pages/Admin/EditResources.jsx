@@ -14,7 +14,9 @@ import Footer from "../../components/Footer";
 const EditResources = () => {
   // files start
   const [fileTable, setfileTable] = useState([]);
+  const [videoTable, setVideoTable] = useState([]);
   const getFilesUrl = `${process.env.REACT_APP_API_URL}/api/files/`;
+  const getVideosUrl = `${process.env.REACT_APP_API_URL}/api/media/`;
   function getFiles() {
     axios({
       method: "GET",
@@ -34,26 +36,45 @@ const EditResources = () => {
         }
       });
   }
+    function getVideos() {
+    axios({
+      method: "GET",
+      url: getVideosUrl,
+    })
+      .then((response) => {
+        const data = response.data;
+        setVideoTable(data);
+        console.log(data);
+        return data;
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
+  }
 
   useEffect(() => {
     getFiles();
+    getVideos();
   }, [true]);
 
-  const column = [
+  const carouselCol = [
     { heading: "Image Link", value: "image" },
     { heading: "Text", value: "caption" },
     { heading: "AddRow", value: "EditResources" },
   ];
-  const column2 = [
-    { heading: "Image Link", value: "link" },
+  const filesCol = [
+    { heading: "Link", value: "link" },
     { heading: "File Name", value: "filename" },
     { heading: "AddRow", value: "EditResources" },
   ];
-  const column1 = [
-    { heading: "Video Link", value: "image" },
-    { heading: "Image Link", value: "image" },
-    { heading: "Title", value: "caption" },
-    { heading: "Text", value: "caption" },
+  const videoCol = [
+    { heading: "Link", value: "link" },
+    { heading: "Title", value: "title" },
+    { heading: "Description", value: "desc" },
     { heading: "AddRow", value: "EditResources" },
   ];
   // files end
@@ -145,26 +166,26 @@ const EditResources = () => {
                   api="http://localhost:8000/api/borrowers/"
                   page={"EditResources-carousel"}
                   data={data}
-                  column={column}
+                  column={carouselCol}
                 />
               </Row>
               <Row style={{ paddingBottom: "20px" }}>
                 <h1>Videos</h1>
                 <Table
-                  api="http://localhost:8000/api/borrowers/"
+                  api={getVideosUrl}
                   page={"EditResources-video"}
-                  data={data}
-                  column={column1}
+                  data={videoTable}
+                  column={videoCol}
                 />
               </Row>
 
               <Row style={{ paddingBottom: "20px" }}>
                 <h1>Files</h1>
                 <Table
-                  api="http://localhost:8000/api/files/"
+                  api={getFilesUrl}
                   page={"EditResources-file"}
                   data={fileTable}
-                  column={column2}
+                  column={filesCol}
                 />
               </Row>
             </Container>

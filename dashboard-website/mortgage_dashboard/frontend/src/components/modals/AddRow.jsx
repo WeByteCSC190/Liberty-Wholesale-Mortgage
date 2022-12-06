@@ -17,6 +17,8 @@ function AddRow({ url, page }) {
     url = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
   }else if(page === "EditResources-file") {
     url = `${process.env.REACT_APP_API_URL}/api/files/`;
+  }else if(page === "EditResources-video") {
+    url = `${process.env.REACT_APP_API_URL}/api/media/`;
   }
 
   const [formValue, setformValue] = React.useState({
@@ -32,6 +34,11 @@ function AddRow({ url, page }) {
    const [fileValue, setfileValue] = React.useState({
     link: "",
     filename: ""
+  });
+  const [videoValue, setvideoValue] = React.useState({
+    link: "",
+    title: "",
+    desc:""
   });
   useEffect(() => {
     const getStatus = `${process.env.REACT_APP_API_URL}/api/status/`;
@@ -97,6 +104,25 @@ function AddRow({ url, page }) {
       console.log(error);
     }
   };
+
+  const handleSubmitVideo = () => {
+    // store the states in the form data
+    var formData = new FormData();
+    formData.append("link", videoValue.link);
+    formData.append("title", videoValue.title);
+    formData.append("desc", videoValue.desc);
+    try {
+      const response = api({
+        method: "post",
+        url: url,
+        data: formData,
+      });
+      window.location.reload(false);
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleChange = (event) => {
     setformValue({
       ...formValue,
@@ -104,6 +130,10 @@ function AddRow({ url, page }) {
     });
     setfileValue({
       ...fileValue,
+      [event.target.name]: event.target.value,
+    });
+    setvideoValue({
+      ...videoValue,
       [event.target.name]: event.target.value,
     });
     
@@ -350,42 +380,32 @@ function AddRow({ url, page }) {
           <Modal.Body>
             <Form>
               <Form.Group className="mb-3" controlId="">
-                <Form.Label>Image Link</Form.Label>
-                <Form.Control
-                  name="fName"
-                  type="text"
-                  placeholder="Image Link"
-                  value={formValue.fName}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="">
                 <Form.Label>Video Link</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="link"
                   type="text"
                   placeholder="Video Link"
-                  value={formValue.fName}
+                  value={videoValue.link}
                   onChange={handleChange}
                 />
               </Form.Group>
               <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Title</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="title"
                   type="text"
                   placeholder="Title"
-                  value={formValue.fName}
+                  value={videoValue.title}
                   onChange={handleChange}
                 />
               </Form.Group>
               <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Text</Form.Label>
+                <Form.Label>Description</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="desc"
                   type="text"
                   placeholder="Text"
-                  value={formValue.fName}
+                  value={videoValue.desc}
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -395,7 +415,7 @@ function AddRow({ url, page }) {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleSubmit}>
+            <Button variant="primary" onClick={handleSubmitVideo}>
               Add
             </Button>
           </Modal.Footer>
