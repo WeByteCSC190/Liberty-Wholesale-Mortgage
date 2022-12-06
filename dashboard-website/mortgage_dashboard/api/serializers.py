@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 ## Serializer is a component that converts
 ## Django models to JSON objects and vice versa
 
-class ArticlesSerializer(serializers.HyperlinkedModelSerializer):
+class ArticlesSerializer(serializers.ModelSerializer):
       class Meta:
           model= Articles
           fields=('date','content')
