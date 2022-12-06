@@ -13,6 +13,7 @@ import axios from 'axios';
 function EditLenderRow({ page, rowData }) {
   const [show, setShow] = useState(false);
   const [status, setStatus] = useState([]);
+
   const [formValue, setformValue] = React.useState({
       company:rowData.company,
       rating:rowData.rating,
@@ -69,8 +70,10 @@ function EditLenderRow({ page, rowData }) {
       api = `${process.env.REACT_APP_API_URL}/api/borrowerupdate/`;
     else if (page === "Leads") 
       api = `${process.env.REACT_APP_API_URL}/api/leadupdate/`;
-      else if (page === "Lenders") 
+    else if (page === "Lenders") 
       api = `${process.env.REACT_APP_API_URL}/api/lenderupdate/`;
+      else if (page === "Lenders" && formData.logo) 
+     // api = `${process.env.REACT_APP_API_URL}/api/lenderlogosupdate/`;
     console.log("before axios called")
 
     const response = await axios({
@@ -88,7 +91,7 @@ function EditLenderRow({ page, rowData }) {
 }
 
 const handleChange = (event) => {
-  console.log("handle change is called")
+  console.log("Lenders handle change is called")
   setformValue({
     ...formValue,
     [event.target.name]: event.target.value
@@ -139,31 +142,37 @@ const handleChange = (event) => {
                     <Form.Control name="programs" type="text" placeholder={formValue.programs} value={formValue.programs}
                                   onChange={handleChange}/>
                     <Form.Text className="text-muted">
-                          Enter list of programs separated by commas
+                          Enter the list of programs separated by commas
                     </Form.Text>
                     </Form.Group>
               
               <Form.Group className="mb-3" controlId="">
                     <Form.Label>Account Executive</Form.Label>
-                    <Form.Control name="account_executive" type="text" placeholder={formValue.account_executive} value={formValue.account_executive}
+                    <Form.Control name="account_executive" type="text" 
+                                  placeholder={formValue.account_executive} 
+                                  value={formValue.account_executive}
                         onChange={handleChange}/>
                      </Form.Group>
 
               <Row>
                 <Col>
-                    <Form.Group className="mb-3" controlId="">
+                <Form.Group className="mb-3" controlId="">
                     <Form.Label>FHA ID</Form.Label>
-                    <Form.Control name="lender_FHA_ID" type="text" placeholder={formValue.lender_FHA_ID} value={formValue.lender_FHA_ID}
-                          onChange={handleChange}/>
-                      </Form.Group>
+                    <Form.Control name="lender_FHA_ID" type="text" 
+                                  placeholder={formValue.lender_FHA_ID} 
+                                  value={formValue.lender_FHA_ID}
+                        onChange={handleChange}/>
+                     </Form.Group>
                 </Col>
                 
                 <Col>
-                    <Form.Group className="mb-3" controlId="">
+                <Form.Group className="mb-3" controlId="">
                     <Form.Label>VA ID</Form.Label>
-                    <Form.Control name="lender_VA_ID" type="text" placeholder={formValue.lender_VA_ID} value={formValue.lender_VA_ID}
-                         onChange={handleChange}/>
-                    </Form.Group>
+                    <Form.Control name="lender_VA_ID" type="text" 
+                                  placeholder={formValue.lender_VA_ID} 
+                                  value={formValue.lender_VA_ID}
+                        onChange={handleChange}/>
+                     </Form.Group>
                 </Col>
               </Row>
         
@@ -171,7 +180,9 @@ const handleChange = (event) => {
               <Col>
                   <Form.Group className="mb-3" controlId="">
                   <Form.Label>Phone</Form.Label>
-                  <Form.Control name="phone_num" type="text" placeholder={formValue.phone_num} value={formValue.phone_num}
+                  <Form.Control name="phone_num" type="text" 
+                      placeholder={formValue.phone_num} 
+                      value={formValue.phone_num}
                       onChange={handleChange} />
                   </Form.Group>
                 </Col>
@@ -179,7 +190,9 @@ const handleChange = (event) => {
                 <Col>
                     <Form.Group className="mb-3" controlId="">
                     <Form.Label>Email</Form.Label>
-                    <Form.Control name="email" type="text" placeholder={formValue.email} value={formValue.email}
+                    <Form.Control name="email" type="text" 
+                        placeholder={formValue.email} 
+                        value={formValue.email}
                         onChange={handleChange}/>
                      </Form.Group>
                 </Col>
@@ -192,13 +205,16 @@ const handleChange = (event) => {
                     <Form.Control name="website" type="text" placeholder={formValue.website} value={formValue.website}
                        onChange={handleChange} />
                     <Form.Text className="text-muted">
-                        Enter a link with http or https. Example: https://www.google.com
+                        Enter a link with http or https.
+                    </Form.Text>
+                    <Form.Text className="text-muted">
+                        Example: https://www.google.com
                     </Form.Text>
                     </Form.Group>
                 </Col>
                 <Col>
                   <Form.Group className="mb-3" controlId="">
-                  <Form.Label>Upload an image the company logo</Form.Label>
+                  <Form.Label>Upload an image of the company logo</Form.Label>
                   <Form.Control type="file" />
                   <Form.Text className="text-muted">
                       Note: Width of picture is 150px and height is 75px
