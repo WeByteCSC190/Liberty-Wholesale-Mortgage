@@ -69,6 +69,8 @@ class Video(models.Model):
     # video = models.FileField(upload_to='videos_uploaded',null=True,
         # validators=[FileExtensionValidator(allowed_extensions=['MOV','avi','mp4','webm','mkv'])])
     link = models.URLField(max_length=200, null=True)
+    title = models.CharField(max_length=200, default="")
+    desc = models.CharField(max_length=200, default="")
     date_uploaded = models.DateTimeField(default=timezone.now)
     # user = models.ForeignKey(User,on_delete= models.CASCADE)
     # id = models.IntegerField('ID', primary_key=True, null=False,
@@ -135,7 +137,8 @@ class Status(models.Model):
         return str(self.id)
 
 class Announcements(models.Model):
-     date=models.DateTimeField('Date')
+     date=models.DateTimeField(auto_now_add = True)
+     title=models.CharField(max_length=100, default="", null=True)
      content=models.TextField('Content',blank=True)
 
      def __str__(self):
