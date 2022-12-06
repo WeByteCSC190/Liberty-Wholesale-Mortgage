@@ -117,21 +117,21 @@ class BorrowerViewSet(viewsets.ModelViewSet):
         serializer = LeadSerializer(recent_three, many=True)
         return JsonResponse(serializer.data, content_type="application/json", safe=False)
 
-    def destroy(self, request, pk):
-        borrower = Borrower.objects.get(caseId=pk)
-        name = "borrower"
-        caseID = borrower.caseId
-        date = borrower.date
-        fname = borrower.fName
-        lname = borrower.lName
-        creditscore = borrower.creditScore
-        email = borrower.email
-        phone_num = borrower.phone_num
-        status = borrower.status
-        borrowerBin = RecyclingBin(name,None, None,caseID,date,fname,lname,creditscore,email,phone_num, status)
-        borrowerBin.save()
-        borrower.delete()
-        return Response("Moved to Bin!")
+    # def destroy(self, request, pk):
+    #     borrower = Borrower.objects.get(caseId=pk)
+    #     name = "borrower"
+    #     caseID = borrower.caseId
+    #     date = borrower.date
+    #     fname = borrower.fName
+    #     lname = borrower.lName
+    #     creditscore = borrower.creditScore
+    #     email = borrower.email
+    #     phone_num = borrower.phone_num
+    #     status = borrower.status
+    #     borrowerBin = RecyclingBin(name,None, None,caseID,date,fname,lname,creditscore,email,phone_num)
+    #     borrowerBin.save()
+    #     borrower.delete()
+    #     return Response("Moved to Bin!")
 
 
 class BorrowerNoteViewSet(viewsets.ModelViewSet):
