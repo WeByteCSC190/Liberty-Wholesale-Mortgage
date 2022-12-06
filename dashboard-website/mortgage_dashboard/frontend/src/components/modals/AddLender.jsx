@@ -5,18 +5,14 @@ import Form from "react-bootstrap/Form";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import axios from "axios";
 import api from "../../services/api";
 
 function AddLendersRow({ page, url }) {
 
   // For Lenders Table
   const [show, setShow] = useState(false);
-  const [status, setStatus] = useState([]);
 
-  if(page == "Lenders"){
-    url = `${process.env.REACT_APP_API_URL}/api/lender/`;
-  }
+  url = `${process.env.REACT_APP_API_URL}/api/lender/`;
 
   const [formValue, setformValue] = React.useState({
     company: "",
@@ -30,29 +26,6 @@ function AddLendersRow({ page, url }) {
     website: "",
     logo: "",
   });
-
-  useEffect(() => {
-    const getStatus = `${process.env.REACT_APP_API_URL}/api/status/`;
-    async function fetchData() {
-      // Fetch data
-      axios({
-        method: "GET",
-        url: getStatus,
-      })
-        .then((response) => {
-          const data = response.data;
-          setStatus(data);
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          }
-        });
-    }
-    fetchData();
-  }, []);
 
   const handleSubmit = () => {
     // store the states in the form data
@@ -68,7 +41,6 @@ function AddLendersRow({ page, url }) {
     formData.append("website", formValue.website);
     formData.append("logo", formValue.logo);
     
-    console.log(Object.fromEntries(formData));
     
     try {
       const response = api({

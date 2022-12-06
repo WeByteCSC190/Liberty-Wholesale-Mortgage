@@ -11,7 +11,6 @@ import api from "../../services/api";
 
 function EditLenderRow({ page, rowData }) {
   const [show, setShow] = useState(false);
-  const [status, setStatus] = useState([]);
 
   const [formValue, setformValue] = React.useState({
       company:rowData.company,
@@ -38,12 +37,8 @@ function EditLenderRow({ page, rowData }) {
   formData.append("email", formValue.email);
   formData.append("website", formValue.website);
   formData.append("logo", formValue.logo);
-  console.log(Object.fromEntries(formData))
     try {
-      var url = `${process.env.REACT_APP_API_URL}/api/lender/`;
-  
-    console.log(api+rowData.id)
-
+    var url = `${process.env.REACT_APP_API_URL}/api/lender/`;
     const response = api({
       method: "PUT",
       url: url+rowData.id+"/",
@@ -58,7 +53,6 @@ function EditLenderRow({ page, rowData }) {
 }
 
 const handleChange = (event) => {
-  console.log("Lenders handle change is called")
   setformValue({
     ...formValue,
     [event.target.name]: event.target.value
