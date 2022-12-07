@@ -283,7 +283,6 @@ const Lenders = () => {
         </div>
         <div className="Content">
           <Container className="page-format">
-            <p className="Page-Title">Lenders</p>
             <div>
               <Search
                 page={"Lenders"}

@@ -131,7 +131,6 @@ const TableComponent = ({ url, page, data, column, notes }) => {
   return (
     <Table className="Table" responsive hover>
       <thead>
-        <tr className="table-title">List of {page}</tr>
         <tr className="table-heading">
           {column.map((item, index) => (
             <TableHeadItem
@@ -286,7 +285,6 @@ const TableRow = ({
             {" "}
             Previsou Notes:
             {notes.map((note) => {
-              console.log(notes);
               if (page === "Borrowers") {
                 if (note.borrower === item.caseId) {
                   return (

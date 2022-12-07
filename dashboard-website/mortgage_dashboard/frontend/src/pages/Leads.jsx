@@ -192,7 +192,6 @@ const Leads = () => {
         </div>
         <div className="Content">
           <Container className="page-format">
-            <p className="Page-Title">Leads</p>
             <div>
               <Search
                 page="Leads"

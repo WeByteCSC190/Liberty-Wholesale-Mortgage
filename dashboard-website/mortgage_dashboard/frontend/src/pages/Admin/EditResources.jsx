@@ -176,7 +176,7 @@ const EditResources = () => {
         </div>
         <div className="Content">
           <Container className="page-format">
-            <p className="Page-Title">Resources</p>
+            <p className="Page-Title">Edit Resources</p>
 
             <Container>
               <Row style={{ paddingBottom: "70px" }}>

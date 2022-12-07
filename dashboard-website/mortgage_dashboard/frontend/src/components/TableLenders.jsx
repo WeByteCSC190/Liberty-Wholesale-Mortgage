@@ -45,7 +45,6 @@ const LendersTableComponent = ({api, page, data, column, columns, image }) => {
     
       <Table className="Table" responsive hover >
       <thead>
-      <tr className="table-title">List of {page}</tr>
       <tr className="table-heading">
             {column.map((item, index) =>
               <TableHeadItem item={item} api={api} page={page} />

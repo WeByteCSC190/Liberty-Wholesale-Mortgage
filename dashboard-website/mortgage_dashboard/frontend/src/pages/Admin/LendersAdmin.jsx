@@ -179,7 +179,7 @@ const LendersAdmin = () => {
         </div>
         <div className="Content">
           <Container className="page-format">
-            <p className="Page-Title">Lenders</p>
+            <p className="Page-Title">Edit Lenders</p>
             <div className="Lenders">
               <div>
                 <Search

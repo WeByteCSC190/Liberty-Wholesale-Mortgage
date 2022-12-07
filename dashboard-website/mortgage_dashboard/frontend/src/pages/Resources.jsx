@@ -125,9 +125,9 @@ const Resources = () => {
         </div>
         <div className="Content">
           <Container className="page-style">
-            <p className="Page-Title">Resources</p>
             <Row style={{ paddingBottom: "70px" }}>
-              <h1>News and Articles</h1>
+             
+              <h1 style={{ marginTop: "35px" }}>News and Articles</h1>
               <div style={{ textAlign: "center" }}>
                 <div style={{ width: "60%" , textAlign:"center",margin:"0 auto"}}>
              <CarouselBootstrap data={articleTable}/>
@@ -167,7 +167,7 @@ const Resources = () => {
             ) : null}
 
             <Row style={{ paddingBottom: "20px" }}>
-              <h1>Files</h1>
+              <h1 style={{ marginTop: "30px" }}>Files</h1>
               <Table
                 url={getFilesUrl}
                 page="EditResources-file"
