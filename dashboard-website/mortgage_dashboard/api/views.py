@@ -56,6 +56,12 @@ class LenderViewSet(viewsets.ModelViewSet):
     filter_backends = [filters.SearchFilter]
     search_fields = ['company', 'programs']
 
+    @action(methods=['GET'], detail=False, url_path='total')
+    def total_lenders(self, request):
+        queryset=Lender.objects.all();
+        total_count = queryset.count();
+        return JsonResponse(total_count, content_type="application/json", safe=False)
+
 class LenderLogoViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
     queryset=LenderLogo.objects.all()
@@ -85,6 +91,12 @@ class LeadViewSet(viewsets.ModelViewSet):
         recent_three = reversed(queryset)
         serializer = LeadSerializer(recent_three, many=True)
         return JsonResponse(serializer.data, content_type="application/json", safe=False)
+
+    @action(methods=['GET'], detail=False, url_path='total')
+    def total_leads(self, request):
+        queryset=Lead.objects.all();
+        total_count = queryset.count();
+        return JsonResponse(total_count, content_type="application/json", safe=False)
 
     # def destroy(self, request, pk):
     #     lead = Lead.objects.get(caseId=pk)
@@ -116,6 +128,14 @@ class BorrowerViewSet(viewsets.ModelViewSet):
         recent_three = reversed(queryset)
         serializer = LeadSerializer(recent_three, many=True)
         return JsonResponse(serializer.data, content_type="application/json", safe=False)
+
+    @action(methods=['GET'], detail=False, url_path='total')
+    def total_borrowers(self, request):
+        queryset=Borrower.objects.all();
+        total_count = queryset.count();
+        return JsonResponse(total_count, content_type="application/json", safe=False)
+
+
 
     # def destroy(self, request, pk):
     #     borrower = Borrower.objects.get(caseId=pk)

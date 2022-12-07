@@ -12,6 +12,37 @@ export const logout = createAsyncThunk("accounts/logout", async (thunkAPI) => {
   localStorage.removeItem("refresh");
 });
 
+// Refresh the access token. The refresh token lives for a day, so
+// we only need to update the shorter lived access token
+export const refresh = createAsyncThunk(
+  "accounts/token/refresh",
+  async (thunkAPI) => {
+    console.log("refreshing");
+    const options = {
+      method: "post",
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Access-Control-Allow-Origin": "*",
+      },
+      url: "/accounts/token/refresh",
+      data: {
+        refresh: localStorage.getItem("refresh"),
+      },
+    };
+    try {
+      const res = await axios(options);
+      const data = await res.data;
+      if (res.status === 201 || res.status === 200) {
+        localStorage.setItem("access", data.access);
+        return data;
+      } else {
+        console.log("error1");
+      }
+    } catch (err) {
+      console.log("refresh failed");
+    }
+  }
+);
 // export const refresh = createAsyncThunk(
 //   "accounts/token/refresh",
 //   async (thunkAPI) => {

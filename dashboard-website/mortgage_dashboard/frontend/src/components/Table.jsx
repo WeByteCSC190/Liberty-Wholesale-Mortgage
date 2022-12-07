@@ -5,14 +5,16 @@ import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import api from "../services/api";
-import axios from "axios";
 import { saveAs } from "file-saver";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ColorIcons from "./ColorIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Icons from "@fortawesome/free-solid-svg-icons";
-import { faTrash, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrash,
+  faArrowUpRightFromSquare,
+} from "@fortawesome/free-solid-svg-icons";
 const TableComponent = ({ url, page, data, column, notes }) => {
   const [noteText, setNoteText] = useState("");
   const [status, setStatus] = useState([]);
@@ -20,7 +22,7 @@ const TableComponent = ({ url, page, data, column, notes }) => {
     const getStatus = "http://localhost:8000/api/status/";
     async function fetchData() {
       // Fetch data
-      axios({
+      api({
         method: "GET",
         url: getStatus,
       })
@@ -83,7 +85,7 @@ const TableComponent = ({ url, page, data, column, notes }) => {
           method: "DELETE",
           url: url,
         });
-         setNoteText("");
+        setNoteText("");
         // window.location.reload(false);
       } catch (error) {
         console.log(error);
@@ -172,7 +174,7 @@ const TableHeadItem = ({ item, url, page }) => {
   if (item.heading === "AddRow") {
     return (
       <th>
-       <AddRow page={`${page}`} url={`${url}`} />
+        <AddRow page={`${page}`} url={`${url}`} />
       </th>
     );
   } else {
@@ -232,7 +234,7 @@ const TableRow = ({
               >
                 Open
               </Button>
-               <Button
+              <Button
                 variant="light"
                 onClick={(e) =>
                   window.open(item[`${columnItem.value}`], "_blank")

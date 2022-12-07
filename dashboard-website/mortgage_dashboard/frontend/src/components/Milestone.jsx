@@ -5,7 +5,7 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
+import api from "../services/api";
 import { useState, useEffect } from "react";
 import {
   faDotCircle,
@@ -68,10 +68,10 @@ const Milestone = () => {
   });
 
   function getDeals() {
-    let api = "";
-    axios({
+    let url = "";
+    api({
       method: "GET",
-      url: api,
+      url: url,
     })
       .then((response) => {
         const data = response.data;

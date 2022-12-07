@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from "../../services/api";
 import * as React from "react";
 import Moment from "react-moment";
 import { useState, useEffect } from "react";
@@ -17,7 +17,7 @@ const LendersAdmin = () => {
   let testData = [];
 
   function getLenders() {
-    axios({
+    api({
       method: "GET",
       url: getLendersUrl,
       getLendersLogoUrl,
@@ -39,7 +39,7 @@ const LendersAdmin = () => {
   }
 
   function getLogo() {
-    axios({
+    api({
       method: "GET",
       url: getLendersLogoUrl,
     })
@@ -59,8 +59,6 @@ const LendersAdmin = () => {
       });
   }
 
-  
-
   useEffect(() => {
     getLenders();
     fetchData(searchValue, filterType).then((dataTable) => {
@@ -75,7 +73,7 @@ const LendersAdmin = () => {
     { heading: "Details", value: "Details" },
     { heading: "Company", value: "company" },
     { heading: "Programs", value: "programs" },
-    { heading: "", value: ""}, 
+    { heading: "", value: "" },
     { heading: "Rating", value: "rating" },
     { heading: "Website", value: "website" },
     { heading: "AddRow", value: "AddLender" },

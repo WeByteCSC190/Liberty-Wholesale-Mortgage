@@ -1,12 +1,11 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import * as React from "react";
+import api from "../services/api";
+import React, { useState, useEffect } from "react";
 
 const RecentLeads = () => {
   const [leads, setLeads] = useState([]);
 
   useEffect(() => {
-    axios
+    api
       .get(`${process.env.REACT_APP_API_URL}/api/leads/recent/`)
       .then((response) => setLeads(response.data));
   }, []);

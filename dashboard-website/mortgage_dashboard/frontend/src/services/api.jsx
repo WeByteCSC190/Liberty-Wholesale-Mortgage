@@ -1,4 +1,7 @@
 import axios from "axios";
+import { setTimeout } from "react";
+// import { refresh } from "../features/auth/authSlice";
+// import { useDispatch } from "react-redux";
 
 const instance = axios.create({
   headers: {
@@ -69,5 +72,7 @@ const refresh = async () => {
     }
   } catch (err) {
     console.log("refresh failed");
+  } finally {
+    window.location.reload(false);
   }
 };
