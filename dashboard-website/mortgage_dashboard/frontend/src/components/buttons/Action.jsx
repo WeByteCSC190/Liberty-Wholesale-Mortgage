@@ -76,7 +76,7 @@ function ActionBtn({ page, rowData, index }) {
 
       <Dropdown.Menu>
         <Edit page={`${page}`} rowData={rowData}/>
-        <Confirmation  btn="Delete" title="Remove video" cID={rowData.caseId} message="Are you sure you want to remove this video permanently?" apiUrl="http://localhost:8000/api/leads/"/>
+        <Confirmation  btn="Delete" title="Remove video" cID={rowData.id} message="Are you sure you want to remove this video permanently?" apiUrl="http://localhost:8000/api/media/"/>
       </Dropdown.Menu>
     </Dropdown>
   );

@@ -23,28 +23,35 @@ function EditRow({ page, rowData }) {
  const [fileValue, setfileValue] = React.useState({
     link: rowData.link,
     filename: rowData.filename,
+ });
+const [videoValue, setvideoValue] = React.useState({
+    link: rowData.link,
+    title: rowData.title,
+    desc:rowData.desc
   });
   useEffect(() => {
-    const getStatus = `${process.env.REACT_APP_API_URL}/api/status/`;
-    async function fetchData() {
-      // Fetch data
-      axios({
-        method: "GET",
-        url: getStatus,
-      })
-        .then((response) => {
-          const data = response.data;
-          setStatus(data);
+    if (page === "Leads" || page === "Borrowers") {
+      const getStatus = `${process.env.REACT_APP_API_URL}/api/status/`;
+      async function fetchData() {
+        // Fetch data
+        axios({
+          method: "GET",
+          url: getStatus,
         })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          }
-        });
+          .then((response) => {
+            const data = response.data;
+            setStatus(data);
+          })
+          .catch((error) => {
+            if (error.response) {
+              console.log(error.response);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            }
+          });
+      }
+      fetchData();
     }
-    fetchData();
   }, []);
   const handleSubmit = async () => {
     // store the states in the form data
@@ -109,6 +116,26 @@ function EditRow({ page, rowData }) {
         console.log(error);
       }
     }
+    else if (page === "EditResources-video") {
+      try {
+        const postVideo =`${process.env.REACT_APP_API_URL}/api/media/` + rowData.id + "/";
+        console.log(postVideo)
+        var videoData = new FormData();
+        videoData.append("link", videoValue.link);
+        videoData.append("title", videoValue.title);
+        videoData.append("desc", videoValue.desc);
+        const response = await axios({
+          method: "PUT",
+          url: postVideo,
+          data: videoData,
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        window.location.reload(false);
+        handleClose();
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   const handleChange = (event) => {
@@ -119,6 +146,10 @@ function EditRow({ page, rowData }) {
     });
     setfileValue({
       ...fileValue,
+      [event.target.name]: event.target.value,
+    });
+    setvideoValue({
+      ...videoValue,
       [event.target.name]: event.target.value,
     });
   };
@@ -317,42 +348,32 @@ function EditRow({ page, rowData }) {
           <Modal.Body>
              <Form>
               <Form.Group className="mb-3" controlId="">
-                <Form.Label>Image Link</Form.Label>
-                <Form.Control
-                  name="fName"
-                  type="text"
-                  placeholder="Image Link"
-                  value={formValue.fName}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="">
                 <Form.Label>Video Link</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="link"
                   type="text"
                   placeholder="Video Link"
-                  value={formValue.fName}
+                  value={videoValue.link}
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Form.Group controlId="formFile" className="mb-3">
+              <Form.Group controlId="" className="mb-3">
                 <Form.Label>Title</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="title"
                   type="text"
                   placeholder="Title"
-                  value={formValue.fName}
+                  value={videoValue.title}
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Text</Form.Label>
+              <Form.Group controlId="" className="mb-3">
+                <Form.Label>Description</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="desc"
                   type="text"
                   placeholder="Text"
-                  value={formValue.fName}
+                  value={videoValue.desc}
                   onChange={handleChange}
                 />
               </Form.Group>
