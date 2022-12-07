@@ -2,7 +2,32 @@ import React, { useEffect, useState } from "react";
 import Swipe from "react-easy-swipe";
 // npm i react-carousel-minimal
 // npm i react-easy-swipe
+//  <Carousel
+//   data={result}
+//   time={6000}
+//   width="900px"
+//   height="500px"
+//   filenameStyle={filenameStyle}
+//   radius="10px"
+//   slideNumber={true}
+//   slideNumberStyle={slideNumberStyle}
+//   filenamePosition="bottom"
+//   automatic={false}
+//   dots={true}
+//   pauseIconColor="white"
+//   pauseIconSize="40px"
+//   slideBackgroundColor="transparent"
+//   slideImageFit="cover"
+//   thumbnails={true}
+//   thumbnailWidth="100px"
+//   showNavBtn={true}
+//   style={{
+//     textAlign: "center",
 
+//     // maxWidth: "850px"/,
+//     margin: "0px",
+//   }}
+// />
 function Carousel({
   data,
   time,
@@ -25,10 +50,11 @@ function Carousel({
   showNavBtn = true,
 }) {
   //Initialize States
+   console.log(data)
   const [slide, setSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [change, setChange] = useState(0);
-
+ 
   //Function to change slide
   const addSlide = (n) => {
     if (slide + n >= data.length) setSlide(0);
