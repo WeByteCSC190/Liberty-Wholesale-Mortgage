@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import axios from "axios";
 import api from "../../services/api";
 
 function AddRow({ url, page }) {
@@ -17,6 +16,10 @@ function AddRow({ url, page }) {
     url = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
   }else if(page === "EditResources-file") {
     url = `${process.env.REACT_APP_API_URL}/api/files/`;
+  }else if(page === "EditResources-video") {
+    url = `${process.env.REACT_APP_API_URL}/api/media/`;
+  }else if(page === "EditResources-carousel") {
+    url = `${process.env.REACT_APP_API_URL}/api/Articles/`;
   }
 
   const [formValue, setformValue] = React.useState({
@@ -33,11 +36,20 @@ function AddRow({ url, page }) {
     link: "",
     filename: ""
   });
+  const [videoValue, setvideoValue] = React.useState({
+    link: "",
+    title: "",
+    desc:""
+  });
+    const [articleValue, setarticleValue] = React.useState({
+    title: "",
+    content:""
+  });
   useEffect(() => {
     const getStatus = `${process.env.REACT_APP_API_URL}/api/status/`;
     async function fetchData() {
       // Fetch data
-      axios({
+      api({
         method: "GET",
         url: getStatus,
       })
@@ -97,6 +109,42 @@ function AddRow({ url, page }) {
       console.log(error);
     }
   };
+
+  const handleSubmitVideo = () => {
+    // store the states in the form data
+    var formData = new FormData();
+    formData.append("link", videoValue.link);
+    formData.append("title", videoValue.title);
+    formData.append("desc", videoValue.desc);
+    try {
+      const response = api({
+        method: "post",
+        url: url,
+        data: formData,
+      });
+      window.location.reload(false);
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+    const handleSubmitArticle = () => {
+    // store the states in the form data
+    var formData = new FormData();
+    formData.append("content", videoValue.content);
+    formData.append("title", videoValue.title);
+    try {
+      const response = api({
+        method: "post",
+        url: url,
+        data: formData,
+      });
+      window.location.reload(false);
+      handleClose();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const handleChange = (event) => {
     setformValue({
       ...formValue,
@@ -106,7 +154,15 @@ function AddRow({ url, page }) {
       ...fileValue,
       [event.target.name]: event.target.value,
     });
-    
+    setvideoValue({
+      ...videoValue,
+      [event.target.name]: event.target.value,
+    });
+    setarticleValue({
+      ...articleValue,
+      [event.target.name]: event.target.value,
+
+    })
   };
 
   const handleClose = () => {
@@ -304,22 +360,22 @@ function AddRow({ url, page }) {
           <Modal.Body>
             <Form>
               <Form.Group className="mb-3" controlId="">
-                <Form.Label>Image Link</Form.Label>
+                <Form.Label>Title</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="title"
                   type="text"
-                  placeholder="Image Link"
-                  value={formValue.fName}
+                  placeholder="Tiltle"
+                  value={articleValue.title}
                   onChange={handleChange}
                 />
               </Form.Group>
               <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Text</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="content"
                   type="text"
-                  placeholder="Text"
-                  value={formValue.fName}
+                  placeholder="Content"
+                  value={articleValue.content}
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -329,7 +385,7 @@ function AddRow({ url, page }) {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleSubmit}>
+            <Button variant="primary" onClick={handleSubmitArticle}>
               Add
             </Button>
           </Modal.Footer>
@@ -350,42 +406,32 @@ function AddRow({ url, page }) {
           <Modal.Body>
             <Form>
               <Form.Group className="mb-3" controlId="">
-                <Form.Label>Image Link</Form.Label>
-                <Form.Control
-                  name="fName"
-                  type="text"
-                  placeholder="Image Link"
-                  value={formValue.fName}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="">
                 <Form.Label>Video Link</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="link"
                   type="text"
                   placeholder="Video Link"
-                  value={formValue.fName}
+                  value={videoValue.link}
                   onChange={handleChange}
                 />
               </Form.Group>
               <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Title</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="title"
                   type="text"
                   placeholder="Title"
-                  value={formValue.fName}
+                  value={videoValue.title}
                   onChange={handleChange}
                 />
               </Form.Group>
               <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Text</Form.Label>
+                <Form.Label>Description</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="desc"
                   type="text"
                   placeholder="Text"
-                  value={formValue.fName}
+                  value={videoValue.desc}
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -395,7 +441,7 @@ function AddRow({ url, page }) {
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleSubmit}>
+            <Button variant="primary" onClick={handleSubmitVideo}>
               Add
             </Button>
           </Modal.Footer>

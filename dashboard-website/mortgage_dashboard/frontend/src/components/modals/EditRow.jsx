@@ -6,7 +6,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import axios from "axios";
+import api from "../../services/api";
 
 function EditRow({ page, rowData }) {
   const [show, setShow] = useState(false);
@@ -23,28 +23,40 @@ function EditRow({ page, rowData }) {
  const [fileValue, setfileValue] = React.useState({
     link: rowData.link,
     filename: rowData.filename,
+ });
+const [videoValue, setvideoValue] = React.useState({
+    link: rowData.link,
+    title: rowData.title,
+    desc:rowData.desc
+});
+const [articleValue, setarticleValue] = React.useState({
+    title: rowData.title,
+    content:rowData.content
   });
+
   useEffect(() => {
-    const getStatus = `${process.env.REACT_APP_API_URL}/api/status/`;
-    async function fetchData() {
-      // Fetch data
-      axios({
-        method: "GET",
-        url: getStatus,
-      })
-        .then((response) => {
-          const data = response.data;
-          setStatus(data);
+    if (page === "Leads" || page === "Borrowers") {
+      const getStatus = `${process.env.REACT_APP_API_URL}/api/status/`;
+      async function fetchData() {
+        // Fetch data
+        api({
+          method: "GET",
+          url: getStatus,
         })
-        .catch((error) => {
-          if (error.response) {
-            console.log(error.response);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          }
-        });
+          .then((response) => {
+            const data = response.data;
+            setStatus(data);
+          })
+          .catch((error) => {
+            if (error.response) {
+              console.log(error.response);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            }
+          });
+      }
+      fetchData();
     }
-    fetchData();
   }, []);
   const handleSubmit = async () => {
     // store the states in the form data
@@ -61,7 +73,7 @@ function EditRow({ page, rowData }) {
       try {
         const postBorrowers =
           `${process.env.REACT_APP_API_URL}/api/borrowers/` + formValue.caseId + "/";
-        const response = await axios({
+        const response = api({
           method: "PUT",
           url: postBorrowers,
           data: formData,
@@ -79,7 +91,7 @@ function EditRow({ page, rowData }) {
       try {
         const postLeads =
           `${process.env.REACT_APP_API_URL}/api/leads/` + formValue.caseId + "/";
-        const response = await axios({
+        const response = api({
           method: "PUT",
           url: postLeads,
           data: formData,
@@ -97,10 +109,48 @@ function EditRow({ page, rowData }) {
         var fileData = new FormData();
         fileData.append("link", fileValue.link);
         fileData.append("filename", fileValue.filename);
-        const response = await axios({
+        const response = api({
           method: "PUT",
           url: postFile,
           data: fileData,
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        window.location.reload(false);
+        handleClose();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    else if (page === "EditResources-video") {
+      try {
+        const postVideo =`${process.env.REACT_APP_API_URL}/api/media/` + rowData.id + "/";
+        console.log(postVideo)
+        var videoData = new FormData();
+        videoData.append("link", videoValue.link);
+        videoData.append("title", videoValue.title);
+        videoData.append("desc", videoValue.desc);
+        const response = api({
+          method: "PUT",
+          url: postVideo,
+          data: videoData,
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        window.location.reload(false);
+        handleClose();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+     else if (page === "EditResources-carousel") {
+      try {
+        const postArticle =`${process.env.REACT_APP_API_URL}/api/Articles/` + rowData.id + "/";
+        var articleData = new FormData();
+        articleData.append("title", articleValue.title);
+        articleData.append("content", articleValue.content);
+        const response = api({
+          method: "PUT",
+          url: postArticle,
+          data: articleData,
           headers: { "Content-Type": "multipart/form-data" },
         });
         window.location.reload(false);
@@ -121,6 +171,14 @@ function EditRow({ page, rowData }) {
       ...fileValue,
       [event.target.name]: event.target.value,
     });
+    setvideoValue({
+      ...videoValue,
+      [event.target.name]: event.target.value,
+    });
+    setarticleValue({
+      ...articleValue,
+      [event.target.name]: event.target.value,
+    })
   };
 
   const handleClose = () => {
@@ -272,22 +330,22 @@ function EditRow({ page, rowData }) {
           <Modal.Body>
             <Form>
               <Form.Group className="mb-3" controlId="">
-                <Form.Label>Article Link</Form.Label>
+                <Form.Label>Title</Form.Label>
                 <Form.Control
-                  name="link"
+                  name="title"
                   type="text"
-                  placeholder="Article Link"
-                  value={formValue.fName}
+                  placeholder="Tiltle"
+                  value={articleValue.title}
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Form.Group controlId="formFile" className="mb-3">
+              <Form.Group controlId="" className="mb-3">
                 <Form.Label>Text</Form.Label>
                 <Form.Control
-                  name="text"
+                  name="content"
                   type="text"
-                  placeholder="Text"
-                  value={formValue.fName}
+                  placeholder="Content"
+                  value={articleValue.content}
                   onChange={handleChange}
                 />
               </Form.Group>
@@ -317,42 +375,32 @@ function EditRow({ page, rowData }) {
           <Modal.Body>
              <Form>
               <Form.Group className="mb-3" controlId="">
-                <Form.Label>Image Link</Form.Label>
-                <Form.Control
-                  name="fName"
-                  type="text"
-                  placeholder="Image Link"
-                  value={formValue.fName}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="">
                 <Form.Label>Video Link</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="link"
                   type="text"
                   placeholder="Video Link"
-                  value={formValue.fName}
+                  value={videoValue.link}
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Form.Group controlId="formFile" className="mb-3">
+              <Form.Group controlId="" className="mb-3">
                 <Form.Label>Title</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="title"
                   type="text"
                   placeholder="Title"
-                  value={formValue.fName}
+                  value={videoValue.title}
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Form.Group controlId="formFile" className="mb-3">
-                <Form.Label>Text</Form.Label>
+              <Form.Group controlId="" className="mb-3">
+                <Form.Label>Description</Form.Label>
                 <Form.Control
-                  name="fName"
+                  name="desc"
                   type="text"
                   placeholder="Text"
-                  value={formValue.fName}
+                  value={videoValue.desc}
                   onChange={handleChange}
                 />
               </Form.Group>

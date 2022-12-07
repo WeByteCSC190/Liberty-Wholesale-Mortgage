@@ -12,7 +12,7 @@ import Col from "react-bootstrap/Col";
 import ColorIcons from "./ColorIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Icons from "@fortawesome/free-solid-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 const TableComponent = ({ url, page, data, column, notes }) => {
   const [noteText, setNoteText] = useState("");
   const [status, setStatus] = useState([]);
@@ -233,13 +233,13 @@ const TableRow = ({
               >
                 Open
               </Button>
-              <Button
-                variant="link"
+               <Button
+                variant="light"
                 onClick={(e) =>
-                  saveAs(item[`${columnItem.value}`], "image.jpg")
+                  window.open(item[`${columnItem.value}`], "_blank")
                 }
               >
-                Download
+                <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
               </Button>
             </td>
           );
