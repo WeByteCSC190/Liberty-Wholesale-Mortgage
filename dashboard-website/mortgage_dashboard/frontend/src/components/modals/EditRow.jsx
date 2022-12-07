@@ -6,7 +6,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import axios from "axios";
+import api from "../../services/api";
 
 function EditRow({ page, rowData }) {
   const [show, setShow] = useState(false);
@@ -28,13 +28,18 @@ const [videoValue, setvideoValue] = React.useState({
     link: rowData.link,
     title: rowData.title,
     desc:rowData.desc
+});
+const [articleValue, setarticleValue] = React.useState({
+    title: rowData.title,
+    content:rowData.content
   });
+
   useEffect(() => {
     if (page === "Leads" || page === "Borrowers") {
       const getStatus = `${process.env.REACT_APP_API_URL}/api/status/`;
       async function fetchData() {
         // Fetch data
-        axios({
+        api({
           method: "GET",
           url: getStatus,
         })
@@ -68,7 +73,7 @@ const [videoValue, setvideoValue] = React.useState({
       try {
         const postBorrowers =
           `${process.env.REACT_APP_API_URL}/api/borrowers/` + formValue.caseId + "/";
-        const response = await axios({
+        const response = api({
           method: "PUT",
           url: postBorrowers,
           data: formData,
@@ -86,7 +91,7 @@ const [videoValue, setvideoValue] = React.useState({
       try {
         const postLeads =
           `${process.env.REACT_APP_API_URL}/api/leads/` + formValue.caseId + "/";
-        const response = await axios({
+        const response = api({
           method: "PUT",
           url: postLeads,
           data: formData,
@@ -104,7 +109,7 @@ const [videoValue, setvideoValue] = React.useState({
         var fileData = new FormData();
         fileData.append("link", fileValue.link);
         fileData.append("filename", fileValue.filename);
-        const response = await axios({
+        const response = api({
           method: "PUT",
           url: postFile,
           data: fileData,
@@ -124,10 +129,28 @@ const [videoValue, setvideoValue] = React.useState({
         videoData.append("link", videoValue.link);
         videoData.append("title", videoValue.title);
         videoData.append("desc", videoValue.desc);
-        const response = await axios({
+        const response = api({
           method: "PUT",
           url: postVideo,
           data: videoData,
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        window.location.reload(false);
+        handleClose();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+     else if (page === "EditResources-carousel") {
+      try {
+        const postArticle =`${process.env.REACT_APP_API_URL}/api/Articles/` + rowData.id + "/";
+        var articleData = new FormData();
+        articleData.append("title", articleValue.title);
+        articleData.append("content", articleValue.content);
+        const response = api({
+          method: "PUT",
+          url: postArticle,
+          data: articleData,
           headers: { "Content-Type": "multipart/form-data" },
         });
         window.location.reload(false);
@@ -152,6 +175,10 @@ const [videoValue, setvideoValue] = React.useState({
       ...videoValue,
       [event.target.name]: event.target.value,
     });
+    setarticleValue({
+      ...articleValue,
+      [event.target.name]: event.target.value,
+    })
   };
 
   const handleClose = () => {
@@ -303,22 +330,22 @@ const [videoValue, setvideoValue] = React.useState({
           <Modal.Body>
             <Form>
               <Form.Group className="mb-3" controlId="">
-                <Form.Label>Article Link</Form.Label>
+                <Form.Label>Title</Form.Label>
                 <Form.Control
-                  name="link"
+                  name="title"
                   type="text"
-                  placeholder="Article Link"
-                  value={formValue.fName}
+                  placeholder="Tiltle"
+                  value={articleValue.title}
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Form.Group controlId="formFile" className="mb-3">
+              <Form.Group controlId="" className="mb-3">
                 <Form.Label>Text</Form.Label>
                 <Form.Control
-                  name="text"
+                  name="content"
                   type="text"
-                  placeholder="Text"
-                  value={formValue.fName}
+                  placeholder="Content"
+                  value={articleValue.content}
                   onChange={handleChange}
                 />
               </Form.Group>
