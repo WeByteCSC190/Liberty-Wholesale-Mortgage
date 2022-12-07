@@ -18,27 +18,32 @@ const Resources = () => {
   const getFilesUrl = `${process.env.REACT_APP_API_URL}/api/files/`;
   const getVideosUrl = `${process.env.REACT_APP_API_URL}/api/media/`;
   const getArticlesUrl = `${process.env.REACT_APP_API_URL}/api/Articles/`;
-  
-  const testData  =  api({
-      method: "GET",
-      url: getArticlesUrl,
-    }).then((response) => {
-        let data = response.data;
-        let temp = [];
-        data.map((arrayItem, arrayItemIndex, wholeArray) => {
-          temp[arrayItemIndex] = { title: arrayItem.title, content: arrayItem.content };
-        });
-        setArticleTable(temp);
-        return temp;
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
-  
+
+  // testData being uncommented caused an api call DDOS. Can't find an explanation for why.
+
+  // const testData = api({
+  //   method: "GET",
+  //   url: getArticlesUrl,
+  // })
+  //   .then((response) => {
+  //     let data = response.data;
+  //     let temp = [];
+  //     data.map((arrayItem, arrayItemIndex, wholeArray) => {
+  //       temp[arrayItemIndex] = {
+  //         title: arrayItem.title,
+  //         content: arrayItem.content,
+  //       };
+  //     });
+  //     setArticleTable(temp);
+  //     return temp;
+  //   })
+  //   .catch((error) => {
+  //     if (error.response) {
+  //       console.log(error.response);
+  //       console.log(error.response.status);
+  //       console.log(error.response.headers);
+  //     }
+  //   });
 
   function getFiles() {
     api({
@@ -58,7 +63,7 @@ const Resources = () => {
         }
       });
   }
-    function getVideos() {
+  function getVideos() {
     api({
       method: "GET",
       url: getVideosUrl,
@@ -75,18 +80,21 @@ const Resources = () => {
           console.log(error.response.headers);
         }
       });
-    }
-    function getArticles() {
+  }
+  function getArticles() {
     api({
       method: "GET",
       url: getArticlesUrl,
     })
       .then((response) => {
         const data = response.data;
-        
+
         let temp = [];
         data.map((arrayItem, arrayItemIndex, wholeArray) => {
-          temp[arrayItemIndex] = { title: arrayItem.title, content: arrayItem.content };
+          temp[arrayItemIndex] = {
+            title: arrayItem.title,
+            content: arrayItem.content,
+          };
         });
         setArticleTable(temp);
         return temp;
@@ -116,7 +124,7 @@ const Resources = () => {
     { heading: "Link", value: "link" },
     { heading: "File Name", value: "filename" },
   ];
- 
+
   return (
     <>
       <div className="page-wrapper">
@@ -126,20 +134,29 @@ const Resources = () => {
         <div className="Content">
           <Container className="page-style">
             <Row style={{ paddingBottom: "70px" }}>
-             
               <h1 style={{ marginTop: "35px" }}>News and Articles</h1>
               <div style={{ textAlign: "center" }}>
-                <div style={{ width: "60%" , textAlign:"center",margin:"0 auto"}}>
-             <CarouselBootstrap data={articleTable}/>
-            </div>
-            </div>
+                <div
+                  style={{
+                    width: "60%",
+                    textAlign: "center",
+                    margin: "0 auto",
+                  }}
+                >
+                  <CarouselBootstrap data={articleTable} />
+                </div>
+              </div>
             </Row>
             <Row style={{ paddingBottom: "20px" }}>
               <h1>Videos</h1>
-              {(videoTable.slice(0, 3)).map((item) => {
+              {videoTable.slice(0, 3).map((item) => {
                 return (
                   <Col sm={4}>
-                    <Card title={item.title} desc={item.desc} link={item.link} />
+                    <Card
+                      title={item.title}
+                      desc={item.desc}
+                      link={item.link}
+                    />
                   </Col>
                 );
               })}
@@ -156,13 +173,17 @@ const Resources = () => {
 
             {showResults ? (
               <Row style={{ paddingBottom: "20px" }}>
-                {(videoTable.slice(3,)).map((item) => {
-                return (
-                  <Col sm={4}>
-                    <Card title={item.title} desc={item.desc} link={item.link} />
-                  </Col>
-                );
-              })}
+                {videoTable.slice(3).map((item) => {
+                  return (
+                    <Col sm={4}>
+                      <Card
+                        title={item.title}
+                        desc={item.desc}
+                        link={item.link}
+                      />
+                    </Col>
+                  );
+                })}
               </Row>
             ) : null}
 
@@ -182,8 +203,8 @@ const Resources = () => {
         </div>
       </div>
     </>
-  )
-// })
+  );
+  // })
 };
 
 export default Resources;
