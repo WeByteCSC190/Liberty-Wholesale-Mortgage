@@ -196,7 +196,6 @@ const Borrowers = () => {
         {/* <p className="Page-Title">Borrowers</p> */}
         <div className="Content">
           <Container className="page-format">
-            <p className="Page-Title">Borrowers</p>
             <div>
               <Search
                 page="Borrowers"
