@@ -76,7 +76,7 @@ class ArticlesViewSet(viewsets.ModelViewSet):
 
 class ImportantArticlesViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )
-    queryset=Articles.objects.all().order_by('-date')
+    queryset=Articles.objects.all().order_by('-date')[:3]
     recent_three_leads=reversed(queryset)
     serializer_class=ArticlesSerializer
 
@@ -87,7 +87,7 @@ class LeadViewSet(viewsets.ModelViewSet):
 
     @action(methods=['GET'], detail=False, url_path='recent')
     def recent_leads(self, request):
-        queryset=Lead.objects.all().order_by('-date')[:4];
+        queryset=Lead.objects.all().order_by('-date')[:4]
         recent_three = reversed(queryset)
         serializer = LeadSerializer(recent_three, many=True)
         return JsonResponse(serializer.data, content_type="application/json", safe=False)

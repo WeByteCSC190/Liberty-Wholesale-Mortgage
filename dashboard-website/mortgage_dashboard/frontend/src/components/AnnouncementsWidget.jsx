@@ -19,7 +19,7 @@ const AnnouncementsWidget = () => {
 
   useEffect(() => {
     api
-      .get("http://localhost:8000/api/ImportantAnnouncements/")
+      .get("http://localhost:8000/api/ImportantArticles/")
       .then((response) => setNews(response.data));
   }, []);
 
