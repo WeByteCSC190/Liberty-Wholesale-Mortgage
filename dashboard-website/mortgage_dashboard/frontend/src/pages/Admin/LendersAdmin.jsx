@@ -80,7 +80,7 @@ const LendersAdmin = () => {
   ];
 
   const columns = [
-    { heading: "Logo", value: "logo" },
+    //{ heading: "Logo", value: "logo" },
     { heading: "FHA ID", value: "lender_FHA_ID" },
     { heading: "VA ID", value: "lender_VA_ID" },
     { heading: "Account Executive", value: "account_executive" },
