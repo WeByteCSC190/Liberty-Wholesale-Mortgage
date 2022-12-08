@@ -454,7 +454,7 @@ h1 {
   height: 100%;
 }
 .carousel-text{
-    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+    /*text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);*/
 }
 .carousel-container {
   width: 60%;
