@@ -136,12 +136,7 @@ const Resources = () => {
             <Row style={{ paddingBottom: "70px" }}>
               <h1 style={{ marginTop: "35px" }}>News and Articles</h1>
               <div style={{ textAlign: "center" }}>
-                <div
-                  style={{
-                    width: "60%",
-                    textAlign: "center",
-                    margin: "0 auto",
-                  }}
+                <div className="carousel-container"
                 >
                   <CarouselBootstrap data={articleTable} />
                 </div>

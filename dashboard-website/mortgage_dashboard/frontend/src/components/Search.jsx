@@ -55,7 +55,7 @@ const Search=({page, callback1, callback2})=> {
             Sort By:
         </Col>
         <Col>
-          <DropdownButton title="Date">
+          <DropdownButton style={{display:"none"}} title="Date">
               <Dropdown.Item id="Date ASC" onClick={handleFilter}>Asc</Dropdown.Item>
               <Dropdown.Item id="Date DESC" onClick={handleFilter}>Desc</Dropdown.Item>
           </DropdownButton>
