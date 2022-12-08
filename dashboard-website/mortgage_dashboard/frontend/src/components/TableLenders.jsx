@@ -169,17 +169,8 @@ const ExpandedRow = ({ api, item, columns, image, index, expandState}) => {
       if(columnItem.value.includes('.')) {
         const itemSplit = columnItem.value.split('.')
         return <td>{item[itemSplit[0]][itemSplit[1]]}</td>
-      } else if (columnItem.heading === 'Logo') {
-        return (<td>
-           <img
-              src={columns.logo} // columns.logo
-              width="150"
-              height="70"
-              className="table-logo"
-              alt={item.company}
-        />
-          </td>);
-    }  else {
+      } 
+    else {
         return <td>{item[`${columnItem.value}`]}</td>
       }
     })}
