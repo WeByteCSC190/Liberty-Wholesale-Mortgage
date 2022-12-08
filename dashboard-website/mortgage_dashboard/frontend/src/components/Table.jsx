@@ -246,11 +246,12 @@ const TableRow = ({
           );
         }
         if (columnItem.heading == "") {
+          console.log("here")
           return (
             <>
-              <th>
+              <td>
                 <ColorIcons choice={item.status} />
-              </th>
+              </td>
             </>
           );
         } else {
