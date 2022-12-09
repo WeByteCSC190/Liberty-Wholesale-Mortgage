@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import RegisterView, RetrieveUserView, UpdateProfileView, ListUserView, RetrieveUserMilestonesView
+from .views import RegisterView, RetrieveUserView, UpdateProfileView, ListUserView, RetrieveUserMilestonesView, AdminUpdateProfileView
 from rest_framework import routers
 
 router=routers.DefaultRouter()
@@ -13,4 +13,5 @@ urlpatterns = [
     # path('list', ListUserView.as_view()),
     # path('update', UpdateUserView.as_view()),
     path('update_profile/<int:pk>/', UpdateProfileView.as_view(), name='auth_update_profile'),
+    path('admin_update_profile/<int:pk>/', AdminUpdateProfileView.as_view(), name='auth_update_profile'),
 ]

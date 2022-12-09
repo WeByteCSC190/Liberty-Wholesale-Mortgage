@@ -26,11 +26,6 @@ class LoanProcessorSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
-# class ResourcesSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Resources
-#         fields = '__all__'
-
 class LoanOfficerSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

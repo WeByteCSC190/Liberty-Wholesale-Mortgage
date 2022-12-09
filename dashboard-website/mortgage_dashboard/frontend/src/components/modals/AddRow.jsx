@@ -5,20 +5,19 @@ import Form from "react-bootstrap/Form";
 import api from "../../services/api";
 
 function AddRow({ url, page }) {
-
   // For Leads, Borrowers, and Resources Table
   const [show, setShow] = useState(false);
   const [status, setStatus] = useState([]);
 
   if (page === "Leads") {
     url = `${process.env.REACT_APP_API_URL}/api/leads/`;
-  } else if(page === "Borrowers") {
+  } else if (page === "Borrowers") {
     url = `${process.env.REACT_APP_API_URL}/api/borrowers/`;
-  }else if(page === "EditResources-file") {
+  } else if (page === "EditResources-file") {
     url = `${process.env.REACT_APP_API_URL}/api/files/`;
-  }else if(page === "EditResources-video") {
+  } else if (page === "EditResources-video") {
     url = `${process.env.REACT_APP_API_URL}/api/media/`;
-  }else if(page === "EditResources-carousel") {
+  } else if (page === "EditResources-carousel") {
     url = `${process.env.REACT_APP_API_URL}/api/Articles/`;
   }
 
@@ -32,18 +31,18 @@ function AddRow({ url, page }) {
     creditScore: "",
     status_check: false,
   });
-   const [fileValue, setfileValue] = React.useState({
+  const [fileValue, setfileValue] = React.useState({
     link: "",
-    filename: ""
+    filename: "",
   });
   const [videoValue, setvideoValue] = React.useState({
     link: "",
     title: "",
-    desc:""
+    desc: "",
   });
-    const [articleValue, setarticleValue] = React.useState({
+  const [articleValue, setarticleValue] = React.useState({
     title: "",
-    content:""
+    content: "",
   });
   useEffect(() => {
     const getStatus = `${process.env.REACT_APP_API_URL}/api/status/`;
@@ -85,7 +84,6 @@ function AddRow({ url, page }) {
         url: url,
         data: formData,
       });
-      window.location.reload(false);
       handleClose();
     } catch (error) {
       console.log(error);
@@ -103,7 +101,6 @@ function AddRow({ url, page }) {
         url: url,
         data: formData,
       });
-      window.location.reload(false);
       handleClose();
     } catch (error) {
       console.log(error);
@@ -122,13 +119,12 @@ function AddRow({ url, page }) {
         url: url,
         data: formData,
       });
-      window.location.reload(false);
       handleClose();
     } catch (error) {
       console.log(error);
     }
   };
-    const handleSubmitArticle = () => {
+  const handleSubmitArticle = () => {
     // store the states in the form data
     var formData = new FormData();
     formData.append("content", videoValue.content);
@@ -139,7 +135,6 @@ function AddRow({ url, page }) {
         url: url,
         data: formData,
       });
-      window.location.reload(false);
       handleClose();
     } catch (error) {
       console.log(error);
@@ -161,8 +156,7 @@ function AddRow({ url, page }) {
     setarticleValue({
       ...articleValue,
       [event.target.name]: event.target.value,
-
-    })
+    });
   };
 
   const handleClose = () => {
@@ -182,6 +176,7 @@ function AddRow({ url, page }) {
       link: "",
       filename: "",
     });
+    window.location.reload(false);
   };
   const handleShow = () => setShow(true);
   if (page === "Borrowers" || page === "Leads") {
@@ -315,12 +310,11 @@ function AddRow({ url, page }) {
                 <Form.Control
                   name="link"
                   type="text"
-                  
                   value={fileValue.link}
                   onChange={handleChange}
                 />
                 <Form.Text className="text-muted">
-                 File Link has to be a valid URL.
+                  File Link has to be a valid URL.
                 </Form.Text>
               </Form.Group>
               <Form.Group controlId="formFile" className="mb-3">
@@ -328,7 +322,6 @@ function AddRow({ url, page }) {
                 <Form.Control
                   name="filename"
                   type="text"
-                  
                   value={fileValue.filename}
                   onChange={handleChange}
                 />

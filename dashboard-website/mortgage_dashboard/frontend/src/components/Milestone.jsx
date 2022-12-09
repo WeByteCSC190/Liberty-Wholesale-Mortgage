@@ -63,37 +63,40 @@ const steps = ["5 Deals", "10 Deals", "15 Deals", "20 Deals", "25 Deals"];
 
 const Milestone = () => {
   const [deals, setDeals] = useState([]);
-  useEffect(() => {
-    getDeals();
-  });
+  // function getDeals() {
+  //   let url = "";
+  //   api({
+  //     method: "GET",
+  //     url: url,
+  //   })
+  //     .then((response) => {
+  //       const data = response.data;
+  //       setDeals(data);
+  //       return 6;
+  //     })
+  //     .catch((error) => {
+  //       if (error.response) {
+  //         console.log(error.response);
+  //         console.log(error.response.status);
+  //         console.log(error.response.headers);
+  //       }
+  //     });
+  //   return 6;
+  // }
 
-  function getDeals() {
-    let url = "";
-    api({
-      method: "GET",
-      url: url,
-    })
-      .then((response) => {
-        const data = response.data;
-        setDeals(data);
-        return 6;
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
-    return 6;
-  }
+  useEffect(() => {
+    api
+      .get(`${process.env.REACT_APP_API_URL}/accounts/users/milestones`)
+      .then((response) => setDeals(response.data));
+  }, []);
+
   return (
     <Box className="Milestone" sx={{ width: "100%" }}>
-      <h1>Deals Closed: {getDeals()}</h1>
+      <h1>Deals Closed: {deals}</h1>
       <br />
       <Stepper activeStep={setActiveStep(6)} alternativeLabel>
         {steps.map((label, index) => {
-          if (index <= setActiveStep(6) - 1) {
+          if (index <= setActiveStep(deals) - 1) {
             return (
               <Step key={label}>
                 <StepLabel StepIconComponent={renderPreviousIcon}>

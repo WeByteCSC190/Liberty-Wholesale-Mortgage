@@ -43,7 +43,13 @@ const NavbarCustom = (isAuthenticated) => {
   );
 
   return (
-    <Navbar collapseOnSelect expand="lg" variant="dark" className="Navbar" fixed="top">
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      variant="dark"
+      className="Navbar"
+      fixed="top"
+    >
       <Container>
         <Navbar.Brand href="/">
           <img
@@ -113,12 +119,18 @@ function SwitchIcon() {
     };
   }, [windowDimension]);
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    Logout();
+    window.location.href = "/sign-in";
+  };
+
   // Compare width of web broswer and performs action
   if (windowDimension.windowWidth < 992) {
     return (
       <Container className="nav-menu">
         <SwitchPage href="/account">Account</SwitchPage>
-        <Nav.Link className="nav-item" onClick={Logout} href="#!">
+        <Nav.Link className="nav-item" onClick={handleClick} href="/sign-in">
           Sign Out
         </Nav.Link>
       </Container>
@@ -134,14 +146,17 @@ function SwitchIcon() {
           <FontAwesomeIcon icon={Icons.faUser} size="2x" />
         </Dropdown.Toggle>
         <Dropdown.Menu>
-        <NavDropdown.Item className="nav-drop-link">
-          <Link to="/account">Account</Link>
-         </NavDropdown.Item>
-  
-        <NavDropdown.Item className="nav-drop-link">
-          <a className='nav-item' onClick={Logout} href='#!'> Sign Out</a>
-          {/* <Link onClick={logout} href='#!'>Sign Out</Link> */}
-        </NavDropdown.Item>
+          <NavDropdown.Item className="nav-drop-link">
+            <Link to="/account">Account</Link>
+          </NavDropdown.Item>
+
+          <NavDropdown.Item className="nav-drop-link">
+            <a className="nav-item" onClick={handleClick} href="/sign-in">
+              {" "}
+              Sign Out
+            </a>
+            {/* <Link onClick={logout} href='#!'>Sign Out</Link> */}
+          </NavDropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     );

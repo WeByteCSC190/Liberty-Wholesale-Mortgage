@@ -173,50 +173,50 @@ def generate_random_number():
     cID = random.randrange(1000000)
     return cID
 
-class BorrowerRecover(APIView):
-    permission_classes = (permissions.AllowAny, )
+# class BorrowerRecover(APIView):
+#     permission_classes = (permissions.AllowAny, )
 
-    def post(self, request, pk):
-        borrower = RecyclingBin.objects.get(trashID=pk)
-        if borrower.dataName == "Borrower":
-            caseID = borrower.caseId
-            date = borrower.date
-            fname = borrower.fName
-            lname = borrower.lName
-            creditscore = borrower.creditScore
-            email = borrower.email
-            phone_num = borrower.phone_num
-            status = borrower.status
+#     def post(self, request, pk):
+#         borrower = RecyclingBin.objects.get(trashID=pk)
+#         if borrower.dataName == "Borrower":
+#             caseID = borrower.caseId
+#             date = borrower.date
+#             fname = borrower.fName
+#             lname = borrower.lName
+#             creditscore = borrower.creditScore
+#             email = borrower.email
+#             phone_num = borrower.phone_num
+#             status = borrower.status
 
-            borrowerRestore = Borrower(caseID,date,fname,lname,creditscore,email,phone_num,status)
-            borrowerRestore.save()
-            borrower.delete()
-            return Response("Borrower Data Recovered")
-        else:
-            return Response("Not a Borrower")
+#             borrowerRestore = Borrower(caseID,date,fname,lname,creditscore,email,phone_num,status)
+#             borrowerRestore.save()
+#             borrower.delete()
+#             return Response("Borrower Data Recovered")
+#         else:
+#             return Response("Not a Borrower")
 
-class LeadRecover(APIView):
-    permission_classes = (permissions.AllowAny, )
+# class LeadRecover(APIView):
+#     permission_classes = (permissions.AllowAny, )
     
-    def post(self, request, pk):
-        lead = RecyclingBin.objects.get(trashID=pk)
-        if lead.dataName == "Lead":
-            resources = lead.resources
-            caseID = lead.caseId
-            date = lead.date
-            fname = lead.fName
-            lname = lead.lName
-            creditscore = lead.creditScore
-            email = lead.email
-            phone_num = lead.phone_num
-            status = lead.status
+#     def post(self, request, pk):
+#         lead = RecyclingBin.objects.get(trashID=pk)
+#         if lead.dataName == "Lead":
+#             resources = lead.resources
+#             caseID = lead.caseId
+#             date = lead.date
+#             fname = lead.fName
+#             lname = lead.lName
+#             creditscore = lead.creditScore
+#             email = lead.email
+#             phone_num = lead.phone_num
+#             status = lead.status
 
-            leadRestore = Lead(resources,caseID,date,fname,lname,creditscore,email,phone_num,status)
-            leadRestore.save()
-            lead.delete()
-            return Response("Lead Data Recovered")
-        else:
-            return Response("Not a Lead")
+#             leadRestore = Lead(resources,caseID,date,fname,lname,creditscore,email,phone_num,status)
+#             leadRestore.save()
+#             lead.delete()
+#             return Response("Lead Data Recovered")
+#         else:
+#             return Response("Not a Lead")
 
 class RecyclingBinViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.AllowAny, )

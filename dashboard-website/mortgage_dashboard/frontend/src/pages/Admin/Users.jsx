@@ -2,7 +2,7 @@ import * as React from "react";
 import api from "../../services/api";
 import { useState, useEffect } from "react";
 import Navbar from "../../components/NavbarAdmin";
-import Table from "../../components/Table";
+import Table from "../../components/TableUsers";
 import Footer from "../../components/Footer";
 import Container from "react-bootstrap/Container";
 
@@ -39,6 +39,7 @@ export default function Users() {
     { heading: "NMLS ID", value: "nmlsId" },
     { heading: "Milestones", value: "milestone_count" },
     { heading: "Role", value: "role" },
+    { heading: "AddRow", value: "EditResources" },
   ];
 
   return (
@@ -49,7 +50,7 @@ export default function Users() {
         </div>
         <div className="Content">
           <Container className="page-format">
-            <p className="Page-Title">Manage Accounts</p>
+            <p className="Page-Title">Manage User Accounts</p>
             <Table page="Users" data={dataTable} column={column} />
           </Container>
         </div>

@@ -58,11 +58,11 @@ class UpdateUserSerializer(serializers.ModelSerializer):
             'lName': {'required': True},
         }
 
-    def validate_username(self, value):
-        user = self.context['request'].user
-        if User.objects.exclude(pk=user.pk).filter(username=value).exists():
-            raise serializers.ValidationError({"username": "This username is already in use."})
-        return value
+    # def validate_username(self, value):
+    #     user = self.context['request'].user
+    #     if User.objects.exclude(pk=user.pk).filter(username=value).exists():
+    #         raise serializers.ValidationError({"username": "This username is already in use."})
+    #     return value
 
     def update(self, instance, validated_data):
         user = self.context['request'].user
@@ -89,23 +89,33 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
         return instance
 
-    # def update(self, instance, validated_data):
+class AdminUpdateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'fName', 'lName', 'bio', 'uID', 'nmlsID', 'ssn', 'address_1', 'address_2', 'zip_code', 'role', 'city', 'state', 'milestone_count')
 
+    # def validate_username(self, value):
     #     user = self.context['request'].user
+    #     if User.objects.exclude(pk=user.pk).filter(username=value).exists():
+    #         raise serializers.ValidationError({"username": "This username is already in use."})
+    #     return value
 
-    #     if user.pk != instance.pk:
-    #         raise serializers.ValidationError({"authorize": "You dont have permission for this user."})
+    def update(self, instance, validated_data):
+        instance.fName = validated_data['fName']
+        instance.lName = validated_data['lName']
+        instance.bio = validated_data['bio']
+        instance.role = validated_data['role']
+        instance.email = validated_data['email']
+        # instance.username = validated_data['username']
+        instance.nmlsID = validated_data['nmlsID']
+        instance.ssn = validated_data['ssn']
+        instance.address_1 = validated_data['address_1']
+        instance.address_2 = validated_data['address_2']
+        instance.zip_code = validated_data['zip_code']
+        instance.city = validated_data['city']
+        instance.state = validated_data['state']
+        instance.milestone_count = validated_data['milestone_count']
 
-    #     # instance.set_password(validated_data['password'])
-    #     instance.save()
+        instance.save()
 
-    #     return instance
-    
-    # def update(self, instance, validated_data):
-    #     instance.fName = validated_data['fName']
-    #     instance.lName = validated_data['lName']
-    #     instance.username = validated_data['username']
-
-    #     instance.save()
-
-    #     return instance
+        return instance

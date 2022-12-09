@@ -65,7 +65,7 @@ const AddUsers = () => {
         const data = response.data;
         // setAccountInfo(data);
         console.log(data);
-        return data;
+        window.location.href = "/Users";
       })
       .catch((error) => {
         if (error.response) {
@@ -85,7 +85,7 @@ const AddUsers = () => {
         <div className="Content">
           <Container className="page-format">
             <div className="container mt-5">
-              <h1>Create an Account</h1>
+              <h1>Add a User </h1>
               <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="form-group">
                   <label className="form-label">Username: </label>
@@ -156,7 +156,7 @@ const AddUsers = () => {
                   />
                 </div>
                 <button className="btn btn-primary mt-3" type="submit">
-                  Create
+                  Add
                 </button>
               </form>
             </div>

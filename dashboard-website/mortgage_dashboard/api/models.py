@@ -136,27 +136,16 @@ class Status(models.Model):
     def __str__(self):
         return str(self.id)
 
-# class Announcements(models.Model):
-#      date=models.DateTimeField(auto_now_add = True)
-#      title=models.CharField(max_length=100, default="")
-#      content=models.TextField('Content',blank=True)
-
-#      def __str__(self):
-#          return str(self.date)+" "+str(self.content)
-
 class Articles(models.Model):
      date=models.DateTimeField(auto_now_add = True)
-     title=models.CharField(max_length=100, default="")
-     content=models.TextField('Content',blank=True)
+     title=models.CharField(max_length=250, default="")
+     content=models.CharField(max_length=250,default="")
 
      def __str__(self):
          return self.title
 
 
 class Lead(models.Model):
-    # resources = models.ForeignKey(
-        # Resources, blank=True, null=True, on_delete=models.CASCADE)
-
     caseId = models.IntegerField(
         'Case ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
     date = models.DateTimeField(auto_now_add = True)
@@ -185,33 +174,26 @@ class Borrower(models.Model):
     phone_num = models.CharField('Phone Number', max_length=16, null=True)
     status = models.ForeignKey(
        Status, blank=True, null=True, on_delete=models.CASCADE)
-    
 
-    
     def __str__(self):
         return self.fName
 
 class RecyclingBin(models.Model):
     dataName = models.CharField('Data Name', max_length=30, null=True, blank=True)
-    trashID = models.IntegerField(
-        'trash ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
-    # resources = models.ForeignKey(
-        # Resources, blank=True, null=True, on_delete=models.CASCADE)
-
     caseId = models.IntegerField(
-        'Case ID', null=False, default=generate_random_number())
+        'Case ID', primary_key=True, null=False, default=generate_random_number(), unique=True)
     date = models.DateTimeField('Date')
     fName = models.CharField(max_length=40, null=True, blank=True)
     lName = models.CharField(max_length=40, null=True, blank=True)
     creditScore = models.IntegerField(
-        'Credit Score', blank=True, null=True, unique=False)
+        'Credit Score', null=False, default=generate_random_number(), unique=False)
     email = models.EmailField('Email Address')
     phone_num = models.CharField('Phone Number', max_length=16, null=True)
-    # status = models.ForeignKey(
-    #     Status, blank=True, null=True, on_delete=models.CASCADE)
+    status = models.ForeignKey(
+       Status, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.dataName + " " + f'caseId: {self.caseId}'
+        return self.fName
 
 
 class MileStone(models.Model):

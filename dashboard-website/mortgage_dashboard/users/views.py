@@ -5,7 +5,7 @@ from rest_framework import permissions, status
 # from django.views.generic.edit import UpdateView
 from rest_framework import generics, viewsets
 from .models import *
-from .serializers import UserCreateSerializer, UserSerializer, UpdateUserSerializer
+from .serializers import UserCreateSerializer, UserSerializer, UpdateUserSerializer, AdminUpdateUserSerializer
 from .forms import CustomUserChangeForm
 
 
@@ -32,6 +32,13 @@ class RetrieveUserView(APIView):
 
     return Response(user.data, status=status.HTTP_200_OK)
 
+  def delete(self, request):
+      user = request.username
+      user = UserSerializer(user)
+
+      return Response("deleted", status=status.HTTP_200_OK)
+
+
 class RetrieveUserMilestonesView(APIView):
   permission_classes = [permissions.IsAuthenticated]
 
@@ -39,7 +46,7 @@ class RetrieveUserMilestonesView(APIView):
     user = request.user
     user = UserSerializer(user)
 
-    return Response(user.data.get('milestones'), status=status.HTTP_200_OK)
+    return Response(user.data.get('milestone_count'), status=status.HTTP_200_OK)
 
 # class UpdateUserView(APIView):
 
@@ -61,6 +68,12 @@ class UpdateProfileView(generics.UpdateAPIView):
     queryset = CustomUser.objects.all()
     permission_classes = (permissions.IsAuthenticated,)
     serializer_class = UpdateUserSerializer
+
+class AdminUpdateProfileView(generics.UpdateAPIView):
+
+    queryset = CustomUser.objects.all()
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = AdminUpdateUserSerializer
 
 class ListUserView(viewsets.ModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
