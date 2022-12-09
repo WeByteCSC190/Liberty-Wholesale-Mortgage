@@ -32,21 +32,21 @@ An all in one platform for mortgage officers and loan processors to track their 
 
 ## Prototypes
 <p align="center">
-<img src = "prototypes/sign-in.png" width=400>
+<img src = "prototypes/Sign-in.png" width=400>
 </p>
 
 <p align="center"> Sign In </p>
 <br>
  
 <p align="center">
-<img src = "prototypes/dashboard.png" width=400>
+<img src = "prototypes/Dashboard.png" width=400>
 </p>
 
 <p align="center"> Dashboard </p>
 <br> 
  
 <p align="center">
-<img src = "prototypes/leads.png" width=400>
+<img src = "prototypes/Leads.png" width=400>
 </p>
 
 
