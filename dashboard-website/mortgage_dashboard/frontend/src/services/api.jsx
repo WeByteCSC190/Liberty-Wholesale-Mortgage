@@ -73,6 +73,6 @@ const refresh = async () => {
   } catch (err) {
     console.log("refresh failed");
   } finally {
-    window.location.reload(false);
+    // window.location.reload(false);
   }
 };

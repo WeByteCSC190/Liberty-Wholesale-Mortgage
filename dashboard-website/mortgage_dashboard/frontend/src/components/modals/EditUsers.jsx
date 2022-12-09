@@ -256,7 +256,7 @@ function EditUserRow({ page, rowData }) {
                   <Form.Group className="mb-3" controlId="">
                     <Form.Label>NMLS ID</Form.Label>
                     <Form.Control
-                      name="website"
+                      name="nmlsID"
                       type="text"
                       placeholder={formValue.nmlsID}
                       value={formValue.nmlsID}

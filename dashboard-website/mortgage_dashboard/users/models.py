@@ -4,7 +4,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, Permis
 
 
 class UserAccountManager(BaseUserManager):
-  def create_user(self, username, email, fName, lName, nmlsID, password=None):
+  def create_user(self, username, email, fName, lName, nmlsID, role, password=None):
     if username is None:
       raise TypeError('Users must have a username')
     if password is None:
@@ -16,7 +16,8 @@ class UserAccountManager(BaseUserManager):
       email=email,
       fName=fName,
       lName=lName,
-      nmlsID=nmlsID
+      nmlsID=nmlsID,
+      role=role,
     )
 
     user.set_password(password)
@@ -24,7 +25,7 @@ class UserAccountManager(BaseUserManager):
 
     return user
   
-  def create_superuser(self, username,email, fName, lName, nmlsID, password=None):
+  def create_superuser(self, username, password=None):
     if password is None:
       raise TypeError('Superusers must have a password')
     if username is None:
@@ -33,10 +34,11 @@ class UserAccountManager(BaseUserManager):
     user = self.create_user(
       username=username,
       password=password,
-      email=email,
-      fName=fName,
-      lName=lName,
-      nmlsID=nmlsID
+      email='',
+      fName='',
+      lName='',
+      nmlsID='',
+      role='Admin',
     )
 
     user.is_staff = True
@@ -50,6 +52,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
   ROLE = (
           ('Loan Processor', 'Loan Processor'),
           ('Loan Officer', 'Loan Officer'),
+          ('Admin', 'Admin'),
           )
 
   username = models.CharField(max_length=20, default='', unique=True)

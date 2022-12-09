@@ -19,7 +19,7 @@ const AddUsers = () => {
     lName: "",
     email: "",
     nmlsID: "",
-    // role: "",
+    role: "",
   });
 
   const handleChange = (event) => {
@@ -49,7 +49,7 @@ const AddUsers = () => {
     formData.append("lName", formValue.lName);
     formData.append("email", formValue.email);
     formData.append("nmlsID", formValue.nmlsID);
-    // formValue.append("role", formValue.role);
+    formData.append("role", formValue.role);
 
     console.log(formValue);
     const createUserUrl = `${process.env.REACT_APP_API_URL}/accounts/users/register`;
@@ -154,6 +154,25 @@ const AddUsers = () => {
                     onChange={handleChange}
                     required
                   />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label mt-3">Role</label>
+                  <select
+                    className="form-control"
+                    type="text"
+                    placeholder="Select"
+                    name="role"
+                    onChange={handleChange}
+                    required
+                  >
+                    <option selected disabled>
+                      Choose Role
+                    </option>
+                    <option>Loan Officer</option>
+                    <option>Loan Proccessor</option>
+                    <option>Admin</option>
+                  </select>
                 </div>
                 <button className="btn btn-primary mt-3" type="submit">
                   Add

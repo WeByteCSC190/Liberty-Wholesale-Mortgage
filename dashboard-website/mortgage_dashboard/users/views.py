@@ -32,11 +32,11 @@ class RetrieveUserView(APIView):
 
     return Response(user.data, status=status.HTTP_200_OK)
 
-  def delete(self, request):
-      user = request.username
-      user = UserSerializer(user)
+  def delete(self, request, pk):
+      u = CustomUser.objects.get(id=pk)
+      u.delete()
 
-      return Response("deleted", status=status.HTTP_200_OK)
+      return Response("user is deleted", status=status.HTTP_200_OK)
 
 
 class RetrieveUserMilestonesView(APIView):
@@ -47,21 +47,6 @@ class RetrieveUserMilestonesView(APIView):
     user = UserSerializer(user)
 
     return Response(user.data.get('milestone_count'), status=status.HTTP_200_OK)
-
-# class UpdateUserView(APIView):
-
-#     permission_classes = [permissions.IsAuthenticated]
-
-#     def post(self, request):
-#         user = request.user
-#         user = UserSerializer(user)
-#         user= request.body.fName
-#         # return Response(str(request.body),status=status.HTTP_400_BAD_REQUEST)
-
-#         if form.is_valid():
-#             form.save()
-#             return Response(status=status.HTTP_200_OK)
-#         return Response(str(form.is_valid()), status=status.HTTP_400_BAD_REQUEST)
 
 class UpdateProfileView(generics.UpdateAPIView):
 

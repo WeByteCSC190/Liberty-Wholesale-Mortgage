@@ -36,7 +36,7 @@ export default function Users() {
     { heading: "First Name", value: "fName" },
     { heading: "Last Name", value: "lName" },
     { heading: "Email", value: "email" },
-    { heading: "NMLS ID", value: "nmlsId" },
+    { heading: "NMLS ID", value: "nmlsID" },
     { heading: "Milestones", value: "milestone_count" },
     { heading: "Role", value: "role" },
     { heading: "AddRow", value: "EditResources" },

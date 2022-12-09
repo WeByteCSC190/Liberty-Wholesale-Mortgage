@@ -9,6 +9,7 @@ urlpatterns = [
     path('',include(router.urls)),
     path('register', RegisterView.as_view()),
     path('info', RetrieveUserView.as_view()),
+    path('delete/<int:pk>/', RetrieveUserView.as_view()),
     path('milestones', RetrieveUserMilestonesView.as_view()),
     # path('list', ListUserView.as_view()),
     # path('update', UpdateUserView.as_view()),

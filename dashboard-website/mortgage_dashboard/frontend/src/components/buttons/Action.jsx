@@ -150,9 +150,9 @@ function ActionBtn({ page, rowData, index }) {
           <Confirmation
             btn="Delete"
             title="Remove Borrower"
-            cID={rowData.caseId}
+            cID={rowData.id}
             message="Are you sure you want to remove this borrower permanently?"
-            apiUrl="http://localhost:8000/api/borrowers/"
+            apiUrl="http://localhost:8000/accounts/users/delete/"
           />
         </Dropdown.Menu>
       </Dropdown>

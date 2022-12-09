@@ -1,19 +1,20 @@
 from django.contrib.auth.password_validation import validate_password
 from django.core import exceptions
 from rest_framework import serializers
-from django.contrib.auth import get_user_model
+from .models import CustomUser
+# from django.contrib.auth import get_user_model
 from .models import UserAccountManager
-User = get_user_model()
+# User = get_user_model()
 
 
 class UserCreateSerializer(serializers.ModelSerializer):
   class Meta:
-    model = User
+    model = CustomUser
     # fields= '__all__'
-    fields = ('username', 'password','email', 'fName', 'lName', 'nmlsID')
+    fields = ('username', 'password','email', 'fName', 'lName', 'nmlsID', 'role')
 
   def validate(self, data):
-    user = User(**data)
+    user = CustomUser(**data)
     password = data.get('password')
 
     try:
@@ -28,13 +29,14 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 
   def create(self, validated_data):
-    user = User.objects.create_user(
+    user = CustomUser.objects.create_user(
       username=validated_data['username'],
       password=validated_data['password'],
+      email=validated_data['email'],
       fName=validated_data['fName'],
       lName=validated_data['lName'],
-      email=validated_data['email'],
       nmlsID=validated_data['nmlsID'],
+      role=validated_data['role'],
     )
 
     return user
@@ -42,7 +44,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
-    model = User
+    model = CustomUser
     # fields = ('fName', 'lName', 'username','password')
     # fields = ('username', 'password', 'uId', 'fName', 'lName', 'nmlsID', 'ssn')
     fields='__all__'
@@ -51,7 +53,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UpdateUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = CustomUser
         fields = ('username', 'email', 'fName', 'lName', 'bio', 'uID', 'nmlsID', 'ssn', 'address_1', 'address_2', 'zip_code', 'role', 'city', 'state')
         extra_kwargs = {
             'fName': {'required': True},
@@ -91,7 +93,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
 class AdminUpdateUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = CustomUser
         fields = ('username', 'email', 'fName', 'lName', 'bio', 'uID', 'nmlsID', 'ssn', 'address_1', 'address_2', 'zip_code', 'role', 'city', 'state', 'milestone_count')
 
     # def validate_username(self, value):
