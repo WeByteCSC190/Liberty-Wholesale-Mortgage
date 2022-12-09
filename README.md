@@ -32,7 +32,7 @@ An all in one platform for mortgage officers and loan processors to track their 
 
 ## Prototypes
 <p align="center">
-<img src = "prototypes/log_in.png" width=400>
+<img src = "prototypes/sign-in.png" width=400>
 </p>
 
 <p align="center"> Sign In </p>
