@@ -21,6 +21,7 @@ function ActionBtn({ page, rowData, index }) {
             cID={rowData.caseId}
             message="Are you sure you want to remove this borrower permanently?"
             apiUrl="http://localhost:8000/api/borrowers/"
+            rowData={rowData}
           />
           <Confirmation
             btn="Move To Leads"
@@ -46,10 +47,11 @@ function ActionBtn({ page, rowData, index }) {
 
           <Confirmation
             btn="Delete"
-            title="Remove Borrower"
+            title="Remove Lead"
             cID={rowData.caseId}
             message="Are you sure you want to remove this lead permanently?"
             apiUrl="http://localhost:8000/api/leads/"
+            rowData={rowData}
           />
           <Confirmation
             btn="Move To Borrowers"
@@ -149,10 +151,11 @@ function ActionBtn({ page, rowData, index }) {
           <EditUsers page={`${page}`} rowData={rowData} />
           <Confirmation
             btn="Delete"
-            title="Remove Borrower"
+            title="Remove User"
             cID={rowData.id}
             message="Are you sure you want to remove this borrower permanently?"
             apiUrl="http://localhost:8000/accounts/users/delete/"
+            rowData={rowData}
           />
         </Dropdown.Menu>
       </Dropdown>

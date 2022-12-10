@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Dropdown from "react-bootstrap/Dropdown";
 import api from "../../services/api";
+
 function Confirmation({ btn, cID, title, message, apiUrl, rowData }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -52,7 +53,34 @@ function Confirmation({ btn, cID, title, message, apiUrl, rowData }) {
       }
     }
     // Delete the row
-    console.log(apiUrl);
+    if (title === "Remove Borrower" || title === "Remove Lead") {
+      // store the states in the form data
+      var formDataRecy = new FormData();
+      formDataRecy.append("caseId", rowData.caseId);
+      formDataRecy.append("date", rowData.date);
+      formDataRecy.append("fName", rowData.fName);
+      formDataRecy.append("lName", rowData.lName);
+      formDataRecy.append("email", rowData.email);
+      formDataRecy.append("phone_num", rowData.phone_num);
+      formDataRecy.append("status", 1);
+      formDataRecy.append("creditScore", rowData.creditScore);
+      title === "Remove Borrower"
+        ? formDataRecy.append("dataName", "Borrower")
+        : formDataRecy.append("dataName", "Lead");
+
+      try {
+        let urlRecy = `${process.env.REACT_APP_API_URL}/api/recyclingBin/`;
+        axios({
+          method: "post",
+          url: urlRecy,
+          data: formDataRecy,
+        });
+        handleClose();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     api({
       method: "DELETE",
       url: apiUrl + cID + "/",

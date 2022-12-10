@@ -176,7 +176,7 @@ function AddRow({ url, page }) {
       link: "",
       filename: "",
     });
-    window.location.reload(false);
+    // window.location.reload(false);
   };
   const handleShow = () => setShow(true);
   if (page === "Borrowers" || page === "Leads") {

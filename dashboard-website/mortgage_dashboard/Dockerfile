@@ -1,10 +1,10 @@
-FROM python:3.10-alpine
+FROM python:3
 ENV PYTHONBUFFERED 1
-WORKDIR /
-ADD requirements.txt /
+WORKDIR /app/api
 
-RUN pip install --upgrade pip
-RUN pip install gunicorn
-RUN pip install -r /requirements.txt
+COPY requirements.txt ./
 
-COPY . /
+RUN pip install -r requirements.txt
+
+COPY . ./
+EXPOSE 8000

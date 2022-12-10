@@ -11,12 +11,10 @@ const instance = axios.create({
 
 // Add a request interceptor
 instance.interceptors.request.use(
-  (config) => {
+  async (config) => {
     // Do something before request is sent
     config.headers["Authorization"] =
       "Bearer " + localStorage.getItem("access");
-    // config.headers["Content-Type"] = "application/json";
-    // config.headers["Access-Control-Allow-Origin"] = "*";
     return config;
   },
   (error) => {
@@ -27,21 +25,26 @@ instance.interceptors.request.use(
 
 //Add a response interceptor
 instance.interceptors.response.use(
-  (response) => {
+  (res) => {
     // Any status code that lie within the range of 2xx cause this
     // Do something with response data
-    return response;
+    return res;
   },
-  function (error) {
+  async (err) => {
     // Any status codes that fall outside the range of 2xx cause this
     // Do something with response error
-    const originalConfig = error.config;
-    if (error.response.status === 401 && !originalConfig._retry) {
+    const originalConfig = err.config;
+
+    if (err.response.status === 401 && !originalConfig._retry) {
       originalConfig._retry = true;
-      refresh();
-      return instance.request(error.config);
+      try {
+        await refresh();
+        return instance(originalConfig);
+      } catch (_error) {
+        return Promise.reject(_error);
+      }
     }
-    return Promise.reject(error);
+    return Promise.reject(err);
   }
 );
 
@@ -49,6 +52,8 @@ export default instance;
 
 // Refresh the access token. The refresh token lives for a day, so
 // we only need to update the shorter lived access token
+
+let isRefreshing = false;
 const refresh = async () => {
   const options = {
     method: "post",
@@ -61,18 +66,27 @@ const refresh = async () => {
       refresh: localStorage.getItem("refresh"),
     },
   };
-  try {
-    const res = await axios(options);
-    const data = await res.data;
-    if (res.status === 201 || res.status === 200) {
-      localStorage.setItem("access", data.access);
-      return data;
-    } else {
-      console.log("error1");
+  if (!isRefreshing) {
+    isRefreshing = true;
+    try {
+      const res = await axios(options);
+      const data = await res.data;
+      if (res.status === 201 || res.status === 200) {
+        localStorage.setItem("access", data.access);
+        return data;
+      } else {
+        console.log("error1");
+      }
+    } catch (err) {
+      console.log("refresh failed");
+    } finally {
+      // window.location.reload(false);
     }
-  } catch (err) {
-    console.log("refresh failed");
-  } finally {
-    // window.location.reload(false);
+  } else {
+    return new Promise((r) => setTimeout(r, 1000));
   }
+};
+
+const timeout = async () => {
+  return new Promise((r) => setTimeout(r, 1000));
 };

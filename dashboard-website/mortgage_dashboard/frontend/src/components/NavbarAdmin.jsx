@@ -22,7 +22,7 @@ const NavbarCustom = (isAuthenticated) => {
       <SwitchPage href="/Users">Manage</SwitchPage>
       <SwitchPage href="/lendersAdmin">Lenders</SwitchPage>
       <SwitchPage href="/resourcesAdmin">Resources</SwitchPage>
-      {/* <SwitchPage href="/deleted">Recovery Bin</SwitchPage> */}
+      <SwitchPage href="/deleted">Recovery Bin</SwitchPage>
     </Container>
   );
 
