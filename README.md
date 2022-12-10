@@ -58,14 +58,6 @@ An all in one platform for mortgage officers and loan processors to track their 
 </p>
 
 
-<p align="center"> Leads </p>
-<br>
-
-<p align="center">
-<img src = "prototypes/Lenders.png" width=400>
-</p>
-
-
 <p align="center"> Lenders </p>
 <br>
 
@@ -73,8 +65,6 @@ An all in one platform for mortgage officers and loan processors to track their 
 <img src = "prototypes/log_out.png" width=400>
 </p>
 
-<p align="center"> Sign Out </p>
-<br>
 
 
 ## Database Models
