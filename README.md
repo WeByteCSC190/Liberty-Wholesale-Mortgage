@@ -47,23 +47,40 @@ An all in one platform for mortgage officers and loan processors to track their 
 <br>
  
 <p align="center">
-<img src = "prototypes/Dashboard.png" width=400>
+<img src = "prototypes/dashboard_actual.png" width=400>
 </p>
 
 <p align="center"> Dashboard </p>
 <br> 
  
 <p align="center">
-<img src = "prototypes/Leads.png" width=400>
+<img src = "prototypes/leads_actual.png" width=400>
 </p>
 
+<p align="center"> Leads </p>
+<br> 
+
+<p align="center">
+<img src = "prototypes/borrowers_actual.png" width=400>
+</p>
+
+<p align="center"> Borrowers </p>
+<br> 
+ 
+
+<p align="center">
+<img src = "prototypes/lenders_actual.png" width=400>
+</p>
 
 <p align="center"> Lenders </p>
 <br>
 
 <p align="center">
-<img src = "prototypes/lenders.png" width=400>
+<img src = "prototypes/resources_actual.png" width=400>
 </p>
+
+<p align="center"> Resources </p>
+<br>
 
 
 
