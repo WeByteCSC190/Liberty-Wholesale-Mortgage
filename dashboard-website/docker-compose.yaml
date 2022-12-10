@@ -1,0 +1,23 @@
+services:
+  mortgage_dashboard:
+    restart: always
+    container_name: code
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    build:
+      context: ./mortgage_dashboard/
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+
+  frontend:
+    restart: always
+    command: npm start
+    container_name: front
+    build:
+      context: ./mortgage_dashboard/frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    depends_on:
+      - mortgage_dashboard
