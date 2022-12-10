@@ -37,6 +37,14 @@ An all in one platform for mortgage officers and loan processors to track their 
 
 <p align="center"> Sign In </p>
 <br>
+
+<p align="center">
+ <img src = "prototypes/Navbar.png" width=400>
+ </p>
+ 
+ 
+<p align="center"> Navbar </p>
+<br>
  
 <p align="center">
 <img src = "prototypes/Dashboard.png" width=400>
@@ -106,7 +114,6 @@ and then once the image is built it can be run with docker-compose up -d. To kil
 ![liberty_wholesale_mortage_web_app_2022-05-13_10 00pm](https://user-images.githubusercontent.com/57340692/168411422-1146fa6e-b30e-41b8-ba9b-00ecef2ec85e.png)
 
 JIRA Milestones:
-
 
 Currently, Hot Reload is not enabled, so you will need to rebuild every time you change the code, so currently use the Build Instructions. 
 However, Hot Reload is currently in development. 
