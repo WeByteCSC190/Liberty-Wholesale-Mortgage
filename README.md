@@ -30,7 +30,7 @@ Liberty Wholesale Mortgage is a mortgage brokrage which provides finance and mor
 An all in one platform for mortgage officers and loan processors to track their progress, keeping up to date with the status of their leads and borrowers, perform fillings, find lenders, and so forth.The technology lets the mortgage officers and processors to increase productivity, manage bigger pipelines and grow their business to higher levels.
 
 
-## Actual Screenshots of Program
+## Actual Screenshots
 <p align="center">
 <img src = "prototypes/Sign-in.png" width=400>
 </p>
@@ -62,7 +62,7 @@ An all in one platform for mortgage officers and loan processors to track their 
 <br>
 
 <p align="center">
-<img src = "prototypes/log_out.png" width=400>
+<img src = "prototypes/lenders.png" width=400>
 </p>
 
 
