@@ -30,7 +30,7 @@ Liberty Wholesale Mortgage is a mortgage brokrage which provides finance and mor
 An all in one platform for mortgage officers and loan processors to track their progress, keeping up to date with the status of their leads and borrowers, perform fillings, find lenders, and so forth.The technology lets the mortgage officers and processors to increase productivity, manage bigger pipelines and grow their business to higher levels.
 
 
-## Prototypes
+## Actual Screenshots of Program
 <p align="center">
 <img src = "prototypes/Sign-in.png" width=400>
 </p>
@@ -58,11 +58,15 @@ An all in one platform for mortgage officers and loan processors to track their 
 </p>
 
 
-This would install the programs needed for this software.
-
-On the Node.js side, you will need to install quite a few packages, navigate into the Docker file and you will see the installed Node dependencies.
-
 <p align="center"> Leads </p>
+<br>
+
+<p align="center">
+<img src = "prototypes/Lenders.png" width=400>
+</p>
+
+
+<p align="center"> Lenders </p>
 <br>
 
 <p align="center">
@@ -84,7 +88,7 @@ Enhanced entity-relationship (EER) modeling for conceptual data modeling.
 - Visual Studio Code (IDE)
 - For VSC terminal in Windows: python -m pip install -r requirements.txt
 - For VSC terminal in macOS: python3 -m pip install -r requirements.txt
-- which would install the following programs:
+- This command would install the following programs:
 - Babel==2.9.1, Django==4.0.3, django-bootstrap-v5==1.0.11, djangorestframework==3.13.1
 - Also install seperately: Docker, Docker Compose 
 
@@ -108,33 +112,9 @@ and then once the image is built it can be run with docker-compose up -d. To kil
 - In the directory with the manage.py file, run the command in Windows: python ./manage.py runserver
 - In the directory with the manage.py file, run the command in macOS: python3 ./manage.py runserver
 - In the frontend directory, run the command: npm run dev
-- In the frontend directory, run the following command: npm run devv
-
-## Timeline
-![liberty_wholesale_mortage_web_app_2022-05-13_10 00pm](https://user-images.githubusercontent.com/57340692/168411422-1146fa6e-b30e-41b8-ba9b-00ecef2ec85e.png)
-
-JIRA Milestones:
-
-Currently, Hot Reload is not enabled, so you will need to rebuild every time you change the code, so currently use the Build Instructions. 
-However, Hot Reload is currently in development. 
-
-Sprint5: A fully functional Dashboard page is created
+- In the frontend directory, run the following command: npm run dev
 
 
-Sprint6: Finish the leads and borrowers database & a complete leads and borrowers page with filter function
-
-In the directory with the manage.py file, run the command: python ./manage.py runserver (for Windows) or  python3 ./manage.py runserver (for macOS)
-
-In the frontend directory, run the command: npm run dev
-
-
-Note that you will need to run two processes at the same time, so either use "tmux" to run them in the same terminal window, run it in two terminals, or run them in the background by adding '&' to the end of the commands.
-
-Sprint7: Dependencies installed to allow the application run on servers
-
-Sprint8: Make the application free from vulnerabilities
-
-Sprint9: Any additional features specified by the client is added
 
 
 
